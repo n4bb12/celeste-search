@@ -1,6 +1,6 @@
 [build]
   command = "yarn build -c production"
-  publish = "dist/celeste-items"
+  publish = "dist/celeste-item-search"
 
 [[redirects]]
   from = "/*"

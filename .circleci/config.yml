@@ -25,17 +25,17 @@ jobs:
 
   test:
     docker:
-      - image: circleci/node:10
+      - image: circleci/node:10-browsers
     steps:
       - attach_workspace: { at: "." }
-      - run: yarn ng test --watch=false --progress=false --browsers=ChromeHeadlessCI
+      - run: yarn ng test --no-progress --no-watch --browsers ChromeHeadlessCI
 
   e2e:
     docker:
-      - image: circleci/node:10
+      - image: circleci/node:10-browsers
     steps:
       - attach_workspace: { at: "." }
-      - run: yarn ng e2e --protractor-config=./e2e/protractor-ci.conf.js
+      - run: yarn ng e2e --configuration production --protractor-config ./e2e/protractor-ci.conf.js
 
   build:
     docker:
