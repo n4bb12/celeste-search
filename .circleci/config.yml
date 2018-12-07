@@ -1,0 +1,67 @@
+version: 2
+jobs:
+  install:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - yarn-cache-{{ .Branch }}-{{ checksum "yarn.lock" }}
+            - yarn-cache-{{ .Branch }}
+            - yarn-cache-
+      - run: yarn install
+      - save_cache:
+          key: yarn-cache-{{ .Branch }}-{{ checksum "yarn.lock" }}
+          paths: node_modules
+      - persist_to_workspace: { root: ".", paths: "." }
+
+  lint:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - attach_workspace: { at: "." }
+      - run: yarn lint
+
+  test:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - attach_workspace: { at: "." }
+      - run: yarn ng test --watch=false --progress=false --browsers=ChromeHeadlessCI
+
+  e2e:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - attach_workspace: { at: "." }
+      - run: yarn ng e2e --protractor-config=./e2e/protractor-ci.conf.js
+
+  build:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - attach_workspace: { at: "." }
+      - run: yarn build --no-progress
+
+workflows:
+  version: 2
+  default:
+    jobs:
+      - install
+
+      - lint:
+          requires:
+            - install
+
+      - test:
+          requires:
+            - install
+
+      - e2e:
+          requires:
+            - install
+
+      - build:
+          requires:
+            - install
