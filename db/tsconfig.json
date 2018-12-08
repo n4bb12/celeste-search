@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "module": "commonjs",
+    "outDir": "../out-tsc/db",
+    "types": [
+      "node"
+    ]
+  },
+  "exclude": [
+    ".cache"
+  ],
+  "extends": "../tsconfig.json"
+}
