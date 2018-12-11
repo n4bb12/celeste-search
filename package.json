@@ -73,7 +73,6 @@
     "filenamify": "^2.1.0",
     "fs-extra": "^7.0.1",
     "gulp": "^4.0.0",
-    "gulp-rename": "^1.4.0",
     "gulp-tinify": "^1.0.2",
     "gulp.spritesmith": "^6.9.0",
     "jasmine-core": "~2.99.1",

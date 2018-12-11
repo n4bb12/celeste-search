@@ -1,13 +1,12 @@
 const gulp = require("gulp")
-const rename = require("gulp-rename")
 const spritesmith = require("gulp.spritesmith")
 const tinify = require("gulp-tinify")
 
 const sprite = name =>
   () => gulp.src(`generated/sprites-input/${name}/*.png`)
     .pipe(spritesmith({
-      imgName: `${name}.png`,
-      cssName: `${name}.css`,
+      imgName: `${name}.sprite.png`,
+      cssName: `${name}.sprite.css`,
       cssTemplate: data => {
         const sharedClass = [
           `.icon--${name} {`,
@@ -40,12 +39,8 @@ const sprites = gulp.parallel(
   sprite("materials"),
 )
 
-const optimize = () => gulp.src([`generated/sprites/*?!(min).png`])
+const optimize = () => gulp.src([`generated/sprites/*.png`])
   .pipe(tinify(process.env.TINIFY_API_KEY))
-  .pipe(rename(path => {
-    path.extname = ".min" + path.extname
-  }))
-  .pipe(gulp.dest("generated/sprites"))
   .pipe(gulp.dest("src/assets/generated"))
 
 exports.sprites = sprites
