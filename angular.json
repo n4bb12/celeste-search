@@ -37,7 +37,7 @@
             "assets": [
               "src/assets",
               "src/favicon.ico",
-              "src/netlify.toml",
+              "src/manifest.json",
               "src/robots.txt"
             ],
             "index": "src/index.html",

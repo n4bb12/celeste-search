@@ -50,7 +50,7 @@ const buildCSS = images => {
   images.forEach(({ rename, width, height }) => {
 
     const backgroundImage
-      = `background-image: url("/assets/generated/bg/${rename}");`
+      = `background-image: url("/assets/bg/${rename}");`
 
     if (!rules.length) {
       addRule(backgroundImage)

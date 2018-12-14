@@ -8,7 +8,7 @@ const cssTemplate = name => data => {
   const sharedClass = [
     `.icon--${name} {`,
     `  display: block;`,
-    `  background-image: url("assets/generated/sprite-${name}.min.png");`,
+    `  background-image: url("assets/sprite-${name}.min.png");`,
     `  width: 20px;`,
     `  height: 20px;`,
     `}`,

@@ -14,7 +14,7 @@ const optimize = () => src([
   .pipe(debug())
   .pipe(rename(path => path.extname = ".min" + path.extname))
   .pipe(tinify(process.env.TINIFY_API_KEY))
-  .pipe(dest("src/assets/generated"))
+  .pipe(dest("src/assets"))
 
 /**
  * `gulp optimize`
