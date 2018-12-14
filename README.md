@@ -12,10 +12,10 @@
     <img alt="Item Search" src="https://flat.badgen.net/badge//item search?icon=chrome">
   </a>
   <a href="https://celeste-item-search.netlify.com/">
-    <img alt="Staging" src="https://flat.badgen.net/badge//staging/orange?icon=chrome">
+    <img alt="Staging" src="https://flat.badgen.net/badge//staging/cyan?icon=chrome">
   </a>
   <a href="https://github.com/n4bb12/celeste-item-search/issues/new">
-    <img alt="Issues" src="https://flat.badgen.net/badge/github/create issue/purple?icon=github">
+    <img alt="Issues" src="https://flat.badgen.net/badge/github/create issue/pink?icon=github">
   </a>
   <a href="https://circleci.com/gh/n4bb12/workflows/celeste-item-search">
     <img alt="CircleCI" src="https://flat.badgen.net/circleci/github/n4bb12/celeste-item-search?icon=circleci">
