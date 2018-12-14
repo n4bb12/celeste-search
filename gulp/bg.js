@@ -40,7 +40,7 @@ function buildImagesConfigs(exponents) {
  * Builds a CSS string containing media queries for the different
  * image sizes.
  */
-const buildCSS = images => {
+const buildMediaQueries = images => {
   const rules = []
 
   function addRule(...lines) {
@@ -89,8 +89,8 @@ const generateBGs = done => {
     .pipe(dest(paths.out))
 
   const writeCSS = () => {
-    const css = buildCSS(images)
-    return writeFile(paths.out + "/bg.css", css, "utf8")
+    const scss = buildMediaQueries(images)
+    return writeFile(paths.out + "/bg.scss", scss, "utf8")
   }
 
   return parallel(writeCSS, writeImages)(done)
