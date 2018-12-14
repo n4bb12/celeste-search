@@ -24,7 +24,7 @@
 
 ## Architecture
 
-![Architecture](docs/architecture.png)
+![Architecture](docs/architecture.svg)
 
 ## Angular CLI
 
