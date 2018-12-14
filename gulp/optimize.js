@@ -8,6 +8,7 @@ const tinify = require("gulp-tinify")
  */
 const optimize = () => src([
   `generated/bg/*.png`,
+  `generated/meta/*.png`,
   `generated/sprites/*.png`,
 ])
   .pipe(debug())
