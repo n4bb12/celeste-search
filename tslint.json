@@ -9,7 +9,8 @@
     "max-line-length": [
       true,
       120
-    ]
+    ],
+    "member-ordering": false
   },
   "rulesDirectory": [
     "node_modules/codelyzer"

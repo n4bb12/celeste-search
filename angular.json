@@ -45,8 +45,13 @@
             "outputPath": "dist/celeste-item-search",
             "polyfills": "src/polyfills.ts",
             "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles"
+              ]
+            },
             "styles": [
-              "src/styles.scss"
+              "src/styles/styles.scss"
             ],
             "tsConfig": "src/tsconfig.app.json"
           }
@@ -93,8 +98,13 @@
             "main": "src/test.ts",
             "polyfills": "src/polyfills.ts",
             "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles"
+              ]
+            },
             "styles": [
-              "src/styles.scss"
+              "src/styles/styles.scss"
             ],
             "tsConfig": "src/tsconfig.spec.json"
           }
