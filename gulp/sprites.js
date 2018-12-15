@@ -8,7 +8,7 @@ const cssTemplate = name => data => {
   const sharedClass = [
     `.icon--${name} {`,
     `  display: block;`,
-    `  background-image: url("assets/sprite-${name}.min.png");`,
+    `  background-image: url("assets/sprite-${name}.png");`,
     `  width: 20px;`,
     `  height: 20px;`,
     `}`,
@@ -32,10 +32,11 @@ const cssTemplate = name => data => {
 /**
  * Generates a single sprite.
  */
-const sprite = name => () => src(`generated/sprites/${name}/*.png`)
+const sprite = name => () => src(
+  `generated/sprites/${name}/*.png`, { base: "generated" })
   .pipe(spritesmith({
     imgName: `${name}.sprite.png`,
-    cssName: `${name}.sprite.css`,
+    cssName: `${name}.sprite.scss`,
     cssTemplate: cssTemplate(name),
   }))
   .pipe(dest("generated/sprites"))

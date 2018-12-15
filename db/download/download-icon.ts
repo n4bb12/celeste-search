@@ -15,7 +15,7 @@ async function get(resource: string, spriteId: string) {
   nextIconId[spriteId] = iconId + 1
 
   const path = resource.replace(/\\/g, "/")
-  const spriteInput = `generated/sprites-input/${spriteId}/${iconId}.png`
+  const spriteInput = `generated/sprites/${spriteId}/${iconId}.png`
   const url = `https://images.projectceleste.com/Art/${path}.png`
   const options = { responseType: "arraybuffer" }
 

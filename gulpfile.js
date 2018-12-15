@@ -1,4 +1,5 @@
 exports.bg = require("./gulp/bg")
+exports.copy = require("./gulp/copy")
 exports.meta = require("./gulp/meta")
 exports.optimize = require("./gulp/optimize")
 exports.sprites = require("./gulp/sprites")

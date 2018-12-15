@@ -21,11 +21,14 @@ function buildImagesConfigs(exponents) {
     const height = Math.round(sourceWidth * Math.pow(ratio, exponent))
     const size = height
 
+    // 16:9
     images.push({
       rename: `bg-${width}-${height}.png`,
       width,
       height,
     })
+
+    // 1:1
     images.push({
       rename: `bg-${size}.png`,
       width: size,
@@ -33,7 +36,7 @@ function buildImagesConfigs(exponents) {
     })
   })
 
-  return images
+  return images.sort((a, b) => (b.width - b.height) - (a.width - a.height))
 }
 
 /**
@@ -42,39 +45,40 @@ function buildImagesConfigs(exponents) {
  */
 const buildMediaQueries = images => {
   const rules = []
+  const indent = "  "
+  const eol = "\n"
 
   function addRule(...lines) {
-    rules.push("  " + lines.map(line => line.trim()).join(" "))
+    rules.push(lines.map(line => indent + line).join(eol))
   }
 
   images.forEach(({ rename, width, height }) => {
-
-    const backgroundImage
+    const bgImage
       = `background-image: url("/assets/bg/${rename}");`
 
     if (!rules.length) {
-      addRule(backgroundImage)
+      addRule(bgImage)
     } else if (width !== height) {
       addRule(
         `@media (max-width: ${width}px), (max-height: ${height}px) {`,
-        `  ${backgroundImage}`,
+        indent + `${bgImage}`,
         `}`)
     } else {
       addRule(
         `@media (max-aspect-ratio: 1/1) and (max-height: ${height}px) {`,
-        `  ${backgroundImage}`,
+        indent + `${bgImage}`,
         `}`)
     }
   })
 
-  return `body.--stable {
-${rules.join("\n")}
+  return `body {
+${rules.join(eol + eol)}
 }
 `
 }
 
 /**
- * Deletes all current backgrounds.
+ * Deletes previously generated background images.
  */
 const deleteBGs = () => del(paths.out + "/*")
 
