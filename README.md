@@ -24,8 +24,7 @@
 
 ## Contributing
 
-Want to suggest a feature or report a bug? [Create an issue](https://github.com/n4bb12/celeste-item-search/issues/new).
-
+Want to suggest a feature or report a bug? [Create an issue](https://github.com/n4bb12/celeste-item-search/issues/new).  
 Interested in writing a pull request? See the [contribution guide](CONTRIBUTING.md).
 
 #
