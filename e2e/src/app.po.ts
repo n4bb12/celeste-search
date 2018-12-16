@@ -5,7 +5,11 @@ export class AppPage {
     return browser.get("/")
   }
 
-  getTitleText() {
-    return element(by.css("cis-root h1")).getText()
+  getSearchBox() {
+    return element(by.css("cis-search input"))
+  }
+
+  getLegalText() {
+    return element(by.css("cis-legal"))
   }
 }

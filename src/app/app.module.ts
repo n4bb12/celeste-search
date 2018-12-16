@@ -10,17 +10,17 @@ import { ResultsComponent } from "./results/results.component"
 import { SearchComponent } from "./search/search.component"
 
 @NgModule({
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+  ],
   declarations: [
     AppComponent,
     SearchComponent,
     ResultsComponent,
     LegalComponent,
     AwaitFontDirective,
-  ],
-  imports: [
-  BrowserModule,
-    HttpClientModule,
-    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
