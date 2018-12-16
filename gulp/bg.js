@@ -72,6 +72,11 @@ const buildMediaQueries = images => {
   })
 
   return `body {
+  transition: background-image 1s ease-in-out;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
 ${rules.join(eol + eol)}
 }
 `

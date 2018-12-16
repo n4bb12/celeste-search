@@ -1,0 +1,14 @@
+$theme-primary: #488489;
+$theme-secondary: #B7D6D8;
+$theme-text: #2D4240;
+$theme-background: #FFFFFF;
+
+@mixin background() {
+  @include elevation(2);
+  background: rgba($theme-background, .25);
+  border-radius: .5rem;
+}
+
+@mixin elevation($z) {
+  box-shadow: 0 ($z + px) ($z + px) 0 rgba($theme-text, .125);
+}

@@ -1,0 +1,12 @@
+@import "imports";
+
+:host {
+  display: block;
+  font-size: .9rem;
+  text-align: center;
+  color: white;
+}
+
+a {
+  color: $theme-secondary;
+}

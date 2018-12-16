@@ -1,0 +1,37 @@
+@import "imports";
+
+:host {
+  width: 100%;
+  height: 100%;
+}
+
+main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
+cis-search {
+  width: 100%;
+  max-width: 60rem;
+  padding: 5vh 5vw 10vh;
+  margin: 0 auto;
+}
+
+cis-results {
+  height: 100%;
+  width: 100%;
+  max-width: 100rem;
+  padding: 0 5vw;
+  margin: 0 auto;
+}
+
+cis-legal {
+  width: 100%;
+  max-width: 60rem;
+  padding: 10vh 5vw 5vh;
+  margin: 0 auto;
+}

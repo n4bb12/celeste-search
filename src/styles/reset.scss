@@ -1,0 +1,34 @@
+@import "~normalize.scss/normalize";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  color: $theme-text;
+  text-shadow: 1px 1px 1px rgba($theme-text, .5);
+}
+
+input, button {
+  font: inherit;
+}
+
+a {
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+::selection {
+  background: $theme-secondary;
+  text-shadow: none;
+}
+
+// Removes the native input X buttons in Edge
+::-ms-clear {
+  display:none;
+}

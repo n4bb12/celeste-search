@@ -1,4 +1,6 @@
-import { Component } from "@angular/core"
+import { AfterViewInit, Component } from "@angular/core"
+
+import { DbService } from "./services/db.service"
 
 @Component({
   selector: "cis-root",
@@ -6,5 +8,11 @@ import { Component } from "@angular/core"
   styleUrls: ["./app.component.scss"],
 })
 export class AppComponent {
-  title = "celeste-item-search"
+
+  readonly items = this.db.fetch()
+
+  constructor(
+    private db: DbService,
+  ) { }
+
 }

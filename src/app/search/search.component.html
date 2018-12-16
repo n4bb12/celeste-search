@@ -1,0 +1,8 @@
+<div class="__form" [class.--empty]="!input" cisAwaitFont>
+  <input type="text" class="__input" [placeholder]="placeholder"
+    [attr.aria-label]="placeholder" autocomplete="off" autocorrect="off"
+    autocapitalize="off" spellcheck="false" [formControl]="formControl"
+    #inputEl />
+
+  <button type="button" class="__clear" (click)="clear()"></button>
+</div>
