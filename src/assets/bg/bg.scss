@@ -1,9 +1,11 @@
+@import "imports";
+
 body {
   background-position: center;
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: #8DAEAB;
+  background-color: $theme-secondary;
   background-image: url("/assets/bg/bg-2048-1152.png");
 
   @media (max-width: 1774px), (max-height: 998px) {
