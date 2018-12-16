@@ -1,1 +1,1 @@
-All files in this folder are generated. Do not edit manually.
+All files here are generated. Don't edit manually!

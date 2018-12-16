@@ -3,5 +3,3 @@ dist
 download-cache
 generated
 node_modules
-src/assets/*
-!src/assets/README.md
