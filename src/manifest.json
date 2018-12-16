@@ -2,7 +2,7 @@
   "$schema": "http://json.schemastore.org/web-manifest",
   "name": "Celeste Item Search",
   "short_name": "Item Search",
-  "description": "Find items by name, slot, quality, level, effect, material or shop.",
+  "description": "Find items & advisors, search by name, slot, quality, level, effect, material, shop.",
   "start_url": "/",
   "display": "minimal-ui",
   "background_color": "#fff",
