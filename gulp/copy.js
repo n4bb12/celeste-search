@@ -2,8 +2,8 @@ const { src, dest } = require("gulp")
 const debug = require("gulp-debug")
 
 /**
- * Copy assets that don't need compression or any other form
- * of optimization.
+ * Copies assets that don't need compression, nor any other
+ * form of optimization.
  */
 const copy = () => src([
   `generated/**/*.scss`,
