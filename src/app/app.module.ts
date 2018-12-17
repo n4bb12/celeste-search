@@ -5,6 +5,7 @@ import { BrowserModule } from "@angular/platform-browser"
 
 import { AppComponent } from "./app.component"
 import { AwaitFontDirective } from "./await-font.directive"
+import { BackToTopComponent } from "./back-to-top/back-to-top.component"
 import { LegalComponent } from "./legal/legal.component"
 import { ResultsComponent } from "./results/results.component"
 import { SearchComponent } from "./search/search.component"
@@ -17,10 +18,11 @@ import { SearchComponent } from "./search/search.component"
   ],
   declarations: [
     AppComponent,
-    SearchComponent,
-    ResultsComponent,
-    LegalComponent,
     AwaitFontDirective,
+    BackToTopComponent,
+    LegalComponent,
+    ResultsComponent,
+    SearchComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

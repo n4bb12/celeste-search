@@ -1,0 +1,36 @@
+@import 'imports';
+
+:host {
+  position: fixed;
+  z-index: 1;
+  right: 2rem;
+  bottom: 2rem;
+  display: block;
+}
+
+button {
+  @include elevation(12);
+
+  position: relative;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: $theme-background;
+  transition: opacity .1s ease-out;
+  opacity: 0;
+  pointer-events: none;
+
+  &.--shown {
+    opacity: 1;
+    pointer-events: unset;
+  }
+}
+
+svg {
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
