@@ -21,12 +21,10 @@ import { distinctUntilChanged, filter, sampleTime, tap } from "rxjs/operators"
 })
 export class SearchComponent implements AfterViewInit {
 
+  @ViewChild("inputEl") inputEl: ElementRef
   @Input() input = ""
   @Output() inputChange = new EventEmitter<string>()
-
-  @ViewChild("inputEl") inputEl: ElementRef
-  readonly formControl = new FormControl()
-  readonly placeholder = "Find Items and Advisors..."
+  readonly inputModel = new FormControl()
 
   constructor(
     private appRef: ApplicationRef,
@@ -39,9 +37,7 @@ export class SearchComponent implements AfterViewInit {
 
     this.appRef.isStable.subscribe(isStable => {
       if (isStable) {
-        this.formControl.valueChanges.pipe(
-          sampleTime(200),
-          filter(input => input !== undefined),
+        this.inputModel.valueChanges.pipe(
           distinctUntilChanged(),
           tap(input => this.inputChange.emit(input)),
         ).subscribe()
@@ -50,7 +46,7 @@ export class SearchComponent implements AfterViewInit {
   }
 
   clear() {
-    this.input = ""
+    this.inputModel.setValue("")
     this.inputEl.nativeElement.focus()
   }
 

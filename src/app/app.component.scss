@@ -3,11 +3,15 @@
 :host {
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
 }
 
 main {
+  flex: 1;
   width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -22,7 +26,7 @@ cis-search {
 }
 
 cis-results {
-  height: 100%;
+  flex: 1;
   width: 100%;
   max-width: 100rem;
   padding: 0 5vw;
@@ -31,7 +35,7 @@ cis-results {
 
 cis-legal {
   width: 100%;
-  max-width: 60rem;
+  max-width: 45rem;
   padding: 10vh 5vw 5vh;
   margin: 0 auto;
 }

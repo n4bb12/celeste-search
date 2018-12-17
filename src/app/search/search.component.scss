@@ -5,30 +5,32 @@
 }
 
 .__form {
-  position: relative;
-  @include elevation(2);
+  @include background();
 
-  &.--empty {
-    button {
-      display: none;
-    }
-  }
+  position: relative;
+  padding: 1.5rem;
+}
+
+.__input-container {
+  position: relative;
 }
 
 .__input {
   width: 100%;
-  border: none;
-  outline: none;
   height: 3rem;
   line-height: 3rem;
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   font-weight: 300;
   padding: 0 3rem 0 1rem;
-  background: $theme-background;
-  color: $theme-text;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.--empty {
+  .__clear {
+    display: none;
+  }
 }
 
 .__clear {
@@ -36,22 +38,24 @@
   top: 0;
   right: 0;
   z-index: 1;
-  background: transparent;
-  background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20512%20512%22%3E%3Cpath%20d%3D%22M505.943%206.058c-8.077-8.077-21.172-8.077-29.249%200L6.058%20476.693c-8.077%208.077-8.077%2021.172%200%2029.249A20.612%2020.612%200%200%200%2020.683%20512a20.614%2020.614%200%200%200%2014.625-6.059L505.943%2035.306c8.076-8.076%208.076-21.171%200-29.248z%22%2F%3E%3Cpath%20d%3D%22M505.942%20476.694L35.306%206.059c-8.076-8.077-21.172-8.077-29.248%200-8.077%208.076-8.077%2021.171%200%2029.248l470.636%20470.636a20.616%2020.616%200%200%200%2014.625%206.058%2020.615%2020.615%200%200%200%2014.624-6.057c8.075-8.078%208.075-21.173-.001-29.25z%22%2F%3E%3C%2Fsvg%3E');
-  background-size: 1rem 1rem;
-  background-position: center;
-  background-repeat: no-repeat;
   width: 3rem;
   height: 3rem;
+  background: transparent;
   opacity: .25;
   transform: translate3d(0,0,0);
   transition: opacity .1s ease-out;
-  border: none;
-  outline: none;
-  cursor: pointer;
 
   &:hover,
   &:focus {
     opacity: 1;
+  }
+
+  svg {
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }

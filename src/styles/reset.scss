@@ -1,4 +1,5 @@
 @import "~normalize.scss/normalize";
+@import "~typeface-lato/index.css";
 
 * {
   box-sizing: border-box;
@@ -12,12 +13,25 @@ body {
   text-shadow: 1px 1px 1px rgba($theme-text, .5);
 }
 
-input, button {
+input, button, a {
+  outline: none;
+  border: none;
+  padding: 0;
+  color: $theme-text;
   font: inherit;
+}
+
+input, button {
+  background: $theme-background;
+}
+
+button, a {
+  cursor: pointer;
 }
 
 a {
   text-decoration: none;
+
   &:hover {
     text-decoration: underline;
   }

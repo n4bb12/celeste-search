@@ -16,7 +16,7 @@ const defaultOptions: AwaitFontOptions = {
   weight: 400,
   style: "normal",
   timeout: 200,
-  transition: "1s ease-out opacity",
+  transition: "opacity .5s ease-out",
 }
 
 @Directive({
