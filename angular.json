@@ -47,6 +47,7 @@
             "scripts": [],
             "stylePreprocessorOptions": {
               "includePaths": [
+                "node_modules",
                 "src/styles"
               ]
             },
@@ -100,6 +101,7 @@
             "scripts": [],
             "stylePreprocessorOptions": {
               "includePaths": [
+                "node_modules",
                 "src/styles"
               ]
             },
