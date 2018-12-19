@@ -102,7 +102,7 @@ export function buildSearchString(item: Item, materials: Materials): string {
   return search
 }
 
-export function buildClientSideSearchReplacements(items: Item[], materials: Materials): Replacements {
+export function buildSearchReplacementMap(items: Item[], materials: Materials): Replacements {
   const map = {}
 
   function searchAsSingleWord(str: string): void {

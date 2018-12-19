@@ -8,7 +8,7 @@ import { Trait, Traits } from "../interfaces/api"
 import { DB } from "../interfaces/app"
 
 import {
-  buildClientSideSearchReplacements,
+  buildSearchReplacementMap,
   buildSearchString,
 } from "./build-search-string"
 import { compareItems } from "./compare-items"
@@ -32,13 +32,14 @@ export async function buildDb(): Promise<DB> {
 
   let items = await Throttle.all(asyncConvertToItemTasks, throttleOptions)
   const materials = await convertMaterials(items)
-  const replace = buildClientSideSearchReplacements(items, materials)
+  const replace = buildSearchReplacementMap(items, materials)
 
   items = items.sort(compareItems)
   items.forEach(item => item.search = buildSearchString(item, materials))
 
   const db: DB = {
     items,
+    advisors: [],
     materials,
     replace,
   }
