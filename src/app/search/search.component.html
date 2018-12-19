@@ -4,7 +4,7 @@
 
     <input type="text" class="__input" placeholder="Search" aria-label="Search"
       autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
-      [formControl]="inputModel" #inputEl />
+      [formControl]="inputModel" #inputRef />
 
     <button type="button" class="__clear" (click)="clear()" *ngIf="inputModel.valueChanges | async">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">

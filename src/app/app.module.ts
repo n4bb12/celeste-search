@@ -3,6 +3,8 @@ import { NgModule } from "@angular/core"
 import { ReactiveFormsModule } from "@angular/forms"
 import { BrowserModule } from "@angular/platform-browser"
 
+import { NgScrollbarModule } from "ngx-scrollbar"
+
 import { AppComponent } from "./app.component"
 import { AwaitFontDirective } from "./await-font.directive"
 import { BackToTopComponent } from "./back-to-top/back-to-top.component"
@@ -15,6 +17,7 @@ import { SearchComponent } from "./search/search.component"
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgScrollbarModule,
   ],
   declarations: [
     AppComponent,
@@ -24,7 +27,6 @@ import { SearchComponent } from "./search/search.component"
     ResultsComponent,
     SearchComponent,
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

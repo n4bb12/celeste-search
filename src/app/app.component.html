@@ -1,7 +1,12 @@
-<main>
-  <cis-search></cis-search>
-  <cis-results></cis-results>
-</main>
+<ng-scrollbar viewClass="main-container" #scrollbarRef>
 
-<cis-legal></cis-legal>
-<cis-back-to-top></cis-back-to-top>
+  <main>
+    <cis-search></cis-search>
+    <cis-results></cis-results>
+  </main>
+
+  <cis-legal></cis-legal>
+
+</ng-scrollbar>
+
+<cis-back-to-top [scrollbarRef]="scrollbarRef"></cis-back-to-top>

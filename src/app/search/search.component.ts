@@ -20,7 +20,7 @@ import { SearchService } from "../services"
 })
 export class SearchComponent implements AfterViewInit {
 
-  @ViewChild("inputEl") inputEl: ElementRef
+  @ViewChild("inputRef") inputRef: ElementRef
   readonly inputModel = new FormControl()
   input = ""
 
@@ -31,7 +31,7 @@ export class SearchComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     if (!this.input) {
-      this.inputEl.nativeElement.focus()
+      this.inputRef.nativeElement.focus()
     }
 
     this.appRef.isStable.subscribe(isStable => {
@@ -47,7 +47,7 @@ export class SearchComponent implements AfterViewInit {
 
   clear() {
     this.inputModel.setValue("")
-    this.inputEl.nativeElement.focus()
+    this.inputRef.nativeElement.focus()
   }
 
 }

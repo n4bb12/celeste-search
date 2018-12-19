@@ -1,6 +1,13 @@
-import { ChangeDetectionStrategy, Component } from "@angular/core"
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+} from "@angular/core"
 
-import { ReplaySubject } from "rxjs"
+import { NgScrollbar } from "ngx-scrollbar"
+import { Observable } from "rxjs"
+import { map } from "rxjs/operators"
 
 @Component({
   selector: "cis-back-to-top",
@@ -8,21 +15,20 @@ import { ReplaySubject } from "rxjs"
   styleUrls: ["./back-to-top.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BackToTopComponent {
+export class BackToTopComponent implements OnInit {
 
-  readonly atTop = new ReplaySubject<boolean>()
+  @Input() scrollbarRef: NgScrollbar
+  shown: Observable<boolean>
 
-  constructor() {
-    this.update()
+  ngOnInit() {
+    const events = this.scrollbarRef.scrollable.elementScrolled()
+    this.shown = events.pipe(
+      map(event => event.srcElement.scrollTop > 0),
+    )
   }
 
   scrollToTop() {
-    document.body.scrollTop = 0
-    this.update()
-  }
-
-  update() {
-    this.atTop.next(document.body.scrollTop === 0)
+    this.scrollbarRef.scrollToTop()
   }
 
 }
