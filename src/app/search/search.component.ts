@@ -4,14 +4,13 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  EventEmitter,
-  Input,
-  Output,
   ViewChild,
 } from "@angular/core"
 import { FormControl } from "@angular/forms"
 
-import { distinctUntilChanged, filter, sampleTime, tap } from "rxjs/operators"
+import { distinctUntilChanged, sampleTime, tap } from "rxjs/operators"
+
+import { SearchService } from "../services"
 
 @Component({
   selector: "cis-search",
@@ -22,12 +21,12 @@ import { distinctUntilChanged, filter, sampleTime, tap } from "rxjs/operators"
 export class SearchComponent implements AfterViewInit {
 
   @ViewChild("inputEl") inputEl: ElementRef
-  @Input() input = ""
-  @Output() inputChange = new EventEmitter<string>()
   readonly inputModel = new FormControl()
+  input = ""
 
   constructor(
     private appRef: ApplicationRef,
+    private search: SearchService,
   ) { }
 
   ngAfterViewInit() {
@@ -38,8 +37,9 @@ export class SearchComponent implements AfterViewInit {
     this.appRef.isStable.subscribe(isStable => {
       if (isStable) {
         this.inputModel.valueChanges.pipe(
+          sampleTime(200),
           distinctUntilChanged(),
-          tap(input => this.inputChange.emit(input)),
+          tap(input => this.search.search(input)),
         ).subscribe()
       }
     })
