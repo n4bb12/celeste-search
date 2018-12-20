@@ -2,7 +2,9 @@
 
   <main>
     <cis-search></cis-search>
-    <cis-results></cis-results>
+    <cis-tabs [(activeTab)]="activeTab"></cis-tabs>
+    <cis-comparison [activeTab]="activeTab"></cis-comparison>
+    <cis-results [activeTab]="activeTab"></cis-results>
   </main>
 
   <cis-legal></cis-legal>

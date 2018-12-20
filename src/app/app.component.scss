@@ -28,8 +28,15 @@ main {
 
 cis-search {
   width: 100%;
-  max-width: 60rem;
-  padding: 5vh 5vw 10vh;
+  max-width: 66rem;
+  padding: 5vmin 5vmin 0;
+  margin: 0 auto;
+}
+
+cis-tabs {
+  width: 100%;
+  max-width: 66rem;
+  padding: 5vmin;
   margin: 0 auto;
 }
 
@@ -37,13 +44,20 @@ cis-results {
   flex: 1;
   width: 100%;
   max-width: 100rem;
-  padding: 0 5vw;
+  padding: 0 5vmin;
+  margin: 0 auto;
+}
+
+cis-comparison {
+  width: 100%;
+  max-width: 100rem;
+  padding: 0 5vmin 1rem;
   margin: 0 auto;
 }
 
 cis-legal {
   width: 100%;
   max-width: 45rem;
-  padding: 10vh 5vw 5vh;
+  padding: 10vmin 5vmin 5vmin;
   margin: 0 auto;
 }

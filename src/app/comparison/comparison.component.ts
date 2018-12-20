@@ -6,12 +6,12 @@ import { SearchService } from "../services"
 import { TABS } from "../tabs/tabs"
 
 @Component({
-  selector: "cis-results",
-  templateUrl: "./results.component.html",
-  styleUrls: ["./results.component.scss"],
+  selector: "cis-comparison",
+  templateUrl: "./comparison.component.html",
+  styleUrls: ["./comparison.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ResultsComponent {
+export class ComparisonComponent {
 
   @Input() activeTab = 0
 

@@ -1,17 +1,17 @@
-<div class="__tabs">
-  <button type="button" class="__tab" (click)="activeTab = 0">
-    Items
-  </button>
-  <button type="button" class="__tab" (click)="activeTab = 1">
-    Advisors
-  </button>
-</div>
-
-<div class="__results" *ngIf="activeTab === 0">
+<div class="__content" *ngIf="activeTab === 0">
   Items
   <pre>{{ items | async | json }}</pre>
 </div>
-<div class="__results" *ngIf="activeTab === 1">
+<div class="__content" *ngIf="activeTab === 1">
   Advisors
   <pre>{{ advisors | async | json }}</pre>
+</div>
+<div class="__content" *ngIf="activeTab === 2">
+  Blueprints
+</div>
+<div class="__content" *ngIf="activeTab === 3">
+  Designs
+</div>
+<div class="__content" *ngIf="activeTab === 4">
+  Consumables
 </div>

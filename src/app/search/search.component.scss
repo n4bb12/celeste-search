@@ -8,6 +8,7 @@
   @include background();
 
   position: relative;
+  border-radius: $border-radius;
   padding: 1.5rem;
 }
 
@@ -40,7 +41,9 @@
   z-index: 1;
   width: 3rem;
   height: 3rem;
-  background: transparent;
+  box-shadow: none;
+  background: rgba($theme-text, .8);
+  color: $theme-shadow;
   opacity: .25;
   transform: translate3d(0,0,0);
   transition: opacity .1s ease-out;

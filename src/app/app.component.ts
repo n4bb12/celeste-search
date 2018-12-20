@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from "@angular/core"
+import { Component } from "@angular/core"
 
 import { DbService } from "./services/db.service"
 
@@ -9,6 +9,7 @@ import { DbService } from "./services/db.service"
 })
 export class AppComponent {
 
+  activeTab = 0
   readonly items = this.db.fetch()
 
   constructor(

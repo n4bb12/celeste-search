@@ -15,7 +15,7 @@ button {
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
-  background: $theme-background;
+  background: rgba($theme-primary, .8);
   transition: opacity .1s ease-out;
   opacity: 0;
   pointer-events: none;

@@ -1,0 +1,34 @@
+@import "imports";
+
+:host {
+  display: block;
+}
+
+.__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: -1vmin 0;
+}
+
+.__tab {
+  display: flex;
+  align-items: center;
+  margin: 1vmin;
+  padding-right: 3vmin;
+  border-radius: $border-radius;
+  background: $theme-secondary;
+  color: $theme-text;
+
+  &.--active {
+    background: $theme-primary;
+    transition: .2s ease-out;
+    transition-property: background-color, box-shadow;
+  }
+
+  img {
+    border-radius: $border-radius;
+    height: calc(1.5rem + 2vmin);
+    margin-right: 1vmin;
+  }
+}

@@ -1,5 +1,6 @@
 @import "~normalize.scss/normalize";
 @import "~typeface-lato/index.css";
+@import "imports";
 
 * {
   box-sizing: border-box;
@@ -10,7 +11,7 @@ body {
   font-size: 15px;
   font-weight: 300;
   color: $theme-text;
-  text-shadow: 1px 1px 1px rgba($theme-text, .5);
+  text-shadow: 1px 1px 1px rgba($theme-shadow, .5);
 }
 
 input, button, a {
@@ -21,15 +22,26 @@ input, button, a {
   font: inherit;
 }
 
-input, button {
-  background: $theme-background;
+input {
+  background: rgba($theme-text, .8);
+  color: $theme-shadow;
 }
 
-button, a {
+button {
+  @include elevation(2);
+  background: rgba($theme-secondary, .8);
   cursor: pointer;
+
+  &:focus,
+  &:active,
+  &.--active {
+    background: rgba($theme-primary, .8)y;
+    @include elevation(8);
+  }
 }
 
 a {
+  cursor: pointer;
   text-decoration: none;
 
   &:hover {
@@ -38,7 +50,7 @@ a {
 }
 
 ::selection {
-  background: $theme-secondary;
+  background: rgba($theme-secondary, .8);
   text-shadow: none;
 }
 
