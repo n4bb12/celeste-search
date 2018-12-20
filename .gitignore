@@ -1,4 +1,5 @@
 *.log
+archive
 dist
 download-cache
 generated
