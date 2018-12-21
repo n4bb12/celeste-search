@@ -17,7 +17,6 @@ const cssTemplate = name => data => {
   const sharedClass = [
     `.icon--${name} {`,
     `  display: block;`,
-    `  background-color: #546550;`,
     `  background-image: url("/assets/sprites/${name}.png");`,
     `  background-repeat: no-repeat;`,
     `  background-position: -100% -100%;`,
@@ -26,10 +25,6 @@ const cssTemplate = name => data => {
     `  overflow: hidden;`,
     `}`,
   ].join("\n")
-
-  console.log(
-    JSON.stringify(data.sprites[0], null, 2),
-    JSON.stringify(data.sprites[1], null, 2))
 
   data.sprites.sort((a, b) => {
     if (a.offset_x !== b.offset_x) {
@@ -42,9 +37,7 @@ const cssTemplate = name => data => {
     = name.length + `${data.sprites.length}`.length + 10
 
   const iconClasses = data.sprites.map(entry => {
-    const { x, y, width, height, total_width, total_height } = entry
-
-    const percentX = toRoundedPercent(x / (total_width - width))
+    const { y, height, total_height } = entry
     const percentY = toRoundedPercent(y / (total_height - height))
 
     return [
@@ -57,7 +50,7 @@ const cssTemplate = name => data => {
   return [
     sharedClass,
     iconClasses,
-  ].join("\n")
+  ].join("\n") + "\n"
 }
 
 /**
