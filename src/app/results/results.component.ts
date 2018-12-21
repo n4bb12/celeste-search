@@ -14,8 +14,8 @@ export class ResultsComponent {
 
   @Input() activeTab = 0
 
-  readonly items = this.search.items.pipe(map(results => results.slice(0, 10)))
-  readonly advisors = this.search.advisors.pipe(map(results => results.slice(0, 10)))
+  readonly items = this.search.items.pipe(map(results => results.slice(0, 20)))
+  readonly advisors = this.search.advisors.pipe(map(results => results.slice(0, 20)))
 
   constructor(
     private search: SearchService,

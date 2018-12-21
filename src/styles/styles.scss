@@ -1,6 +1,10 @@
+@import "../assets/bg/bg";
+@import "../assets/sprites/items";
+@import "../assets/sprites/materials";
+
 @import "imports";
 @import "reset";
-@import "../assets/bg/bg";
+@import "tooltip";
 
 html, body {
   height: 100%;

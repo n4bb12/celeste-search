@@ -1,0 +1,21 @@
+@import "imports";
+
+.--epic {
+  color: #b04bdf;
+}
+.--rare {
+  color: #3b8fff;
+}
+.--uncommon {
+  color: #45ff5e;
+}
+.--legendary {
+  color: #ffa500;
+}
+.--positive {
+  color: hsl(120, 80%, 50%);
+}
+.--negative {
+  @include text-shadow();
+  color: hsl(0, 80%, 55%);
+}

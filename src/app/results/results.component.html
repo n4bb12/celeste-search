@@ -1,21 +1,34 @@
-<div class="__content" *ngIf="activeTab === 0">
-  Items
-  <pre>{{ items | async | json }}</pre>
-</div>
+<ng-container *ngIf="activeTab === 0">
+  <ng-container *ngIf="items | async as items">
+    <div class="__content">
+      <ng-container *ngFor="let item of items">
+        <cis-item [item]="item"></cis-item>
+      </ng-container>
+    </div>
+  </ng-container>
+</ng-container>
 
-<div class="__content" *ngIf="activeTab === 1">
-  Advisors
-  <pre>{{ advisors | async | json }}</pre>
-</div>
+<ng-container *ngIf="activeTab === 1">
+  <div class="__content">
+    Advisors comparison
+    <pre>{{ advisors | async | json }}</pre>
+  </div>
+</ng-container>
 
-<div class="__content" *ngIf="activeTab === 2">
-  Blueprints
-</div>
+<ng-container *ngIf="activeTab === 2">
+  <div class="__content">
+    Blueprints comparison
+  </div>
+</ng-container>
 
-<div class="__content" *ngIf="activeTab === 3">
-  Designs
-</div>
+<ng-container *ngIf="activeTab === 3">
+  <div class="__content">
+    Designs comparison
+  </div>
+</ng-container>
 
-<div class="__content" *ngIf="activeTab === 4">
-  Consumables
-</div>
+<ng-container *ngIf="activeTab === 4">
+  <div class="__content">
+    Consumables comparison
+  </div>
+</ng-container>

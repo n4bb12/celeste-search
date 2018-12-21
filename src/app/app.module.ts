@@ -8,15 +8,16 @@ import { NgScrollbarModule } from "ngx-scrollbar"
 import { AppComponent } from "./app.component"
 import { AwaitFontDirective } from "./await-font.directive"
 import { BackToTopComponent } from "./back-to-top/back-to-top.component"
-import { ComparisonComponent } from "./comparison/comparison.component"
 import { LegalComponent } from "./legal/legal.component"
+import { EffectValuePipe } from "./pipes/effect-value.pipe"
+import { ItemComponent } from "./results/item/item.component"
 import { ResultsComponent } from "./results/results.component"
 import { SearchComponent } from "./search/search.component"
 import { TabsComponent } from "./tabs/tabs.component"
 
 @NgModule({
   imports: [
-    BrowserModule,
+BrowserModule,
     HttpClientModule,
     NgScrollbarModule,
     ReactiveFormsModule,
@@ -25,7 +26,8 @@ import { TabsComponent } from "./tabs/tabs.component"
     AppComponent,
     AwaitFontDirective,
     BackToTopComponent,
-    ComparisonComponent,
+    EffectValuePipe,
+    ItemComponent,
     LegalComponent,
     ResultsComponent,
     SearchComponent,
