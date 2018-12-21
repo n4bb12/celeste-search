@@ -37,16 +37,16 @@ export class SearchService {
 
     this.db.fetch().subscribe(db => {
       const words = this.performReplacements(db.replace, query)
-        .split("/\s+/")
+        .split(/\s+/)
         .map(w => w.trim())
         .filter(w => w !== "")
 
       if (words.length > 0) {
         items = db.items.filter(item => {
-          return words.every(word => item.search.indexOf(word) >= 0)
+          return words.every(word => item.search.includes(word))
         })
         advisors = db.advisors.filter(item => {
-          return words.every(word => item.search.indexOf(word) >= 0)
+          return words.every(word => item.search.includes(word))
         })
       }
 
