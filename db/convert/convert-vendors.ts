@@ -40,13 +40,14 @@ export async function findAndConvertVendors(item: Item): Promise<Vendor[]> {
     if (!vendors.length) {
       if (!questLegendaries.includes(item.id)) {
         const madeByCeleste = item.id >= celesteLegendariesStart
-        const rotationName = madeByCeleste ? "Celeste" : "Classic"
+        const rotation = madeByCeleste ? "Celeste" : "Classic"
 
         vendors.push({
-          name: `Empire Store (${rotationName} Legendary Rotation)`,
+          name: `Empire Store`,
           level: 40,
           currency: "empire",
           price: (madeByCeleste ? 700 : 350),
+          rotation,
         })
       }
     }

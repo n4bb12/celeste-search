@@ -3,4 +3,5 @@ export interface Vendor {
   level: number
   price: number
   currency: "coin" | "empire" | "sparta" | "crete"
+  rotation?: string
 }
