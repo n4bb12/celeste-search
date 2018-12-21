@@ -27,6 +27,7 @@
   border-radius: ($size / 8);
   width: $size;
   height: $size;
+  transform: translateY(-$size / 12);
 }
 
 .__inside {
@@ -37,7 +38,6 @@
   margin: 0 auto;
   background: $theme-shadow;
   padding: .75rem;
-  padding-bottom: 1rem;
   font-size: 14px;
   color: white;
   opacity: .95;
@@ -139,7 +139,7 @@
 
 .row.--recipe,
 .row.--shop {
-  margin-bottom: .25rem;
+  margin-bottom: .5rem;
 }
 
 .__level {
@@ -167,7 +167,7 @@
 
 .row.--material {
   margin-top: .125rem;
-  margin-left: .5rem;
+  margin-left: .25rem;
   font-size: 90%;
   align-items: center;
 }
