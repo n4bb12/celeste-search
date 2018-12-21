@@ -27,5 +27,10 @@ export async function convertMaterials(items: Item[]): Promise<Materials> {
     }
   }
 
+  await downloadIcon("UserInterface/CapCity/Coin_ua", "materials", "coin")
+  await downloadIcon("UserInterface/CapCity/Button_EmpireStore", "materials", "empire")
+  await downloadIcon("UserInterface/Map/UI_Region_Shortcuts/RegionShieldCrete_Normal_ua", "materials", "crete")
+  await downloadIcon("UserInterface/Map/UI_Region_Shortcuts/RegionShieldSparta_Normal_ua", "materials", "sparta")
+
   return result
 }

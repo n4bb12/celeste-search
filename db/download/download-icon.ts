@@ -6,16 +6,16 @@ import { download } from "./download"
 const pathToId: { [iconPath: string]: Promise<number> } = {}
 const nextIconId: { [sprite: string]: number } = {}
 
-export async function downloadIcon(resource: string, spriteId: string): Promise<number> {
-  return pathToId[resource] = pathToId[resource] || get(resource, spriteId)
+export async function downloadIcon(resource: string, spriteName: string, iconName?: string): Promise<number> {
+  return pathToId[resource] = pathToId[resource] || get(resource, spriteName, iconName)
 }
 
-async function get(resource: string, spriteId: string) {
-  const iconId = nextIconId[spriteId] || 0
-  nextIconId[spriteId] = iconId + 1
+async function get(resource: string, spriteName: string, iconName?: string) {
+  const iconId = nextIconId[spriteName] || 0
+  nextIconId[spriteName] = iconId + 1
 
   const path = resource.replace(/\\/g, "/")
-  const spriteInput = `generated/sprites/${spriteId}/${iconId}.png`
+  const spriteInput = `generated/sprites/${spriteName}/${iconName || iconId}.png`
   const url = `https://images.projectceleste.com/Art/${path}.png`
   const options = { responseType: "arraybuffer" }
 

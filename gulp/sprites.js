@@ -34,7 +34,9 @@ const cssTemplate = name => data => {
   })
 
   const iconSelectorLength
-    = name.length + `${data.sprites.length}`.length + 10
+    = 10
+    + name.length
+    + Math.max(...data.sprites.map(s => s.name.length))
 
   const iconClasses = data.sprites.map(entry => {
     const { y, height, total_height } = entry
