@@ -1,14 +1,18 @@
 import {
-  AfterViewInit,
-  ApplicationRef,
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  OnInit,
   ViewChild,
 } from "@angular/core"
 import { FormControl } from "@angular/forms"
 
-import { distinctUntilChanged, sampleTime, tap } from "rxjs/operators"
+import {
+  debounceTime,
+  distinctUntilChanged,
+  startWith,
+  tap,
+} from "rxjs/operators"
 
 import { SearchService } from "../services"
 
@@ -18,31 +22,30 @@ import { SearchService } from "../services"
   styleUrls: ["./search.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SearchComponent implements AfterViewInit {
+export class SearchComponent implements OnInit {
 
   @ViewChild("inputRef") inputRef: ElementRef
   readonly inputModel = new FormControl()
-  input = ""
+  input = "divine"
 
   constructor(
-    private appRef: ApplicationRef,
     private search: SearchService,
-  ) { }
+  ) {
+    this.inputModel.setValue(this.input)
+  }
 
-  ngAfterViewInit() {
+  ngOnInit() {
     if (!this.input) {
       this.inputRef.nativeElement.focus()
     }
 
-    this.appRef.isStable.subscribe(isStable => {
-      if (isStable) {
-        this.inputModel.valueChanges.pipe(
-          sampleTime(200),
-          distinctUntilChanged(),
-          tap(input => this.search.search(input)),
-        ).subscribe()
-      }
-    })
+    this.inputModel.valueChanges.pipe(
+      startWith(this.input),
+      debounceTime(500),
+      distinctUntilChanged(),
+      tap(input => this.search.search(input)),
+    ).subscribe()
+
   }
 
   clear() {
