@@ -17,6 +17,9 @@ ng-scrollbar {
   align-items: stretch;
 }
 
+$spacing-calc: calc(1rem + 2.5vmin);
+$spacing-viewport: 5vmin;
+
 main {
   flex: 1;
   width: 100%;
@@ -29,14 +32,14 @@ main {
 cis-search {
   width: 100%;
   max-width: 66rem;
-  padding: 5vmin 5vmin 0;
+  padding: $spacing-viewport $spacing-viewport 0;
   margin: 0 auto;
 }
 
 cis-tabs {
   width: 100%;
   max-width: 66rem;
-  padding: 5vmin;
+  padding: $spacing-calc $spacing-viewport;
   margin: 0 auto;
 }
 
@@ -44,20 +47,20 @@ cis-results {
   flex: 1;
   width: 100%;
   max-width: 100rem;
-  padding: 0 5vmin;
+  padding: 0 $spacing-viewport;
   margin: 0 auto;
 }
 
 cis-comparison {
   width: 100%;
   max-width: 100rem;
-  padding: 0 5vmin 1rem;
+  padding: 0 $spacing-viewport $spacing-viewport;
   margin: 0 auto;
 }
 
 cis-legal {
   width: 100%;
   max-width: 45rem;
-  padding: 10vmin 5vmin 5vmin;
+  padding: (2 * $spacing-viewport) $spacing-viewport $spacing-viewport;
   margin: 0 auto;
 }

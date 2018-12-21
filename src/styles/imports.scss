@@ -3,15 +3,25 @@
 $theme-primary: #488489;
 $theme-secondary: #B7D6D8;
 $theme-text: #FFFFFF;
-$theme-shadow: #2D4240;
+$theme-shadow: #192B33;
+$theme-border: #768376;
 
 $border-radius: .75rem;
+
+@mixin elevation($z) {
+  @include mdc-elevation($z, $theme-shadow, 0);
+}
+
+@mixin border() {
+  border: .2rem solid $theme-border;
+  border-radius: $border-radius;
+}
 
 @mixin background() {
   @include elevation(2);
   background: rgba(white, .4);
 }
 
-@mixin elevation($z) {
-  @include mdc-elevation($z, $theme-shadow, 0);
+@mixin text-shadow() {
+  text-shadow: 1px 0 1px $theme-shadow;
 }

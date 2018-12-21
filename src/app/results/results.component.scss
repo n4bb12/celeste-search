@@ -1,14 +1,15 @@
 @import "imports";
 
 :host {
-  display: flex;
-  flex-direction: column;
+  display: block;
+  padding: 1rem;
 }
 
 .__content {
   @include background();
 
-  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   width: 100%;
   border-radius: $border-radius;
   padding: 1rem;
