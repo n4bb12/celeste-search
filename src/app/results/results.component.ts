@@ -16,6 +16,9 @@ export class ResultsComponent {
 
   readonly items = this.search.items.pipe(map(results => results.slice(0, 20)))
   readonly advisors = this.search.advisors.pipe(map(results => results.slice(0, 20)))
+  readonly blueprints = this.search.blueprints.pipe(map(results => results.slice(0, 20)))
+  readonly designs = this.search.designs.pipe(map(results => results.slice(0, 20)))
+  readonly consumables = this.search.consumables.pipe(map(results => results.slice(0, 20)))
 
   constructor(
     private search: SearchService,

@@ -13,9 +13,15 @@ export class SearchService {
 
   private itemsSubject = new ReplaySubject<Item[]>(1)
   private advisorsSubject = new ReplaySubject<Item[]>(1)
+  private blueprintsSubject = new ReplaySubject<Item[]>(1)
+  private designsSubject = new ReplaySubject<Item[]>(1)
+  private consumablesSubject = new ReplaySubject<Item[]>(1)
 
   readonly items = this.itemsSubject.asObservable()
   readonly advisors = this.advisorsSubject.asObservable()
+  readonly blueprints = this.blueprintsSubject.asObservable()
+  readonly designs = this.designsSubject.asObservable()
+  readonly consumables = this.consumablesSubject.asObservable()
 
   constructor(
     private db: DbService,
@@ -27,7 +33,10 @@ export class SearchService {
 
   async search(query: string): Promise<void> {
     let items: Item[] = []
-    let advisors: Item[] = []
+    let advisors: any[] = []
+    let blueprints: any[] = []
+    let designs: any[] = []
+    let consumables: any[] = []
 
     if (!query) {
       this.itemsSubject.next(items)
@@ -45,13 +54,25 @@ export class SearchService {
         items = db.items.filter(item => {
           return words.every(word => item.search.includes(word))
         })
-        advisors = db.advisors.filter(item => {
-          return words.every(word => item.search.includes(word))
+        advisors = db.advisors.filter(advisor => {
+          return words.every(word => advisor.search.includes(word))
+        })
+        blueprints = db.blueprints.filter(blueprint => {
+          return words.every(word => blueprint.search.includes(word))
+        })
+        designs = db.designs.filter(design => {
+          return words.every(word => design.search.includes(word))
+        })
+        consumables = db.consumables.filter(consumable => {
+          return words.every(word => consumable.search.includes(word))
         })
       }
 
       this.itemsSubject.next(items)
       this.advisorsSubject.next(advisors)
+      this.blueprintsSubject.next(blueprints)
+      this.designsSubject.next(designs)
+      this.consumablesSubject.next(consumables)
     })
 
   }

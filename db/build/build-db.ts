@@ -40,6 +40,9 @@ export async function buildDb(): Promise<DB> {
   const db: DB = {
     items,
     advisors: [],
+    blueprints: [],
+    designs: [],
+    consumables: [],
     materials,
     replace,
   }

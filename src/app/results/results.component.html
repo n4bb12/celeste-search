@@ -10,25 +10,28 @@
 
 <ng-container *ngIf="activeTab === 1">
   <div class="__content">
-    Advisors comparison
+    Advisors
     <pre>{{ advisors | async | json }}</pre>
   </div>
 </ng-container>
 
 <ng-container *ngIf="activeTab === 2">
   <div class="__content">
-    Blueprints comparison
+    Blueprints
+    <pre>{{ blueprints | async | json }}</pre>
   </div>
 </ng-container>
 
 <ng-container *ngIf="activeTab === 3">
   <div class="__content">
-    Designs comparison
+    Designs
+    <pre>{{ designs | async | json }}</pre>
   </div>
 </ng-container>
 
 <ng-container *ngIf="activeTab === 4">
   <div class="__content">
-    Consumables comparison
+    Consumables
+    <pre>{{ consumables | async | json }}</pre>
   </div>
 </ng-container>

@@ -8,6 +8,9 @@ export interface Materials {
 export interface DB {
   items: Item[]
   advisors: any[]
+  blueprints: any[]
+  designs: any[]
+  consumables: any[]
   materials: Materials
   replace: { [key: string]: string }
 }
