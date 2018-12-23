@@ -1,6 +1,3 @@
-/**
- * A positive / negative effect of a `Trait`.
- */
 export interface Effect {
   target: {
     type: string,
@@ -18,9 +15,6 @@ export interface Effect {
   resource?: string
 }
 
-/**
- * AOEO wording for "Item".
- */
 export interface Trait {
   name: string
   dbid: number

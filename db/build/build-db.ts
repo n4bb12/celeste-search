@@ -3,8 +3,8 @@ import * as Throttle from "promise-parallel-throttle"
 
 import { convertItem } from "../convert/convert-item"
 import { convertMaterials } from "../convert/convert-materials"
-import { downloadApiResource } from "../download/download-api-resource"
-import { Trait, Traits } from "../interfaces/api"
+import { API } from "../download/download-api-resource"
+import { Trait } from "../interfaces/api"
 import { DB } from "../interfaces/app"
 
 import {
@@ -24,7 +24,7 @@ const throttleOptions: Throttle.Options = {
 export async function buildDb(): Promise<DB> {
   console.log("Build item database...")
 
-  const traits = await downloadApiResource<Traits>("/game/traits")
+  const traits = await API.getTraits()
 
   const asyncConvertToItemTasks = Object.values(traits.data)
     .filter(shouldIncludeTrait)

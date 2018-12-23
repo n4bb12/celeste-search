@@ -1,10 +1,32 @@
 import { readJson } from "fs-extra"
 
+import {
+  Advisors,
+  Blueprints,
+  Designs,
+  EconQuests,
+  Languages,
+  LootRolls,
+  Marketplace,
+  Online,
+  Registered,
+  Stores,
+  Traits,
+  UserProfile,
+} from "../interfaces/api"
+import { Materials } from "../interfaces/app"
+import {
+  CreteLeaderboard,
+  HalloweenEventLeaderboard,
+  SpartaLeaderboard,
+  WinterEventLeaderboard,
+} from "./../interfaces/api/Leaderboards"
+
 import { download } from "./download"
 
 const cache = {}
 
-export async function downloadApiResource<T>(resource: string): Promise<T> {
+async function downloadApiResource<T>(resource: string): Promise<T> {
   return cache[resource] = cache[resource] || get(resource)
 }
 
@@ -16,4 +38,79 @@ async function get(resource: string) {
   const data = await readJson(filename)
 
   return data
+}
+
+export class API {
+
+  // Game
+
+  static getAdvisors() {
+    return downloadApiResource<Advisors>("/game/advisors")
+  }
+
+  static getBlueprints() {
+    return downloadApiResource<Blueprints>("/game/blueprints")
+  }
+
+  static getDesigns() {
+    return downloadApiResource<Designs>("/game/designs")
+  }
+
+  static getEconQuests() {
+    return downloadApiResource<EconQuests>("/game/econquests")
+  }
+
+  static getLanguages() {
+    return downloadApiResource<Languages>("/game/languages")
+  }
+
+  static getLootRolls() {
+    return downloadApiResource<LootRolls>("/game/lootrolls")
+  }
+
+  static getMaterials() {
+    return downloadApiResource<Materials>("/game/materials")
+  }
+
+  static getTraits() {
+    return downloadApiResource<Traits>("/game/traits")
+  }
+
+  // Leaderboard
+
+  static getLeaderboard(name: "crete_coop" | "crete_solo"): Promise<CreteLeaderboard>
+  static getLeaderboard(name: "halloween"): Promise<HalloweenEventLeaderboard>
+  static getLeaderboard(name: "sparta_1v1" | "sparta_2v2"): Promise<SpartaLeaderboard>
+  static getLeaderboard(name: "winter"): Promise<WinterEventLeaderboard>
+
+  static getLeaderboard(name: string) {
+    return downloadApiResource(`/leaderboards/${name}`)
+  }
+
+  // Marketplace
+
+  static getMarketplace() {
+    return downloadApiResource<Marketplace>("/marketplace")
+  }
+
+  // Stores
+
+  static getStores() {
+    return downloadApiResource<Stores>("/stores")
+  }
+
+  // Users
+
+  static getUserProfile(id: string) {
+    return downloadApiResource<UserProfile>(`/users/${id}/profile`)
+  }
+
+  static getOnlineUsers() {
+    return downloadApiResource<Online>(`/users/online`)
+  }
+
+  static getRegisteredUsers() {
+    return downloadApiResource<Registered>(`/users/registered`)
+  }
+
 }
