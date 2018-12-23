@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, Input } from "@angular/core"
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+} from "@angular/core"
 
 import { map } from "rxjs/operators"
 
@@ -11,7 +16,7 @@ import { Item } from "./../interfaces/Item"
   styleUrls: ["./results.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ResultsComponent {
+export class ResultsComponent implements OnInit {
 
   @Input() activeTab = 0
 
@@ -26,6 +31,14 @@ export class ResultsComponent {
   constructor(
     private search: SearchService,
   ) { }
+
+  ngOnInit() {
+    this.handleResize()
+  }
+
+  handleResize() {
+    this.numColumns = Math.max(1, Math.floor(window.innerWidth / 30 / 15))
+  }
 
   trackItem(index: number, item: Item) {
     return item.id
