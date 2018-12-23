@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig } from "axios"
+import Bottleneck from "bottleneck"
 import chalk from "chalk"
 import filenamify from "filenamify"
 import { mkdirp, pathExists, writeFile } from "fs-extra"
@@ -6,6 +7,13 @@ import { isPlainObject } from "lodash"
 import { dirname } from "path"
 
 const cache: { [index: string]: Promise<any> } = {}
+
+const limiter = new Bottleneck({
+  maxConcurrent: 5,
+  reservoir: 10,
+  reservoirRefreshAmount: 10,
+  reservoirRefreshInterval: 100,
+})
 
 /**
  * This serves as a download proxy and caches downloaded
@@ -29,14 +37,16 @@ export async function download(url: string, options: AxiosRequestConfig): Promis
     return filename
   }
 
-  console.log(chalk.gray("Download " + url))
-
   const config = Object.assign({}, options, {
     url,
     method: "get",
   })
 
-  cache[filename] = axios.request(config)
+  cache[filename] = limiter.schedule(() => {
+    console.log(chalk.gray("Download " + url))
+    return axios.request(config)
+  })
+
   const response = await cache[filename]
 
   await mkdirp(dirname(filename))

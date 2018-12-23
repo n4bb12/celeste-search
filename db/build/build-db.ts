@@ -1,4 +1,3 @@
-import Bottleneck from "bottleneck"
 import { Trait } from "celeste-api-types"
 import chalk from "chalk"
 
@@ -13,13 +12,6 @@ import {
 } from "./build-search-string"
 import { compareItems } from "./compare-items"
 
-const limiter = new Bottleneck({
-  maxConcurrent: 5,
-  reservoir: 10,
-  reservoirRefreshAmount: 10,
-  reservoirRefreshInterval: 100,
-})
-
 /**
  * Creates the data (db.json) behind the item search app.
  */
@@ -31,15 +23,15 @@ export async function buildDb(): Promise<DB> {
   const blueprintsResponse = await API.getBlueprints()
   const designsResponse = await API.getDesigns()
 
-  const traitToItemConversions = Object.values(traitsResponse.data)
+  const itemConversions = Object.values(traitsResponse.data)
     .filter(traitHasLevels)
-    .map(trait => limiter.schedule(() => convertItem(trait)))
+    .map(trait => convertItem(trait))
 
-  let items = await Promise.all(traitToItemConversions)
+  const items = await Promise.all(itemConversions)
   const materials = await convertMaterials(items)
   const replace = buildSearchReplacementMap(items, materials)
 
-  items = items.sort(compareItems)
+  items.sort(compareItems)
   items.forEach(item => item.search = buildSearchString(item, materials))
 
   const db: DB = {
