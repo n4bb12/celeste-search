@@ -8,8 +8,8 @@ import {
 import { FormControl } from "@angular/forms"
 
 import {
-  debounceTime,
   distinctUntilChanged,
+  sampleTime,
   startWith,
   tap,
 } from "rxjs/operators"
@@ -41,7 +41,7 @@ export class SearchComponent implements OnInit {
 
     this.inputModel.valueChanges.pipe(
       startWith(this.input),
-      debounceTime(500),
+      sampleTime(200),
       distinctUntilChanged(),
       tap(input => this.search.search(input)),
     ).subscribe()
