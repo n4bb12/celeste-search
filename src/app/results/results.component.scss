@@ -5,16 +5,25 @@
   flex-direction: column;
 }
 
-.__content {
+.__grid {
   @include background();
 
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
   width: 100%;
   border-radius: $border-radius;
   padding: 1rem;
+
+  &.--empty {
+    background: $theme-primary;
+  }
+}
+
+.__col {
+  flex: 0 0 33.333333%;
 }
 
 cis-item {
-  margin: .5rem;
+  padding: .5rem;
 }

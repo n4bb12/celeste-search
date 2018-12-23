@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, Input } from "@angular/core"
 import { map } from "rxjs/operators"
 
 import { SearchService } from "../services"
+import { Item } from "./../interfaces/Item"
 
 @Component({
   selector: "cis-results",
@@ -20,8 +21,14 @@ export class ResultsComponent {
   readonly designs = this.search.designs.pipe(map(results => results.slice(0, 20)))
   readonly consumables = this.search.consumables.pipe(map(results => results.slice(0, 20)))
 
+  numColumns = 3
+
   constructor(
     private search: SearchService,
   ) { }
+
+  trackItem(index: number, item: Item) {
+    return item.id
+  }
 
 }
