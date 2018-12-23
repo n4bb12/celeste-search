@@ -2,7 +2,7 @@
   <ng-container *ngIf="items | async as items">
     <div class="__content">
       <ng-container *ngFor="let item of items">
-        <cis-item [item]="item"></cis-item>
+        <cis-item class="fade-in" [item]="item"></cis-item>
       </ng-container>
     </div>
   </ng-container>
