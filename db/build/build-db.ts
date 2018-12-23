@@ -18,16 +18,15 @@ import { compareItems } from "./compare-items"
 export async function buildDb(): Promise<DB> {
   console.log("Build item database...")
 
-  const traitsResponse = await API.getTraits()
   const advisorsResponse = await API.getAdvisors()
   const blueprintsResponse = await API.getBlueprints()
   const designsResponse = await API.getDesigns()
 
-  const itemConversions = Object.values(traitsResponse.data)
-    .filter(traitHasLevels)
-    .map(trait => convertItem(trait))
+  const items = await Promise.all(
+    Object.values(await API.getTraits())
+      .filter(traitHasLevels)
+      .map(convertItem))
 
-  const items = await Promise.all(itemConversions)
   const materials = await convertMaterials(items)
   const replace = buildSearchReplacementMap(items, materials)
 

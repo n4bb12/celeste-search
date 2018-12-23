@@ -20,7 +20,7 @@ export async function findAndConvertVendors(item: Item): Promise<Vendor[]> {
   const stores = await API.getStores()
   const vendors: Vendor[] = []
 
-  stores.data.forEach(store => {
+  stores.forEach(store => {
     const isSoldBy = store.items.find(storeItem => storeItem.name === item.name)
 
     if (isSoldBy) {

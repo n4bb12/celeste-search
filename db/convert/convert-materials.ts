@@ -15,10 +15,10 @@ export async function convertMaterials(items: Item[]): Promise<Materials> {
   for (const item of items) {
     if (item.recipe) {
       for (const mat of item.recipe.materials) {
-        const apiId = Object.keys(materials.data).find(key => {
+        const apiId = Object.keys(materials).find(key => {
           return key.toLowerCase() === mat.id.toLowerCase()
         })
-        const apiMat = materials.data[apiId]
+        const apiMat = materials[apiId]
         const name = await translateEn(apiMat.displaynameid)
         const icon = await downloadIcon(apiMat.icon, "materials")
         const rarity = apiMat.rarity.substr("cRarity".length).toLowerCase()

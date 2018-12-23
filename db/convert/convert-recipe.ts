@@ -12,12 +12,11 @@ import { convertRecipeSchool } from "./convert-recipe-school"
 export async function findAndConvertRecipe(item: Item): Promise<Recipe> {
   const designs = await API.getDesigns()
 
-  const design: Design = Object.values(designs.data)
-    .find(apiDesign => {
-      if (apiDesign.output.trait) {
-        return apiDesign.output.trait.id.toLowerCase() === item.trait.toLowerCase()
-      }
-    })
+  const design: Design = Object.values(designs).find(apiDesign => {
+    if (apiDesign.output.trait) {
+      return apiDesign.output.trait.id.toLowerCase() === item.trait.toLowerCase()
+    }
+  })
 
   if (!design) {
     return

@@ -23,7 +23,7 @@ import { download } from "./download"
 
 const cache = {}
 
-async function downloadApiResource<T>(resource: string): Promise<T> {
+async function downloadApiResource<T extends { data: any }>(resource: string): Promise<T["data"]> {
   return cache[resource] = cache[resource] || get(resource)
 }
 
@@ -32,9 +32,9 @@ async function get(resource: string) {
   const options = { headers: { Accept: "application/json" } }
 
   const filename = await download(url, options)
-  const data = await readJson(filename)
+  const res = await readJson(filename)
 
-  return data
+  return res.data
 }
 
 export class API {
