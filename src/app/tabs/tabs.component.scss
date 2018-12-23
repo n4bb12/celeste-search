@@ -17,13 +17,22 @@
   margin: 1vmin;
   padding-right: 3vmin;
   border-radius: ($border-radius / 2);
-  background: $theme-secondary;
-  color: $theme-text;
+  background: $theme-text;
+  color: $theme-shadow;
+  opacity: .75;
+  transition: .2s ease-out;
+  transition-property: box-shadow, background-color, opacity;
+
+  &:hover {
+    opacity: 1;
+    transition: none;
+  }
 
   &.--active {
     background: $theme-primary;
-    transition: .2s ease-out;
-    transition-property: background-color, box-shadow;
+    color: $theme-text;
+    opacity: 1;
+    transition: none;
   }
 
   img {

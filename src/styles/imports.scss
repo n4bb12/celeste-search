@@ -8,6 +8,9 @@ $theme-border: #768376;
 
 $border-radius: .75rem;
 
+$spacing-calc: calc(2.5rem + 2.5vmin);
+$spacing-viewport: 5vmin;
+
 @mixin elevation($z) {
   @include mdc-elevation($z, $theme-shadow, 0);
 }

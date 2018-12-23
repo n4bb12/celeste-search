@@ -4,28 +4,23 @@
   display: block;
 }
 
-.__form {
-  @include background();
-
-  position: relative;
-  border-radius: $border-radius;
-  padding: 1.5rem;
-}
-
 .__input-container {
   position: relative;
 }
 
 .__input {
+  @include elevation(2);
+
   width: 100%;
   height: 3rem;
-  line-height: 3rem;
+  overflow: hidden;
+  border-radius: ($border-radius / 2);
+  padding: 0 3rem 0 1rem;
   font-size: 1.125rem;
   font-weight: 300;
-  padding: 0 3rem 0 1rem;
-  white-space: nowrap;
-  overflow: hidden;
+  line-height: 3rem;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .--empty {

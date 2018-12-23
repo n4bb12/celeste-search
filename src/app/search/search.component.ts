@@ -26,7 +26,7 @@ export class SearchComponent implements OnInit {
 
   @ViewChild("inputRef") inputRef: ElementRef
   readonly inputModel = new FormControl()
-  input = "divine"
+  input = "legendary"
 
   constructor(
     private search: SearchService,

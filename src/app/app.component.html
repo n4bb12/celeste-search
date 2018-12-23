@@ -1,13 +1,19 @@
-<ng-scrollbar #scrollbarRef [compact]="true"
-  cisAwaitFont>
+<ng-scrollbar #scrollbarRef [compact]="true" cisAwaitFont>
 
-  <main>
-    <cis-search></cis-search>
-    <cis-tabs [(activeTab)]="activeTab"></cis-tabs>
+  <div class="__header">
+    <div class="__form">
+      <cis-search></cis-search>
+      <cis-tabs [(activeTab)]="activeTab"></cis-tabs>
+    </div>
+  </div>
+
+  <div class="__body">
     <cis-results [activeTab]="activeTab"></cis-results>
-  </main>
+  </div>
 
-  <cis-legal></cis-legal>
+  <div class="__footer">
+    <cis-legal></cis-legal>
+  </div>
 
 </ng-scrollbar>
 
