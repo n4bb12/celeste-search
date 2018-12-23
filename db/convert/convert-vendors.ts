@@ -17,7 +17,7 @@ const celesteLegendariesStart = 2259
  * specified item.
  */
 export async function findAndConvertVendors(item: Item): Promise<Vendor[]> {
-  const stores = await downloadApiResource<Stores>("/stores")
+  const stores = await API.getStores()
   const vendors: Vendor[] = []
 
   stores.data.forEach(store => {

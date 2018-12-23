@@ -26,9 +26,12 @@ const limiter = new Bottleneck({
 export async function buildDb(): Promise<DB> {
   console.log("Build item database...")
 
-  const traits = await API.getTraits()
+  const traitsResponse = await API.getTraits()
+  const advisorsResponse = await API.getAdvisors()
+  const blueprintsResponse = await API.getBlueprints()
+  const designsResponse = await API.getDesigns()
 
-  const traitToItemConversions = Object.values(traits.data)
+  const traitToItemConversions = Object.values(traitsResponse.data)
     .filter(traitHasLevels)
     .map(trait => limiter.schedule(() => convertItem(trait)))
 

@@ -10,7 +10,7 @@ import { convertRecipeSchool } from "./convert-recipe-school"
  * from the API format to the format used by the item search app.
  */
 export async function findAndConvertRecipe(item: Item): Promise<Recipe> {
-  const designs = await downloadApiResource<Designs>("/game/designs")
+  const designs = await API.getDesigns()
 
   const design: Design = Object.values(designs.data)
     .find(apiDesign => {

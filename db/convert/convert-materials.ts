@@ -9,7 +9,7 @@ import { translateEn } from "./convert-text"
  * items passed.
  */
 export async function convertMaterials(items: Item[]): Promise<Materials> {
-  const materials = await downloadApiResource<Materials>("/game/materials")
+  const materials = await API.getMaterials()
   const result: Materials = {}
 
   for (const item of items) {
