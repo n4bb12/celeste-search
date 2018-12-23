@@ -1433,6 +1433,11 @@ boolbase@^1.0.0, boolbase@~1.0.0:
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha1-aN/1++YMUes3cl6p4+0xDcwed24=
 
+bottleneck@^2.14.0:
+  version "2.14.0"
+  resolved "https://registry.yarnpkg.com/bottleneck/-/bottleneck-2.14.0.tgz#4cbd8ffb4cf589ca4e71853561fbe1e464924864"
+  integrity sha512-hM5zQPPpIe2/pn8rornETr2x7/HOBGJ5u1RW1js6zvE5453bRMMbtbZl0ojB8yNj7w2xNWddpNukrhOikHb7BQ==
+
 boxen@^1.2.1:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/boxen/-/boxen-1.3.0.tgz#55c6c39a8ba58d9c61ad22cd877532deb665a20b"
@@ -7359,11 +7364,6 @@ promise-inflight@^1.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/promise-nodeify/-/promise-nodeify-3.0.1.tgz#f0f5d9720ee9ec71dd2bfa92667be504c10229c2"
   integrity sha512-ghsSuzZXJX8iO7WVec2z7GI+Xk/EyiD+JZK7AZKhUqYfpLa/Zs4ylUD+CwwnKlG6G3HnkUPMAi6PO7zeqGKssg==
-
-promise-parallel-throttle@^3.2.0:
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/promise-parallel-throttle/-/promise-parallel-throttle-3.2.0.tgz#6557a103b61e81bf76ca685c441345f91431c2c8"
-  integrity sha512-htoKw8BANvNnTmRoA1VBk1wB2iJcsTTrgG/KXPXqVecr4aJ7zq9noucVUmADBzpNX54ZMGK9gd1OBBBE8hhf0A==
 
 promise-retry@^1.1.1:
   version "1.1.1"
