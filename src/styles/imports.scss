@@ -19,7 +19,7 @@ $border-radius: .75rem;
 
 @mixin background() {
   @include elevation(2);
-  background: rgba(white, .4);
+  background: rgba(white, .25);
 }
 
 @mixin text-shadow() {
