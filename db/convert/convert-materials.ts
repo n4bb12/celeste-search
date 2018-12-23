@@ -1,5 +1,6 @@
-import { downloadApiResource, downloadIcon } from "../download"
+import { downloadIcon } from "../download"
 import { Item, Materials } from "../interfaces/app"
+import { API } from "./../download/download-api-resource"
 
 import { translateEn } from "./convert-text"
 

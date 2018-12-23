@@ -1,26 +1,23 @@
-import { readJson } from "fs-extra"
-
 import {
   Advisors,
   Blueprints,
+  CreteLeaderboard,
   Designs,
   EconQuests,
+  HalloweenEventLeaderboard,
   Languages,
   LootRolls,
   Marketplace,
+  Materials,
   Online,
   Registered,
+  SpartaLeaderboard,
   Stores,
   Traits,
   UserProfile,
-} from "../interfaces/api"
-import { Materials } from "../interfaces/app"
-import {
-  CreteLeaderboard,
-  HalloweenEventLeaderboard,
-  SpartaLeaderboard,
   WinterEventLeaderboard,
-} from "./../interfaces/api/Leaderboards"
+} from "celeste-api-types"
+import { readJson } from "fs-extra"
 
 import { download } from "./download"
 

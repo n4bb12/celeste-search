@@ -1,10 +1,10 @@
 import Bottleneck from "bottleneck"
+import { Trait } from "celeste-api-types"
 import chalk from "chalk"
 
 import { convertItem } from "../convert/convert-item"
 import { convertMaterials } from "../convert/convert-materials"
-import { API } from "../download/download-api-resource"
-import { Trait } from "../interfaces/api"
+import { API } from "../download"
 import { DB } from "../interfaces/app"
 
 import {

@@ -1,5 +1,4 @@
-import { downloadApiResource } from "../download"
-import { Languages } from "../interfaces/api"
+import { API } from "../download"
 
 /**
  * Returns an english translation from the API.

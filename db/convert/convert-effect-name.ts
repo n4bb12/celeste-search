@@ -1,4 +1,4 @@
-import { Effect } from "../interfaces/api"
+import { Effect } from "celeste-api-types"
 
 /**
  * Static mapping of effect subtypes to display names.

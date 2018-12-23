@@ -1,5 +1,6 @@
-import { downloadApiResource } from "../download"
-import { Design, Designs } from "../interfaces/api"
+import { Design } from "celeste-api-types"
+
+import { API } from "../download"
 import { Item, Recipe } from "../interfaces/app"
 
 import { convertRecipeSchool } from "./convert-recipe-school"

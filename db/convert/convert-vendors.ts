@@ -1,5 +1,4 @@
-import { downloadApiResource } from "../download"
-import { Stores } from "../interfaces/api"
+import { API } from "../download"
 import { Item, Vendor } from "../interfaces/app"
 
 /**

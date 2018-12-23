@@ -1,5 +1,6 @@
+import { Trait } from "celeste-api-types"
+
 import { downloadIcon } from "../download"
-import { Trait } from "../interfaces/api"
 import { Item } from "../interfaces/app"
 
 import { convertEffects } from "./convert-effects"
