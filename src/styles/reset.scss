@@ -24,8 +24,12 @@ input, button, a {
 }
 
 input {
-  background: rgba($theme-text, .8);
+  background: $theme-text;
   color: $theme-shadow;
+
+  &::selection {
+    background: rgba($theme-secondary, .8);
+  }
 }
 
 button {
@@ -55,7 +59,7 @@ pre {
 }
 
 ::selection {
-  background: rgba($theme-secondary, .8);
+  background: rgba($theme-primary, .8);
   text-shadow: none;
 }
 

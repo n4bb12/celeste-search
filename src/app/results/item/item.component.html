@@ -23,7 +23,7 @@
     <ul>
       <li *ngFor="let effect of item.effects || []" [class.--positive]="effect.beneficial"
         [class.--negative]="!effect.beneficial">
-        <span>{{ effect.name }}</span><span *ngIf="effect.scaling">:</span>
+        <span>{{ effect.name }}<ng-container *ngIf="effect.scaling">:</ng-container></span>
         <span class="__value --left" *ngIf="effect.scaling">
           {{ effect | effectValue:level:1 }}
         </span>
