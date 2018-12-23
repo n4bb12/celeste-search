@@ -1,12 +1,15 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  Input,
   OnInit,
   ViewChild,
 } from "@angular/core"
 import { FormControl } from "@angular/forms"
 
+import { NgScrollbar } from "ngx-scrollbar"
 import {
   distinctUntilChanged,
   sampleTime,
@@ -22,10 +25,13 @@ import { SearchService } from "../services"
   styleUrls: ["./search.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnInit, AfterViewInit {
 
+  @Input() scrollbarRef: NgScrollbar
   @ViewChild("inputRef") inputRef: ElementRef
+
   readonly inputModel = new FormControl()
+
   input = "legendary"
 
   constructor(
@@ -35,22 +41,37 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (!this.input) {
-      this.inputRef.nativeElement.focus()
-    }
-
     this.inputModel.valueChanges.pipe(
       startWith(this.input),
       sampleTime(200),
       distinctUntilChanged(),
       tap(input => this.search.search(input)),
     ).subscribe()
+  }
 
+  ngAfterViewInit() {
+    if (!this.input) {
+      this.inputRef.nativeElement.focus()
+    }
   }
 
   clear() {
     this.inputModel.setValue("")
     this.inputRef.nativeElement.focus()
+  }
+
+  keepInputFocused() {
+    if (document.activeElement === this.inputRef.nativeElement) {
+      return
+    }
+
+    if (!window.getSelection().isCollapsed) {
+      return
+    }
+
+    const y = this.scrollbarRef.scrollable.measureScrollOffset("top")
+    this.inputRef.nativeElement.focus()
+    this.scrollbarRef.scrollYTo(y)
   }
 
 }
