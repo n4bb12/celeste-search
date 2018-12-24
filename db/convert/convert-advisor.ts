@@ -19,6 +19,7 @@ export async function convertAdvisor(apiAdvisor: ApiAdvisor): Promise<Advisor> {
     name,
     age: apiAdvisor.age + 1,
     level: apiAdvisor.minlevel,
+    civilization: apiAdvisor.civilization,
     vendors: undefined,
     rarities: {
       [apiAdvisor.rarity]: {

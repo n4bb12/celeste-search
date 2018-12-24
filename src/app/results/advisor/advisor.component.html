@@ -30,14 +30,17 @@
 
   <!-- REQUIRED LEVEL -->
   <div class="row --level" *ngIf="advisor.level">
-    <div>
-      Required&nbsp;Level:&nbsp;&nbsp;{{ advisor.level }}
-    </div>
+    Required&nbsp;Level:&nbsp;&nbsp;{{ advisor.level }}
+  </div>
+
+  <!-- REQUIRED CIV -->
+  <div class="row --civ" *ngIf="advisor.civilization">
+    Required&nbsp;civilization:&nbsp;&nbsp;{{ advisor.civilization }}
   </div>
 
   <!-- VENDOR -->
   <div class="__vendors" *ngFor="let vendor of advisor.vendors">
-    <div class="row --shop">
+    <div class="row --vendor">
       <div>
         Purchasable&nbsp;at <strong>{{ vendor.name }}</strong><span *ngIf="vendor.rotation">
           ({{ vendor.rotation }} Legendary Rotation)</span>:
