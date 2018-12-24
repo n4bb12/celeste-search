@@ -83,11 +83,11 @@
     </div>
     <div class="row --material" *ngFor="let ref of item.recipe.materials">
       <ng-container *ngIf="materials[ref.id] as mat">
-        <div class="icon--materials icon--materials--{{ mat.icon }}"></div>
-        <div class="__mat-text --{{ mat.rarity }}">
-          {{ ref.quantity }}x&nbsp;
-          {{ mat.name }}
-        </div>
+        <span class="icon--materials icon--materials--{{ mat.icon }}"></span>
+        <span class="__mat-text">
+          <span>{{ ref.quantity }}x&nbsp;&nbsp;</span>
+          <span class="--{{ mat.rarity }}">{{ mat.name }}</span>
+        </span>
       </ng-container>
     </div>
   </div>

@@ -16,7 +16,7 @@
 
 .icon--advisors {
   $size: 64px;
-  border-radius: ($size / 8);
+  border-radius: 4px;
   background-color: $theme-border;
   width: $size;
   height: $size;
@@ -24,10 +24,9 @@
 
 .icon--materials {
   $size: 24px;
-  border-radius: ($size / 8);
+  border-radius: 3px;
   width: $size;
   height: $size;
-  transform: translateY(-$size / 12);
 }
 
 .__inside {
@@ -114,12 +113,13 @@
 }
 
 .row.--material {
+  font-size: 90%;
   margin-top: .125rem;
   margin-left: .25rem;
-  font-size: 90%;
   align-items: center;
 }
 
 .__mat-text {
-  margin-left: .5em;
+  margin-top: .25rem;
+  margin-left: .375rem;
 }
