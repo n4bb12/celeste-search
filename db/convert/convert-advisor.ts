@@ -3,6 +3,7 @@ import { Advisor as ApiAdvisor } from "celeste-api-types"
 import { downloadIcon } from "../download"
 import { Advisor } from "../interfaces/app"
 
+import { convertCivilization } from "./convert-civilization"
 import { translateEn } from "./convert-text"
 import { findAndConvertVendors } from "./convert-vendors"
 
@@ -19,7 +20,7 @@ export async function convertAdvisor(apiAdvisor: ApiAdvisor): Promise<Advisor> {
     name,
     age: apiAdvisor.age + 1,
     level: apiAdvisor.minlevel,
-    civilization: apiAdvisor.civilization,
+    civilization: convertCivilization(apiAdvisor.civilization),
     vendors: undefined,
     rarities: {
       [apiAdvisor.rarity]: {
