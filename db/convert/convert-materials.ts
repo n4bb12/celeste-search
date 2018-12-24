@@ -5,8 +5,7 @@ import { API } from "./../download/download-api-resource"
 import { translateEn } from "./convert-text"
 
 /**
- * Collects all materials that can be used to craft the
- * items passed.
+ * Collects all materials that can be used to craft the specified items.
  */
 export async function convertMaterials(items: Item[]): Promise<Materials> {
   const materials = await API.getMaterials()

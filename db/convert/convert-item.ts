@@ -10,7 +10,7 @@ import { findAndConvertVendors } from "./convert-vendors"
 
 /**
  * Converts items from their API format to the format
- * used by the item search app.
+ * used by the search app.
  */
 export async function convertItem(trait: Trait): Promise<Item> {
   const name = await translateEn(trait.displaynameid)

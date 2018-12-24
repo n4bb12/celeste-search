@@ -1,6 +1,7 @@
 import { Trait } from "celeste-api-types"
 import chalk from "chalk"
 
+import { convertAdvisor } from "../convert/convert-advisor"
 import { convertItem } from "../convert/convert-item"
 import { convertMaterials } from "../convert/convert-materials"
 import { API } from "../download"
@@ -18,7 +19,6 @@ import { compareItems } from "./compare-items"
 export async function buildDb(): Promise<DB> {
   console.log("Build item database...")
 
-  const advisorsResponse = await API.getAdvisors()
   const blueprintsResponse = await API.getBlueprints()
   const designsResponse = await API.getDesigns()
 
@@ -26,6 +26,10 @@ export async function buildDb(): Promise<DB> {
     Object.values(await API.getTraits())
       .filter(traitHasLevels)
       .map(convertItem))
+
+  const advisors = await Promise.all(
+    Object.values(await API.getAdvisors())
+      .map(convertAdvisor))
 
   const materials = await convertMaterials(items)
   const replace = buildSearchReplacementMap(items, materials)
@@ -35,7 +39,7 @@ export async function buildDb(): Promise<DB> {
 
   const db: DB = {
     items,
-    advisors: [],
+    advisors,
     blueprints: [],
     designs: [],
     consumables: [],
