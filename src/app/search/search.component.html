@@ -1,5 +1,5 @@
 <div class="__input-container" [class.--empty]="!(inputModel.valueChanges | async)"
-  (window:pointerup)="keepInputFocused($event)">
+  (window:pointerup)="keepInputFocused()">
 
   <input type="text" class="__input" placeholder="Search" aria-label="Search"
     autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
