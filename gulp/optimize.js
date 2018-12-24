@@ -10,8 +10,8 @@ const optimize = () => src([
   `generated/meta/*.png`,
   `generated/sprites/*.png`,
 ], { base: "generated" })
-  .pipe(debug())
   .pipe(tinify(process.env.TINIFY_API_KEY))
+  .pipe(debug())
   .pipe(dest("src/assets"))
 
 /**

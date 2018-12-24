@@ -1,12 +1,13 @@
 const { src, dest, series, parallel } = require("gulp")
 const { writeFile } = require("fs-extra")
+const debug = require("gulp-debug")
 const del = require("del")
 const responsive = require("gulp-responsive")
 
 const ratio = 9 / 16
 const sourceWidth = 2048
 const paths = {
-  in: "/assets/norse.png",
+  in: "assets/norse.png",
   out: "generated/bg",
 }
 
@@ -33,6 +34,7 @@ function buildImagesConfigs(exponents) {
       rename: `bg-${size}.png`,
       width: size,
       height: size,
+      quality: 100,
     })
   })
 
@@ -96,7 +98,8 @@ const generateBGs = done => {
   const images = buildImagesConfigs([1, 1.25, 1.5, 2, 3])
 
   const writeImages = () => src(paths.in)
-    .pipe(responsive({ "*": images }))
+    .pipe(responsive({ "*": images }, { silent: true }))
+    .pipe(debug())
     .pipe(dest(paths.out))
 
   const writeCSS = () => {

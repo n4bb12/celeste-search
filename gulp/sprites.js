@@ -1,4 +1,5 @@
 const { src, dest, parallel } = require("gulp")
+const responsive = require("gulp-responsive")
 const spritesmith = require("gulp.spritesmith")
 
 function toRoundedPercent(value) {
@@ -58,20 +59,42 @@ const cssTemplate = name => data => {
 /**
  * Generates a single sprite.
  */
-const sprite = name => () => src(
-  `generated/sprites/${name}/*.png`, { base: "generated" })
-  .pipe(spritesmith({
-    imgName: `${name}.png`,
-    cssName: `${name}.scss`,
-    cssTemplate: cssTemplate(name),
-    algorithm: "top-down",
-  }))
-  .pipe(dest("generated/sprites"))
+const sprite = (name, size) => {
+  const paths = {
+    in: `generated/sprites/${name}/*.png`,
+    out: "generated/sprites",
+  }
+  const config = { base: "generated" }
+  const imageSizes = {
+    "**": {
+      width: size,
+      height: size,
+      quality: 100,
+    },
+  }
+  const imageConfig = {
+    silent: true,
+  }
+
+  const fn = () => src(paths.in, config)
+    .pipe(responsive(imageSizes, imageConfig))
+    .pipe(spritesmith({
+      imgName: `${name}.png`,
+      cssName: `${name}.scss`,
+      cssTemplate: cssTemplate(name),
+      algorithm: "top-down",
+    }))
+    .pipe(dest(paths.out))
+
+  fn.displayName = `sprites.${name}`
+
+  return fn
+}
 
 /**
  * `gulp sprites`
  */
 module.exports = parallel(
-  sprite("items"),
-  sprite("materials"),
+  sprite("items", 64),
+  sprite("materials", 64),
 )

@@ -3,7 +3,7 @@ const del = require("del")
 const responsive = require("gulp-responsive")
 
 const paths = {
-  in: "/assets/good-guy.png",
+  in: "assets/good-guy.png",
   out: "generated/meta",
 }
 
@@ -25,10 +25,11 @@ const generateAppIcons = () => {
     rename: `app-${size}.png`,
     width: size,
     height: size,
+    quality: 100,
   }))
 
   return src(paths.in)
-    .pipe(responsive({ "*": images }))
+    .pipe(responsive({ "*": images }, { silent: true }))
     .pipe(dest(paths.out))
 }
 
