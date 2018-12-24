@@ -4,6 +4,7 @@ import { downloadIcon } from "../download"
 import { Advisor } from "../interfaces/app"
 
 import { translateEn } from "./convert-text"
+import { findAndConvertVendors } from "./convert-vendors"
 
 /**
  * Converts advisors from their API format to the format
@@ -15,13 +16,24 @@ export async function convertAdvisor(apiAdvisor: ApiAdvisor): Promise<Advisor> {
   const iconId = await downloadIcon(apiAdvisor.icon, "advisors")
 
   const advisor: Advisor = {
-    id: apiAdvisor.name,
-    icon: iconId,
     name,
     age: apiAdvisor.age + 1,
-    rarity: apiAdvisor.rarity,
-    description,
+    level: apiAdvisor.minlevel,
+    vendors: undefined,
+    rarities: {
+      [apiAdvisor.rarity]: {
+        id: apiAdvisor.name,
+        icon: iconId,
+        description,
+      },
+    },
+    search: "",
   }
+
+  advisor.vendors = await findAndConvertVendors({
+    name,
+    rarity: apiAdvisor.rarity,
+  }, "advisor")
 
   return advisor
 }

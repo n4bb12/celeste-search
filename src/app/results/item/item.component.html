@@ -53,12 +53,12 @@
     </div>
 
     <ng-container *ngIf="item.levels.length > 1">
-      <ng-container *ngFor="let l of item.levels">
+      <ng-container *ngFor="let level of item.levels">
 
         <div class="__level">
-          <button type="button" (click)="setLevel(l)">
-            {{ l }}
-            <div class="tooltip">{{ l }}</div>
+          <button type="button" (click)="setLevel(level)">
+            {{ level }}
+            <div class="tooltip">{{ level }}</div>
           </button>
         </div>
 

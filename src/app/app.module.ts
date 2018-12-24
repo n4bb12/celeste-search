@@ -10,6 +10,8 @@ import { AwaitFontDirective } from "./await-font.directive"
 import { BackToTopComponent } from "./back-to-top/back-to-top.component"
 import { LegalComponent } from "./legal/legal.component"
 import { EffectValuePipe } from "./pipes/effect-value.pipe"
+import { KeysPipe } from "./pipes/keys.pipe"
+import { AdvisorComponent } from "./results/advisor/advisor.component"
 import { ItemComponent } from "./results/item/item.component"
 import { ResultsComponent } from "./results/results.component"
 import { SearchComponent } from "./search/search.component"
@@ -23,11 +25,13 @@ import { TabsComponent } from "./tabs/tabs.component"
     ReactiveFormsModule,
   ],
   declarations: [
+    AdvisorComponent,
     AppComponent,
     AwaitFontDirective,
     BackToTopComponent,
     EffectValuePipe,
     ItemComponent,
+    KeysPipe,
     LegalComponent,
     ResultsComponent,
     SearchComponent,

@@ -9,7 +9,7 @@ import { DbService } from "./services/db.service"
 })
 export class AppComponent {
 
-  activeTab = 0
+  activeTab = 1
   readonly items = this.db.fetch()
 
   constructor(

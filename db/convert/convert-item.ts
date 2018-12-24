@@ -42,7 +42,7 @@ export async function convertItem(trait: Trait): Promise<Item> {
     item.noEffectRange = true
   }
 
-  item.vendors = await findAndConvertVendors(item)
+  item.vendors = await findAndConvertVendors(item, "item")
   item.recipe = await findAndConvertRecipe(item)
 
   return item

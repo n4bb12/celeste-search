@@ -1786,9 +1786,9 @@ caseless@~0.12.0:
   integrity sha1-G2gcIf+EAzyCZUMJBolCDRhxUdw=
 
 celeste-api-types@^1.2.0:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/celeste-api-types/-/celeste-api-types-1.2.1.tgz#41a07cd3c0133f651528df9694b77467c887453c"
-  integrity sha512-xqM7lUMsXJB1LeoHNig5dwBE44Gix3hg5xI1W991GmhSVr/4M6VUi9hRqCpSlp2NviRT2P5fWdOidfqE04Ejwg==
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/celeste-api-types/-/celeste-api-types-1.2.2.tgz#2b2a3448064817345b6a9b743dc3b32169fd30a4"
+  integrity sha512-G/rgAG+rgIRWhAIHvo0Kg6Uu2kbticRN2JK/g8qIbS1l92RcDlEsoOBDKAThI7ptW3o5l+tpClKsqVGdrvgT7Q==
 
 center-align@^0.1.1:
   version "0.1.3"

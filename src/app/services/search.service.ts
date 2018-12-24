@@ -55,7 +55,7 @@ export class SearchService {
           return words.every(word => item.search.includes(word))
         })
         advisors = db.advisors.filter(advisor => {
-          return words.every(word => advisor.search.includes(word))
+          return words.every(word => true || advisor.search.includes(word))
         })
         blueprints = db.blueprints.filter(blueprint => {
           return words.every(word => blueprint.search.includes(word))

@@ -14,7 +14,7 @@
   }
 }
 
-.icon--items {
+.icon--advisors {
   $size: 64px;
   border-radius: ($size / 8);
   background-color: $theme-border;
@@ -51,12 +51,27 @@
   justify-content: space-between;
 }
 
-.__type {
+.__age {
   color: #e6c953;
 }
 
-.__rarity {
-  text-transform: capitalize;
+.row.--rarities {
+  .__rarity {
+    position: relative;
+    background: transparent;
+    margin: 0;
+    padding: 0 .2rem;
+    transform: translate3d(0,0,0);
+    transition: .1s ease-out;
+    transition-property: color;
+    box-shadow: none;
+    text-transform: capitalize;
+    cursor: help;
+
+    &:hover, &:active {
+      transition: none;
+    }
+  }
 }
 
 .row.--name {
@@ -69,42 +84,6 @@
   font-size: 18px;
   font-weight: 700;
   flex: 1;
-}
-
-.row.--effects {
-  margin: 0;
-  margin-left: .25rem;
-  font-weight: 700;
-
-  ul {
-    flex: 1;
-    list-style: none;
-    margin: 0;
-    margin-left: 1.25em;
-    padding: 0;
-    font-size: 14px;
-  }
-  li {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    position: relative;
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0.6em;
-      transform: translateY(-50%);
-      left: -1em;
-      background: white;
-      border-radius: 50%;
-      width: .375rem;
-      height: .375rem;
-      pointer-events: none;
-      user-select: none;
-      box-shadow: 1px 0 1px #000;
-    }
-  }
 }
 
 .__value {
@@ -123,41 +102,13 @@
 
 .row.--level {
   margin-top: .5rem;
-}
-
-.row.--levels {
-  margin-top: .25rem;
-  font-size: 90%;
   color: hsl(0, 0%, 65%);
-  flex-wrap: wrap;
-
-  .__level {
-    position: relative;
-
-    button {
-      background: transparent;
-      margin: 0;
-      padding: 0 .2rem;
-      color: inherit;
-      transform: translate3d(0,0,0);
-      transition: .1s ease-out;
-      transition-property: color;
-      box-shadow: none;
-
-      &:hover, &:active {
-        color: white;
-        transition: none;
-      }
-    }
-  }
 }
 
-.__vendors,
-.__recipe {
+.__vendors {
   margin-top: 1rem;
 }
 
-.row.--recipe,
 .row.--shop {
   margin-bottom: .5rem;
 }

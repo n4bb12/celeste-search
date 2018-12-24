@@ -5,37 +5,48 @@ import { convertAdvisor } from "../convert/convert-advisor"
 import { convertItem } from "../convert/convert-item"
 import { convertMaterials } from "../convert/convert-materials"
 import { API } from "../download"
-import { DB } from "../interfaces/app"
+import { Advisor, DB } from "../interfaces/app"
 
 import {
   buildSearchReplacementMap,
   buildSearchString,
 } from "./build-search-string"
+import { compareAdvisors } from "./compare-advisors"
 import { compareItems } from "./compare-items"
 
 /**
  * Creates the data (db.json) behind the item search app.
  */
 export async function buildDb(): Promise<DB> {
-  console.log("Build item database...")
-
-  const blueprintsResponse = await API.getBlueprints()
-  const designsResponse = await API.getDesigns()
+  console.log("Build database...")
 
   const items = await Promise.all(
     Object.values(await API.getTraits())
       .filter(traitHasLevels)
       .map(convertItem))
+  items.sort(compareItems)
 
-  const advisors = await Promise.all(
+  const singleAdvisors = await Promise.all(
     Object.values(await API.getAdvisors())
       .map(convertAdvisor))
+  const advisorMap: { [name: string]: Advisor } = {}
+  singleAdvisors.forEach(advisor => {
+    const parent = advisorMap[advisor.name]
+    const rarity = Object.keys(advisor.rarities)[0]
+    if (parent) {
+      parent.rarities[rarity] = advisor.rarities[rarity]
+    } else {
+      advisorMap[advisor.name] = advisor
+    }
+  })
+  const advisors = Object.values(advisorMap)
+  advisors.sort(compareAdvisors)
 
   const materials = await convertMaterials(items)
-  const replace = buildSearchReplacementMap(items, materials)
-
-  items.sort(compareItems)
   items.forEach(item => item.search = buildSearchString(item, materials))
+  advisors.forEach(advisor => advisor.search = "TODO")
+
+  const replace = buildSearchReplacementMap(items, materials)
 
   const db: DB = {
     items,

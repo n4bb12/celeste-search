@@ -35,8 +35,8 @@ export class ItemComponent implements OnInit {
     })
   }
 
-  setLevel(l: number) {
-    this.level = l
+  setLevel(level: number) {
+    this.level = level
     this.changeRef.detectChanges()
   }
 

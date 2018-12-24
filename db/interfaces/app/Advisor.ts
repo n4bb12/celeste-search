@@ -1,8 +1,18 @@
-export interface Advisor {
+import { Vendor } from "./Vendor"
+
+export interface AdvisorRarity {
   id: string
-  name: string
   description: string
+  icon: number,
+}
+
+export interface Advisor {
+  name: string
   age: number
-  icon: number
-  rarity: string
+  level: number
+  vendors?: Vendor[]
+  rarities: {
+    [index: string]: AdvisorRarity,
+  }
+  search: string
 }
