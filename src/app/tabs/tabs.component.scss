@@ -15,7 +15,6 @@
   display: flex;
   align-items: center;
   margin: 1vmin;
-  padding-right: 3vmin;
   border-radius: ($border-radius / 2);
   background: $theme-text;
   color: $theme-shadow;
@@ -34,10 +33,20 @@
     opacity: 1;
     transition: none;
   }
+}
 
-  img {
-    border-radius: ($border-radius / 2);
-    height: calc(1.5rem + 2vmin);
-    margin-right: 1vmin;
+.__name {
+  margin-right: 3vmin;
+  margin-left: 1vmin;
+}
+
+.__image {
+  height: 3rem;
+  border-radius: ($border-radius / 2);
+}
+
+@media (max-width: 64rem) {
+  .__name {
+    display: none;
   }
 }
