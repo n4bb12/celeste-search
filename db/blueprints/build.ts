@@ -2,6 +2,7 @@ import { API } from "../download"
 import { Blueprint } from "../interfaces"
 
 import { convertBlueprint } from "./convert-blueprint"
+import { includeBlueprint } from "./filter"
 import { compareBlueprints } from "./sort"
 
 export async function buildBlueprints(): Promise<Blueprint[]> {
@@ -11,5 +12,7 @@ export async function buildBlueprints(): Promise<Blueprint[]> {
   const conversions = Object.values(blueprints).map(convertBlueprint)
   const result = await Promise.all(conversions)
 
-  return result.sort(compareBlueprints)
+  return result
+    .filter(includeBlueprint)
+    .sort(compareBlueprints)
 }
