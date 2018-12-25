@@ -1,7 +1,7 @@
 import { Trait } from "celeste-api-types"
 import { uniqBy } from "lodash"
 
-import { ItemEffect } from "../interfaces/app"
+import { ItemEffect } from "../interfaces"
 
 import { convertEffectName } from "./convert-effect-name"
 

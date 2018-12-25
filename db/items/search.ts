@@ -1,9 +1,8 @@
 import chalk from "chalk"
-import { uniq } from "lodash"
+import { identity, uniq } from "lodash"
 
-import { Item, Materials } from "../interfaces/app"
-
-import { preprocessSearch } from "./preprocess-search"
+import { Item, Materials } from "../interfaces"
+import { preprocessSearch } from "../shared/preprocess-search"
 
 const SINGLE_WORD_SEPARATOR = "_"
 
@@ -15,7 +14,7 @@ interface Replacements {
  * Constructs a search string consisting of all keywords the
  * item can be found by.
  */
-export function buildSearchString(item: Item, materials: Materials): string {
+export function buildItemSearchString(item: Item, materials: Materials): string {
   const words = []
 
   words.push(item.name)
@@ -88,7 +87,9 @@ export function buildSearchString(item: Item, materials: Materials): string {
   })
 
   const search = uniq(
-    words.join(" ")
+    words
+      .filter(identity)
+      .join(" ")
       .trim()
       .toLowerCase()
       .split(/\s+/))

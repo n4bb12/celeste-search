@@ -1,4 +1,4 @@
-import { Item } from "../interfaces/app"
+import { Item } from "../interfaces"
 
 export const rarities = ["legendary", "epic", "rare", "uncommon", "common"]
 

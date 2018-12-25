@@ -44,31 +44,24 @@ export class API {
   static getAdvisors() {
     return downloadApiResource<Advisors>("/game/advisors")
   }
-
   static getBlueprints() {
     return downloadApiResource<Blueprints>("/game/blueprints")
   }
-
   static getDesigns() {
     return downloadApiResource<Designs>("/game/designs")
   }
-
   static getEconQuests() {
     return downloadApiResource<EconQuests>("/game/econquests")
   }
-
   static getLanguages() {
     return downloadApiResource<Languages>("/game/languages")
   }
-
   static getLootRolls() {
     return downloadApiResource<LootRolls>("/game/lootrolls")
   }
-
   static getMaterials() {
     return downloadApiResource<Materials>("/game/materials")
   }
-
   static getTraits() {
     return downloadApiResource<Traits>("/game/traits")
   }
@@ -101,11 +94,9 @@ export class API {
   static getUserProfile(id: string) {
     return downloadApiResource<UserProfile>(`/users/${id}/profile`)
   }
-
   static getOnlineUsers() {
     return downloadApiResource<Online>(`/users/online`)
   }
-
   static getRegisteredUsers() {
     return downloadApiResource<Registered>(`/users/registered`)
   }

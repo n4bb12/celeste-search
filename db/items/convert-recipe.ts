@@ -1,7 +1,7 @@
 import { Design } from "celeste-api-types"
 
 import { API } from "../download"
-import { Item, Recipe } from "../interfaces/app"
+import { Item, Recipe } from "../interfaces"
 
 import { convertRecipeSchool } from "./convert-recipe-school"
 
