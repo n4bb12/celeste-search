@@ -1,9 +1,7 @@
-import { Advisor } from "../interfaces"
-
-export const rarities = ["legendary", "epic", "rare", "uncommon", "common"]
+import { Advisor, RARITIES } from "../interfaces"
 
 /**
- * Determines the sort order of items in `db.json`.
+ * Determines the sort order of advisors in `db.json`.
  */
 export function compareAdvisors(a: Advisor, b: Advisor) {
   const aRarities = Object.keys(a.rarities)
@@ -13,8 +11,8 @@ export function compareAdvisors(a: Advisor, b: Advisor) {
   const bMaxRarity = bRarities[bRarities.length - 1]
 
   if (aMaxRarity !== bMaxRarity) {
-    const aRarityIndex = rarities.indexOf(aMaxRarity)
-    const bRarityIndex = rarities.indexOf(bMaxRarity)
+    const aRarityIndex = RARITIES.indexOf(aMaxRarity)
+    const bRarityIndex = RARITIES.indexOf(bMaxRarity)
     return aRarityIndex - bRarityIndex
   }
 

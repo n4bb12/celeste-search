@@ -7,6 +7,6 @@ const displayNames = {
   Babylonian: "Babylonian",
 }
 
-export function convertCivilization(civ: string): string {
-  return displayNames[civ]
+export function convertCivilization(civilization: string): string {
+  return displayNames[civilization]
 }

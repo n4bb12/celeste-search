@@ -12,6 +12,7 @@ import { LegalComponent } from "./legal/legal.component"
 import { EffectValuePipe } from "./pipes/effect-value.pipe"
 import { KeysPipe } from "./pipes/keys.pipe"
 import { AdvisorComponent } from "./results/advisor/advisor.component"
+import { BlueprintComponent } from "./results/blueprint/blueprint.component"
 import { ItemComponent } from "./results/item/item.component"
 import { ResultsComponent } from "./results/results.component"
 import { SearchComponent } from "./search/search.component"
@@ -31,6 +32,7 @@ describe("AppComponent", () => {
         AppComponent,
         AwaitFontDirective,
         BackToTopComponent,
+        BlueprintComponent,
         EffectValuePipe,
         ItemComponent,
         KeysPipe,

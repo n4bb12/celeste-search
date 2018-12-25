@@ -1,5 +1,4 @@
 @import "imports";
-@import "item";
 
 :host {
   @include text-shadow();
@@ -22,7 +21,7 @@
   height: $size;
 }
 
-.icon--materials {
+.icon--materialss {
   $size: 24px;
   border-radius: 3px;
   width: $size;
@@ -48,10 +47,6 @@
 
 .row.--header {
   justify-content: space-between;
-}
-
-.__type {
-  color: #e6c953;
 }
 
 .__rarity {
@@ -154,16 +149,24 @@
 .row.--recipe,
 .row.--vendor {
   margin-top: 1rem;
+  margin-bottom: .25rem;
 }
 
-.row.--material {
-  margin-top: .125rem;
-  margin-left: .25rem;
+.row.--materials {
+  margin-left: .5rem;
   font-size: 90%;
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  grid-column-gap: .375rem;
+  grid-row-gap: .125rem;
   align-items: center;
 }
 
-.__mat-text {
-  margin-top: .25rem;
-  margin-left: .375rem;
+.__mat-text,
+.__mat-amount {
+  margin-top: .125rem;
+}
+
+.__mat-amount {
+  text-align: right;
 }

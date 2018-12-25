@@ -1,6 +1,7 @@
 import { copy, ensureDir, remove, writeFile } from "fs-extra"
 
 import { buildAdvisors } from "./advisors/build"
+import { buildBlueprints } from "./blueprints/build"
 import { DB } from "./interfaces"
 import { buildItems } from "./items/build"
 import { buildMaterials } from "./materials/build"
@@ -12,13 +13,14 @@ async function buildDB() {
   const materials = await buildMaterials()
   const items = await buildItems(materials)
   const advisors = await buildAdvisors()
+  const blueprints = await buildBlueprints()
   const replace = buildSearchReplacementMap(items, materials)
 
   const db: DB = {
     materials,
     items,
     advisors,
-    blueprints: [],
+    blueprints,
     designs: [],
     consumables: [],
     replace,

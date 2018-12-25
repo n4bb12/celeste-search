@@ -1,6 +1,4 @@
-import { Item } from "../interfaces"
-
-export const rarities = ["legendary", "epic", "rare", "uncommon", "common"]
+import { Item, RARITIES } from "../interfaces"
 
 /**
  * Determines the sort order of items in `db.json`.
@@ -14,8 +12,8 @@ export function compareItems(a: Item, b: Item) {
   }
 
   if (a.rarity !== b.rarity) {
-    const aRarityIndex = rarities.indexOf(a.rarity)
-    const bRarityIndex = rarities.indexOf(b.rarity)
+    const aRarityIndex = RARITIES.indexOf(a.rarity)
+    const bRarityIndex = RARITIES.indexOf(b.rarity)
     return aRarityIndex - bRarityIndex
   }
 

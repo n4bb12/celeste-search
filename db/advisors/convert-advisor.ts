@@ -11,31 +11,31 @@ import { convertCivilization } from "./convert-civilization"
  * Converts advisors from their API format to the format
  * used by the search app.
  */
-export async function convertAdvisor(apiAdvisor: ApiAdvisor): Promise<Advisor> {
-  const name = await translateEn(apiAdvisor.displaynameid)
-  const description = await translateEn(apiAdvisor.displaydescriptionid)
-  const iconId = await downloadIcon(apiAdvisor.icon, "advisors")
+export async function convertAdvisor(advisor: ApiAdvisor): Promise<Advisor> {
+  const name = await translateEn(advisor.displaynameid)
+  const description = await translateEn(advisor.displaydescriptionid)
+  const iconId = await downloadIcon(advisor.icon, "advisors")
 
   const rarities: Advisor["rarities"] = {
-    [apiAdvisor.rarity]: {
-      id: apiAdvisor.name,
+    [advisor.rarity]: {
+      id: advisor.name,
       icon: iconId,
       description,
     },
   }
 
-  const advisor: Advisor = {
+  const result: Advisor = {
     name,
-    age: apiAdvisor.age + 1,
-    level: apiAdvisor.minlevel,
-    civilization: convertCivilization(apiAdvisor.civilization),
-    vendors: undefined,
+    age: advisor.age + 1,
+    level: advisor.minlevel,
+    civilization: convertCivilization(advisor.civilization),
     rarities,
-    search: "",
+    vendors: undefined,
+    search: undefined,
   }
 
-  advisor.vendors = await findAndConvertVendors({ name, rarity: apiAdvisor.rarity })
-  advisor.search = "TODO"
+  result.vendors = await findAndConvertVendors({ name, rarity: advisor.rarity })
+  result.search = "TODO"
 
-  return advisor
+  return result
 }

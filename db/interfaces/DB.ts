@@ -1,16 +1,16 @@
+import { Advisor } from "./Advisor"
+import { Blueprint } from "./Blueprint"
+import { Consumable } from "./Consumable"
+import { Design } from "./Design"
 import { Item } from "./Item"
-import { Material } from "./Material"
-
-export interface Materials {
-  [key: string]: Material
-}
+import { Materials } from "./Material"
 
 export interface DB {
-  items: Item[]
-  advisors: any[]
-  blueprints: any[]
-  designs: any[]
-  consumables: any[]
   materials: Materials
+  items: Item[]
+  advisors: Advisor[]
+  blueprints: Blueprint[]
+  designs: Design[]
+  consumables: Consumable[]
   replace: { [key: string]: string }
 }

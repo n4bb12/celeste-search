@@ -10,5 +10,9 @@ export async function translateEn(id: number): Promise<string> {
     languages.stringtablex.language.English.string[id] ||
     languages.econstrings.language.English.string[id]
 
+  if (!translation) {
+    throw new Error("No translation found for " + id)
+  }
+
   return translation.text
 }

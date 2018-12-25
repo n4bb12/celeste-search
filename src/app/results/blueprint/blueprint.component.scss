@@ -13,9 +13,9 @@
   }
 }
 
-.icon--advisors {
+.icon--blueprints {
   $size: 64px;
-  border-radius: 4px;
+  border-radius: 10px;
   background-color: $theme-border;
   width: $size;
   height: $size;
@@ -49,23 +49,8 @@
   justify-content: space-between;
 }
 
-.row.--rarities {
-  .__rarity {
-    position: relative;
-    background: transparent;
-    margin: 0;
-    padding: 0 .2rem;
-    transform: translate3d(0,0,0);
-    transition: .1s ease-out;
-    transition-property: color;
-    box-shadow: none;
-    text-transform: capitalize;
-    cursor: help;
-
-    &:hover, &:active {
-      transition: none;
-    }
-  }
+.__rarity {
+  text-transform: capitalize;
 }
 
 .row.--name {
@@ -80,24 +65,7 @@
   flex: 1;
 }
 
-.__value {
-  position: relative;
-  padding: 0 .25rem;
-
-  &.--left {
-    margin-right: auto;
-  }
-
-  &.--right {
-    cursor: help;
-    font-size: 90%;
-  }
-}
-
-.row.--level {
-  margin-top: 1rem;
-}
-
+.row.--recipe,
 .row.--vendor {
   margin-top: 1rem;
   margin-bottom: .25rem;
@@ -113,6 +81,11 @@
   align-items: center;
 }
 
-.__mat-text {
+.__mat-text,
+.__mat-amount {
   margin-top: .125rem;
+}
+
+.__mat-amount {
+  text-align: right;
 }

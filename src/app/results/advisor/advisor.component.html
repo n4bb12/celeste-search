@@ -2,9 +2,8 @@
 
   <!-- TYPE -->
   <div class="row --header">
-    <div class="__age">
-      Age {{ advisor.age }}
-    </div>
+    <strong>Age {{ advisor.age }}</strong>
+
     <div class="row --rarities" *ngIf="(advisor.rarities | keys).length >= 1">
       <ng-container *ngFor="let rarity of advisor.rarities | keys">
         <button type="button" class="__rarity --{{ rarity }}" (pointerenter)="setRarity(rarity)">
@@ -23,8 +22,8 @@
     </div>
   </div>
 
-  <!-- EFFECTS -->
-  <div class="row --description">
+  <!-- DESCRIPTION -->
+  <div class="row --description --positive">
     {{ advisor.rarities[rarity].description }}
   </div>
 
@@ -35,20 +34,17 @@
 
   <!-- REQUIRED CIV -->
   <div class="row --civ" *ngIf="advisor.civilization">
-    Requires&nbsp;{{ advisor.civilization }}&nbsp;civilization
+    <strong>Requires&nbsp;{{ advisor.civilization }}&nbsp;civilization</strong>
   </div>
 
   <!-- VENDOR -->
   <div class="__vendors" *ngFor="let vendor of advisor.vendors">
     <div class="row --vendor">
-      <div>
-        Purchasable&nbsp;at <strong>{{ vendor.name }}</strong><span *ngIf="vendor.rotation">
-          ({{ vendor.rotation }} Legendary Rotation)</span>:
-      </div>
+      Purchasable&nbsp;at&nbsp;<strong>{{ vendor.name }}</strong>:
     </div>
 
-    <div class="row --material">
-      <div class="icon--materials icon--materials--{{ vendor.currency.toLowerCase() }}"></div>
+    <div class="row --materials">
+      <div class="icon--materialss icon--materialss--{{ vendor.currency.toLowerCase() }}"></div>
       <div class="__mat-text">
         <span>{{ vendor.price }}</span>
         <span *ngIf="vendor.rarity !== rarity || (advisor.rarities | keys).length > 1">

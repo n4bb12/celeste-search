@@ -3,3 +3,7 @@ export interface Material {
   icon: number
   rarity: string
 }
+
+export interface Materials {
+  [key: string]: Material
+}

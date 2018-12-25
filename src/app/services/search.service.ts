@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core"
 
 import { ReplaySubject } from "rxjs"
 
-import { Item } from "../interfaces"
+import { Advisor, Blueprint, Consumable, Design, Item } from "../interfaces"
 
 import { DbService } from "./db.service"
 
@@ -12,10 +12,10 @@ import { DbService } from "./db.service"
 export class SearchService {
 
   private itemsSubject = new ReplaySubject<Item[]>(1)
-  private advisorsSubject = new ReplaySubject<Item[]>(1)
-  private blueprintsSubject = new ReplaySubject<Item[]>(1)
-  private designsSubject = new ReplaySubject<Item[]>(1)
-  private consumablesSubject = new ReplaySubject<Item[]>(1)
+  private advisorsSubject = new ReplaySubject<Advisor[]>(1)
+  private blueprintsSubject = new ReplaySubject<Blueprint[]>(1)
+  private designsSubject = new ReplaySubject<Design[]>(1)
+  private consumablesSubject = new ReplaySubject<Consumable[]>(1)
 
   readonly items = this.itemsSubject.asObservable()
   readonly advisors = this.advisorsSubject.asObservable()
@@ -58,13 +58,13 @@ export class SearchService {
           return words.every(word => true || advisor.search.includes(word))
         })
         blueprints = db.blueprints.filter(blueprint => {
-          return words.every(word => blueprint.search.includes(word))
+          return words.every(word => true || blueprint.search.includes(word))
         })
         designs = db.designs.filter(design => {
-          return words.every(word => design.search.includes(word))
+          return words.every(word => true || design.search.includes(word))
         })
         consumables = db.consumables.filter(consumable => {
-          return words.every(word => consumable.search.includes(word))
+          return words.every(word => true || consumable.search.includes(word))
         })
       }
 
