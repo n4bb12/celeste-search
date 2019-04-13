@@ -99,4 +99,5 @@ module.exports = parallel(
   sprite("items", 64),
   sprite("advisors", 64),
   sprite("blueprints", 64),
+  sprite("designs", 64),
 )
