@@ -7,9 +7,5 @@ export function includeBlueprint(blueprint: Blueprint) {
     console.log(chalk.yellow(`SKIPPED - Blueprint has no name:`), blueprint)
     return false
   }
-  // if (!blueprint.description) {
-  //   console.log(chalk.yellow(`SKIPPED - Blueprint has no description:`), blueprint)
-  //   return false
-  // }
   return true
 }

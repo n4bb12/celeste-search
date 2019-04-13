@@ -2,6 +2,7 @@ import { API } from "../download"
 import { Advisor } from "../interfaces"
 
 import { convertAdvisor } from "./convert-advisor"
+import { includeAdvisor } from "./filter"
 import { compareAdvisors } from "./sort"
 
 export async function buildAdvisors(): Promise<Advisor[]> {
@@ -23,7 +24,9 @@ export async function buildAdvisors(): Promise<Advisor[]> {
     }
   })
 
-  const result = Object.values(mergedByName).sort(compareAdvisors)
+  const result = Object.values(mergedByName)
 
   return result
+    .filter(includeAdvisor)
+    .sort(compareAdvisors)
 }
