@@ -10,6 +10,7 @@ import {
   Marketplace,
   Materials,
   Online,
+  Prototypes,
   Registered,
   SpartaLeaderboard,
   Stores,
@@ -64,6 +65,9 @@ export class API {
   }
   static getTraits() {
     return downloadApiResource<Traits>("/game/traits")
+  }
+  static getPrototypes() {
+    return downloadApiResource<Prototypes>("/game/protodata")
   }
 
   // Leaderboard

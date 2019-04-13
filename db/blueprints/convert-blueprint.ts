@@ -6,23 +6,28 @@ import { translateEn } from "../shared/convert-text"
 import { findAndConvertVendors } from "../shared/convert-vendors"
 
 export async function convertBlueprint(blueprint: ApiBlueprint): Promise<Blueprint> {
-  // const name = await translateEn(blueprint.displaynameid)
-  const name = blueprint.name // FIXME
+  const prototypes = await API.getPrototypes()
+  const protounit = prototypes[blueprint.protounit]
+  const displaynameid = protounit && protounit.DisplayNameID
+  const name = displaynameid && await translateEn(displaynameid)
+    || blueprint.displaynameid && await translateEn(blueprint.displaynameid)
+    || blueprint.name
   const description = await translateEn(blueprint.rollovertextid)
   const iconId = await downloadIcon(blueprint.icon, "blueprints")
   const rarity = blueprint.rarity.replace("cRarity", "").toLowerCase()
+  const materials = blueprint.cost.material.map(mat => {
+    return {
+      id: mat.id,
+      quantity: mat.quantity,
+    }
+  })
 
   const result: Blueprint = {
     name,
     description,
     icon: iconId,
     rarity,
-    materials: blueprint.cost.material.map(mat => {
-      return {
-        id: mat.id,
-        quantity: mat.quantity,
-      }
-    }),
+    materials,
     vendors: undefined,
     search: undefined,
   }

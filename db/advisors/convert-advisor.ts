@@ -15,6 +15,7 @@ export async function convertAdvisor(advisor: ApiAdvisor): Promise<Advisor> {
   const name = await translateEn(advisor.displaynameid)
   const description = await translateEn(advisor.displaydescriptionid)
   const iconId = await downloadIcon(advisor.icon, "advisors")
+  const civilization = convertCivilization(advisor.civilization)
 
   const rarities: Advisor["rarities"] = {
     [advisor.rarity]: {
@@ -28,7 +29,7 @@ export async function convertAdvisor(advisor: ApiAdvisor): Promise<Advisor> {
     name,
     age: advisor.age + 1,
     level: advisor.minlevel,
-    civilization: convertCivilization(advisor.civilization),
+    civilization,
     rarities,
     vendors: undefined,
     search: undefined,

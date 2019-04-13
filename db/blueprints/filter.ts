@@ -3,8 +3,13 @@ import chalk from "chalk"
 import { Blueprint } from "../interfaces"
 
 export function includeBlueprint(blueprint: Blueprint) {
-  if (blueprint.description) {
-    return true
+  if (!blueprint.name) {
+    console.log(chalk.yellow(`SKIPPED - Blueprint has no name:`), blueprint)
+    return false
   }
-  console.log(chalk.yellow(`SKIPPED - Blueprint has no description: ${blueprint.name}`))
+  // if (!blueprint.description) {
+  //   console.log(chalk.yellow(`SKIPPED - Blueprint has no description:`), blueprint)
+  //   return false
+  // }
+  return true
 }
