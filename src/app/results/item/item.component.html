@@ -82,7 +82,7 @@
       <ng-container *ngFor="let ref of item.recipe.materials">
         <ng-container *ngIf="materials[ref.id] as mat">
           <span class="__mat-amount">{{ ref.quantity }}</span>
-          <span class="icon--materialss icon--materialss--{{ mat.icon }}"></span>
+          <span class="icon--materials icon--materials--{{ mat.icon }}"></span>
           <span class="__mat-text --{{ mat.rarity }}">{{ mat.name }}</span>
         </ng-container>
       </ng-container>
@@ -97,7 +97,7 @@
     </div>
 
     <div class="row --materials">
-      <div class="icon--materialss icon--materialss--{{ vendor.currency.toLowerCase() }}"></div>
+      <div class="icon--materials icon--materials--{{ vendor.currency.toLowerCase() }}"></div>
       <div class="__mat-text">
         <span>{{ vendor.price }}</span>
         <span *ngIf="vendor.level !== level || item.levels.length > 1">
