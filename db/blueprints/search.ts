@@ -1,4 +1,7 @@
-import { Advisor, Item, Materials } from "../interfaces"
+import { Materials } from "celeste-api-types"
+import chalk from "chalk"
+
+import { Blueprint } from "../interfaces"
 import { formatSearchString, simplify } from "../shared/format-search-string"
 
 const SINGLE_WORD_SEPARATOR = "_"
@@ -11,21 +14,34 @@ interface Replacements {
  * Constructs a search string consisting of all keywords the
  * item can be found by.
  */
-export function buildSearchString(advisor: Advisor): string {
+export function buildSearchString(blueprint: Blueprint, materials: Materials): string {
   const words: string[] = []
 
-  words.push(advisor.name)
-  words.push(simplify(advisor.name))
+  words.push(blueprint.name)
+  words.push(simplify(blueprint.name))
 
-  words.push("" + advisor.age)
+  words.push(blueprint.description)
+  words.push(simplify(blueprint.description))
 
-  words.push("" + advisor.level)
-  words.push("level_" + advisor.level)
+  words.push(blueprint.rarity)
 
-  words.push(advisor.civilization)
+  blueprint.materials.forEach(ref => {
+    words.push("" + ref.quantity)
 
-  if (advisor.vendors) {
-    advisor.vendors.forEach(vendor => {
+    const material = materials[ref.id]
+
+    if (material) {
+      words.push(material.name)
+      words.push(material.name.replace(/ /g, SINGLE_WORD_SEPARATOR))
+      words.push(simplify(material.name))
+      words.push(simplify(material.name).replace(/ /g, SINGLE_WORD_SEPARATOR))
+    } else {
+      console.log(chalk.yellow("Material not found: " + ref.id))
+    }
+  })
+
+  if (blueprint.vendors) {
+    blueprint.vendors.forEach(vendor => {
       words.push(vendor.name)
       words.push(vendor.name.replace(/ /g, SINGLE_WORD_SEPARATOR))
       words.push(simplify(vendor.name))
@@ -33,14 +49,7 @@ export function buildSearchString(advisor: Advisor): string {
     })
   }
 
-  if (advisor.rarities) {
-    Object.values(advisor.rarities).forEach(rarity => {
-      words.push(rarity.id)
-      words.push(simplify(rarity.description))
-    })
-  }
-
-  [...advisor.vendors || []].forEach(vendor => {
+  [...blueprint.vendors || []].forEach(vendor => {
     words.push("buyable")
     words.push("purchaseable")
     words.push("shops")
@@ -67,7 +76,7 @@ export function buildSearchString(advisor: Advisor): string {
   return formatSearchString(words)
 }
 
-export function buildSearchReplacementMap(advisors: Advisor[]): Replacements {
+export function buildSearchReplacementMap(blueprint: Blueprint[], materials: Materials): Replacements {
   const map = {}
 
   // TODO

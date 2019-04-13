@@ -18,3 +18,11 @@ export function formatSearchString(words: string[]) {
 
   return search
 }
+
+export function simplify(text: string, characters: string = "a-zA-Z0-9") {
+  return text
+    .replace(/'/, "")
+    .replace(new RegExp(`[^${characters} ]`, "gi"), " ")
+    .replace(/\s\s+/, " ")
+    .trim()
+}

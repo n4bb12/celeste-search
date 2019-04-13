@@ -1,7 +1,7 @@
 import chalk from "chalk"
 
 import { Item, Materials } from "../interfaces"
-import { formatSearchString } from "../shared/format-search-string"
+import { formatSearchString, simplify } from "../shared/format-search-string"
 import { preprocessSearch } from "../shared/preprocess-search"
 
 const SINGLE_WORD_SEPARATOR = "_"
@@ -123,16 +123,4 @@ export function buildSearchReplacementMap(items: Item[], materials: Materials): 
   })
 
   return map
-}
-
-function simplify(text: string, characters: string = "a-zA-Z0-9") {
-  return text
-    .replace(/'/, "")
-    .replace(new RegExp(`[^${characters} ]`, "gi"), " ")
-    .replace(/\s\s+/, " ")
-    .trim()
-}
-
-function effectName(effect: string): string {
-  return effect.substr(0, effect.indexOf(":"))
 }
