@@ -1,4 +1,4 @@
-import { Advisor, Item, Materials } from "../interfaces"
+import { Advisor } from "../interfaces"
 import { formatSearchString, simplify } from "../shared/format-search-string"
 
 const SINGLE_WORD_SEPARATOR = "_"
@@ -11,7 +11,7 @@ interface Replacements {
  * Constructs a search string consisting of all keywords the
  * item can be found by.
  */
-export function buildSearchString(advisor: Advisor): string {
+export async function buildSearchString(advisor: Advisor): Promise<string> {
   const words: string[] = []
 
   words.push(advisor.name)

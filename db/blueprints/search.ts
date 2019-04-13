@@ -1,6 +1,7 @@
 import { Materials } from "celeste-api-types"
 import chalk from "chalk"
 
+import { API } from "../download"
 import { Blueprint } from "../interfaces"
 import { formatSearchString, simplify } from "../shared/format-search-string"
 
@@ -14,7 +15,8 @@ interface Replacements {
  * Constructs a search string consisting of all keywords the
  * item can be found by.
  */
-export function buildSearchString(blueprint: Blueprint, materials: Materials): string {
+export async function buildSearchString(blueprint: Blueprint): Promise<string> {
+  const materials = await API.getMaterials()
   const words: string[] = []
 
   words.push(blueprint.name)

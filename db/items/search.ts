@@ -1,5 +1,6 @@
 import chalk from "chalk"
 
+import { API } from "../download"
 import { Item, Materials } from "../interfaces"
 import { formatSearchString, simplify } from "../shared/format-search-string"
 import { preprocessSearch } from "../shared/preprocess-search"
@@ -14,7 +15,8 @@ interface Replacements {
  * Constructs a search string consisting of all keywords the
  * item can be found by.
  */
-export function buildSearchString(item: Item, materials: Materials): string {
+export async function buildSearchString(item: Item): Promise<string> {
+  const materials = await API.getMaterials()
   const words: string[] = []
 
   words.push(item.name)

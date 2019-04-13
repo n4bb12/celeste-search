@@ -20,7 +20,7 @@ export function formatSearchString(words: string[]) {
 }
 
 export function simplify(text: string, characters: string = "a-zA-Z0-9") {
-  return text
+  return (text || "")
     .replace(/'/, "")
     .replace(new RegExp(`[^${characters} ]`, "gi"), " ")
     .replace(/\s\s+/, " ")

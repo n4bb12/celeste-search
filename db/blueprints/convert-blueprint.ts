@@ -5,6 +5,8 @@ import { Blueprint } from "../interfaces"
 import { translateEn } from "../shared/convert-text"
 import { findAndConvertVendors } from "../shared/convert-vendors"
 
+import { buildSearchString } from "./search"
+
 export async function convertBlueprint(blueprint: ApiBlueprint): Promise<Blueprint> {
   const prototypes = await API.getPrototypes()
   const protounit = prototypes[blueprint.protounit]
@@ -33,7 +35,7 @@ export async function convertBlueprint(blueprint: ApiBlueprint): Promise<Bluepri
   }
 
   result.vendors = await findAndConvertVendors(result)
-  result.search = "TODO"
+  result.search = await buildSearchString(result)
 
   return result
 }

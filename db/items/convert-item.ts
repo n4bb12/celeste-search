@@ -13,7 +13,7 @@ import { buildSearchString } from "./search"
  * Converts items from their API format to the format
  * used by the search app.
  */
-export async function convertItem(trait: Trait, materials: Materials): Promise<Item> {
+export async function convertItem(trait: Trait): Promise<Item> {
   const name = await translateEn(trait.displaynameid, trait.name)
   const type = await translateEn(trait.rollovertextid)
   const iconId = await downloadIcon(trait.icon, "items")
@@ -45,7 +45,7 @@ export async function convertItem(trait: Trait, materials: Materials): Promise<I
 
   result.vendors = await findAndConvertItemVendors(result)
   result.recipe = await findAndConvertRecipe(result)
-  result.search = buildSearchString(result, materials)
+  result.search = await buildSearchString(result)
 
   return result
 }

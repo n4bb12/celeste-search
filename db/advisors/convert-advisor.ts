@@ -37,7 +37,7 @@ export async function convertAdvisor(advisor: ApiAdvisor): Promise<Advisor> {
   }
 
   result.vendors = await findAndConvertVendors({ name, rarity: advisor.rarity })
-  result.search = buildSearchString(result)
+  result.search = await buildSearchString(result)
 
   return result
 }

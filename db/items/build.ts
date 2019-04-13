@@ -11,7 +11,7 @@ export async function buildItems(materials: Materials): Promise<Item[]> {
   const traits = await API.getTraits()
   const conversions = Object.values(traits)
     .filter(includeItem)
-    .map(trait => convertItem(trait, materials))
+    .map(convertItem)
   const result = await Promise.all(conversions)
 
   return result.sort(compareItems)
