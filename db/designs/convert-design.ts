@@ -10,17 +10,20 @@ import { findAndConvertVendors } from "../shared/convert-vendors"
  * used by the search app.
  */
 export async function convertDesign(design: ApiDesign): Promise<Design> {
-  // const name = await translateEn(design.displaynameid)
-  const name = design.name // FIXME
+  const name = await translateEn(design.displaynameid, design.name)
   const description = await translateEn(design.rollovertextid)
   const iconId = await downloadIcon(design.icon, "designs")
   const rarity = design.rarity.replace("cRarity", "").toLowerCase()
-  const materials = design.cost.material.map(mat => {
+  const materials = design.input.material.map(mat => {
     return {
       id: mat.id,
       quantity: mat.quantity,
     }
   })
+
+  if (!name) {
+    console.log(design)
+  }
 
   const result: Design = {
     name,
