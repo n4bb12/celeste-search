@@ -20,11 +20,11 @@ export class ResultsComponent implements OnInit {
 
   @Input() activeTab: number
 
-  readonly items = this.search.items.pipe(map(results => results.slice(0, 100)))
-  readonly advisors = this.search.advisors.pipe(map(results => results.slice(0, 100)))
-  readonly blueprints = this.search.blueprints.pipe(map(results => results.slice(0, 100)))
-  readonly designs = this.search.designs.pipe(map(results => results.slice(0, 100)))
-  readonly consumables = this.search.consumables.pipe(map(results => results.slice(0, 100)))
+  readonly items = this.search.items.pipe(map(results => results.slice(0, 20)))
+  readonly advisors = this.search.advisors.pipe(map(results => results.slice(0, 20)))
+  readonly blueprints = this.search.blueprints.pipe(map(results => results.slice(0, 20)))
+  readonly designs = this.search.designs.pipe(map(results => results.slice(0, 20)))
+  readonly consumables = this.search.consumables.pipe(map(results => results.slice(0, 20)))
 
   numColumns = 3
 
