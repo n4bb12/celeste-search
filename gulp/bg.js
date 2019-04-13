@@ -7,7 +7,7 @@ const responsive = require("gulp-responsive")
 const ratio = 9 / 16
 const sourceWidth = 2048
 const paths = {
-  in: "assets/norse.png",
+  in: "assets/YggdrasilLoadingFinal.png",
   out: "generated/bg",
 }
 
