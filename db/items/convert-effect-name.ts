@@ -1,4 +1,4 @@
-import { Effect } from "celeste-api-types"
+import { TraitEffect } from "celeste-api-types"
 
 /**
  * Static mapping of effect subtypes to display names.
@@ -25,7 +25,7 @@ const displayNames = {
 /**
  * Returns the display name for an effect.
  */
-export function convertEffectName(effect: Effect): string {
+export function convertEffectName(effect: TraitEffect): string {
   if (displayNames[effect.subtype]) {
     return displayNames[effect.subtype]
   }
