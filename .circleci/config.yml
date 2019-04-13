@@ -58,9 +58,9 @@ workflows:
           requires:
             - install
 
-      - e2e:
-          requires:
-            - install
+      # - e2e:
+      #     requires:
+      #       - install
 
       - build:
           requires:
