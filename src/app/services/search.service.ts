@@ -55,16 +55,16 @@ export class SearchService {
           return words.every(word => item.search.includes(word))
         })
         advisors = db.advisors.filter(advisor => {
-          return words.every(word => true || advisor.search.includes(word))
+          return words.every(word => advisor.search.includes(word))
         })
         blueprints = db.blueprints.filter(blueprint => {
-          return words.every(word => true || blueprint.search.includes(word))
+          return words.every(word => blueprint.search.includes(word))
         })
         designs = db.designs.filter(design => {
-          return words.every(word => true || design.search.includes(word))
+          return words.every(word => design.search.includes(word))
         })
         consumables = db.consumables.filter(consumable => {
-          return words.every(word => true || consumable.search.includes(word))
+          return words.every(word => consumable.search.includes(word))
         })
       }
 
