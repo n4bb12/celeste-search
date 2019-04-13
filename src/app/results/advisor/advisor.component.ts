@@ -6,7 +6,7 @@ import {
   OnInit,
 } from "@angular/core"
 
-import { Advisor } from "../../interfaces"
+import { Advisor, AdvisorRarity } from "../../interfaces"
 
 @Component({
   selector: "cis-advisor",
@@ -18,19 +18,20 @@ export class AdvisorComponent implements OnInit {
 
   @Input() advisor: Advisor
 
-  rarity: string
+  rarity: AdvisorRarity
 
   constructor(
     private changeRef: ChangeDetectorRef,
   ) { }
 
   ngOnInit() {
-    const rarities = Object.keys(this.advisor.rarities)
+    const rarities = Object.values(this.advisor.rarities)
     this.rarity = rarities[rarities.length - 1]
   }
 
   setRarity(rarity: string) {
-    this.rarity = rarity
+    this.advisor = { ...this.advisor }
+    this.rarity = { ...this.advisor.rarities[rarity] }
     this.changeRef.detectChanges()
   }
 

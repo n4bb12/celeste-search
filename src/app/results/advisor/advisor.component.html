@@ -16,7 +16,7 @@
 
   <!-- NAME -->
   <div class="row --name">
-    <div class="icon--advisors icon--advisors--{{ advisor.rarities[rarity].icon }}"></div>
+    <div class="icon--advisors icon--advisors--{{ rarity.icon }}"></div>
     <div class="__name --{{ rarity }}">
       {{ advisor.name }}
     </div>
@@ -24,7 +24,7 @@
 
   <!-- DESCRIPTION -->
   <div class="row --description --positive">
-    {{ advisor.rarities[rarity].description }}
+    {{ rarity.description }}
   </div>
 
   <!-- REQUIRED LEVEL -->
@@ -47,7 +47,7 @@
       <div class="icon--materialss icon--materialss--{{ vendor.currency.toLowerCase() }}"></div>
       <div class="__mat-text">
         <span>{{ vendor.price }}</span>
-        <span *ngIf="vendor.rarity !== rarity || (advisor.rarities | keys).length > 1">
+        <span *ngIf="vendor.rarity !== rarity.id || (advisor.rarities | keys).length > 1">
           &nbsp;&nbsp;—&nbsp;&nbsp;
           <span class="__rarity --{{ vendor.rarity }}">
             {{ vendor.rarity }}
