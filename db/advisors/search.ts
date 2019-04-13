@@ -1,6 +1,6 @@
 import chalk from "chalk"
 
-import { Item, Materials } from "../interfaces"
+import { Advisor, Item, Materials } from "../interfaces"
 import { formatSearchString } from "../shared/format-search-string"
 import { preprocessSearch } from "../shared/preprocess-search"
 
@@ -14,55 +14,36 @@ interface Replacements {
  * Constructs a search string consisting of all keywords the
  * item can be found by.
  */
-export function buildSearchString(item: Item, materials: Materials): string {
+export function buildSearchString(advisor: Advisor): string {
   const words: string[] = []
 
-  words.push(item.name)
-  words.push(simplify(item.name))
+  words.push(advisor.name)
+  words.push(simplify(advisor.name))
 
-  words.push(item.rarity)
+  words.push("" + advisor.age)
 
-  words.push(item.type)
-  words.push(item.type.replace(/ /g, SINGLE_WORD_SEPARATOR))
+  words.push("" + advisor.level)
+  words.push("level_" + advisor.level)
 
-  const levels: any[] = (item.levels.length > 0) ? item.levels : []
-  levels.forEach(level => {
-    words.push("" + level)
-    words.push("level_" + level)
-  })
+  words.push(advisor.civilization)
 
-  if (item.effects) {
-    item.effects.forEach(effect => {
-      words.push(effect.name)
-      words.push(effect.name.replace(/ /g, SINGLE_WORD_SEPARATOR))
-      words.push(simplify(effect.name))
-      words.push(simplify(effect.name).replace(/ /g, SINGLE_WORD_SEPARATOR))
+  if (advisor.vendors) {
+    advisor.vendors.forEach(vendor => {
+      words.push(vendor.name)
+      words.push(vendor.name.replace(/ /g, SINGLE_WORD_SEPARATOR))
+      words.push(simplify(vendor.name))
+      words.push(simplify(vendor.name).replace(/ /g, SINGLE_WORD_SEPARATOR))
     })
   }
 
-  if (item.recipe) {
-    words.push("recipes")
-    words.push("craftables")
-    words.push(item.recipe.school)
-    words.push(item.recipe.school.replace(/ /g, SINGLE_WORD_SEPARATOR))
-
-    item.recipe.materials.forEach(ref => {
-      words.push("" + ref.quantity)
-
-      const material = materials[ref.id]
-
-      if (material) {
-        words.push(material.name)
-        words.push(material.name.replace(/ /g, SINGLE_WORD_SEPARATOR))
-        words.push(simplify(material.name))
-        words.push(simplify(material.name).replace(/ /g, SINGLE_WORD_SEPARATOR))
-      } else {
-        console.log(chalk.yellow("Material not found: " + ref.id))
-      }
+  if (advisor.rarities) {
+    Object.values(advisor.rarities).forEach(rarity => {
+      words.push(rarity.id)
+      words.push(simplify(rarity.description))
     })
   }
 
-  [...item.vendors || []].forEach(vendor => {
+  [...advisor.vendors || []].forEach(vendor => {
     words.push("buyable")
     words.push("purchaseable")
     words.push("shops")

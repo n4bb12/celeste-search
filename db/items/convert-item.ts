@@ -7,7 +7,7 @@ import { translateEn } from "../shared/convert-text"
 import { convertEffects } from "./convert-effects"
 import { findAndConvertRecipe } from "./convert-recipe"
 import { findAndConvertItemVendors } from "./convert-vendors"
-import { buildItemSearchString } from "./search"
+import { buildSearchString } from "./search"
 
 /**
  * Converts items from their API format to the format
@@ -18,7 +18,7 @@ export async function convertItem(trait: Trait, materials: Materials): Promise<I
   const type = await translateEn(trait.rollovertextid)
   const iconId = await downloadIcon(trait.icon, "items")
 
-  const item: Item = {
+  const result: Item = {
     id: trait.dbid,
     trait: trait.name,
     name,
@@ -33,19 +33,19 @@ export async function convertItem(trait: Trait, materials: Materials): Promise<I
     search: undefined,
   }
 
-  if (item.levels.length === 0) {
-    item.levels = [40]
+  if (result.levels.length === 0) {
+    result.levels = [40]
   }
 
   if ([
     "Athena´s Long Spear",
-  ].indexOf(item.name) >= 0) {
-    item.noEffectRange = true
+  ].indexOf(result.name) >= 0) {
+    result.noEffectRange = true
   }
 
-  item.vendors = await findAndConvertItemVendors(item)
-  item.recipe = await findAndConvertRecipe(item)
-  item.search = buildItemSearchString(item, materials)
+  result.vendors = await findAndConvertItemVendors(result)
+  result.recipe = await findAndConvertRecipe(result)
+  result.search = buildSearchString(result, materials)
 
-  return item
+  return result
 }

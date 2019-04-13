@@ -6,6 +6,7 @@ import { translateEn } from "../shared/convert-text"
 import { findAndConvertVendors } from "../shared/convert-vendors"
 
 import { convertCivilization } from "./convert-civilization"
+import { buildSearchString } from "./search"
 
 /**
  * Converts advisors from their API format to the format
@@ -36,7 +37,7 @@ export async function convertAdvisor(advisor: ApiAdvisor): Promise<Advisor> {
   }
 
   result.vendors = await findAndConvertVendors({ name, rarity: advisor.rarity })
-  result.search = "TODO"
+  result.search = buildSearchString(result)
 
   return result
 }
