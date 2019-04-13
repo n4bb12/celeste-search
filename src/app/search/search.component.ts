@@ -32,7 +32,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
 
   readonly inputModel = new FormControl()
 
-  input = "legendary"
+  input = ""
 
   constructor(
     private search: SearchService,

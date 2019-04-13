@@ -29,18 +29,24 @@ export class SearchService {
     this.db.fetch()
     this.itemsSubject.next([])
     this.advisorsSubject.next([])
+    this.blueprintsSubject.next([])
+    this.designsSubject.next([])
+    this.consumablesSubject.next([])
   }
 
   async search(query: string): Promise<void> {
     let items: Item[] = []
-    let advisors: any[] = []
-    let blueprints: any[] = []
-    let designs: any[] = []
-    let consumables: any[] = []
+    let advisors: Advisor[] = []
+    let blueprints: Blueprint[] = []
+    let designs: Design[] = []
+    let consumables: Consumable[] = []
 
     if (!query) {
       this.itemsSubject.next(items)
       this.advisorsSubject.next(advisors)
+      this.blueprintsSubject.next(blueprints)
+      this.designsSubject.next(designs)
+      this.consumablesSubject.next(consumables)
       return
     }
 
