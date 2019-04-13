@@ -14,7 +14,7 @@ import { buildSearchString } from "./search"
  * used by the search app.
  */
 export async function convertItem(trait: Trait, materials: Materials): Promise<Item> {
-  const name = await translateEn(trait.displaynameid)
+  const name = await translateEn(trait.displaynameid, trait.name)
   const type = await translateEn(trait.rollovertextid)
   const iconId = await downloadIcon(trait.icon, "items")
 
