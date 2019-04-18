@@ -36,8 +36,10 @@
 }
 
 .__name {
-  margin-right: 3vmin;
-  margin-left: 1vmin;
+  // margin-right: 3vmin; // use later for 5 tabs
+  // margin-left: 1vmin;
+  margin-right: 5vmin;
+  margin-left: 2.5vmin;
 }
 
 .__image {
@@ -45,7 +47,12 @@
   border-radius: ($border-radius / 2);
 }
 
-@media (max-width: 64rem) {
+// @media (max-width: 64rem) { // use later for 5 tabs
+//   .__name {
+//     display: none;
+//   }
+// }
+@media (max-width: 48rem) {
   .__name {
     display: none;
   }
