@@ -15,6 +15,8 @@
   display: flex;
   align-items: center;
   margin: 1vmin;
+  // width: 7rem; // use later for 5 tabs
+  width: 12rem;
   border-radius: ($border-radius / 2);
   background: $theme-text;
   color: $theme-shadow;
@@ -36,9 +38,7 @@
 }
 
 .__name {
-  // margin-right: 3vmin; // use later for 5 tabs
-  // margin-left: 1vmin;
-  margin-right: 5vmin;
+  // margin-left: 1vmin; // use later for 5 tabs
   margin-left: 2.5vmin;
 }
 
@@ -53,6 +53,9 @@
 //   }
 // }
 @media (max-width: 48rem) {
+  .__tab {
+    width: auto;
+  }
   .__name {
     display: none;
   }
