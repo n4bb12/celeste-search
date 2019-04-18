@@ -1,5 +1,5 @@
 import { API } from "../download"
-import { Vendor } from "../interfaces"
+import { Recipe, Vendor } from "../interfaces"
 
 import { compareVendors } from "./sort-vendors"
 
@@ -7,6 +7,7 @@ export interface CanBeSold {
   id?: number
   name: string
   rarity: string
+  recipe?: Recipe
 }
 
 /**

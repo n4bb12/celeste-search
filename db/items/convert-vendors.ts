@@ -22,23 +22,30 @@ export async function findAndConvertItemVendors(entity: CanBeSold): Promise<Vend
 
   // Is it part of the weekend legendary rotation?
   // --> Add it to the Empire Store.
-  if (entity.rarity === "legendary") {
-    if (!vendors.length) {
-      if (!questLegendaries.includes(entity.id)) {
-        const madeByCeleste = entity.id >= celesteLegendariesStart
-        const rotation = madeByCeleste ? "Celeste" : "Classic"
-
-        vendors.push({
-          name: `Empire Store`,
-          level: 40,
-          rarity: "legendary",
-          currency: "empire",
-          price: (madeByCeleste ? 700 : 350),
-          rotation,
-        })
-      }
-    }
+  if (entity.rarity !== "legendary") {
+    return vendors
   }
+  if (vendors.length) {
+    return vendors
+  }
+  if (entity.recipe) {
+    return vendors
+  }
+  if (questLegendaries.includes(entity.id)) {
+    return vendors
+  }
+
+  const madeByCeleste = entity.id >= celesteLegendariesStart
+  const rotation = madeByCeleste ? "Celeste" : "Classic"
+
+  vendors.push({
+    name: `Empire Store`,
+    level: 40,
+    rarity: "legendary",
+    currency: "empire",
+    price: (madeByCeleste ? 700 : 350),
+    rotation,
+  })
 
   vendors.sort(compareVendors)
 
