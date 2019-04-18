@@ -2,6 +2,7 @@ import { HttpClientModule } from "@angular/common/http"
 import { async, TestBed } from "@angular/core/testing"
 import { ReactiveFormsModule } from "@angular/forms"
 import { BrowserModule } from "@angular/platform-browser"
+import { RouterModule } from "@angular/router"
 
 import { NgScrollbarModule } from "ngx-scrollbar"
 
@@ -26,6 +27,7 @@ describe("AppComponent", () => {
         HttpClientModule,
         NgScrollbarModule,
         ReactiveFormsModule,
+        RouterModule.forRoot([]),
       ],
       declarations: [
         AdvisorComponent,

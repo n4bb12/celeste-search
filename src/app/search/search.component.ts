@@ -10,12 +10,7 @@ import {
 import { FormControl } from "@angular/forms"
 
 import { NgScrollbar } from "ngx-scrollbar"
-import {
-  distinctUntilChanged,
-  sampleTime,
-  startWith,
-  tap,
-} from "rxjs/operators"
+import { distinctUntilChanged, sampleTime, tap } from "rxjs/operators"
 
 import { SearchService } from "../services"
 
@@ -37,12 +32,13 @@ export class SearchComponent implements OnInit, AfterViewInit {
   constructor(
     private search: SearchService,
   ) {
-    this.inputModel.setValue(this.input)
+    this.search.query.subscribe(query => {
+      this.inputModel.setValue(query)
+    })
   }
 
   ngOnInit() {
     this.inputModel.valueChanges.pipe(
-      startWith(this.input),
       sampleTime(200),
       distinctUntilChanged(),
       tap(input => this.search.search(input)),

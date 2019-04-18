@@ -1,12 +1,6 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-} from "@angular/core"
+import { ChangeDetectionStrategy, Component } from "@angular/core"
 
-import { TABS } from "./tabs"
+import { TABS, TabService } from "../services"
 
 @Component({
   selector: "cis-tabs",
@@ -16,14 +10,15 @@ import { TABS } from "./tabs"
 })
 export class TabsComponent {
 
-  @Input() activeTab = 0
-  @Output() activeTabChange = new EventEmitter<number>()
-
   readonly tabs = [...TABS]
+  readonly activeTabChange = this.tabService.activeTabChange
+
+  constructor(
+    private tabService: TabService,
+  ) { }
 
   setActiveTab(index: number) {
-    this.activeTab = index
-    this.activeTabChange.emit(index)
+    this.tabService.activeTab = index
   }
 
 }

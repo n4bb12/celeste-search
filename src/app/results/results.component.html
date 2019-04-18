@@ -1,11 +1,14 @@
 <!-- ITEMS -->
-<ng-container *ngIf="activeTab === 0">
-  <div class="__grid" *ngIf="(items | async).length > 0" (window:resize)="handleResize()">
+<ng-container *ngIf="(activeTabChange | async) === 0">
+  <div class="__grid" *ngIf="(items | async).length > 0"
+    (window:resize)="handleResize()">
 
     <ng-container *ngFor="let col of [0, 1, 2, 3, 4]">
-      <div class="__col" *ngIf="numColumns > col && (items | async).length > col">
+      <div class="__col"
+        *ngIf="numColumns > col && (items | async).length > col">
 
-        <ng-container *ngFor="let item of items | async; trackBy: trackItem; index as i">
+        <ng-container
+          *ngFor="let item of items | async; trackBy: trackItem; index as i">
           <ng-container *ngIf="i % numColumns === col">
 
             <cis-item class="fade-in" [item]="item"></cis-item>
@@ -20,13 +23,16 @@
 </ng-container>
 
 <!-- ADVISORS -->
-<ng-container *ngIf="activeTab === 1">
-  <div class="__grid" *ngIf="(advisors | async).length > 0" (window:resize)="handleResize()">
+<ng-container *ngIf="(activeTabChange | async) === 1">
+  <div class="__grid" *ngIf="(advisors | async).length > 0"
+    (window:resize)="handleResize()">
 
     <ng-container *ngFor="let col of [0, 1, 2, 3, 4]">
-      <div class="__col" *ngIf="numColumns > col && (advisors | async).length > col">
+      <div class="__col"
+        *ngIf="numColumns > col && (advisors | async).length > col">
 
-        <ng-container *ngFor="let advisor of advisors | async; trackBy: trackItem; index as i">
+        <ng-container
+          *ngFor="let advisor of advisors | async; trackBy: trackItem; index as i">
           <ng-container *ngIf="i % numColumns === col">
 
             <cis-advisor class="fade-in" [advisor]="advisor"></cis-advisor>
@@ -41,16 +47,20 @@
 </ng-container>
 
 <!-- BLUEPRINTS -->
-<ng-container *ngIf="activeTab === 2">
-  <div class="__grid" *ngIf="(blueprints | async).length > 0" (window:resize)="handleResize()">
+<ng-container *ngIf="(activeTabChange | async) === 2">
+  <div class="__grid" *ngIf="(blueprints | async).length > 0"
+    (window:resize)="handleResize()">
 
     <ng-container *ngFor="let col of [0, 1, 2, 3, 4]">
-      <div class="__col" *ngIf="numColumns > col && (blueprints | async).length > col">
+      <div class="__col"
+        *ngIf="numColumns > col && (blueprints | async).length > col">
 
-        <ng-container *ngFor="let blueprint of blueprints | async; trackBy: trackItem; index as i">
+        <ng-container
+          *ngFor="let blueprint of blueprints | async; trackBy: trackItem; index as i">
           <ng-container *ngIf="i % numColumns === col">
 
-            <cis-blueprint class="fade-in" [blueprint]="blueprint"></cis-blueprint>
+            <cis-blueprint class="fade-in" [blueprint]="blueprint">
+            </cis-blueprint>
 
           </ng-container>
         </ng-container>
@@ -62,7 +72,7 @@
 </ng-container>
 
 <!-- DESIGNS -->
-<ng-container *ngIf="activeTab === 3">
+<ng-container *ngIf="(activeTabChange | async) === 3">
   <div class="__grid">
     Designs
     <pre>{{ designs | async | json }}</pre>
@@ -70,7 +80,7 @@
 </ng-container>
 
 <!-- CONSUMABLES -->
-<ng-container *ngIf="activeTab === 4">
+<ng-container *ngIf="(activeTabChange | async) === 4">
   <div class="__grid">
     Consumables
     <pre>{{ consumables | async | json }}</pre>

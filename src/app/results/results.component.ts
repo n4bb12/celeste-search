@@ -1,13 +1,8 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnInit,
-} from "@angular/core"
+import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core"
 
 import { map } from "rxjs/operators"
 
-import { SearchService } from "../services"
+import { SearchService, TabService } from "../services"
 import { Item } from "./../interfaces/Item"
 
 @Component({
@@ -18,7 +13,7 @@ import { Item } from "./../interfaces/Item"
 })
 export class ResultsComponent implements OnInit {
 
-  @Input() activeTab: number
+  readonly activeTabChange = this.tabs.activeTabChange
 
   readonly items = this.search.items.pipe(map(results => results.slice(0, 20)))
   readonly advisors = this.search.advisors.pipe(map(results => results.slice(0, 20)))
@@ -30,6 +25,7 @@ export class ResultsComponent implements OnInit {
 
   constructor(
     private search: SearchService,
+    private tabs: TabService,
   ) { }
 
   ngOnInit() {

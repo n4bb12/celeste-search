@@ -1,7 +1,9 @@
 <div class="__tabs">
 
   <ng-container *ngFor="let tab of tabs; let i = index">
-    <button type="button" class="__tab" [class.--active]="activeTab === i" (click)="setActiveTab(i)">
+    <button type="button" class="__tab"
+      [class.--active]="(activeTabChange | async) === i"
+      (click)="setActiveTab(i)">
       <img class="__image" src="/assets/tabs/{{ tab.icon }}.png">
       <span class="__name">{{ tab.name }}</span>
     </button>

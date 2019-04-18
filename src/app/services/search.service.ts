@@ -1,21 +1,25 @@
 import { Injectable } from "@angular/core"
 
-import { ReplaySubject } from "rxjs"
+import { BehaviorSubject, ReplaySubject } from "rxjs"
 
 import { Advisor, Blueprint, Consumable, Design, Item } from "../interfaces"
 
 import { DbService } from "./db.service"
+import { UrlService } from "./url.service"
 
 @Injectable({
   providedIn: "root",
 })
 export class SearchService {
 
-  private itemsSubject = new ReplaySubject<Item[]>(1)
-  private advisorsSubject = new ReplaySubject<Advisor[]>(1)
-  private blueprintsSubject = new ReplaySubject<Blueprint[]>(1)
-  private designsSubject = new ReplaySubject<Design[]>(1)
-  private consumablesSubject = new ReplaySubject<Consumable[]>(1)
+  readonly query = new ReplaySubject<string>(1)
+  private currentQuery: string
+
+  private itemsSubject = new BehaviorSubject<Item[]>([])
+  private advisorsSubject = new BehaviorSubject<Advisor[]>([])
+  private blueprintsSubject = new BehaviorSubject<Blueprint[]>([])
+  private designsSubject = new BehaviorSubject<Design[]>([])
+  private consumablesSubject = new BehaviorSubject<Consumable[]>([])
 
   readonly items = this.itemsSubject.asObservable()
   readonly advisors = this.advisorsSubject.asObservable()
@@ -25,16 +29,25 @@ export class SearchService {
 
   constructor(
     private db: DbService,
+    private url: UrlService,
   ) {
     this.db.fetch()
-    this.itemsSubject.next([])
-    this.advisorsSubject.next([])
-    this.blueprintsSubject.next([])
-    this.designsSubject.next([])
-    this.consumablesSubject.next([])
+
+    this.url.changes.subscribe(query => {
+      this.search(query)
+    })
+
+    this.query.subscribe(query => {
+      this.url.update(query)
+    })
   }
 
   async search(query: string): Promise<void> {
+    if (query === this.currentQuery) {
+      return
+    }
+    this.query.next(query)
+
     let items: Item[] = []
     let advisors: Advisor[] = []
     let blueprints: Blueprint[] = []
