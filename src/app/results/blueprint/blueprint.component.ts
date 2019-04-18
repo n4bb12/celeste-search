@@ -27,7 +27,7 @@ export class BlueprintComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.dbService.fetch().subscribe(db => {
+    this.dbService.shared.subscribe(db => {
       this.materials = db.materials
       this.changeRef.detectChanges()
     })

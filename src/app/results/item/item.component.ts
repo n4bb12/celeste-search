@@ -24,12 +24,13 @@ export class ItemComponent implements OnInit {
 
   constructor(
     private changeRef: ChangeDetectorRef,
-    private dbService: DbService,
+    private db: DbService,
   ) { }
 
   ngOnInit() {
     this.level = this.item.levels[this.item.levels.length - 1]
-    this.dbService.fetch().subscribe(db => {
+
+    this.db.shared.subscribe(db => {
       this.materials = db.materials
       this.changeRef.detectChanges()
     })

@@ -11,14 +11,14 @@ import { TABS, TabService } from "../services"
 export class TabsComponent {
 
   readonly tabs = [...TABS]
-  readonly activeTabChange = this.tabService.activeTabChange
+  readonly activeTabChange = this.tab.changes
 
   constructor(
-    private tabService: TabService,
+    private tab: TabService,
   ) { }
 
   setActiveTab(index: number) {
-    this.tabService.activeTab = index
+    this.tab.current = index
   }
 
 }

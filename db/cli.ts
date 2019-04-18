@@ -31,26 +31,54 @@ async function buildDB() {
   return db
 }
 
-async function saveDB(db: DB) {
-  await ensureDir("generated")
-  await remove("generated/db.json")
-  await writeFile("generated/db.json", JSON.stringify(db, null, 2), "utf8")
+async function cleanup() {
+  const dirs = [
+    "generated/db",
+    "generated/sprites",
+    "src/app/interfaces",
+    "src/assets/db",
+  ]
 
-  await ensureDir("src/assets")
-  await remove("src/assets/db.json")
-  await writeFile("src/assets/db.json", JSON.stringify(db), "utf8")
+  for (const dir of dirs) {
+    await ensureDir(dir)
+    await remove(`${dir}/*`)
+  }
+}
+
+async function saveDB(db: DB) {
+  const {
+    materials,
+    replace,
+    items,
+    advisors,
+    blueprints,
+    designs,
+    consumables,
+  } = db
+
+  const results = {
+    shared: { materials, replace },
+    items: { items },
+    advisors: { advisors },
+    blueprints: { blueprints },
+    designs: { designs },
+    consumables: { consumables },
+  }
+
+  for (const key of Object.keys(results)) {
+    await writeFile(`generated/db/${key}.json`, JSON.stringify(results[key], null, 2), "utf8")
+    await writeFile(`src/assets/db/${key}.json`, JSON.stringify(results[key]), "utf8")
+  }
 }
 
 async function copyInterfaces() {
-  await ensureDir("src/app/interfaces")
-  await remove("src/app/interfaces/*")
   await copy("db/interfaces", "src/app/interfaces")
 }
 
 async function buildAndSaveDB() {
-  await remove("generated/sprites")
+  await cleanup()
   await saveDB(await buildDB())
+  await copyInterfaces()
 }
 
 buildAndSaveDB()
-copyInterfaces()

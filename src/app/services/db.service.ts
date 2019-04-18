@@ -1,7 +1,6 @@
 import { HttpClient } from "@angular/common/http"
 import { Injectable } from "@angular/core"
 
-import { Observable } from "rxjs"
 import { publishReplay, refCount } from "rxjs/operators"
 
 import { DB } from "../interfaces"
@@ -11,17 +10,22 @@ import { DB } from "../interfaces"
 })
 export class DbService {
 
-  private dbObservable = this.http.get<DB>("/assets/db.json").pipe(
-    publishReplay(1),
-    refCount(),
-  )
+  readonly shared = this.fetch<Pick<DB, "materials" | "replace">>("shared")
+  readonly items = this.fetch<Pick<DB, "items">>("items")
+  readonly advisors = this.fetch<Pick<DB, "advisors">>("advisors")
+  readonly blueprints = this.fetch<Pick<DB, "blueprints">>("blueprints")
+  readonly designs = this.fetch<Pick<DB, "designs">>("designs")
+  readonly consumables = this.fetch<Pick<DB, "consumables">>("consumables")
 
   constructor(
     private http: HttpClient,
   ) { }
 
-  fetch(): Observable<DB> {
-    return this.dbObservable
+  private fetch<T>(name: string) {
+    return this.http.get<T>(`/assets/db/${name}.json`).pipe(
+      publishReplay(1),
+      refCount(),
+    )
   }
 
 }

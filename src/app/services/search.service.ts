@@ -1,10 +1,11 @@
 import { Injectable } from "@angular/core"
 
-import { BehaviorSubject, ReplaySubject } from "rxjs"
+import { BehaviorSubject, combineLatest, ReplaySubject } from "rxjs"
 
 import { Advisor, Blueprint, Consumable, Design, Item } from "../interfaces"
 
 import { DbService } from "./db.service"
+import { TABS, TabService } from "./tab.service"
 import { UrlService } from "./url.service"
 
 @Injectable({
@@ -14,27 +15,35 @@ export class SearchService {
 
   readonly query = new ReplaySubject<string>(1)
   private currentQuery: string
+  private currentTab: number
 
-  private itemsSubject = new BehaviorSubject<Item[]>([])
-  private advisorsSubject = new BehaviorSubject<Advisor[]>([])
-  private blueprintsSubject = new BehaviorSubject<Blueprint[]>([])
-  private designsSubject = new BehaviorSubject<Design[]>([])
-  private consumablesSubject = new BehaviorSubject<Consumable[]>([])
+  readonly items = new BehaviorSubject<Item[]>([])
+  readonly advisors = new BehaviorSubject<Advisor[]>([])
+  readonly blueprints = new BehaviorSubject<Blueprint[]>([])
+  readonly designs = new BehaviorSubject<Design[]>([])
+  readonly consumables = new BehaviorSubject<Consumable[]>([])
 
-  readonly items = this.itemsSubject.asObservable()
-  readonly advisors = this.advisorsSubject.asObservable()
-  readonly blueprints = this.blueprintsSubject.asObservable()
-  readonly designs = this.designsSubject.asObservable()
-  readonly consumables = this.consumablesSubject.asObservable()
+  private subjects = [
+    this.items,
+    this.advisors,
+    this.blueprints,
+    this.designs,
+    this.consumables,
+  ]
 
   constructor(
     private db: DbService,
+    private tab: TabService,
     private url: UrlService,
   ) {
-    this.db.fetch()
+    this.currentTab = this.tab.current
 
     this.url.changes.subscribe(query => {
       this.search(query)
+    })
+
+    this.tab.changes.subscribe(() => {
+      this.search(this.currentQuery)
     })
 
     this.query.subscribe(query => {
@@ -43,55 +52,55 @@ export class SearchService {
   }
 
   async search(query: string): Promise<void> {
-    if (query === this.currentQuery) {
+    if (query === this.currentQuery && this.tab.current === this.currentTab) {
       return
     }
+
+    this.currentQuery = query
     this.query.next(query)
 
-    let items: Item[] = []
-    let advisors: Advisor[] = []
-    let blueprints: Blueprint[] = []
-    let designs: Design[] = []
-    let consumables: Consumable[] = []
+    const activeTab = this.tab.current
+    const dbName = TABS[activeTab].db
+    const subject = this.subjects[activeTab]
 
     if (!query) {
-      this.itemsSubject.next(items)
-      this.advisorsSubject.next(advisors)
-      this.blueprintsSubject.next(blueprints)
-      this.designsSubject.next(designs)
-      this.consumablesSubject.next(consumables)
+      subject.next([])
       return
     }
 
-    this.db.fetch().subscribe(db => {
-      const words = this.performReplacements(db.replace, query)
+    combineLatest(this.db.shared, this.db[dbName]).subscribe(([shared, db]) => {
+      const words = this.performReplacements(shared.replace, query)
         .split(/\s+/)
         .map(w => w.trim())
         .filter(w => w !== "")
 
       if (words.length > 0) {
-        items = db.items.filter(item => {
-          return words.every(word => item.search.includes(word))
+        const results = db[dbName].filter(entry => {
+          return words.every(word => entry.search.includes(word))
         })
-        advisors = db.advisors.filter(advisor => {
-          return words.every(word => advisor.search.includes(word))
-        })
-        blueprints = db.blueprints.filter(blueprint => {
-          return words.every(word => blueprint.search.includes(word))
-        })
-        designs = db.designs.filter(design => {
-          return words.every(word => design.search.includes(word))
-        })
-        consumables = db.consumables.filter(consumable => {
-          return words.every(word => consumable.search.includes(word))
-        })
+        subject.next(results)
       }
+    })
 
-      this.itemsSubject.next(items)
-      this.advisorsSubject.next(advisors)
-      this.blueprintsSubject.next(blueprints)
-      this.designsSubject.next(designs)
-      this.consumablesSubject.next(consumables)
+    this.db.shared.subscribe(shared => {
+      this.db[dbName].subscribe(db => {
+        if (!query) {
+          subject.next([])
+          return
+        }
+
+        const words = this.performReplacements(shared.replace, query)
+          .split(/\s+/)
+          .map(w => w.trim())
+          .filter(w => w !== "")
+
+        if (words.length > 0) {
+          const results = db[dbName].filter(entry => {
+            return words.every(word => entry.search.includes(word))
+          })
+          subject.next(results)
+        }
+      })
     })
 
   }

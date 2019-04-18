@@ -13,7 +13,7 @@ import { Item } from "./../interfaces/Item"
 })
 export class ResultsComponent implements OnInit {
 
-  readonly activeTabChange = this.tabs.activeTabChange
+  readonly activeTabChange = this.tabs.changes
 
   readonly items = this.search.items.pipe(map(results => results.slice(0, 20)))
   readonly advisors = this.search.advisors.pipe(map(results => results.slice(0, 20)))
