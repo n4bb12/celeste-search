@@ -87,6 +87,13 @@ export class SearchService {
     }
 
     combineLatest(this.db.shared, this.db[dbName]).subscribe(([shared, db]) => {
+      const entries = db[dbName]
+
+      if (query.trim() === "*") {
+        subject.next(entries.slice(0, 50))
+        return
+      }
+
       const words = this.performReplacements(shared.replace, query)
         .split(/\s+/)
         .map(w => w.trim())
@@ -95,7 +102,7 @@ export class SearchService {
       if (words.length > 0) {
         const results = []
 
-        for (const entry of db[dbName]) {
+        for (const entry of entries) {
           if (query !== this.query || results.length >= 50) {
             break
           }
