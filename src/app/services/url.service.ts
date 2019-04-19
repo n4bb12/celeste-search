@@ -25,7 +25,7 @@ export class UrlService {
     return this.router.events.pipe(
       filter(event => event instanceof NavigationEnd),
       flatMap(() => this.activatedRoute.queryParamMap),
-      map(paramMap => paramMap.get("search")),
+      map(paramMap => paramMap.get("search") || paramMap.get("q")),
       distinctUntilChanged(),
     )
   }
