@@ -8,6 +8,7 @@ import { SearchBuilder, simplify, WORD_SEPARATOR } from "../shared/search"
 import {
   isClassicItem,
   isHalloweenReward,
+  isQuestReward,
   isReforgeable,
   isSoldByCouncilOfImhotep,
   isSoldByCyprus,
@@ -25,6 +26,7 @@ export async function buildSearchString(item: Item, trait: Trait): Promise<strin
   const builder = new SearchBuilder()
 
   builder.add("gears")
+  builder.add("items")
   builder.add(trait.name)
   builder.add(item.name)
   builder.add(item.rarity)
@@ -98,6 +100,9 @@ export async function buildSearchString(item: Item, trait: Trait): Promise<strin
   }
   if (isWinterReward(trait)) {
     builder.add("Winter Event 2018")
+  }
+  if (isQuestReward(trait)) {
+    builder.add("Quest")
   }
   if (isReforgeable(trait)) {
     builder.add("Reforgeable")
