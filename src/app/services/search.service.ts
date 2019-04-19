@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core"
 
 import { BehaviorSubject, combineLatest, Observable } from "rxjs"
-import { debounceTime, skip } from "rxjs/operators"
+import { debounceTime, distinctUntilChanged, skip } from "rxjs/operators"
 
 import { Advisor, Blueprint, Consumable, Design, Item } from "../interfaces"
 
@@ -42,6 +42,7 @@ export class SearchService {
   get changes(): Observable<string> {
     return this.subject.asObservable().pipe(
       skip(1),
+      distinctUntilChanged(),
     )
   }
 
@@ -92,33 +93,20 @@ export class SearchService {
         .filter(w => w !== "")
 
       if (words.length > 0) {
-        const results = db[dbName].filter(entry => {
-          return words.every(word => entry.search.includes(word))
-        })
+        const results = []
+
+        for (const entry of db[dbName]) {
+          if (query !== this.query || results.length >= 50) {
+            break
+          }
+          if (words.every(word => entry.search.includes(word))) {
+            results.push(entry)
+          }
+        }
+
+        console.log(results.length, "RESULTS")
         subject.next(results)
       }
-    })
-
-    this.db.shared.subscribe(shared => {
-      this.db[dbName].subscribe(db => {
-        if (!query) {
-          subject.next([])
-          return
-        }
-
-        const words = this.performReplacements(shared.replace, query)
-          .split(/\s+/)
-          .map(w => w.trim())
-          .filter(w => w !== "")
-
-        if (words.length > 0) {
-          const results = db[dbName].filter(entry => {
-            return words.every(word => entry.search.includes(word))
-          })
-          console.log(results.length, "results")
-          subject.next(results)
-        }
-      })
     })
   }
 
