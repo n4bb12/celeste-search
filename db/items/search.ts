@@ -73,6 +73,7 @@ export async function buildSearchString(item: Item, trait: Trait): Promise<strin
     if (vendor.currency === "coin") {
       builder.add("coins")
       builder.add("money")
+      builder.add("gold")
     } else {
       builder.add("points")
       builder.add("tokens")
