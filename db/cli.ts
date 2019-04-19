@@ -5,8 +5,8 @@ import { buildBlueprints } from "./blueprints/build"
 import { buildDesigns } from "./designs/build"
 import { DB } from "./interfaces"
 import { buildItems } from "./items/build"
+import { buildSearchReplacementMap } from "./items/search"
 import { buildMaterials } from "./materials/build"
-import { buildSearchReplacementMap } from "./materials/search"
 
 async function buildDB() {
   console.log("Build database...")

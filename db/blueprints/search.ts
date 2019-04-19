@@ -1,15 +1,12 @@
-import { Materials } from "celeste-api-types"
 import chalk from "chalk"
 
 import { API } from "../download"
 import { Blueprint } from "../interfaces"
-import { formatSearchString, simplify } from "../shared/format-search-string"
-
-const SINGLE_WORD_SEPARATOR = "_"
-
-interface Replacements {
-  [index: string]: string
-}
+import {
+  SearchBuilder,
+  simplify,
+  WORD_SEPARATOR,
+} from "../shared/search"
 
 /**
  * Constructs a search string consisting of all keywords the
@@ -17,26 +14,19 @@ interface Replacements {
  */
 export async function buildSearchString(blueprint: Blueprint): Promise<string> {
   const materials = await API.getMaterials()
-  const words: string[] = []
+  const builder = new SearchBuilder()
 
-  words.push(blueprint.name)
-  words.push(simplify(blueprint.name))
-
-  words.push(blueprint.description)
-  words.push(simplify(blueprint.description))
-
-  words.push(blueprint.rarity)
+  builder.add(blueprint.name)
+  builder.add(blueprint.description || "")
+  builder.add(blueprint.rarity)
 
   blueprint.materials.forEach(ref => {
-    words.push("" + ref.quantity)
+    builder.add(ref.quantity)
 
     const material = materials[ref.id]
 
     if (material) {
-      words.push(material.name)
-      words.push(material.name.replace(/ /g, SINGLE_WORD_SEPARATOR))
-      words.push(simplify(material.name))
-      words.push(simplify(material.name).replace(/ /g, SINGLE_WORD_SEPARATOR))
+      builder.add(material.name)
     } else {
       console.log(chalk.yellow("Material not found: " + ref.id))
     }
@@ -44,44 +34,29 @@ export async function buildSearchString(blueprint: Blueprint): Promise<string> {
 
   if (blueprint.vendors) {
     blueprint.vendors.forEach(vendor => {
-      words.push(vendor.name)
-      words.push(vendor.name.replace(/ /g, SINGLE_WORD_SEPARATOR))
-      words.push(simplify(vendor.name))
-      words.push(simplify(vendor.name).replace(/ /g, SINGLE_WORD_SEPARATOR))
+      builder.add(vendor.name)
     })
   }
 
   [...blueprint.vendors || []].forEach(vendor => {
-    words.push("buyable")
-    words.push("purchaseable")
-    words.push("shops")
-    words.push("stores")
-    words.push("vendors")
+    builder.add("buyable")
+    builder.add("purchaseable")
+    builder.add("shops")
+    builder.add("stores")
+    builder.add("vendors")
 
     if (vendor.currency === "coin") {
-      words.push("coins")
-      words.push("money")
+      builder.add("coins")
+      builder.add("money")
     } else {
-      words.push("points")
-      words.push("tokens")
-      words.push(vendor.currency)
-      words.push(vendor.currency + SINGLE_WORD_SEPARATOR + "points")
-      words.push(vendor.currency + SINGLE_WORD_SEPARATOR + "tokens")
+      builder.add("points")
+      builder.add("tokens")
+      builder.add(vendor.currency)
+      builder.add(vendor.currency + " points")
+      builder.add(vendor.currency + " tokens")
     }
-    words.push(vendor.name)
-    words.push(vendor.name)
-    words.push(vendor.name.replace(/ /g, SINGLE_WORD_SEPARATOR))
-    words.push(simplify(vendor.name))
-    words.push(simplify(vendor.name).replace(/ /g, SINGLE_WORD_SEPARATOR))
+    builder.add(vendor.name)
   })
 
-  return formatSearchString(words)
-}
-
-export function buildSearchReplacementMap(blueprint: Blueprint[], materials: Materials): Replacements {
-  const map = {}
-
-  // TODO
-
-  return map
+  return builder.build()
 }

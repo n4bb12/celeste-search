@@ -39,7 +39,7 @@ export async function convertItem(trait: Trait): Promise<Item> {
 
   if ([
     "Athena´s Long Spear",
-  ].indexOf(result.name) >= 0) {
+  ].includes(result.name)) {
     result.noEffectRange = true
   }
 

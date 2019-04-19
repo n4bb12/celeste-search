@@ -20,7 +20,6 @@ export async function convertAdvisor(advisor: ApiAdvisor): Promise<Advisor> {
 
   const rarities: Advisor["rarities"] = {
     [advisor.rarity]: {
-      id: advisor.name,
       icon: iconId,
       description,
     },
