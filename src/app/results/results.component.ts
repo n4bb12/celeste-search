@@ -20,6 +20,7 @@ export class ResultsComponent implements OnInit {
   readonly consumables = this.search.consumables
 
   numColumns = 3
+  maxColumns = 3
 
   constructor(
     private search: SearchService,
@@ -31,7 +32,8 @@ export class ResultsComponent implements OnInit {
   }
 
   handleResize() {
-    this.numColumns = Math.max(1, Math.floor(window.innerWidth / 30 / 15))
+    const optimalColumns = Math.floor(window.innerWidth / 30 / 15)
+    this.numColumns = Math.max(1, Math.min(optimalColumns, this.maxColumns))
   }
 
   trackItem(index: number, item: Item) {
