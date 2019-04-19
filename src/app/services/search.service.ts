@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core"
 
-import { BehaviorSubject, combineLatest, ReplaySubject } from "rxjs"
+import { BehaviorSubject, combineLatest, Observable } from "rxjs"
+import { skip } from "rxjs/operators"
 
 import { Advisor, Blueprint, Consumable, Design, Item } from "../interfaces"
 
@@ -13,8 +14,7 @@ import { UrlService } from "./url.service"
 })
 export class SearchService {
 
-  readonly query = new ReplaySubject<string>(1)
-  private currentQuery: string
+  private subject = new BehaviorSubject<string>("")
   private currentTab: number
 
   readonly items = new BehaviorSubject<Item[]>([])
@@ -31,6 +31,20 @@ export class SearchService {
     this.consumables,
   ]
 
+  set query(value: string) {
+    this.subject.next(value)
+  }
+
+  get query(): string {
+    return this.subject.value
+  }
+
+  get changes(): Observable<string> {
+    return this.subject.asObservable().pipe(
+      skip(1),
+    )
+  }
+
   constructor(
     private db: DbService,
     private tab: TabService,
@@ -43,21 +57,20 @@ export class SearchService {
     })
 
     this.tab.changes.subscribe(() => {
-      this.search(this.currentQuery)
+      this.search(this.query)
     })
 
-    this.query.subscribe(query => {
+    this.changes.subscribe(query => {
       this.url.update(query)
     })
   }
 
   async search(query: string): Promise<void> {
-    if (query === this.currentQuery && this.tab.current === this.currentTab) {
+    if (query === this.query && this.tab.current === this.currentTab) {
       return
     }
 
-    this.currentQuery = query
-    this.query.next(query)
+    this.query = query
 
     const activeTab = this.tab.current
     const dbName = TABS[activeTab].db

@@ -31,7 +31,6 @@ export class TabService {
 
   set current(value: number) {
     this.subject.next(value)
-
   }
 
   get current(): number {

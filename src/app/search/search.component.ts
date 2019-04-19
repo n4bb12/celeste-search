@@ -32,7 +32,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   constructor(
     private search: SearchService,
   ) {
-    this.search.query.subscribe(query => {
+    this.search.changes.subscribe(query => {
       this.inputModel.setValue(query)
     })
   }
