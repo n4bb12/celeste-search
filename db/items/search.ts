@@ -1,23 +1,32 @@
+import { Trait } from "celeste-api-types"
 import chalk from "chalk"
 
 import { API } from "../download"
 import { Item, Materials, Replacements } from "../interfaces"
+import { SearchBuilder, simplify, WORD_SEPARATOR } from "../shared/search"
+
 import {
-  SearchBuilder,
-  simplify,
-  WORD_SEPARATOR,
-} from "../shared/search"
+  isClassicItem,
+  isHalloweenReward,
+  isReforgeable,
+  isSoldByCouncilOfImhotep,
+  isSoldByCyprus,
+  isSoldByDelianLeague,
+  isSoldByLegionOfCarthage,
+  isWinterReward,
+} from "./source"
 
 /**
  * Constructs a search string consisting of all keywords the
  * item can be found by.
  */
-export async function buildSearchString(item: Item): Promise<string> {
+export async function buildSearchString(item: Item, trait: Trait): Promise<string> {
   const materials = await API.getMaterials()
   const builder = new SearchBuilder()
 
+  builder.add("gears")
+  builder.add(trait.name)
   builder.add(item.name)
-  builder.add(item.trait)
   builder.add(item.rarity)
   builder.add(item.type)
 
@@ -57,6 +66,7 @@ export async function buildSearchString(item: Item): Promise<string> {
     builder.add("shops")
     builder.add("stores")
     builder.add("vendors")
+    builder.add("sold")
 
     if (vendor.currency === "coin") {
       builder.add("coins")
@@ -70,6 +80,36 @@ export async function buildSearchString(item: Item): Promise<string> {
     }
     builder.add(vendor.name)
   })
+
+  if (isSoldByCyprus(trait)) {
+    builder.add("Sold by Cyprus")
+  }
+  if (isSoldByCouncilOfImhotep(trait)) {
+    builder.add("Sold by Council of Imhotep")
+  }
+  if (isSoldByDelianLeague(trait)) {
+    builder.add("Sold by Delian League")
+  }
+  if (isSoldByLegionOfCarthage(trait)) {
+    builder.add("Sold by Legion of Carthage")
+  }
+  if (isHalloweenReward(trait)) {
+    builder.add("Halloween Event 2018")
+  }
+  if (isWinterReward(trait)) {
+    builder.add("Winter Event 2018")
+  }
+  if (isReforgeable(trait)) {
+    builder.add("Reforgeable")
+  }
+  if (item.vendors.some(vendor => vendor.currency === "empire")) {
+    builder.add("Legendary Rotation")
+  }
+  if (isClassicItem(trait)) {
+    builder.add("Classic")
+  } else {
+    builder.add("Celeste")
+  }
 
   return builder.build()
 }

@@ -36,6 +36,7 @@ export async function buildSearchString(advisor: Advisor): Promise<string> {
     builder.add("shops")
     builder.add("stores")
     builder.add("vendors")
+    builder.add("sold")
 
     builder.add(vendor.name)
     if (vendor.currency === "coin") {

@@ -44,6 +44,7 @@ export async function buildSearchString(blueprint: Blueprint): Promise<string> {
     builder.add("shops")
     builder.add("stores")
     builder.add("vendors")
+    builder.add("sold")
 
     if (vendor.currency === "coin") {
       builder.add("coins")

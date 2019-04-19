@@ -1,13 +1,15 @@
 import { Trait } from "celeste-api-types"
 
 import { downloadIcon } from "../download"
-import { Item, Materials } from "../interfaces"
+import { Item } from "../interfaces"
 import { translateEn } from "../shared/convert-text"
+import { findAndConvertVendors } from "../shared/convert-vendors"
 
 import { convertEffects } from "./convert-effects"
 import { findAndConvertRecipe } from "./convert-recipe"
-import { findAndConvertItemVendors } from "./convert-vendors"
+import { addToLegendaryRotation } from "./legendary-rotation"
 import { buildSearchString } from "./search"
+import { isReforgeable } from "./source"
 
 /**
  * Converts items from their API format to the format
@@ -18,34 +20,32 @@ export async function convertItem(trait: Trait): Promise<Item> {
   const type = await translateEn(trait.rollovertextid)
   const iconId = await downloadIcon(trait.icon, "items")
 
-  const result: Item = {
+  const item: Item = {
     id: trait.dbid,
-    trait: trait.name,
     name,
     type,
     levels: trait.itemlevels.map(l => l - 3).filter(l => l > 0),
     icon: iconId,
     rarity: trait.rarity,
     effects: convertEffects(trait),
-    noEffectRange: undefined,
+    effectsRange: undefined,
     recipe: undefined,
     vendors: undefined,
     search: undefined,
   }
 
-  if (result.levels.length === 0) {
-    result.levels = [40]
+  if (item.levels.length === 0) {
+    item.levels = [40]
   }
 
-  if ([
-    "Athena´s Long Spear",
-  ].includes(result.name)) {
-    result.noEffectRange = true
-  }
+  item.recipe = await findAndConvertRecipe(trait)
 
-  result.recipe = await findAndConvertRecipe(result)
-  result.vendors = await findAndConvertItemVendors(result)
-  result.search = await buildSearchString(result)
+  item.vendors = await findAndConvertVendors(item)
+  addToLegendaryRotation(item, trait)
 
-  return result
+  item.effectsRange = trait.rarity === "legendary" && isReforgeable(trait)
+
+  item.search = await buildSearchString(item, trait)
+
+  return item
 }

@@ -1,7 +1,7 @@
-import { Design } from "celeste-api-types"
+import { Design, Trait } from "celeste-api-types"
 
 import { API } from "../download"
-import { Item, Recipe } from "../interfaces"
+import { Recipe } from "../interfaces"
 
 import { convertRecipeSchool } from "./convert-recipe-school"
 
@@ -9,12 +9,12 @@ import { convertRecipeSchool } from "./convert-recipe-school"
  * Looks up the recipe for an item and if found, converts it
  * from the API format to the format used by the item search app.
  */
-export async function findAndConvertRecipe(item: Item): Promise<Recipe> {
+export async function findAndConvertRecipe(trait: Trait): Promise<Recipe> {
   const designs = await API.getDesigns()
 
   const design: Design = Object.values(designs).find(apiDesign => {
     if (apiDesign.output.trait) {
-      return apiDesign.output.trait.id.toLowerCase() === item.trait.toLowerCase()
+      return apiDesign.output.trait.id.toLowerCase() === trait.name.toLowerCase()
     }
   })
 

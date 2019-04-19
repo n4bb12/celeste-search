@@ -26,7 +26,7 @@
         <span class="__value --left" *ngIf="effect.scaling">
           {{ effect | effectValue:level:1 }}
         </span>
-        <span class="__value --right" *ngIf="effect.scaling && !item.noEffectRange">
+        <span class="__value --right" *ngIf="effect.scaling && item.effectsRange">
           {{
           (effect | effectValue:level:0.95).slice(0, -1) +
           ' — ' +

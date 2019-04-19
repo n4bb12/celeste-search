@@ -54,6 +54,7 @@ export function buildItemSearchString(item: Item, materials: Materials): string 
     builder.add("shops")
     builder.add("stores")
     builder.add("vendors")
+    builder.add("sold")
 
     if (vendor.currency === "coin") {
       builder.add("coins")
