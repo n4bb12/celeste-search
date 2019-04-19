@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core"
 
 import { BehaviorSubject, combineLatest, Observable } from "rxjs"
-import { skip } from "rxjs/operators"
+import { debounceTime, skip } from "rxjs/operators"
 
 import { Advisor, Blueprint, Consumable, Design, Item } from "../interfaces"
 
@@ -60,8 +60,11 @@ export class SearchService {
       this.search(this.query)
     })
 
-    this.changes.subscribe(query => {
+    this.changes.pipe(
+      debounceTime(100),
+    ).subscribe(query => {
       this.url.update(query)
+      this.update(query)
     })
   }
 
@@ -69,9 +72,10 @@ export class SearchService {
     if (query === this.query && this.tab.current === this.currentTab) {
       return
     }
-
     this.query = query
+  }
 
+  private update(query: string) {
     const activeTab = this.tab.current
     const dbName = TABS[activeTab].db
     const subject = this.subjects[activeTab]
@@ -116,7 +120,6 @@ export class SearchService {
         }
       })
     })
-
   }
 
   private performReplacements(replace: any, input: string): string {
