@@ -111,6 +111,7 @@ export class SearchService {
           const results = db[dbName].filter(entry => {
             return words.every(word => entry.search.includes(word))
           })
+          console.log(results.length, "results")
           subject.next(results)
         }
       })
