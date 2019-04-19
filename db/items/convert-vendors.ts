@@ -25,13 +25,29 @@ export async function findAndConvertItemVendors(entity: CanBeSold): Promise<Vend
   if (entity.rarity !== "legendary") {
     return vendors
   }
+
+  // sold by regular vendor
   if (vendors.length) {
     return vendors
   }
+
+  // craftable item
   if (entity.recipe) {
     return vendors
   }
+
+  // quest item
   if (questLegendaries.includes(entity.id)) {
+    return vendors
+  }
+
+  // winter event
+  if (entity.name.endsWith("of the Ice King")) {
+    return vendors
+  }
+
+  // halloween event
+  if (entity.name.startsWith("Zahhak") || entity.name.startsWith("Black Cat")) {
     return vendors
   }
 
