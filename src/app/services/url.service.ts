@@ -35,7 +35,7 @@ export class UrlService {
 
   private querify(value) {
     return Object.keys(value).reduce((result, key) => {
-      result[key] = `${value[key]}`.replace(/\s+/, "_")
+      result[key] = `${value[key]}`.replace(/\s+/g, "_")
       return result
     }, {})
   }
@@ -49,9 +49,9 @@ export class UrlService {
 
   private currentSearch() {
     const params = this.activatedRoute.snapshot.queryParams
+    const search = params.search || params.s || params.query || params.q || ""
 
-    return params.search || params.s
-      || params.query || params.q || ""
+    return search.replace(/_+/g, " ")
   }
 
 }
