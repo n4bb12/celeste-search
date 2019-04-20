@@ -22,7 +22,7 @@ export class SearchService {
   readonly designs = new BehaviorSubject<Design[]>(EMPTY)
   readonly consumables = new BehaviorSubject<Consumable[]>(EMPTY)
 
-  private subjects = [
+  private readonly subjects = [
     this.items,
     this.advisors,
     this.blueprints,
@@ -42,7 +42,7 @@ export class SearchService {
 
   private update(tab: number, search: string) {
     console.time("search")
-    const dbName = TABS[tab].db
+    const id = TABS[tab].id
     const subject = this.subjects[tab]
 
     if (!search) {
@@ -51,7 +51,7 @@ export class SearchService {
       return
     }
 
-    combineLatest(this.db.shared, this.db[dbName]).subscribe(([shared, db]) => {
+    combineLatest(this.db.shared, this.db[id]).subscribe(([shared, db]) => {
       const isOutdated = () => tab !== this.state.tab || search !== this.state.search
 
       if (isOutdated()) {
@@ -59,7 +59,7 @@ export class SearchService {
         return
       }
 
-      const entries = db[dbName]
+      const entries = db[id]
 
       if (search.trim() === "*") {
         subject.next([...entries])
@@ -88,8 +88,7 @@ export class SearchService {
         }
       }
 
-      console.log(results.length, dbName)
-      subject.next(results)
+      subject.next(results.length ? results : EMPTY)
 
       console.timeEnd("search")
     })

@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core"
 
-
 import { Advisor, Blueprint, Consumable, Design, Item } from "../interfaces"
 import { SearchService, StateService } from "../services"
 

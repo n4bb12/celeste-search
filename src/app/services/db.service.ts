@@ -5,6 +5,8 @@ import { publishReplay, refCount } from "rxjs/operators"
 
 import { DB } from "../interfaces"
 
+import { TABS } from "./tabs"
+
 @Injectable({
   providedIn: "root",
 })

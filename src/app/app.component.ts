@@ -18,8 +18,8 @@ export class AppComponent {
   ) {
     this.state.tabChange.subscribe(tab => {
       // prefetch tab data on tab change
-      const dbName = TABS[tab].db
-      this.db[dbName].subscribe()
+      const id = TABS[tab].id
+      this.db[id].subscribe()
 
       // prefetch remaining data on app stable
       requestAnimationFrame(() => {
