@@ -22,8 +22,15 @@ export function addToLegendaryRotation(item: Item, trait: Trait) {
   }
 
   // there were no craftable legendaries in classic
-  // craftable legendaries are excluded from the celeste rotation
+  // craftable legendaries are excluded from the celeste
+  // rotation
   if (item.recipe) {
+    return
+  }
+
+  // items that are sold for gold don't need to be in the
+  // rotation
+  if (item.vendors.length) {
     return
   }
 
