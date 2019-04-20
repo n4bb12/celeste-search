@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core"
 
-import { SearchService, TabService } from "../services"
+import { SearchService, StateService } from "../services"
 import { Item } from "./../interfaces/Item"
 
 @Component({
@@ -11,7 +11,7 @@ import { Item } from "./../interfaces/Item"
 })
 export class ResultsComponent implements OnInit {
 
-  readonly activeTabChange = this.tabs.changes
+  readonly activeTabChange = this.state.tabChange
 
   readonly items = this.search.items
   readonly advisors = this.search.advisors
@@ -24,7 +24,7 @@ export class ResultsComponent implements OnInit {
 
   constructor(
     private search: SearchService,
-    private tabs: TabService,
+    private state: StateService,
   ) { }
 
   ngOnInit() {

@@ -1,7 +1,9 @@
 import { Injectable } from "@angular/core"
 import { ActivatedRoute, NavigationEnd, Router } from "@angular/router"
 
-import { distinctUntilChanged, filter, flatMap, map, tap } from "rxjs/operators"
+import { filter, tap } from "rxjs/operators"
+
+import { StateService } from "./state.service"
 
 @Injectable({
   providedIn: "root",
@@ -11,23 +13,35 @@ export class UrlService {
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-  ) { }
+    private state: StateService,
+  ) {
+    // update url when state changes
+    this.state.changes.subscribe(newState => {
+      this.router.navigate([], { queryParams: newState })
+    })
 
-  update(search: string) {
-    const queryParams = search
-      ? { search }
-      : undefined
-
-    this.router.navigate([], { queryParams })
+    // update state when url changes
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd),
+      tap(() => {
+        state.tab = this.currentTab()
+        state.search = this.currentSearch()
+      }),
+    ).subscribe()
   }
 
-  get changes() {
-    return this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd),
-      flatMap(() => this.activatedRoute.queryParamMap),
-      map(paramMap => paramMap.get("search") || paramMap.get("q")),
-      distinctUntilChanged(),
-    )
+  private currentTab() {
+    const params = this.activatedRoute.snapshot.queryParams
+    const tab = +(params.tab || params.t)
+
+    return Number.isNaN(tab) ? 0 : tab
+  }
+
+  private currentSearch() {
+    const params = this.activatedRoute.snapshot.queryParams
+
+    return params.search || params.s
+      || params.query || params.q || ""
   }
 
 }

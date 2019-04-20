@@ -12,7 +12,7 @@ import { FormControl } from "@angular/forms"
 import { NgScrollbar } from "ngx-scrollbar"
 import { distinctUntilChanged, sampleTime, tap } from "rxjs/operators"
 
-import { SearchService } from "../services"
+import { StateService } from "../services"
 
 @Component({
   selector: "cis-search",
@@ -30,10 +30,10 @@ export class SearchComponent implements OnInit, AfterViewInit {
   input = ""
 
   constructor(
-    private search: SearchService,
+    private state: StateService,
   ) {
-    this.search.changes.subscribe(query => {
-      this.inputModel.setValue(query)
+    this.state.searchChange.subscribe(search => {
+      this.inputModel.setValue(search)
     })
   }
 
@@ -41,7 +41,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
     this.inputModel.valueChanges.pipe(
       sampleTime(200),
       distinctUntilChanged(),
-      tap(input => this.search.search(input)),
+      tap(input => this.state.search = input),
     ).subscribe()
   }
 

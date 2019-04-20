@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core"
 
-import { TABS, TabService } from "../services"
+import { TABS } from "../services"
+import { StateService } from "./../services/state.service"
 
 @Component({
   selector: "cis-tabs",
@@ -11,14 +12,14 @@ import { TABS, TabService } from "../services"
 export class TabsComponent {
 
   readonly tabs = [...TABS]
-  readonly activeTabChange = this.tab.changes
+  readonly activeTabChange = this.state.tabChange
 
   constructor(
-    private tab: TabService,
+    private state: StateService,
   ) { }
 
   setActiveTab(index: number) {
-    this.tab.current = index
+    this.state.tab = index
   }
 
 }

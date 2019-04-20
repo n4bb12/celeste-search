@@ -1,21 +1,18 @@
 import { Injectable } from "@angular/core"
 
-import { BehaviorSubject, combineLatest, Observable } from "rxjs"
-import { debounceTime, distinctUntilChanged, skip } from "rxjs/operators"
+import { BehaviorSubject, combineLatest } from "rxjs"
+import { debounceTime, tap } from "rxjs/operators"
 
 import { Advisor, Blueprint, Consumable, Design, Item } from "../interfaces"
 
 import { DbService } from "./db.service"
-import { TABS, TabService } from "./tab.service"
-import { UrlService } from "./url.service"
+import { StateService } from "./state.service"
+import { TABS } from "./tabs"
 
 @Injectable({
   providedIn: "root",
 })
 export class SearchService {
-
-  private subject = new BehaviorSubject<string>("")
-  private currentTab: number
 
   readonly items = new BehaviorSubject<Item[]>([])
   readonly advisors = new BehaviorSubject<Advisor[]>([])
@@ -31,57 +28,21 @@ export class SearchService {
     this.consumables,
   ]
 
-  set query(value: string) {
-    this.subject.next(value)
-  }
-
-  get query(): string {
-    return this.subject.value
-  }
-
-  get changes(): Observable<string> {
-    return this.subject.asObservable().pipe(
-      skip(1),
-      distinctUntilChanged(),
-    )
-  }
-
   constructor(
     private db: DbService,
-    private tab: TabService,
-    private url: UrlService,
+    private state: StateService,
   ) {
-    this.currentTab = this.tab.current
-
-    this.url.changes.subscribe(query => {
-      this.search(query)
-    })
-
-    this.tab.changes.subscribe(() => {
-      this.search(this.query)
-    })
-
-    this.changes.pipe(
+    this.state.changes.pipe(
       debounceTime(200),
-    ).subscribe(query => {
-      this.url.update(query)
-      this.update(query)
-    })
+      tap(value => this.update(value.tab, value.search)),
+    ).subscribe()
   }
 
-  async search(query: string): Promise<void> {
-    if (query === this.query && this.tab.current === this.currentTab) {
-      return
-    }
-    this.query = query
-  }
+  private update(tab: number, search: string) {
+    const dbName = TABS[tab].db
+    const subject = this.subjects[tab]
 
-  private update(query: string) {
-    const activeTab = this.tab.current
-    const dbName = TABS[activeTab].db
-    const subject = this.subjects[activeTab]
-
-    if (!query) {
+    if (!search) {
       subject.next([])
       return
     }
@@ -89,12 +50,12 @@ export class SearchService {
     combineLatest(this.db.shared, this.db[dbName]).subscribe(([shared, db]) => {
       const entries = db[dbName]
 
-      if (query.trim() === "*") {
+      if (search.trim() === "*") {
         subject.next(entries.slice(0, 50))
         return
       }
 
-      const words = this.performReplacements(shared.replace, query)
+      const words = this.performReplacements(shared.replace, search)
         .split(/\s+/)
         .map(w => w.trim())
         .filter(w => w !== "")
@@ -103,7 +64,7 @@ export class SearchService {
         const results = []
 
         for (const entry of entries) {
-          if (query !== this.query || results.length >= 50) {
+          if (tab !== this.state.tab || search !== this.state.search || results.length >= 50) {
             break
           }
           if (words.every(word => entry.search.includes(word))) {

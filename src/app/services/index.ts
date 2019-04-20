@@ -1,4 +1,5 @@
 export * from "./db.service"
 export * from "./search.service"
-export * from "./tab.service"
+export * from "./state.service"
+export * from "./tabs"
 export * from "./url.service"
