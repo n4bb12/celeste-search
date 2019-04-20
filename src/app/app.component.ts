@@ -1,6 +1,8 @@
 import { Component } from "@angular/core"
 
-import { UrlService } from "./services"
+import { TABS, UrlService } from "./services"
+import { DbService } from "./services/db.service"
+import { StateService } from "./services/state.service"
 
 @Component({
   selector: "cis-root",
@@ -10,8 +12,17 @@ import { UrlService } from "./services"
 export class AppComponent {
 
   constructor(
-    // inject to trigger execution
-    private url: UrlService,
-    ) { }
+    private db: DbService,
+    private state: StateService,
+    private url: UrlService, // inject to trigger execution
+  ) {
+    // prefetch data on tab change
+    this.state.tabChange.subscribe(tab => {
+      this.db.shared.subscribe()
+
+      const dbName = TABS[tab].db
+      this.db[dbName].subscribe()
+    })
+  }
 
 }
