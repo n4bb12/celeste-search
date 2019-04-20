@@ -21,9 +21,10 @@ export class BackToTopComponent implements OnInit {
   shown: Observable<boolean>
 
   ngOnInit() {
-    const events = this.scrollbarRef.scrollable.elementScrolled()
-    this.shown = events.pipe(
-      map(event => event.srcElement.scrollTop > 0),
+    const scrollbar = this.scrollbarRef.scrollable
+
+    this.shown = scrollbar.elementScrolled().pipe(
+      map(() => scrollbar.measureScrollOffset("top") > 0),
     )
   }
 
