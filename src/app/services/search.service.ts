@@ -9,16 +9,18 @@ import { DbService } from "./db.service"
 import { StateService } from "./state.service"
 import { TABS } from "./tabs"
 
+const EMPTY = []
+
 @Injectable({
   providedIn: "root",
 })
 export class SearchService {
 
-  readonly items = new BehaviorSubject<Item[]>([])
-  readonly advisors = new BehaviorSubject<Advisor[]>([])
-  readonly blueprints = new BehaviorSubject<Blueprint[]>([])
-  readonly designs = new BehaviorSubject<Design[]>([])
-  readonly consumables = new BehaviorSubject<Consumable[]>([])
+  readonly items = new BehaviorSubject<Item[]>(EMPTY)
+  readonly advisors = new BehaviorSubject<Advisor[]>(EMPTY)
+  readonly blueprints = new BehaviorSubject<Blueprint[]>(EMPTY)
+  readonly designs = new BehaviorSubject<Design[]>(EMPTY)
+  readonly consumables = new BehaviorSubject<Consumable[]>(EMPTY)
 
   private subjects = [
     this.items,
@@ -39,19 +41,29 @@ export class SearchService {
   }
 
   private update(tab: number, search: string) {
+    console.time("search")
     const dbName = TABS[tab].db
     const subject = this.subjects[tab]
 
     if (!search) {
-      subject.next([])
+      subject.next(EMPTY)
+      console.timeEnd("search")
       return
     }
 
     combineLatest(this.db.shared, this.db[dbName]).subscribe(([shared, db]) => {
+      const isOutdated = () => tab !== this.state.tab || search !== this.state.search
+
+      if (isOutdated()) {
+        console.timeEnd("search")
+        return
+      }
+
       const entries = db[dbName]
 
       if (search.trim() === "*") {
-        subject.next(entries.slice(0, 50))
+        subject.next([...entries])
+        console.timeEnd("search")
         return
       }
 
@@ -60,21 +72,26 @@ export class SearchService {
         .map(w => w.trim())
         .filter(w => w !== "")
 
-      if (words.length > 0) {
-        const results = []
-
-        for (const entry of entries) {
-          if (tab !== this.state.tab || search !== this.state.search || results.length >= 50) {
-            break
-          }
-          if (words.every(word => entry.search.includes(word))) {
-            results.push(entry)
-          }
-        }
-
-        console.log(results.length, "RESULTS")
-        subject.next(results)
+      if (words.length === 0) {
+        console.timeEnd("search")
+        return
       }
+
+      const results = []
+
+      for (const entry of entries) {
+        if (isOutdated()) {
+          break
+        }
+        if (words.every(word => entry.search.includes(word))) {
+          results.push(entry)
+        }
+      }
+
+      console.log(results.length, dbName)
+      subject.next(results)
+
+      console.timeEnd("search")
     })
   }
 
