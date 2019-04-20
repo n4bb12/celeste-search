@@ -1,7 +1,8 @@
 import { HttpClient } from "@angular/common/http"
 import { Injectable } from "@angular/core"
 
-import { publishReplay, refCount } from "rxjs/operators"
+import { forkJoin, from, Observable } from "rxjs"
+import { map, publishReplay, refCount, tap } from "rxjs/operators"
 
 import { DB } from "../interfaces"
 
@@ -23,11 +24,30 @@ export class DbService {
     private http: HttpClient,
   ) { }
 
-  private fetch<T>(name: string) {
-    return this.http.get<T>(`/assets/db/${name}.json`).pipe(
+  private fetch<T>(name: string): Observable<T> {
+    return forkJoin(
+      this.fetchData(name),
+      this.fetchSprite(name),
+    ).pipe(
+      map(([data]) => data as T),
       publishReplay(1),
       refCount(),
     )
+  }
+
+  private fetchData(name: string) {
+    return this.http.get(`/assets/db/${name}.json`)
+  }
+
+  private fetchSprite(name: string) {
+    if (TABS.some(tab => tab.id === name)) {
+      return from(new Promise(resolve => {
+        const sprite = new Image()
+        sprite.onload = resolve
+        sprite.src = `/assets/sprites/${name}.png`
+      }))
+    }
+    return from([null])
   }
 
 }
