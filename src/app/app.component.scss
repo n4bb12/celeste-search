@@ -30,7 +30,7 @@
 
 .__header {
   width: 100%;
-  max-width: 64rem;
+  max-width: calc(30rem + 30rem - 1rem + #{2 * $spacing-viewport});
   padding: $spacing-viewport;
   margin: 0 auto;
 
