@@ -43,6 +43,10 @@
 
 .row {
   display: flex;
+
+  span {
+    white-space: nowrap;
+  }
 }
 
 .row.--header {
@@ -110,6 +114,8 @@
   }
 
   &.--right {
+    padding-left: 1em;
+    margin-left: auto;
     cursor: help;
     font-size: 90%;
   }
@@ -150,6 +156,7 @@
 .row.--vendor {
   margin-top: 1rem;
   margin-bottom: .25rem;
+  flex-wrap: wrap;
 }
 
 .row.--materials {

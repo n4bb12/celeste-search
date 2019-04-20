@@ -74,8 +74,9 @@
   <!-- RECIPE -->
   <div class="__recipe" *ngIf="item.recipe">
     <div class="row --recipe">
-      Craftable&nbsp;at&nbsp;<strong>{{ item.recipe.school }}</strong>&nbsp;School<span
-        *ngIf="item.recipe.level !== level">&nbsp;&nbsp;—&nbsp;&nbsp;Level
+      <span>Craftable at</span>
+      <span>&nbsp;<strong>{{ item.recipe.school }}&nbsp;School</strong></span>
+      <span *ngIf="item.recipe.level !== level">&nbsp;&nbsp;—&nbsp;&nbsp;Level
         {{ item.recipe.level }}</span>:
     </div>
     <div class="row --materials">
@@ -92,8 +93,9 @@
   <!-- VENDOR -->
   <div class="__vendors" *ngFor="let vendor of item.vendors">
     <div class="row --vendor">
-      Purchasable&nbsp;at&nbsp;<strong>{{ vendor.name }}</strong><span *ngIf="vendor.rotation">
-        &nbsp;({{ vendor.rotation }} Legendary Rotation)</span>:
+      <span>Purchasable at</span>
+      <span>&nbsp;<strong>{{ vendor.name }}</strong></span>
+      <span *ngIf="vendor.rotation">&nbsp;({{ vendor.rotation }} Legendary Rotation)</span>:
     </div>
 
     <div class="row --materials">
