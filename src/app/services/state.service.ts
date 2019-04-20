@@ -8,8 +8,8 @@ import { map, skip } from "rxjs/operators"
 })
 export class StateService {
 
-  private tabSubject = new BehaviorSubject(0)
-  private searchSubject = new BehaviorSubject("")
+  private tabSubject = new BehaviorSubject(null)
+  private searchSubject = new BehaviorSubject(null)
 
   get tab(): number {
     return this.tabSubject.value
@@ -32,16 +32,19 @@ export class StateService {
   }
 
   get tabChange(): Observable<number> {
-    return this.tabSubject.asObservable()
+    return this.tabSubject.asObservable().pipe(
+      skip(1),
+    )
   }
 
   get searchChange(): Observable<string> {
-    return this.searchSubject.asObservable()
+    return this.searchSubject.asObservable().pipe(
+      skip(1),
+    )
   }
 
   get changes() {
     return combineLatest(this.tabChange, this.searchChange).pipe(
-      skip(1),
       map(([tab, search]) => ({ tab, search })),
     )
   }
