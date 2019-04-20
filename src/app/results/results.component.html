@@ -3,7 +3,7 @@
   <div class="__grid" *ngIf="(items | async).length > 0"
     (window:resize)="handleResize()">
 
-    <ng-container *ngFor="let col of [0, 1, 2, 3, 4]">
+    <ng-container *ngFor="let col of [0, 1, 2]">
       <div class="__col"
         *ngIf="numColumns > col && (items | async).length > col">
 

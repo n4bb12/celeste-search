@@ -23,11 +23,6 @@
   transition: .2s ease-out;
   transition-property: box-shadow, background-color, opacity;
 
-  &:hover {
-    opacity: 1;
-    transition: none;
-  }
-
   &.--active {
     background: $theme-primary;
     color: $theme-text;

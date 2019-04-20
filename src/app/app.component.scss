@@ -5,9 +5,14 @@
   height: 100%;
 
   ng-scrollbar {
+    --scrollbar-size: .75rem;
+    --scrollbar-thumb-color: #{$theme-primary};
+    --scrollbar-thumb-hover-color: #{$theme-secondary};
+    --scrollbar-border-radius: #{$border-radius};
     width: 100%;
     height: 100%;
   }
+
 
   &::ng-deep {
     .ng-scroll-view {
@@ -16,10 +21,10 @@
       justify-content: flex-start;
       align-items: stretch;
     }
-    .ng-scrollbar-thumb {
-      @include elevation(2);
 
-      background-color: $theme-shadow;
+    .ng-scrollbar-thumb {
+      @include elevation(4);
+      border: 2px solid $theme-secondary;
     }
   }
 }
@@ -56,6 +61,13 @@
 .__footer {
   width: 100%;
   max-width: 40rem;
-  padding: (2 * $spacing-viewport) $spacing-viewport $spacing-viewport;
+  padding: 8rem $spacing-viewport 4rem;
   margin: 0 auto;
+}
+
+cis-back-to-top {
+  position: absolute;
+  z-index: 1;
+  right: $spacing-viewport;
+  bottom: $spacing-viewport;
 }

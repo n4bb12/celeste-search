@@ -6,6 +6,8 @@ import { SearchService, StateService } from "../services"
 
 import { hiddenRenderData } from "./hidden-render"
 
+const rem = 15
+
 @Component({
   selector: "cis-results",
   templateUrl: "./results.component.html",
@@ -39,7 +41,7 @@ export class ResultsComponent implements OnInit {
   }
 
   handleResize() {
-    const optimalColumns = Math.floor(window.innerWidth / 30 / 15)
+    const optimalColumns = Math.floor(window.innerWidth / 30 / rem)
     this.numColumns = Math.max(1, Math.min(optimalColumns, this.maxColumns))
   }
 

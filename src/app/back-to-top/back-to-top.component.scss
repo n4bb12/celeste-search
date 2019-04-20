@@ -1,22 +1,18 @@
 @import 'imports';
 
 :host {
-  position: absolute;
-  z-index: 1;
-  right: 2rem;
-  bottom: 2rem;
   display: block;
 }
 
 button {
   @include elevation(12);
 
-  border: .1rem solid $theme-secondary;
+  border: 2px solid $theme-secondary;
+  background: $theme-primary;
   position: relative;
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
-  background: $theme-primary;
   transition: opacity .1s ease-out;
   opacity: 0;
   pointer-events: none;

@@ -42,6 +42,11 @@ button {
   &.--active {
     background: rgba($theme-primary, .8)y;
   }
+
+  &:hover {
+    opacity: 1;
+    transition: none;
+  }
 }
 
 a {
@@ -70,4 +75,13 @@ pre {
 // Removes the native input X buttons in Edge
 ::-ms-clear {
   display:none;
+}
+
+// Remove the chrome focus background on mobile
+input,
+textarea,
+button,
+select,
+a {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
