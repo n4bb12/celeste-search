@@ -16,12 +16,18 @@ export class AppComponent {
     private state: StateService,
     private url: UrlService, // inject to trigger execution
   ) {
-    // prefetch data on tab change
     this.state.tabChange.subscribe(tab => {
-      this.db.shared.subscribe()
-
+      // prefetch tab data on tab change
       const dbName = TABS[tab].db
       this.db[dbName].subscribe()
+
+      // prefetch remaining data on app stable
+      this.db.shared.subscribe()
+      this.db.items.subscribe()
+      this.db.advisors.subscribe()
+      this.db.blueprints.subscribe()
+      this.db.designs.subscribe()
+      this.db.consumables.subscribe()
     })
   }
 
