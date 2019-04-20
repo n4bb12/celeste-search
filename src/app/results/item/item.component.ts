@@ -6,7 +6,7 @@ import {
   OnInit,
 } from "@angular/core"
 
-import { Item } from "../../interfaces"
+import { Item, Materials } from "../../interfaces"
 import { DbService } from "../../services"
 
 @Component({
@@ -20,7 +20,7 @@ export class ItemComponent implements OnInit {
   @Input() item: Item
 
   level: number
-  materials = {}
+  materials: Materials = {}
 
   constructor(
     private changeRef: ChangeDetectorRef,
@@ -30,10 +30,12 @@ export class ItemComponent implements OnInit {
   ngOnInit() {
     this.level = this.item.levels[this.item.levels.length - 1]
 
-    this.db.shared.subscribe(db => {
-      this.materials = db.materials
-      this.changeRef.detectChanges()
-    })
+    if (this.item.recipe) {
+      this.db.shared.subscribe(db => {
+        this.materials = db.materials
+        this.changeRef.detectChanges()
+      })
+    }
   }
 
   setLevel(level: number) {
