@@ -62,7 +62,7 @@ export class SearchService {
     })
 
     this.changes.pipe(
-      debounceTime(100),
+      debounceTime(200),
     ).subscribe(query => {
       this.url.update(query)
       this.update(query)
