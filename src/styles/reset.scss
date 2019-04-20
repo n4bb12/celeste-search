@@ -33,7 +33,7 @@ input {
 }
 
 button {
-  @include elevation(2);
+  @include elevation(4);
   background: rgba($theme-secondary, .8);
   cursor: pointer;
 
@@ -41,7 +41,6 @@ button {
   &:active,
   &.--active {
     background: rgba($theme-primary, .8)y;
-    @include elevation(8);
   }
 }
 
