@@ -5,8 +5,8 @@
   height: 100%;
 
   ng-scrollbar {
-    --scrollbar-size: .75rem;
-    --scrollbar-thumb-color: #{$theme-primary};
+    --scrollbar-size: .5rem;
+    --scrollbar-thumb-color: #{$theme-text};
     --scrollbar-thumb-hover-color: #{$theme-secondary};
     --scrollbar-border-radius: #{$border-radius};
     width: 100%;
@@ -24,7 +24,6 @@
 
     .ng-scrollbar-thumb {
       @include elevation(4);
-      border: 2px solid $theme-secondary;
     }
   }
 }

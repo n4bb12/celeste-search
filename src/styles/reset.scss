@@ -40,7 +40,7 @@ button {
   &:focus,
   &:active,
   &.--active {
-    background: rgba($theme-primary, .8)y;
+    background: rgba($theme-primary, .8);
   }
 
   &:hover {
