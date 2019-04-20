@@ -17,6 +17,11 @@
   max-width: 30rem;
 }
 
+.__prerender {
+  position: absolute;
+  visibility: hidden;
+}
+
 cis-item,
 cis-advisor,
 cis-blueprint {

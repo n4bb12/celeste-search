@@ -3,6 +3,8 @@ import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core"
 import { SearchService, StateService } from "../services"
 import { Item } from "./../interfaces/Item"
 
+import { hiddenRenderData } from "./hidden-render"
+
 @Component({
   selector: "cis-results",
   templateUrl: "./results.component.html",
@@ -18,6 +20,10 @@ export class ResultsComponent implements OnInit {
   readonly blueprints = this.search.blueprints
   readonly designs = this.search.designs
   readonly consumables = this.search.consumables
+
+  readonly hiddenRenderItem = hiddenRenderData.item
+  readonly hiddenRenderAdvisor = hiddenRenderData.advisor
+  readonly hiddenRenderBlueprint = hiddenRenderData.blueprint
 
   numColumns = 3
   maxColumns = 3
