@@ -16,9 +16,12 @@ export class UrlService {
     private state: StateService,
   ) {
     // update url when state changes
-    this.state.changes.subscribe(newState => {
-      this.router.navigate([], { queryParams: newState })
-    })
+    this.state.changes.pipe(
+      tap(value => {
+        const queryParams = this.querify(value)
+        this.router.navigate([], { queryParams })
+      }),
+    ).subscribe()
 
     // update state when url changes
     this.router.events.pipe(
@@ -28,6 +31,13 @@ export class UrlService {
         state.search = this.currentSearch()
       }),
     ).subscribe()
+  }
+
+  private querify(value) {
+    return Object.keys(value).reduce((result, key) => {
+      result[key] = `${value[key]}`.replace(/\s+/, "_")
+      return result
+    }, {})
   }
 
   private currentTab() {
