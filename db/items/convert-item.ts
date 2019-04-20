@@ -43,7 +43,11 @@ export async function convertItem(trait: Trait): Promise<Item> {
   item.vendors = await findAndConvertVendors(item)
   addToLegendaryRotation(item, trait)
 
-  item.effectsRange = trait.rarity === "legendary" && isReforgeable(trait)
+  if (trait.rarity === "legendary") {
+    item.effectsRange = isReforgeable(trait)
+  } else {
+    item.effectsRange = !item.vendors.some(vendor => vendor.currency !== "empire")
+  }
 
   item.search = await buildSearchString(item, trait)
 
