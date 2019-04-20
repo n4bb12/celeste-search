@@ -35,7 +35,7 @@ export class UrlService {
 
   private querify(value) {
     return Object.keys(value).reduce((result, key) => {
-      result[key] = `${value[key]}`.replace(/\s+/g, "_")
+      result[key] = `${value[key]}`.replace(/\s+/g, "__")
       return result
     }, {})
   }
@@ -51,7 +51,7 @@ export class UrlService {
     const params = this.activatedRoute.snapshot.queryParams
     const search = params.search || params.s || params.query || params.q || ""
 
-    return search.replace(/_+/g, " ")
+    return search.replace(/(?:__)+/g, " ")
   }
 
 }
