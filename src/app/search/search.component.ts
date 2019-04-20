@@ -39,6 +39,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.inputModel.valueChanges.pipe(
+      tap(() => this.scrollbarRef.scrollToTop()),
       sampleTime(200),
       distinctUntilChanged(),
       tap(input => this.state.search = input),
