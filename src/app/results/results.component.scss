@@ -18,8 +18,11 @@
 }
 
 .__prerender {
-  position: absolute;
+  position: relative;
+  width: 0;
+  height: 0;
   visibility: hidden;
+  overflow: hidden;
 }
 
 cis-item,
