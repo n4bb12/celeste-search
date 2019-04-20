@@ -22,12 +22,14 @@ export class AppComponent {
       this.db[dbName].subscribe()
 
       // prefetch remaining data on app stable
-      this.db.shared.subscribe()
-      this.db.items.subscribe()
-      this.db.advisors.subscribe()
-      this.db.blueprints.subscribe()
-      this.db.designs.subscribe()
-      this.db.consumables.subscribe()
+      requestAnimationFrame(() => {
+        this.db.shared.subscribe()
+        this.db.items.subscribe()
+        this.db.advisors.subscribe()
+        this.db.blueprints.subscribe()
+        this.db.designs.subscribe()
+        this.db.consumables.subscribe()
+      })
     })
   }
 
