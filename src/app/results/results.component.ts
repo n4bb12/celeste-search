@@ -19,8 +19,8 @@ export class ResultsComponent implements OnInit {
   readonly items = this.search.items
   readonly advisors = this.search.advisors
   readonly blueprints = this.search.blueprints
-  readonly designs = this.search.designs
-  readonly consumables = this.search.consumables
+  // readonly designs = this.search.designs
+  // readonly consumables = this.search.consumables
 
   readonly hiddenRenderItem = hiddenRenderData.item
   readonly hiddenRenderAdvisor = hiddenRenderData.advisor

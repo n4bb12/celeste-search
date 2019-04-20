@@ -72,20 +72,20 @@
 </ng-container>
 
 <!-- DESIGNS -->
-<ng-container *ngIf="(activeTabChange | async) === 3">
+<!-- <ng-container *ngIf="(activeTabChange | async) === 3">
   <div class="__grid">
     Designs
     <pre>{{ designs | async | json }}</pre>
   </div>
-</ng-container>
+</ng-container> -->
 
 <!-- CONSUMABLES -->
-<ng-container *ngIf="(activeTabChange | async) === 4">
+<!-- <ng-container *ngIf="(activeTabChange | async) === 4">
   <div class="__grid">
     Consumables
     <pre>{{ consumables | async | json }}</pre>
   </div>
-</ng-container>
+</ng-container> -->
 
 <div class="__prerender">
   <cis-item [item]="hiddenRenderItem"></cis-item>
