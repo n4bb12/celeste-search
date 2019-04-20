@@ -21,7 +21,6 @@ export async function convertItem(trait: Trait): Promise<Item> {
   const iconId = await downloadIcon(trait.icon, "items")
 
   const item: Item = {
-    id: trait.dbid,
     name,
     type,
     levels: trait.itemlevels.map(l => l - 3).filter(l => l > 0),

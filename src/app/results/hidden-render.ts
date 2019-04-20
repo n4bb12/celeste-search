@@ -7,7 +7,6 @@ export const hiddenRenderData: {
   blueprint: Blueprint,
 } = {
   item: {
-    id: 557,
     name: "Runic Heavy Bronze Armoring",
     type: "Armor Plating",
     levels: [

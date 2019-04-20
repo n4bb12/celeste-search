@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from "@angular/core"
 
+
+import { Advisor, Blueprint, Consumable, Design, Item } from "../interfaces"
 import { SearchService, StateService } from "../services"
-import { Item } from "./../interfaces/Item"
 
 import { hiddenRenderData } from "./hidden-render"
 
@@ -42,8 +43,8 @@ export class ResultsComponent implements OnInit {
     this.numColumns = Math.max(1, Math.min(optimalColumns, this.maxColumns))
   }
 
-  trackItem(index: number, item: Item) {
-    return item.id
+  trackItem(index: number, entry: Item | Advisor | Blueprint | Design | Consumable) {
+    return entry.name
   }
 
 }
