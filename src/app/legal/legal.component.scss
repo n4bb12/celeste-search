@@ -6,14 +6,3 @@
   text-align: center;
   color: $theme-text;
 }
-
-a {
-  color: inherit;
-  border-bottom: .1rem dotted $theme-secondary;
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: none;
-    border-bottom-style: solid;
-  }
-}

@@ -19,7 +19,7 @@ input, button, a {
   outline: none;
   border: none;
   padding: 0;
-  color: $theme-text;
+  color: inherit;
   font: inherit;
 }
 
@@ -52,9 +52,11 @@ button {
 a {
   cursor: pointer;
   text-decoration: none;
+  border-bottom: 1px dotted $theme-secondary;
 
   &:hover {
-    text-decoration: underline;
+    text-decoration: none;
+    border-bottom-style: solid;
   }
 }
 
