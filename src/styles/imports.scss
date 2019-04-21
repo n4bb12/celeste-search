@@ -28,3 +28,11 @@ $spacing-viewport: 5vmin;
 @mixin text-shadow() {
   text-shadow: 1px 0 1px $theme-shadow;
 }
+
+@mixin on-mobile() {
+  @media
+    (max-width: 599.99px) and (orientation: portrait),
+    (max-width: 959.99px) and (orientation: landscape) {
+    @content
+  }
+}

@@ -1,14 +1,6 @@
 @import "imports";
 
-// https://github.com/angular/material2/blob/8fad5d180f05500344c46bf1d661b587a25e3564/src/cdk/layout/breakpoints.ts#L24
-@media (max-width: 599.99px) and (orientation: portrait) {
-  :host {
-    display: none;
-  }
-}
-
-// https://github.com/angular/material2/blob/8fad5d180f05500344c46bf1d661b587a25e3564/src/cdk/layout/breakpoints.ts#L28
-@media (max-width: 959.99px) and (orientation: landscape) {
+@include on-mobile() {
   :host {
     display: none;
   }

@@ -71,3 +71,10 @@ cis-back-to-top {
   right: $spacing-viewport;
   bottom: $spacing-viewport;
 }
+
+@include on-mobile() {
+  .__header, .__body {
+    padding-left: $spacing-viewport;
+    padding-right: $spacing-viewport;
+  }
+}
