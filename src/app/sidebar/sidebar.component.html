@@ -1,0 +1,24 @@
+<button type="button" class="__open" (click)="open()">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+    <path fill="currentColor"
+      d="M17.5 6h-15a.5.5 0 0 1 0-1h15a.5.5 0 0 1 0 1zm0 5h-15a.5.5 0 0 1 0-1h15a.5.5 0 0 1 0 1zm0 5h-15a.5.5 0 0 1 0-1h15a.5.5 0 0 1 0 1z" />
+  </svg>
+</button>
+
+<div class="__sidebar" [class.--open]="isOpen" (window:keydown.escape)="close()"
+  (clickOutside)="close()" exclude=".__open">
+  <cis-clear class="__close" (clear)="close()"></cis-clear>
+
+  <div class="__setting">
+    <div class="__description">Precision: {{ settings.precision.value }}
+    </div>
+    <input class="__value" type="range" min="0" max="2" step="1"
+      [formControl]="settings.precision">
+  </div>
+  <div class="__setting">
+    <div class="__description">Maximum Columns:
+      {{ settings.maxColumns.value }}</div>
+    <input class="__value" type="range" min="1" max="5" step="1"
+      [formControl]="settings.maxColumns">
+  </div>
+</div>

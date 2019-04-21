@@ -4,11 +4,13 @@ import { ReactiveFormsModule } from "@angular/forms"
 import { BrowserModule } from "@angular/platform-browser"
 import { RouterModule } from "@angular/router"
 
+import { ClickOutsideModule } from "ng-click-outside"
 import { NgScrollbarModule } from "ngx-scrollbar"
 
 import { AppComponent } from "./app.component"
 import { AwaitFontDirective } from "./await-font.directive"
 import { BackToTopComponent } from "./back-to-top/back-to-top.component"
+import { ClearComponent } from "./clear/clear.component"
 import { LegalComponent } from "./legal/legal.component"
 import { EffectValuePipe } from "./pipes/effect-value.pipe"
 import { KeysPipe } from "./pipes/keys.pipe"
@@ -17,15 +19,17 @@ import { BlueprintComponent } from "./results/blueprint/blueprint.component"
 import { ItemComponent } from "./results/item/item.component"
 import { ResultsComponent } from "./results/results.component"
 import { SearchComponent } from "./search/search.component"
+import { SidebarComponent } from "./sidebar/sidebar.component"
 import { TabsComponent } from "./tabs/tabs.component"
 
 @NgModule({
   imports: [
-    BrowserModule,
+  BrowserModule,
     HttpClientModule,
     NgScrollbarModule,
     ReactiveFormsModule,
     RouterModule.forRoot([]),
+    ClickOutsideModule,
   ],
   declarations: [
     AdvisorComponent,
@@ -33,12 +37,14 @@ import { TabsComponent } from "./tabs/tabs.component"
     AwaitFontDirective,
     BackToTopComponent,
     BlueprintComponent,
+    ClearComponent,
     EffectValuePipe,
     ItemComponent,
     KeysPipe,
     LegalComponent,
     ResultsComponent,
     SearchComponent,
+    SidebarComponent,
     TabsComponent,
   ],
   bootstrap: [AppComponent],

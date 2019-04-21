@@ -1,6 +1,6 @@
-<div class="__grid" (window:resize)="adaptColumnsToWidth()">
+<div class="__grid" (window:resize)="updateNumColumns()">
 
-  <ng-container *ngFor="let col of [0, 1, 2]">
+  <ng-container *ngFor="let col of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]">
     <div class="__col" *ngIf="numColumns > col && displayed.length > col">
 
       <ng-container

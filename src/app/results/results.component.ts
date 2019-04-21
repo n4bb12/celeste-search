@@ -12,7 +12,9 @@ import { distinctUntilChanged, tap } from "rxjs/operators"
 
 import { Entity } from "../../../db/interfaces"
 import { SearchService, StateService, TABS } from "../services"
+import { SettingsService } from "../services/settings.service"
 
+import { combineLatest } from "rxjs"
 import { hiddenRenderData } from "./hidden-render"
 
 const rem = 15
@@ -34,7 +36,6 @@ export class ResultsComponent implements OnInit, OnDestroy {
   readonly hiddenRenderAdvisor = hiddenRenderData.advisor
   readonly hiddenRenderBlueprint = hiddenRenderData.blueprint
 
-  readonly maxColumns = 3
   numColumns = 3
   tab = 0
 
@@ -45,13 +46,15 @@ export class ResultsComponent implements OnInit, OnDestroy {
   constructor(
     private changeRef: ChangeDetectorRef,
     private search: SearchService,
+    private settings: SettingsService,
     private state: StateService,
   ) { }
 
   ngOnInit() {
-    this.adaptColumnsToWidth()
+    this.updateNumColumns()
     this.registerForTabChange()
     this.registerForResults()
+    this.registerForSettingsChanges()
     this.setupInfiniteScroll()
   }
 
@@ -61,9 +64,14 @@ export class ResultsComponent implements OnInit, OnDestroy {
     }
   }
 
-  adaptColumnsToWidth() {
+  updateNumColumns() {
     const optimalColumns = Math.floor(window.innerWidth / 30 / rem)
-    this.numColumns = Math.max(1, Math.min(optimalColumns, this.maxColumns))
+    const boundedColumns = Math.max(1, Math.min(optimalColumns, +this.settings.maxColumns.value))
+
+    if (this.numColumns !== boundedColumns) {
+      this.numColumns = boundedColumns
+      this.render()
+    }
   }
 
   trackResult(index: number, entity: Entity) {
@@ -80,13 +88,18 @@ export class ResultsComponent implements OnInit, OnDestroy {
 
   private registerForResults() {
     this.search.results.pipe(
-      distinctUntilChanged(),
       tap(changes => {
         this.filtered = changes
         this.displayed = empty
         this.pushChunk()
       }),
     ).subscribe()
+  }
+
+  private registerForSettingsChanges() {
+    this.settings.maxColumns.valueChanges.subscribe(() => {
+      requestAnimationFrame(() => this.updateNumColumns())
+    })
   }
 
   private setupInfiniteScroll() {

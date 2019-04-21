@@ -3,11 +3,12 @@ import {
   ChangeDetectorRef,
   Component,
   Input,
+  OnDestroy,
   OnInit,
 } from "@angular/core"
 
 import { Item, Materials } from "../../interfaces"
-import { DbService } from "../../services"
+import { DbService, SettingsService } from "../../services"
 
 @Component({
   selector: "cis-item",
@@ -15,16 +16,19 @@ import { DbService } from "../../services"
   styleUrls: ["./item.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ItemComponent implements OnInit {
+export class ItemComponent implements OnInit, OnDestroy {
 
   @Input() item: Item
 
   level: number
   materials: Materials = {}
 
+  private destroyed = false
+
   constructor(
     private changeRef: ChangeDetectorRef,
     private db: DbService,
+    private settings: SettingsService,
   ) { }
 
   ngOnInit() {
@@ -32,15 +36,29 @@ export class ItemComponent implements OnInit {
 
     if (this.item.recipe) {
       this.db.shared.subscribe(db => {
-        this.materials = db.materials
-        this.changeRef.detectChanges()
+        if (!this.destroyed) {
+          this.materials = db.materials
+          this.changeRef.detectChanges()
+        }
       })
     }
+
+    this.settings.precision.valueChanges.subscribe(() => {
+      if (!this.destroyed) {
+        this.changeRef.detectChanges()
+      }
+    })
+  }
+
+  ngOnDestroy() {
+    this.destroyed = true
   }
 
   setLevel(level: number) {
-    this.level = level
-    this.changeRef.detectChanges()
+    if (!this.destroyed) {
+      this.level = level
+      this.changeRef.detectChanges()
+    }
   }
 
 }

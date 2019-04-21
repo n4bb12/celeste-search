@@ -7,12 +7,12 @@
 button {
   @include elevation(12);
 
+  position: relative;
   border: 2px solid $theme-secondary;
   background: $theme-primary;
-  position: relative;
+  border-radius: 50%;
   width: 3rem;
   height: 3rem;
-  border-radius: 50%;
   transition: opacity .1s ease-out;
   opacity: 0;
   pointer-events: none;
@@ -24,8 +24,8 @@ button {
 }
 
 svg {
-  width: 50%;
-  height: 50%;
+  width: 1.5rem;
+  height: 1.5rem;
   position: absolute;
   top: 50%;
   left: 50%;

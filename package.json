@@ -55,6 +55,7 @@
     "fontfaceobserver": "^2.1.0",
     "linearicons": "^1.0.1",
     "lodash": "^4.17.11",
+    "ng-click-outside": "^4.0.0",
     "ngx-scrollbar": "^4.1.0",
     "normalize.scss": "^0.1.0",
     "rxjs": "~6.4.0",

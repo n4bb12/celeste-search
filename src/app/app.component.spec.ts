@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from "@angular/forms"
 import { BrowserModule } from "@angular/platform-browser"
 import { RouterModule } from "@angular/router"
 
+import { ClickOutsideModule } from "ng-click-outside"
 import { NgScrollbarModule } from "ngx-scrollbar"
 
 import { AppComponent } from "./app.component"
@@ -28,6 +29,7 @@ describe("AppComponent", () => {
         NgScrollbarModule,
         ReactiveFormsModule,
         RouterModule.forRoot([]),
+        ClickOutsideModule,
       ],
       declarations: [
         AdvisorComponent,
