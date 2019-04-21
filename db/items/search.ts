@@ -85,25 +85,25 @@ export async function buildSearchString(item: Item, trait: Trait): Promise<strin
   })
 
   if (isSoldByCyprus(trait)) {
-    builder.add("Sold by Cyprus")
+    builder.add("Cyprus")
   }
   if (isSoldByCouncilOfImhotep(trait)) {
-    builder.add("Sold by Council of Imhotep")
+    builder.add("Council of Imhotep")
   }
   if (isSoldByDelianLeague(trait)) {
-    builder.add("Sold by Delian League")
+    builder.add("Delian League")
   }
   if (isSoldByLegionOfCarthage(trait)) {
-    builder.add("Sold by Legion of Carthage")
+    builder.add("Legion of Carthage")
   }
   if (isHalloweenReward(trait)) {
-    builder.add("Halloween Event 2018")
+    builder.add("Halloween Event 2018 Reward")
   }
   if (isWinterReward(trait)) {
-    builder.add("Winter Event 2018")
+    builder.add("Winter Event 2018 Reward")
   }
   if (isQuestReward(trait)) {
-    builder.add("Quest")
+    builder.add("Quest Reward")
   }
   if (isReforgeable(trait)) {
     builder.add("Reforgeable")
