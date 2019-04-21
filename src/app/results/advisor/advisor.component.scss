@@ -111,6 +111,10 @@
   grid-column-gap: .375rem;
   grid-row-gap: .125rem;
   align-items: center;
+
+  .__rarity {
+    text-transform: capitalize;
+  }
 }
 
 .__mat-text {

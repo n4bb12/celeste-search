@@ -18,20 +18,21 @@ export class AdvisorComponent implements OnInit {
 
   @Input() advisor: Advisor
 
-  rarity: AdvisorRarity
+  rarity: AdvisorRarity & { id: string }
 
   constructor(
     private changeRef: ChangeDetectorRef,
   ) { }
 
   ngOnInit() {
-    const rarities = Object.values(this.advisor.rarities)
-    this.rarity = rarities[rarities.length - 1]
+    const rarities = Object.keys(this.advisor.rarities)
+    const highest = rarities[rarities.length - 1]
+    this.setRarity(highest)
   }
 
   setRarity(rarity: string) {
     this.advisor = { ...this.advisor }
-    this.rarity = { ...this.advisor.rarities[rarity] }
+    this.rarity = { ...this.advisor.rarities[rarity], id: rarity }
     this.changeRef.detectChanges()
   }
 
