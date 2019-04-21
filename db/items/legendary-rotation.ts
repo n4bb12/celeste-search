@@ -5,7 +5,7 @@ import { compareVendors } from "../shared/sort-vendors"
 
 import { isClassicItem, isEventReward, isQuestReward } from "./source"
 
-export function addToLegendaryRotation(item: Item, trait: Trait) {
+export function addToLegendaryRotation(item: Item, trait: Trait): void {
   if (item.rarity !== "legendary") {
     return
   }
