@@ -16,7 +16,7 @@ export const currencies = [
     iconName: "sparta",
   },
   {
-    resource: "Art/UserInterface/Map/QuestCompleteIconSelectedMouseOver_ua",
+    resource: "Art/UserInterface/Map/NewBattleQuestIcon_ua",
     iconName: "quest",
   },
   {
