@@ -1,8 +1,16 @@
 import { HttpClient } from "@angular/common/http"
 import { Injectable } from "@angular/core"
 
-import { forkJoin, from, Observable } from "rxjs"
-import { map, publishReplay, refCount, tap } from "rxjs/operators"
+import { Marketplace } from "celeste-api-types"
+import { forkJoin, from, interval, Observable } from "rxjs"
+import {
+  delay,
+  flatMap,
+  map,
+  publishReplay,
+  refCount,
+  startWith,
+} from "rxjs/operators"
 
 import { DB } from "../interfaces"
 
@@ -19,6 +27,14 @@ export class DbService {
   readonly blueprints = this.fetch<Pick<DB, "blueprints">>("blueprints")
   readonly designs = this.fetch<Pick<DB, "designs">>("designs")
   readonly consumables = this.fetch<Pick<DB, "consumables">>("consumables")
+
+  readonly marketplace = interval(1000 * 60).pipe(
+    startWith(-1),
+    delay(1000),
+    flatMap(() => this.http.get<Marketplace>("https://api.projectceleste.com/marketplace")),
+    publishReplay(1),
+    refCount(),
+  )
 
   constructor(
     private http: HttpClient,

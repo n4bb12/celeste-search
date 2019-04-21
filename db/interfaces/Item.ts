@@ -4,6 +4,7 @@ import { Vendor } from "./Vendor"
 
 export interface Item {
   name: string
+  trait: string
   type: string
   levels: number[]
   icon: number

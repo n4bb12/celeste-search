@@ -27,6 +27,7 @@ export async function convertItem(trait: Trait): Promise<Item> {
 
   const item: Item = {
     name,
+    trait: trait.name,
     type,
     levels: trait.itemlevels.map(l => l - 3).filter(l => l > 0),
     icon: iconId,

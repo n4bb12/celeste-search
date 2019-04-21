@@ -20,13 +20,16 @@
   <!-- EFFECTS -->
   <div class="row --effects">
     <ul>
-      <li *ngFor="let effect of item.effects || []" [class.--positive]="effect.beneficial"
+      <li *ngFor="let effect of item.effects || []"
+        [class.--positive]="effect.beneficial"
         [class.--negative]="!effect.beneficial">
-        <span>{{ effect.name }}<ng-container *ngIf="effect.scaling">:</ng-container></span>
+        <span>{{ effect.name }}<ng-container *ngIf="effect.scaling">:
+          </ng-container></span>
         <span class="__value --left" *ngIf="effect.scaling">
           {{ effect | effectValue:level:1 }}
         </span>
-        <span class="__value --right" *ngIf="effect.scaling && item.effectsRange">
+        <span class="__value --right"
+          *ngIf="effect.scaling && item.effectsRange">
           {{
           (effect | effectValue:level:0.95).slice(0, -1) +
           ' — ' +
@@ -81,9 +84,9 @@
     </div>
     <div class="row --materials">
       <ng-container *ngFor="let ref of item.recipe.materials">
-        <ng-container *ngIf="materials[ref.id] as mat">
-          <span class="__mat-amount">{{ ref.quantity }}</span>
+        <ng-container *ngIf="materials && materials[ref.id] as mat">
           <span class="icon--materials icon--materials--{{ mat.icon }}"></span>
+          <span class="__mat-amount">{{ ref.quantity }}</span>
           <span class="__mat-text --{{ mat.rarity }}">{{ mat.name }}</span>
         </ng-container>
       </ng-container>
@@ -95,13 +98,16 @@
     <div class="row --vendor">
       <span>Purchasable at</span>
       <span>&nbsp;<strong>{{ vendor.name }}</strong></span>
-      <span *ngIf="vendor.rotation">&nbsp;({{ vendor.rotation }} Legendary Rotation)</span>:
+      <span *ngIf="vendor.rotation">&nbsp;({{ vendor.rotation }} Legendary
+        Rotation)</span>:
     </div>
 
     <div class="row --materials">
-      <div class="icon--materials icon--materials--{{ vendor.currency.toLowerCase() }}"></div>
+      <div
+        class="icon--materials icon--materials--{{ vendor.currency.toLowerCase() }}">
+      </div>
       <div class="__mat-text">
-        <span>{{ vendor.price }}</span>
+        <span>{{ formatPrice([vendor.price]) }}</span>
         <span *ngIf="vendor.level !== level || item.levels.length > 1">
           &nbsp;&nbsp;—&nbsp;&nbsp;Level {{ vendor.level }}
         </span>
@@ -116,11 +122,29 @@
     </div>
 
     <div class="row --materials">
-      <div class="icon--materials icon--materials--{{ item.event || 'quest' }}"></div>
+      <div class="icon--materials icon--materials--{{ item.event || 'quest' }}">
+      </div>
       <div class="__mat-text">
         <span *ngIf="item.quest">{{ item.quest }}</span>
         <span *ngIf="item.event === 'halloween'">Halloween Event</span>
         <span *ngIf="item.event === 'winter'">Winter Event</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MARKETPLACE -->
+  <div class="__vendors" *ngIf="market?.length">
+    <div class="row --vendor">
+      <span>Sold at <strong>Global Marketplace</strong></span>:
+    </div>
+
+    <div class="row --materials">
+      <div class="icon--materials icon--materials--market">
+      </div>
+      <div class="__mat-text">
+        <span>{{ formatPrice(marketRange()) }}</span>&nbsp;
+        <span>&nbsp;&nbsp;—&nbsp;&nbsp;{{ marketCount()
+          | i18nPlural:{ '=1' : '1 Offer', 'other' : '# Offers' } }}</span>
       </div>
     </div>
   </div>

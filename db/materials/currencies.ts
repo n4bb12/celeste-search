@@ -27,4 +27,8 @@ export const currencies = [
     resource: "Art/Celeste/WinterEvent/WinterPoints_ua",
     iconName: "winter",
   },
+  {
+    resource: "Art/UserInterface/Icons/Buildings/AvatarMarket_ua",
+    iconName: "market",
+  },
 ]
