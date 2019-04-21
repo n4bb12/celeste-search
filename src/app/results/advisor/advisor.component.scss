@@ -60,7 +60,7 @@
     transition-property: color;
     box-shadow: none;
     text-transform: capitalize;
-    cursor: help;
+    cursor: pointer;
 
     &:hover, &:active {
       transition: none;

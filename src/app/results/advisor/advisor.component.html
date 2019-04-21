@@ -6,7 +6,7 @@
 
     <div class="row --rarities" *ngIf="(advisor.rarities | keys).length >= 1">
       <ng-container *ngFor="let rarity of advisor.rarities | keys">
-        <button type="button" class="__rarity --{{ rarity }}" (pointerenter)="setRarity(rarity)">
+        <button type="button" class="__rarity --{{ rarity }}" (click)="setRarity(rarity)">
           {{ rarity }}
           <div class="tooltip">{{ rarity }}</div>
         </button>
