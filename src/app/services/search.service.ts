@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core"
 import { BehaviorSubject, combineLatest } from "rxjs"
 import { debounceTime, tap } from "rxjs/operators"
 
-import { Advisor, Blueprint, Consumable, Design, Item } from "../interfaces"
+import { Entity, Replacements } from "../interfaces"
 
 import { DbService } from "./db.service"
 import { StateService } from "./state.service"
@@ -16,37 +16,28 @@ const EMPTY = []
 })
 export class SearchService {
 
-  readonly items = new BehaviorSubject<Item[]>(EMPTY)
-  readonly advisors = new BehaviorSubject<Advisor[]>(EMPTY)
-  readonly blueprints = new BehaviorSubject<Blueprint[]>(EMPTY)
-  readonly designs = new BehaviorSubject<Design[]>(EMPTY)
-  readonly consumables = new BehaviorSubject<Consumable[]>(EMPTY)
-
-  private readonly subjects = [
-    this.items,
-    this.advisors,
-    this.blueprints,
-    this.designs,
-    this.consumables,
-  ]
+  readonly results = new BehaviorSubject<Entity[]>(EMPTY)
 
   constructor(
     private db: DbService,
     private state: StateService,
   ) {
+    this.state.tabChange.pipe(
+      tap(() => this.results.next(EMPTY)),
+    ).subscribe()
+
     this.state.changes.pipe(
       debounceTime(200),
-      tap(value => this.update(value.tab, value.search)),
+      tap(value => this.performSearch(value.tab, value.search)),
     ).subscribe()
   }
 
-  private update(tab: number, search: string) {
+  private performSearch(tab: number, search: string) {
     console.time("search")
     const id = TABS[tab].id
-    const subject = this.subjects[tab]
 
-    if (!search) {
-      subject.next(EMPTY)
+    if (!search.trim()) {
+      this.results.next(EMPTY)
       console.timeEnd("search")
       return
     }
@@ -62,12 +53,12 @@ export class SearchService {
       const entries = db[id]
 
       if (search.trim() === "*") {
-        subject.next([...entries])
+        this.results.next([...entries])
         console.timeEnd("search")
         return
       }
 
-      const words = this.performReplacements(shared.replace, search)
+      const words = this.performReplacements(search, shared.replace)
         .split(/\s+/)
         .map(w => w.trim())
         .filter(w => w !== "")
@@ -88,19 +79,19 @@ export class SearchService {
         }
       }
 
-      subject.next(results.length ? results : EMPTY)
+      this.results.next(results.length ? results : EMPTY)
 
       console.timeEnd("search")
     })
   }
 
-  private performReplacements(replace: any, input: string): string {
+  private performReplacements(input: string, replacements: Replacements): string {
     let result = input
       .toLowerCase()
       .replace(/\s+/g, " ")
 
-    Object.keys(replace).forEach(string => {
-      result = result.replace(string, replace[string])
+    Object.keys(replacements).forEach(key => {
+      result = result.replace(key, replacements[key])
     })
 
     return result

@@ -1,94 +1,34 @@
-<!-- ITEMS -->
-<ng-container *ngIf="(activeTabChange | async) === 0">
-  <div class="__grid" *ngIf="(items | async).length > 0"
-    (window:resize)="handleResize()">
+<div class="__grid" (window:resize)="adaptColumnsToWidth()">
 
-    <ng-container *ngFor="let col of [0, 1, 2]">
-      <div class="__col"
-        *ngIf="numColumns > col && (items | async).length > col">
+  <ng-container *ngFor="let col of [0, 1, 2]">
+    <div class="__col" *ngIf="numColumns > col && displayed.length > col">
 
-        <ng-container
-          *ngFor="let item of items | async; trackBy: trackItem; index as i">
-          <ng-container *ngIf="i % numColumns === col">
+      <ng-container
+        *ngFor="let result of displayed; trackBy: trackResult; index as i">
+        <ng-container *ngIf="i % numColumns === col">
 
-            <cis-item class="fade-in" [item]="item"></cis-item>
-
+          <ng-container *ngIf="tab === 0">
+            <cis-item [item]="result"></cis-item>
           </ng-container>
-        </ng-container>
-
-      </div>
-    </ng-container>
-
-  </div>
-</ng-container>
-
-<!-- ADVISORS -->
-<ng-container *ngIf="(activeTabChange | async) === 1">
-  <div class="__grid" *ngIf="(advisors | async).length > 0"
-    (window:resize)="handleResize()">
-
-    <ng-container *ngFor="let col of [0, 1, 2, 3, 4]">
-      <div class="__col"
-        *ngIf="numColumns > col && (advisors | async).length > col">
-
-        <ng-container
-          *ngFor="let advisor of advisors | async; trackBy: trackItem; index as i">
-          <ng-container *ngIf="i % numColumns === col">
-
-            <cis-advisor class="fade-in" [advisor]="advisor"></cis-advisor>
-
+          <ng-container *ngIf="tab === 1">
+            <cis-advisor [advisor]="result"></cis-advisor>
           </ng-container>
-        </ng-container>
-
-      </div>
-    </ng-container>
-
-  </div>
-</ng-container>
-
-<!-- BLUEPRINTS -->
-<ng-container *ngIf="(activeTabChange | async) === 2">
-  <div class="__grid" *ngIf="(blueprints | async).length > 0"
-    (window:resize)="handleResize()">
-
-    <ng-container *ngFor="let col of [0, 1, 2, 3, 4]">
-      <div class="__col"
-        *ngIf="numColumns > col && (blueprints | async).length > col">
-
-        <ng-container
-          *ngFor="let blueprint of blueprints | async; trackBy: trackItem; index as i">
-          <ng-container *ngIf="i % numColumns === col">
-
-            <cis-blueprint class="fade-in" [blueprint]="blueprint">
-            </cis-blueprint>
-
+          <ng-container *ngIf="tab === 2">
+            <cis-blueprint [blueprint]="result"></cis-blueprint>
           </ng-container>
+
         </ng-container>
+      </ng-container>
 
-      </div>
-    </ng-container>
+    </div>
+  </ng-container>
 
-  </div>
-</ng-container>
-
-<!-- DESIGNS -->
-<!-- <ng-container *ngIf="(activeTabChange | async) === 3">
-  <div class="__grid">
-    Designs
-    <pre>{{ designs | async | json }}</pre>
-  </div>
-</ng-container> -->
-
-<!-- CONSUMABLES -->
-<!-- <ng-container *ngIf="(activeTabChange | async) === 4">
-  <div class="__grid">
-    Consumables
-    <pre>{{ consumables | async | json }}</pre>
-  </div>
-</ng-container> -->
+</div>
 
 <div class="__prerender">
   <cis-item [item]="hiddenRenderItem"></cis-item>
   <cis-advisor [advisor]="hiddenRenderAdvisor"></cis-advisor>
   <cis-blueprint [blueprint]="hiddenRenderBlueprint"></cis-blueprint>
 </div>
+
+<div class="__sentinel" #sentinal></div>

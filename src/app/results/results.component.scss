@@ -1,6 +1,7 @@
 @import "imports";
 
 :host {
+  position: relative;
   display: block;
 }
 
@@ -17,6 +18,13 @@
   max-width: 30rem;
 }
 
+cis-item,
+cis-advisor,
+cis-blueprint {
+  padding: .5rem;
+}
+
+
 .__prerender {
   position: relative;
   width: 0;
@@ -25,8 +33,14 @@
   overflow: hidden;
 }
 
-cis-item,
-cis-advisor,
-cis-blueprint {
-  padding: .5rem;
+.__sentinel {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  left: 0;
+  right: 0;
+  bottom: 25vh;
+  height: .2rem;
+  background: red;
+  visibility: hidden;
 }
