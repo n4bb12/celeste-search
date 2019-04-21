@@ -49,6 +49,7 @@ export async function convertItem(trait: Trait): Promise<Item> {
   }
 
   item.search = await buildSearchString(item, trait)
+  item.vendors = item.vendors.length ? item.vendors : undefined
 
   return item
 }
