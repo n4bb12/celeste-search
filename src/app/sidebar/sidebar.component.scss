@@ -49,6 +49,7 @@
   color: $theme-shadow;
   text-shadow: none;
   transition: ease-out .2s transform;
+  will-change: transform;
 
   &.--open {
     transform: translateX(0%);
