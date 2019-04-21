@@ -17,7 +17,7 @@ const columnWidth = "30rem"
 })
 export class AppComponent {
 
-  headerMaxWidth = this.calculateHeaderWidth(this.settings.maxColumns.value)
+  headerMaxWidth = this.calculateHeaderWidth(2)
 
   constructor(
     private db: DbService,
@@ -40,11 +40,6 @@ export class AppComponent {
         this.db.designs.subscribe()
         this.db.consumables.subscribe()
       })
-    })
-
-    // align header width with max columns
-    this.settings.maxColumns.valueChanges.subscribe(maxColumns => {
-      this.headerMaxWidth = this.calculateHeaderWidth(maxColumns)
     })
   }
 
