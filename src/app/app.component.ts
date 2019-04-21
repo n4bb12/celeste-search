@@ -1,8 +1,14 @@
 import { Component } from "@angular/core"
+import { DomSanitizer } from "@angular/platform-browser"
 
-import { TABS, UrlService } from "./services"
+import { SettingsService, TABS, UrlService } from "./services"
 import { DbService } from "./services/db.service"
 import { StateService } from "./services/state.service"
+
+const viewportSpacing = "5vmin"
+const bodySpacing = `3 * ${viewportSpacing}`
+const bodyNegativeMargin = "1rem"
+const columnWidth = "30rem"
 
 @Component({
   selector: "cis-root",
@@ -11,8 +17,12 @@ import { StateService } from "./services/state.service"
 })
 export class AppComponent {
 
+  headerMaxWidth = this.calculateHeaderWidth(this.settings.maxColumns.value)
+
   constructor(
     private db: DbService,
+    private sanitizer: DomSanitizer,
+    private settings: SettingsService,
     private state: StateService,
     private url: UrlService, // inject to trigger execution
   ) {
@@ -31,6 +41,17 @@ export class AppComponent {
         this.db.consumables.subscribe()
       })
     })
+
+    // align header width with max columns
+    this.settings.maxColumns.valueChanges.subscribe(maxColumns => {
+      this.headerMaxWidth = this.calculateHeaderWidth(maxColumns)
+    })
+  }
+
+  private calculateHeaderWidth(maxColumns: number) {
+    return this.sanitizer.bypassSecurityTrustStyle(
+      `calc(${maxColumns} * ${columnWidth} - ${bodyNegativeMargin} + 2 * ${bodySpacing})`,
+    ) as string
   }
 
 }

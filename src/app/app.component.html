@@ -1,6 +1,6 @@
 <ng-scrollbar #scrollbarRef [compact]="true" cisAwaitFont>
 
-  <div class="__header">
+  <div class="__header" [style.maxWidth]="headerMaxWidth">
     <div class="__form">
       <cis-search [scrollbarRef]="scrollbarRef"></cis-search>
       <cis-tabs></cis-tabs>
