@@ -126,8 +126,10 @@ export class ResultsComponent implements OnInit, OnDestroy {
     }
 
     const chunkSize = Math.round(window.innerHeight * this.numColumns / 150)
+    const offset = this.displayed.length
+    const limit = Math.min(offset + chunkSize, this.filtered.length)
 
-    for (let i = 0; i < chunkSize; i++) {
+    for (let i = offset; i < limit; i++) {
       const next = this.filtered[i]
       if (next) {
         this.displayed.push(next)
