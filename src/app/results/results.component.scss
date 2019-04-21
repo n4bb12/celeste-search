@@ -35,12 +35,12 @@ cis-blueprint {
 
 .__sentinel {
   position: absolute;
-  pointer-events: none;
-  user-select: none;
+  z-index: 1;
   left: 0;
   right: 0;
   bottom: 25vh;
-  height: .2rem;
-  background: red;
+  border-bottom: .2rem dotted red;
+  pointer-events: none;
+  user-select: none;
   visibility: hidden;
 }

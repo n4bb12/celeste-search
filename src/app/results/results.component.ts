@@ -16,7 +16,6 @@ import { SearchService, StateService, TABS } from "../services"
 import { hiddenRenderData } from "./hidden-render"
 
 const rem = 15
-const chunkSize = 12
 const empty = []
 
 @Component({
@@ -40,7 +39,7 @@ export class ResultsComponent implements OnInit, OnDestroy {
   tab = 0
 
   private filtered: Entity[] = []
-  private intersection: IntersectionObserver
+  private observer: IntersectionObserver
   displayed: Entity[] = []
 
   constructor(
@@ -57,8 +56,8 @@ export class ResultsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.intersection) {
-      this.intersection.disconnect()
+    if (this.observer) {
+      this.observer.disconnect()
     }
   }
 
@@ -93,12 +92,14 @@ export class ResultsComponent implements OnInit, OnDestroy {
   private setupInfiniteScroll() {
     const { sentinel, pushChunk } = this
 
-    this.intersection = new IntersectionObserver(
-      entries => entries[0].isIntersecting && pushChunk(),
-      { threshold: [1] },
-    )
+    const callback: IntersectionObserverCallback = entries => {
+      if (entries[0].isIntersecting) {
+        pushChunk()
+      }
+    }
 
-    this.intersection.observe(sentinel.nativeElement)
+    this.observer = new IntersectionObserver(callback)
+    this.observer.observe(sentinel.nativeElement)
   }
 
   private pushChunk = () => {
@@ -110,6 +111,8 @@ export class ResultsComponent implements OnInit, OnDestroy {
     if (this.displayed === empty) {
       this.displayed = []
     }
+
+    const chunkSize = Math.round(window.innerHeight * this.numColumns / 150)
 
     for (let i = 0; i < chunkSize; i++) {
       const next = this.filtered[i]
@@ -125,7 +128,9 @@ export class ResultsComponent implements OnInit, OnDestroy {
 
   private render() {
     console.log(`${TABS[this.tab].id}: ${this.displayed.length}/${this.filtered.length}`)
-    requestAnimationFrame(() => this.changeRef.detectChanges())
+    requestAnimationFrame(() => {
+      this.changeRef.detectChanges()
+    })
   }
 
 }
