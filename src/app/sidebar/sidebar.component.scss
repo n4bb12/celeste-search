@@ -7,29 +7,17 @@
 }
 
 .__open {
-  position: fixed;
   z-index: 1;
-  right: $spacing-viewport;
+  position: fixed;
   top: $spacing-viewport;
-  border: 2px solid $theme-secondary;
-  background: $theme-primary;
-  border-radius: 50%;
-  width: 3rem;
-  height: 3rem;
-
-  svg {
-    width: 1.5rem;
-    height: 1.5rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+  right: $spacing-viewport;
 }
 
 .__close {
-  top: $spacing-viewport;
-  right: $spacing-viewport;
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .__sidebar {
@@ -62,9 +50,23 @@
 
 .__description {
   font-weight: bold;
+  display: flex;
+  align-items: center;
 }
 
-.__value {
-  padding: 1rem 0;
+cis-icon {
+  width: 2em;
+  height: 2em;
+  margin-right: 1em;
+}
+
+input, p, .__hints {
+  margin: 0;
   width: 100%;
+  padding: .5em 0;
+}
+
+a {
+  display: inline-block;
+  padding: .5em 0;
 }

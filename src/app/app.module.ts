@@ -10,10 +10,14 @@ import { NgScrollbarModule } from "ngx-scrollbar"
 import { AppComponent } from "./app.component"
 import { AwaitFontDirective } from "./await-font.directive"
 import { BackToTopComponent } from "./back-to-top/back-to-top.component"
-import { ClearComponent } from "./clear/clear.component"
+import { IconButtonComponent } from "./icon-button/icon-button.component"
+import { IconComponent } from "./icon/icon.component"
 import { LegalComponent } from "./legal/legal.component"
 import { EffectValuePipe } from "./pipes/effect-value.pipe"
 import { KeysPipe } from "./pipes/keys.pipe"
+import {
+  PrimaryButtonComponent,
+} from "./primary-button/primary-button.component"
 import { AdvisorComponent } from "./results/advisor/advisor.component"
 import { BlueprintComponent } from "./results/blueprint/blueprint.component"
 import { ItemComponent } from "./results/item/item.component"
@@ -37,11 +41,13 @@ import { TabsComponent } from "./tabs/tabs.component"
     AwaitFontDirective,
     BackToTopComponent,
     BlueprintComponent,
-    ClearComponent,
     EffectValuePipe,
+    IconButtonComponent,
+    IconComponent,
     ItemComponent,
     KeysPipe,
     LegalComponent,
+    PrimaryButtonComponent,
     ResultsComponent,
     SearchComponent,
     SidebarComponent,

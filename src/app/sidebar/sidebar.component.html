@@ -1,30 +1,49 @@
-<button type="button" class="__open" (click)="open()">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-    <path fill="currentColor"
-      d="M17.5 6h-15a.5.5 0 0 1 0-1h15a.5.5 0 0 1 0 1zm0 5h-15a.5.5 0 0 1 0-1h15a.5.5 0 0 1 0 1zm0 5h-15a.5.5 0 0 1 0-1h15a.5.5 0 0 1 0 1z" />
-  </svg>
-</button>
+<cis-primary-button icon="menu" class="__open" (click)="open()">
+</cis-primary-button>
 
 <div class="__sidebar" [class.--open]="isOpen" (window:keydown.escape)="close()"
   (clickOutside)="close()" exclude=".__open">
-  <cis-clear class="__close" (clear)="close()"></cis-clear>
+
+  <cis-icon-button icon="close" class="__close" (click)="close()">
+  </cis-icon-button>
 
   <div class="__setting">
-    <div class="__description">Precision: {{ precision.value }}
+    <div class="__description">
+      <cis-icon icon="precision"></cis-icon>
+      Precision: {{ precision.value }}
     </div>
     <input class="__value" type="range" min="0" max="2" step="1"
       [formControl]="precision">
   </div>
 
   <div class="__setting">
-    <div class="__description">Maximum Columns:
-      {{  maxColumns.value }}</div>
+    <div class="__description">
+      <cis-icon icon="columns"></cis-icon>
+      Maximum Columns: {{  maxColumns.value }}
+    </div>
     <input class="__value" type="range" min="1" max="5" step="1"
       [formControl]=" maxColumns">
   </div>
 
   <div class="__setting">
-    <div class="__description">Search Hints 🥇</div>
-    <p>Type <code>*</code> to list all results</p>
+    <div class="__description">
+      <cis-icon icon="hints"></cis-icon>
+      Search Hints
+    </div>
+    <div class="__hints">
+      <p>Type <code>*</code> to list all results</p>
+    </div>
   </div>
+
+  <div class="__setting">
+    <div class="__description">
+      <cis-icon icon="bug"></cis-icon>
+      Report a Bug
+    </div>
+    <p>
+      <a href="https://github.com/n4bb12/celeste-item-search/issues/new"
+        target="_blank">Create an issue</a>
+    </p>
+  </div>
+
 </div>

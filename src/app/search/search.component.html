@@ -1,11 +1,11 @@
-<div class="__input-container"
-  (window:pointerup)="keepInputFocused()">
+<div class="__input-container" (window:pointerup)="keepInputFocused()">
 
   <input type="text" class="__input" placeholder="Search" aria-label="Search"
     autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
     [formControl]="inputModel" #inputRef />
 
-  <cis-clear (clear)="clear()" *ngIf="inputModel.valueChanges | async">
-  </cis-clear>
+  <cis-icon-button icon="clear" (click)="clear()"
+    *ngIf="inputModel.valueChanges | async">
+  </cis-icon-button>
 
 </div>

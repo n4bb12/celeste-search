@@ -1,0 +1,23 @@
+@import 'imports';
+
+:host {
+  display: block;
+}
+
+button {
+  @include elevation(12);
+
+  position: relative;
+  border: 2px solid $theme-secondary;
+  background: $theme-primary;
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+
+  cis-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}

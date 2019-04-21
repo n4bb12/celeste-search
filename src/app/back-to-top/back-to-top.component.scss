@@ -4,30 +4,13 @@
   display: block;
 }
 
-button {
-  @include elevation(12);
-
-  position: relative;
-  border: 2px solid $theme-secondary;
-  background: $theme-primary;
-  border-radius: 50%;
-  width: 3rem;
-  height: 3rem;
-  transition: opacity .1s ease-out;
+cis-primary-button {
   opacity: 0;
   pointer-events: none;
+  transition: opacity .1s ease-out;
 
   &.--shown {
     opacity: 1;
     pointer-events: unset;
   }
-}
-
-svg {
-  width: 1.5rem;
-  height: 1.5rem;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
