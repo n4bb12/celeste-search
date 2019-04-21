@@ -16,7 +16,7 @@ async function get(resource: string, spriteName: string, iconName?: string) {
 
   const path = resource.replace(/\\/g, "/")
   const spriteInput = `generated/sprites/${spriteName}/${iconName || iconId}.png`
-  const url = `https://images.projectceleste.com/Art/${path}.png`
+  const url = `https://images.projectceleste.com/${path}.png`
   const options = { responseType: "arraybuffer" }
 
   const filename = await download(url, options)

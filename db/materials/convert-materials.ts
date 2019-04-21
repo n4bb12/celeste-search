@@ -4,16 +4,16 @@ import { downloadIcon } from "../download"
 import { Material } from "../interfaces"
 import { translateEn } from "../shared/convert-text"
 
-export async function convertMaterial(apiMaterial: ApiMaterial): Promise<Material> {
-  const name = await translateEn(apiMaterial.displaynameid)
-  const icon = await downloadIcon(apiMaterial.icon, "materials")
-  const rarity = apiMaterial.rarity.substr("cRarity".length).toLowerCase()
+export async function convertMaterial(material: ApiMaterial): Promise<Material> {
+  const name = await translateEn(material.displaynameid)
+  const iconId = await downloadIcon(`Art/${material.icon}`, "materials")
+  const rarity = material.rarity.substr("cRarity".length).toLowerCase()
 
-  const material: Material = {
+  const result: Material = {
     name,
-    icon,
+    icon: iconId,
     rarity,
   }
 
-  return material
+  return result
 }

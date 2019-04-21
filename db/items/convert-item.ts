@@ -18,7 +18,7 @@ import { isReforgeable } from "./source"
 export async function convertItem(trait: Trait): Promise<Item> {
   const name = await translateEn(trait.displaynameid, trait.name)
   const type = await translateEn(trait.rollovertextid)
-  const iconId = await downloadIcon(trait.icon, "items")
+  const iconId = await downloadIcon(`Art/${trait.icon}`, "items")
 
   const item: Item = {
     name,

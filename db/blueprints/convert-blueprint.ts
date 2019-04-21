@@ -15,7 +15,7 @@ export async function convertBlueprint(blueprint: ApiBlueprint): Promise<Bluepri
     || blueprint.displaynameid && await translateEn(blueprint.displaynameid)
     || blueprint.name
   const description = await translateEn(blueprint.rollovertextid)
-  const iconId = await downloadIcon(blueprint.icon, "blueprints")
+  const iconId = await downloadIcon(`Art/${blueprint.icon}`, "blueprints")
   const rarity = blueprint.rarity.replace("cRarity", "").toLowerCase()
   const materials = blueprint.cost.material.map(mat => {
     return {

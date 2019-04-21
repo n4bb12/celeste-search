@@ -15,7 +15,7 @@ import { buildSearchString } from "./search"
 export async function convertAdvisor(advisor: ApiAdvisor): Promise<Advisor> {
   const name = await translateEn(advisor.displaynameid)
   const description = await translateEn(advisor.displaydescriptionid)
-  const iconId = await downloadIcon(advisor.icon, "advisors")
+  const iconId = await downloadIcon(`Art/${advisor.icon}`, "advisors")
   const civilization = convertCivilization(advisor.civilization)
 
   const rarities: Advisor["rarities"] = {

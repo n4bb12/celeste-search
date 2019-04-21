@@ -35,6 +35,7 @@
     "dev": "ng serve --open",
     "e2e": "ng e2e",
     "lint": "ng lint",
+    "gulp": "gulp",
     "serve": "ng serve",
     "start": "ng serve",
     "test": "ng test"

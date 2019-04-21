@@ -80,7 +80,7 @@ body {
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: $theme-secondary;
+  background-color: $theme-primary;
 ${rules.join(eol + eol)}
 }
 `

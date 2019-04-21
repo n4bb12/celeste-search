@@ -5,20 +5,28 @@ import { convertMaterial } from "./convert-materials"
 
 const currencies = [
   {
-    resource: "UserInterface/CapCity/Coin_ua",
+    resource: "Art/UserInterface/CapCity/Coin_ua",
     iconName: "coin",
   },
   {
-    resource: "UserInterface/CapCity/Button_EmpireStore",
+    resource: "Art/UserInterface/CapCity/Button_EmpireStore",
     iconName: "empire",
   },
   {
-    resource: "UserInterface/Map/UI_Region_Shortcuts/RegionShieldCrete_Normal_ua",
+    resource: "Art/UserInterface/Map/UI_Region_Shortcuts/RegionShieldCrete_Normal_ua",
     iconName: "crete",
   },
   {
-    resource: "UserInterface/Map/UI_Region_Shortcuts/RegionShieldSparta_Normal_ua",
+    resource: "Art/UserInterface/Map/UI_Region_Shortcuts/RegionShieldSparta_Normal_ua",
     iconName: "sparta",
+  },
+  {
+    resource: "Art/Celeste/HalloweenEvent/HalloweenPoints_ua",
+    iconName: "halloween",
+  },
+  {
+    resource: "Art/Celeste/WinterEvent/WinterPoints_ua",
+    iconName: "winter",
   },
 ]
 
