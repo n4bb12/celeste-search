@@ -12,5 +12,7 @@ export interface Item {
   effectsRange?: boolean
   recipe?: Recipe
   vendors?: Vendor[]
+  quest?: string
+  event?: "halloween" | "winter"
   search: string
 }

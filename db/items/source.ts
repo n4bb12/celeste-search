@@ -1,5 +1,7 @@
 import { Trait } from "celeste-api-types"
 
+import { quests } from "./quests"
+
 const cyprusLegendaries = [
   "ArrowOH_L001",
   "Bow1H_L001",
@@ -77,6 +79,10 @@ export function isSoldForCoin(trait: Trait) {
 
 export function isQuestReward(trait: Trait) {
   return questRewards.includes(trait.name)
+}
+
+export function getQuestName(trait: Trait) {
+  return quests[trait.name]
 }
 
 export function isHalloweenReward(trait: Trait) {

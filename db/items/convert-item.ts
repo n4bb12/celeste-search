@@ -9,7 +9,12 @@ import { convertEffects } from "./convert-effects"
 import { findAndConvertRecipe } from "./convert-recipe"
 import { addToLegendaryRotation } from "./legendary-rotation"
 import { buildSearchString } from "./search"
-import { isReforgeable } from "./source"
+import {
+  getQuestName,
+  isHalloweenReward,
+  isReforgeable,
+  isWinterReward,
+} from "./source"
 
 /**
  * Converts items from their API format to the format
@@ -30,6 +35,8 @@ export async function convertItem(trait: Trait): Promise<Item> {
     effectsRange: undefined,
     recipe: undefined,
     vendors: undefined,
+    quest: getQuestName(trait),
+    event: isHalloweenReward(trait) ? "halloween" : isWinterReward(trait) ? "winter" : undefined,
     search: undefined,
   }
 

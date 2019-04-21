@@ -109,4 +109,20 @@
     </div>
   </div>
 
+  <!-- QUEST -->
+  <div class="__vendors" *ngIf="item.quest || item.event">
+    <div class="row --vendor">
+      <span>Reward for</span>:
+    </div>
+
+    <div class="row --materials">
+      <div class="icon--materials icon--materials--{{ item.event || 'quest' }}"></div>
+      <div class="__mat-text">
+        <span *ngIf="item.quest">{{ item.quest }}</span>
+        <span *ngIf="item.event === 'halloween'">Halloween Event</span>
+        <span *ngIf="item.event === 'winter'">Winter Event</span>
+      </div>
+    </div>
+  </div>
+
 </div>
