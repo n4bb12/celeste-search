@@ -2,19 +2,21 @@ import { Injectable } from "@angular/core"
 import { FormControl } from "@angular/forms"
 
 export interface Settings {
-  precision: string
-  maxColumns: string
+  precision: number
+  maxColumns: number
 }
 
-const key = "setting"
+const storageKey = "setting"
 
 @Injectable({
   providedIn: "root",
 })
 export class SettingsService {
 
-  readonly precision = new FormControl()
-  readonly maxColumns = new FormControl()
+  readonly controls = {
+    precision: new FormControl(),
+    maxColumns: new FormControl(),
+  }
 
   constructor() {
     this.init()
@@ -24,21 +26,29 @@ export class SettingsService {
 
   private defaults(): Settings {
     return {
-      precision: "1",
-      maxColumns: "3",
+      precision: 1,
+      maxColumns: 3,
     }
   }
 
+  private snapshot(): Settings {
+    return Object.keys(this.controls).reduce((result, key) => {
+      result[key] = this.controls[key].value
+      return result
+    }, {} as Settings)
+  }
+
   private save() {
-    window.localStorage.setItem(key, JSON.stringify({
-      precision: this.precision.value,
-      maxColumns: this.maxColumns.value,
-    }))
+    const settings = this.snapshot()
+    const storageValue = JSON.stringify(settings)
+
+    window.localStorage.setItem(storageKey, storageValue)
   }
 
   private load(): Settings {
     try {
-      return JSON.parse(window.localStorage.getItem(key)) || this.defaults()
+      const storageValue = window.localStorage.getItem(storageKey)
+      return storageValue && JSON.parse(storageValue) || this.defaults()
     } catch (error) {
       console.error(error)
       return this.defaults()
@@ -48,15 +58,16 @@ export class SettingsService {
   private init() {
     const settings = this.load()
 
-    this.precision.setValue(settings.precision)
-    this.maxColumns.setValue(settings.maxColumns)
+    Object.keys(this.controls).forEach(key => {
+      this.controls[key].setValue(settings[key])
+    })
 
     this.save()
   }
 
   private syncStorageChanges() {
     window.addEventListener("storage", event => {
-      if (event.key !== key) {
+      if (event.key !== storageKey) {
         return
       }
       this.init()
@@ -64,8 +75,9 @@ export class SettingsService {
   }
 
   private syncMemoryChanges() {
-    this.precision.valueChanges.subscribe(() => this.save())
-    this.maxColumns.valueChanges.subscribe(() => this.save())
+    Object.values(this.controls).forEach(formControl => {
+      formControl.valueChanges.subscribe(() => this.save())
+    })
   }
 
 }

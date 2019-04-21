@@ -10,17 +10,19 @@
   <cis-clear class="__close" (clear)="close()"></cis-clear>
 
   <div class="__setting">
-    <div class="__description">Precision: {{ settings.precision.value }}
+    <div class="__description">Precision: {{ precision.value }}
     </div>
     <input class="__value" type="range" min="0" max="2" step="1"
-      [formControl]="settings.precision">
+      [formControl]="precision">
   </div>
+
   <div class="__setting">
     <div class="__description">Maximum Columns:
-      {{ settings.maxColumns.value }}</div>
+      {{  maxColumns.value }}</div>
     <input class="__value" type="range" min="1" max="5" step="1"
-      [formControl]="settings.maxColumns">
+      [formControl]=" maxColumns">
   </div>
+
   <div class="__setting">
     <div class="__description">Search Hints 🥇</div>
     <p>Type <code>*</code> to list all results</p>

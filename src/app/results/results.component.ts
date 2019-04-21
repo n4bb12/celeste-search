@@ -66,7 +66,7 @@ export class ResultsComponent implements OnInit, OnDestroy {
 
   updateNumColumns() {
     const optimalColumns = Math.floor(window.innerWidth / 30 / rem)
-    const boundedColumns = Math.max(1, Math.min(optimalColumns, +this.settings.maxColumns.value))
+    const boundedColumns = Math.max(1, Math.min(optimalColumns, +this.settings.controls.maxColumns.value))
 
     if (this.numColumns !== boundedColumns) {
       this.numColumns = boundedColumns
@@ -97,7 +97,7 @@ export class ResultsComponent implements OnInit, OnDestroy {
   }
 
   private registerForSettingsChanges() {
-    this.settings.maxColumns.valueChanges.subscribe(() => {
+    this.settings.controls.maxColumns.valueChanges.subscribe(() => {
       requestAnimationFrame(() => this.updateNumColumns())
     })
   }

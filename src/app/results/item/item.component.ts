@@ -43,7 +43,7 @@ export class ItemComponent implements OnInit, OnDestroy {
       })
     }
 
-    this.settings.precision.valueChanges.subscribe(() => {
+    this.settings.controls.precision.valueChanges.subscribe(() => {
       if (!this.destroyed) {
         this.changeRef.detectChanges()
       }

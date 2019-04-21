@@ -16,6 +16,9 @@ export class SidebarComponent {
 
   isOpen = false
 
+  readonly precision = this.settings.controls.precision
+  readonly maxColumns = this.settings.controls.maxColumns
+
   constructor(
     private changeRef: ChangeDetectorRef,
     public settings: SettingsService,

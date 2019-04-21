@@ -16,7 +16,7 @@ export class EffectValuePipe implements PipeTransform {
   transform(effect: ItemEffect, level: number, modifier: number): string {
     const base = (effect.amount - 1) * 100 + effect.scaling * 100 * (level + 3)
     const modified = base * modifier
-    const precision = +this.settings.precision.value
+    const precision = +this.settings.controls.precision.value
 
     const sign = base < 0 ? "-" : "+"
     const value = this.toFixed(Math.abs(modified), precision)
