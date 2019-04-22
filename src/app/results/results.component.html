@@ -7,21 +7,23 @@
         *ngFor="let result of displayed; trackBy: trackResult; index as i">
         <ng-container *ngIf="i % numColumns === col">
 
-          <ng-container *ngIf="tab === 0">
-            <cis-item [item]="result"></cis-item>
-          </ng-container>
-          <ng-container *ngIf="tab === 1">
-            <cis-advisor [advisor]="result"></cis-advisor>
-          </ng-container>
-          <ng-container *ngIf="tab === 2">
-            <cis-blueprint [blueprint]="result"></cis-blueprint>
-          </ng-container>
-          <ng-container *ngIf="tab === 3">
-            <cis-design [design]="result"></cis-design>
-          </ng-container>
-          <ng-container *ngIf="tab === 4">
-            <cis-consumable [consumable]="result"></cis-consumable>
-          </ng-container>
+          <div class="fade-in">
+            <ng-container *ngIf="tab === 0">
+              <cis-item [item]="result"></cis-item>
+            </ng-container>
+            <ng-container *ngIf="tab === 1">
+              <cis-advisor [advisor]="result"></cis-advisor>
+            </ng-container>
+            <ng-container *ngIf="tab === 2">
+              <cis-blueprint [blueprint]="result"></cis-blueprint>
+            </ng-container>
+            <ng-container *ngIf="tab === 3">
+              <cis-design [design]="result"></cis-design>
+            </ng-container>
+            <ng-container *ngIf="tab === 4">
+              <cis-consumable [consumable]="result"></cis-consumable>
+            </ng-container>
+          </div>
 
         </ng-container>
       </ng-container>
