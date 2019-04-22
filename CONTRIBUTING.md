@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img alt="Logo" src="assets/good-guy.png" height="80">
+  <img alt="Logo" src="assets/logo.png" height="80">
   Celeste Item Search
 </h1>
 

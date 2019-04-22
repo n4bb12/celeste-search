@@ -3,7 +3,7 @@ const del = require("del")
 const responsive = require("gulp-responsive")
 
 const paths = {
-  in: "assets/good-guy.png",
+  in: "assets/logo.png",
   out: "generated/meta",
 }
 
