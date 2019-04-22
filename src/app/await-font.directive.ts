@@ -15,7 +15,7 @@ const defaultOptions: AwaitFontOptions = {
   family: "Lato",
   weight: 400,
   style: "normal",
-  timeout: 500,
+  timeout: 1000,
   transition: "opacity .4s ease-out",
 }
 
