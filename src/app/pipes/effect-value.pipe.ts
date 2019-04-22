@@ -19,18 +19,10 @@ export class EffectValuePipe implements PipeTransform {
     const precision = +this.settings.controls.precision.value
 
     const sign = base < 0 ? "-" : "+"
-    const value = this.toFixed(Math.abs(modified), precision)
+    const value = Math.abs(modified).toFixed(precision)
     const unit = "%"
 
     return sign + value + unit
-  }
-
-  private toFixed(value: number, precision: number): string {
-    return this.toPrecisionFloor(value, precision).toFixed(precision)
-  }
-
-  private toPrecisionFloor(value: number, precision: number): number {
-    return Math.floor(Math.abs(value) * Math.pow(10, precision)) / Math.pow(10, precision)
   }
 
 }
