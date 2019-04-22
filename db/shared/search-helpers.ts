@@ -7,16 +7,12 @@ export class SearchBuilder {
   private words: string[] = []
 
   add(value: string | number) {
-    const word = `${value}`
-    this.words.push(word)
-    this.words.push(simplify(word))
     this.addStrict(value)
+    this.words.push(simplify(`${value}`))
   }
 
   addStrict(value: string | number) {
-    const word = `${value}`
-    this.words.push(word.replace(/\s+/g, WORD_SEPARATOR))
-    this.words.push(simplify(word).replace(/\s+/g, WORD_SEPARATOR))
+    this.words.push(`${value}`)
   }
 
   build() {

@@ -1,11 +1,7 @@
 import { Trait } from "celeste-api-types"
 
-import { Item, Materials, Replacements } from "../interfaces"
-import {
-  SearchBuilder,
-  simplify,
-  WORD_SEPARATOR,
-} from "../shared/search-helpers"
+import { Item } from "../interfaces"
+import { SearchBuilder } from "../shared/search-helpers"
 import {
   searchByEffects,
   searchByLevels,
@@ -35,7 +31,7 @@ export async function buildSearchString(item: Item, trait: Trait): Promise<strin
   builder.add("gears")
   builder.add("items")
 
-  builder.add(trait.name)
+  builder.addStrict(trait.name)
 
   builder.add(item.name)
   builder.add(item.rarity)
@@ -132,39 +128,4 @@ export async function buildSearchString(item: Item, trait: Trait): Promise<strin
   }
 
   return builder.build()
-}
-
-export function buildSearchReplacementMap(items: Item[], materials: Materials): Replacements {
-  const map = {}
-
-  function searchAsSingleWord(str: string): void {
-    str = simplify(str)
-    if (str.includes(" ")) {
-      map[str] = str.replace(/\s+/g, WORD_SEPARATOR)
-    }
-  }
-
-  searchAsSingleWord("level ")
-  searchAsSingleWord("bonus damage")
-
-  items.map(item => item.type)
-    .forEach(searchAsSingleWord)
-
-  items.forEach(item => {
-    (item.effects || [])
-      .map(effect => effect.name)
-      .forEach(searchAsSingleWord);
-    (item.vendors || [])
-      .map(vendor => vendor.name)
-      .forEach(searchAsSingleWord)
-  })
-
-  Object.values(materials).forEach(material => {
-    searchAsSingleWord(material.name)
-    searchAsSingleWord(material.name.replace(/'/, ""))
-    searchAsSingleWord(simplify(material.name))
-    searchAsSingleWord(simplify(material.name).replace(/'/, ""))
-  })
-
-  return map
 }

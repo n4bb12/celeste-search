@@ -78,12 +78,12 @@
   <div class="__recipe" *ngIf="item.recipe">
     <div class="row --recipe">
       <span>Craftable at</span>
-      <span>&nbsp;<strong>{{ item.recipe.school }}&nbsp;School</strong></span>
-      <span *ngIf="item.recipe.level !== level">&nbsp;&nbsp;—&nbsp;&nbsp;Level
+      <span>&nbsp;<strong>{{ item.recipe!.school }}&nbsp;School</strong></span>
+      <span *ngIf="item.recipe!.level !== level">&nbsp;&nbsp;—&nbsp;&nbsp;Level
         {{ item.recipe.level }}</span>:
     </div>
     <div class="row --materials">
-      <ng-container *ngFor="let ref of item.recipe.materials">
+      <ng-container *ngFor="let ref of item.recipe!.materials">
         <ng-container *ngIf="materials && materials[ref.id] as mat">
           <span class="icon--materials icon--materials--{{ mat.icon }}"></span>
           <span class="__mat-amount">{{ ref.quantity }}</span>

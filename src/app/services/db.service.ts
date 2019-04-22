@@ -21,7 +21,7 @@ import { TABS } from "./tabs"
 })
 export class DbService {
 
-  readonly shared = this.fetch<Pick<DB, "materials" | "replace">>("shared")
+  readonly shared = this.fetch<Pick<DB, "materials">>("shared")
   readonly items = this.fetch<Pick<DB, "items">>("items")
   readonly advisors = this.fetch<Pick<DB, "advisors">>("advisors")
   readonly blueprints = this.fetch<Pick<DB, "blueprints">>("blueprints")

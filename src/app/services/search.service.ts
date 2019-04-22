@@ -1,9 +1,10 @@
 import { Injectable } from "@angular/core"
 
+import { uniq } from "lodash"
 import { BehaviorSubject, combineLatest } from "rxjs"
 import { debounceTime, tap } from "rxjs/operators"
 
-import { Entity, Replacements } from "../interfaces"
+import { Entity } from "../interfaces"
 
 import { DbService } from "./db.service"
 import { StateService } from "./state.service"
@@ -58,10 +59,7 @@ export class SearchService {
         return
       }
 
-      const words = this.performReplacements(search, shared.replace)
-        .split(/\s+/)
-        .map(w => w.trim())
-        .filter(w => w !== "")
+      const words = this.getWords(search)
 
       if (words.length === 0) {
         console.timeEnd("search")
@@ -85,16 +83,20 @@ export class SearchService {
     })
   }
 
-  private performReplacements(input: string, replacements: Replacements): string {
-    let result = input
+  private getWords(input: string): string[] {
+    const words = input
       .toLowerCase()
       .replace(/\s+/g, " ")
+      .split(/\s+/)
 
-    Object.keys(replacements).forEach(key => {
-      result = result.replace(key, replacements[key])
-    })
+    const withNumber = input
+      .toLowerCase()
+      .replace(/(\w+)\s+(\d+)/g, "$1$2")
+      .split(/\s+/)
 
-    return result
+    return uniq([...words, ...withNumber]
+      .map(w => w.trim())
+      .filter(w => w !== ""))
   }
 
 }

@@ -13,8 +13,8 @@ export async function buildSearchString(blueprint: Blueprint): Promise<string> {
   builder.add(blueprint.description || "")
   builder.add(blueprint.rarity)
 
-  searchByVendor(builder, blueprint.vendors)
-  searchByMaterial(builder, blueprint.materials)
+  await searchByVendor(builder, blueprint.vendors)
+  await searchByMaterial(builder, blueprint.materials)
 
   return builder.build()
 }

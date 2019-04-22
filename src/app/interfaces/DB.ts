@@ -12,5 +12,4 @@ export interface DB {
   blueprints: Blueprint[]
   designs: Design[]
   consumables: Consumable[]
-  replace: { [key: string]: string }
 }

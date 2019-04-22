@@ -10,12 +10,11 @@ export async function buildSearchString(advisor: Advisor): Promise<string> {
   const builder = new SearchBuilder()
 
   builder.add(advisor.name)
-  builder.addStrict(`age${advisor.age}`)
-  builder.addStrict(`age ${advisor.age}`)
+  builder.add(`age${advisor.age}`)
   builder.add(advisor.civilization || "")
 
-  searchByLevels(builder, [advisor.level])
-  searchByVendor(builder, advisor.vendors)
+  await searchByLevels(builder, [advisor.level])
+  await searchByVendor(builder, advisor.vendors)
 
   Object.keys(advisor.rarities).forEach(rarity => {
     builder.add(rarity)

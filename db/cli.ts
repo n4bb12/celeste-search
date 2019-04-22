@@ -5,7 +5,6 @@ import { buildBlueprints } from "./blueprints/build"
 import { buildDesigns } from "./designs/build"
 import { DB } from "./interfaces"
 import { buildItems } from "./items/build"
-import { buildSearchReplacementMap } from "./items/search"
 import { buildMaterials } from "./materials/build"
 
 async function buildDB() {
@@ -16,7 +15,6 @@ async function buildDB() {
   const advisors = await buildAdvisors()
   const blueprints = await buildBlueprints()
   const designs = await buildDesigns()
-  const replace = buildSearchReplacementMap(items, materials)
 
   const db: DB = {
     materials,
@@ -25,7 +23,6 @@ async function buildDB() {
     blueprints,
     designs,
     consumables: [],
-    replace,
   }
 
   return db
@@ -48,7 +45,6 @@ async function cleanup() {
 async function saveDB(db: DB) {
   const {
     materials,
-    replace,
     items,
     advisors,
     blueprints,
@@ -57,7 +53,7 @@ async function saveDB(db: DB) {
   } = db
 
   const results = {
-    shared: { materials, replace },
+    shared: { materials },
     items: { items },
     advisors: { advisors },
     blueprints: { blueprints },
