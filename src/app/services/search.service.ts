@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core"
 
 import { uniq } from "lodash"
 import { BehaviorSubject } from "rxjs"
-import { debounceTime, tap } from "rxjs/operators"
+import { tap } from "rxjs/operators"
 
 import { Entity } from "../interfaces"
 
@@ -28,7 +28,6 @@ export class SearchService {
     ).subscribe()
 
     this.state.changes.pipe(
-      debounceTime(200),
       tap(value => this.performSearch(value.tab, value.search)),
     ).subscribe()
   }

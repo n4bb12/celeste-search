@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core"
 import { Title } from "@angular/platform-browser"
 
-import { debounceTime, tap } from "rxjs/operators"
+import { tap } from "rxjs/operators"
 
 import { StateService } from "./state.service"
 import { TABS } from "./tabs"

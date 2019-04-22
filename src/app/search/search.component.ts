@@ -10,7 +10,7 @@ import {
 import { FormControl } from "@angular/forms"
 
 import { NgScrollbar } from "ngx-scrollbar"
-import { distinctUntilChanged, map, sampleTime, tap } from "rxjs/operators"
+import { map, tap } from "rxjs/operators"
 
 import { StateService } from "../services"
 
@@ -41,8 +41,6 @@ export class SearchComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.inputModel.valueChanges.pipe(
       tap(() => this.scrollbarRef.scrollToTop()),
-      sampleTime(200),
-      distinctUntilChanged(),
       tap(input => this.state.search = input),
     ).subscribe()
   }

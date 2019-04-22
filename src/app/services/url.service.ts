@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core"
 import { ActivatedRoute, NavigationEnd, Router } from "@angular/router"
 
-import { debounceTime, filter, tap } from "rxjs/operators"
+import { filter, tap } from "rxjs/operators"
 
 import { StateService } from "./state.service"
 
@@ -17,7 +17,6 @@ export class UrlService {
   ) {
     // update url when state changes
     this.state.changes.pipe(
-      debounceTime(200),
       tap(value => {
         const queryParams = this.querify(value)
         this.router.navigate([], { queryParams })

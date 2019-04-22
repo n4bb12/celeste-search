@@ -8,13 +8,12 @@ import {
   ViewChild,
 } from "@angular/core"
 
-import { distinctUntilChanged, tap } from "rxjs/operators"
+import { debounceTime, tap } from "rxjs/operators"
 
 import { Entity } from "../../../db/interfaces"
 import { SearchService, StateService, TABS } from "../services"
 import { SettingsService } from "../services/settings.service"
 
-import { combineLatest } from "rxjs"
 import { hiddenRenderData } from "./hidden-render"
 
 const rem = 15
@@ -96,6 +95,9 @@ export class ResultsComponent implements OnInit, OnDestroy {
       tap(changes => {
         this.filtered = changes
         this.displayed = empty
+      }),
+      debounceTime(100),
+      tap(() => {
         this.pushChunk()
       }),
     ).subscribe()
