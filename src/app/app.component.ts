@@ -1,8 +1,9 @@
 import { Component } from "@angular/core"
 import { DomSanitizer } from "@angular/platform-browser"
 
-import { SettingsService, TABS, UrlService } from "./services"
+import { TABS, UrlService } from "./services"
 import { DbService } from "./services/db.service"
+import { DocumenTitleService } from "./services/document-title.service"
 import { StateService } from "./services/state.service"
 
 const viewportSpacing = "5vmin"
@@ -22,9 +23,9 @@ export class AppComponent {
   constructor(
     private db: DbService,
     private sanitizer: DomSanitizer,
-    private settings: SettingsService,
     private state: StateService,
     private url: UrlService, // inject to trigger execution
+    private title: DocumenTitleService, // inject to trigger execution
   ) {
     this.state.tabChange.subscribe(tab => {
       // prefetch tab data on tab change
