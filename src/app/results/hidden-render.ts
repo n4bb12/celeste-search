@@ -8,6 +8,7 @@ export const hiddenRenderData: {
 } = {
   item: {
     name: "Runic Heavy Bronze Armoring",
+    trait: "ArmorPlt_E006",
     type: "Armor Plating",
     levels: [
       40,
