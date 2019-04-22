@@ -59,7 +59,7 @@ export async function searchByRecipe(builder: SearchBuilder, recipe?: Recipe) {
   builder.add("craftables")
   builder.add(recipe.school)
 
-  searchByMaterial(builder, recipe.materials)
+  await searchByMaterial(builder, recipe.materials)
 }
 
 export async function searchByVendor(builder: SearchBuilder, vendors?: Vendor[]) {

@@ -80,7 +80,7 @@
       <span>Craftable at</span>
       <span>&nbsp;<strong>{{ item.recipe!.school }}&nbsp;School</strong></span>
       <span *ngIf="item.recipe!.level !== level">&nbsp;&nbsp;—&nbsp;&nbsp;Level
-        {{ item.recipe.level }}</span>:
+        {{ item.recipe!.level }}</span>:
     </div>
     <div class="row --materials">
       <ng-container *ngFor="let ref of item.recipe!.materials">
