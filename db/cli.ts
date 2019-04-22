@@ -2,6 +2,7 @@ import { copy, ensureDir, remove, writeFile } from "fs-extra"
 
 import { buildAdvisors } from "./advisors/build"
 import { buildBlueprints } from "./blueprints/build"
+import { buildConsumables } from "./consumables/build"
 import { buildDesigns } from "./designs/build"
 import { DB } from "./interfaces"
 import { buildItems } from "./items/build"
@@ -15,6 +16,7 @@ async function buildDB() {
   const advisors = await buildAdvisors()
   const blueprints = await buildBlueprints()
   const designs = await buildDesigns()
+  const consumables = await buildConsumables()
 
   const db: DB = {
     materials,
@@ -22,7 +24,7 @@ async function buildDB() {
     advisors,
     blueprints,
     designs,
-    consumables: [],
+    consumables,
   }
 
   return db

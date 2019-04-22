@@ -20,6 +20,8 @@ import {
 } from "./primary-button/primary-button.component"
 import { AdvisorComponent } from "./results/advisor/advisor.component"
 import { BlueprintComponent } from "./results/blueprint/blueprint.component"
+import { ConsumableComponent } from "./results/consumable/consumable.component"
+import { DesignComponent } from "./results/design/design.component"
 import { ItemComponent } from "./results/item/item.component"
 import { ResultsComponent } from "./results/results.component"
 import { SearchComponent } from "./search/search.component"
@@ -28,7 +30,7 @@ import { TabsComponent } from "./tabs/tabs.component"
 
 @NgModule({
   imports: [
-  BrowserModule,
+    BrowserModule,
     HttpClientModule,
     NgScrollbarModule,
     ReactiveFormsModule,
@@ -41,6 +43,8 @@ import { TabsComponent } from "./tabs/tabs.component"
     AwaitFontDirective,
     BackToTopComponent,
     BlueprintComponent,
+    ConsumableComponent,
+    DesignComponent,
     EffectValuePipe,
     IconButtonComponent,
     IconComponent,

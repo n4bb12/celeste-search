@@ -21,10 +21,6 @@ import {
   isWinterReward,
 } from "./source"
 
-/**
- * Constructs a search string consisting of all keywords the
- * item can be found by.
- */
 export async function buildSearchString(item: Item, trait: Trait): Promise<string> {
   const builder = new SearchBuilder()
 

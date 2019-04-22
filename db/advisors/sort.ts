@@ -1,8 +1,5 @@
 import { Advisor, RARITIES } from "../interfaces"
 
-/**
- * Determines the sort order of advisors in `db.json`.
- */
 export function compareAdvisors(a: Advisor, b: Advisor) {
   const aRarities = Object.keys(a.rarities)
   const bRarities = Object.keys(b.rarities)

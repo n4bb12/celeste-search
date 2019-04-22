@@ -1,34 +1,34 @@
-<div class="__inside" *ngIf="blueprint">
+<div class="__inside" *ngIf="design">
 
   <!-- TYPE -->
   <div class="row --header">
-    <strong>Blueprint</strong>
+    <strong>Design</strong>
 
-    <div class="__rarity --{{ blueprint.rarity }}">
-      {{ blueprint.rarity }}
+    <div class="__rarity --{{ design.rarity }}">
+      {{ design.rarity }}
     </div>
   </div>
 
   <!-- NAME -->
   <div class="row --name">
-    <div class="icon--blueprints icon--blueprints--{{ blueprint.icon }}"></div>
-    <div class="__name --{{ blueprint.rarity }}">
-      {{ blueprint.name }}
+    <div class="icon--designs icon--designs--{{ design.icon }}"></div>
+    <div class="__name --{{ design.rarity }}">
+      {{ design.name }}
     </div>
   </div>
 
   <!-- DESCRIPTION -->
   <div class="row --description --positive">
-    {{ blueprint.description }}
+    {{ design.description }}
   </div>
 
   <!-- COST -->
-  <div class="__recipe" *ngIf="blueprint.materials?.length > 0">
+  <div class="__recipe" *ngIf="design.materials?.length > 0">
     <div class="row --recipe">
       Cost:
     </div>
     <div class="row --materials">
-      <ng-container *ngFor="let ref of blueprint.materials">
+      <ng-container *ngFor="let ref of design.materials">
         <ng-container *ngIf="materials[ref.id] as mat">
           <span class="icon--materials icon--materials--{{ mat.icon }}"></span>
           <span class="__mat-amount">{{ ref.quantity }}</span>
@@ -39,7 +39,7 @@
   </div>
 
   <!-- VENDOR -->
-  <div class="__vendors" *ngFor="let vendor of blueprint.vendors">
+  <div class="__vendors" *ngFor="let vendor of design.vendors">
     <div class="row --vendor">
       <div>
         Purchasable&nbsp;at&nbsp;<strong>{{ vendor.name }}</strong><span *ngIf="vendor.rotation">

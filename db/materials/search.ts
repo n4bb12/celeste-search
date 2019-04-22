@@ -3,10 +3,6 @@ import chalk from "chalk"
 import { Item, Materials } from "../interfaces"
 import { SearchBuilder } from "../shared/search-helpers"
 
-/**
- * Constructs a search string consisting of all keywords the
- * item can be found by.
- */
 export function buildItemSearchString(item: Item, materials: Materials): string {
   const builder = new SearchBuilder()
 

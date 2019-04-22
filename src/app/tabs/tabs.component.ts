@@ -11,7 +11,7 @@ import { StateService } from "./../services/state.service"
 })
 export class TabsComponent {
 
-  readonly tabs = [...TABS]
+  readonly tabs = TABS.filter(t => t.visible)
   readonly activeTabChange = this.state.tabChange
 
   constructor(

@@ -35,6 +35,8 @@ export class ResultsComponent implements OnInit, OnDestroy {
   readonly hiddenRenderItem = hiddenRenderData.item
   readonly hiddenRenderAdvisor = hiddenRenderData.advisor
   readonly hiddenRenderBlueprint = hiddenRenderData.blueprint
+  readonly hiddenRenderDesign = hiddenRenderData.design
+  readonly hiddenRenderConsumable = hiddenRenderData.consumable
 
   numColumns = 3
   tab = 0

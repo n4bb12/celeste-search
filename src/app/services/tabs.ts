@@ -1,7 +1,7 @@
 export const TABS = [
-  // { id: "designs", name: "Designs", icon: "Trading_Contract_2" },
-  // { id: "consumables", name: "Consumables", icon: "C06TechPharmacology_ua" },
-  { id: "items",       name: "Items",       icon: "GreekTechSpearmanS_ua" },
-  { id: "advisors",    name: "Advisors",    icon: "HerbalRemedies5"       },
-  { id: "blueprints",  name: "Blueprints",  icon: "TechTower3_ua"         },
+  { id: "items",       name: "Items",       icon: "GreekTechSpearmanS_ua",  visible: true  },
+  { id: "advisors",    name: "Advisors",    icon: "HerbalRemedies5",        visible: true  },
+  { id: "blueprints",  name: "Blueprints",  icon: "TechTower3_ua",          visible: true  },
+  { id: "designs",     name: "Designs",     icon: "Trading_Contract_2",     visible: false },
+  { id: "consumables", name: "Consumables", icon: "C06TechPharmacology_ua", visible: false },
 ]

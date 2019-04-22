@@ -1,13 +1,15 @@
-import { Advisor, Blueprint } from "../interfaces"
+import { Advisor, Blueprint, Consumable, Design } from "../interfaces"
 import { Item } from "../interfaces/Item"
 
 export const hiddenRenderData: {
   item: Item,
   advisor: Advisor,
   blueprint: Blueprint,
+  design: Design,
+  consumable: Consumable,
 } = {
   item: {
-    name: "Runic Heavy Bronze Armoring",
+    name: "name",
     trait: "ArmorPlt_E006",
     type: "Armor Plating",
     levels: [
@@ -17,21 +19,9 @@ export const hiddenRenderData: {
     rarity: "epic",
     effects: [
       {
-        name: "Health",
+        name: "name",
         amount: 1.0398,
         scaling: 0.0134,
-        beneficial: true,
-      },
-      {
-        name: "Maximum Range",
-        amount: 1.0088,
-        scaling: 0.0024,
-        beneficial: true,
-      },
-      {
-        name: "Movement Speed",
-        amount: 1.0013,
-        scaling: 0.0004,
         beneficial: true,
       },
     ],
@@ -65,18 +55,18 @@ export const hiddenRenderData: {
     search: "search",
   },
   advisor: {
-    name: "Alexander The Great",
+    name: "name",
     age: 4,
     level: 40,
     rarities: {
       legendary: {
         icon: 338,
-        description: "Toxotai and Peltasts attack 25% faster and can attack and see 10% farther",
+        description: "description",
       },
     },
     vendors: [
       {
-        name: "Massalia, General Store",
+        name: "name",
         rarity: "uncommon",
         currency: "coin",
         price: 225,
@@ -85,19 +75,36 @@ export const hiddenRenderData: {
     search: "search",
   },
   blueprint: {
-    name: "Small Delian Residence",
-    description: "Use: Builds a Small Delian Residence (decoration)",
+    name: "name",
+    description: "description",
     icon: 237,
     rarity: "common",
     materials: [],
     vendors: [
       {
-        name: "Delos, General Store",
+        name: "name",
         level: 0,
         currency: "empire",
         price: 50,
       },
     ],
+    search: "search",
+  },
+  design: {
+    name: "name",
+    description: "description",
+    icon: 2,
+    rarity: "uncommon",
+    materials: [
+      {
+        id: "AnimalHide",
+        quantity: 26,
+      },
+    ],
+    search: "search",
+  },
+  consumable: {
+    name: "name",
     search: "search",
   },
 }

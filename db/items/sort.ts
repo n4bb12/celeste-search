@@ -1,8 +1,5 @@
 import { Item, RARITIES } from "../interfaces"
 
-/**
- * Determines the sort order of items in `db.json`.
- */
 export function compareItems(a: Item, b: Item) {
   const aMaxLevel = a.levels[a.levels.length - 1] || 0
   const bMaxLevel = b.levels[b.levels.length - 1] || 0
