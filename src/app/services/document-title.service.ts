@@ -17,11 +17,11 @@ export class DocumenTitleService {
   ) {
     this.state.changes.pipe(
       tap(changes => {
-        const words = [
-          TABS[changes.tab].name,
-          `"${changes.search}"`,
-        ]
-        this.title.setTitle(words.filter(Boolean).join(" | "))
+        const tab = TABS[changes.tab].name
+        const search = changes.search ? `"${changes.search}"` : null
+        const result = [tab, search].filter(Boolean).join(" – ")
+
+        this.title.setTitle(result)
       }),
     ).subscribe()
   }
