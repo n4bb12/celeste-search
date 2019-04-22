@@ -30,8 +30,8 @@
     <div class="row --materials">
       <ng-container *ngFor="let ref of blueprint.materials">
         <ng-container *ngIf="materials[ref.id] as mat">
-          <span class="__mat-amount">{{ ref.quantity }}</span>
           <span class="icon--materials icon--materials--{{ mat.icon }}"></span>
+          <span class="__mat-amount">{{ ref.quantity }}</span>
           <span class="__mat-text --{{ mat.rarity }}">{{ mat.name }}</span>
         </ng-container>
       </ng-container>
