@@ -20,6 +20,7 @@
   background: $theme-text;
   color: $theme-shadow;
   opacity: .5;
+  transition-property: background-color, opacity;
 
   &:hover {
     opacity: .75;
