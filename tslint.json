@@ -10,7 +10,8 @@
       true,
       120
     ],
-    "member-ordering": false
+    "member-ordering": false,
+    "no-non-null-assertion": false
   },
   "rulesDirectory": [
     "node_modules/codelyzer"

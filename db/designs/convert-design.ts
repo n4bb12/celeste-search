@@ -11,7 +11,7 @@ import { findAndConvertVendors } from "../shared/convert-vendors"
  */
 export async function convertDesign(design: ApiDesign): Promise<Design> {
   const name = await translateEn(design.displaynameid, design.name)
-  const description = await translateEn(design.rollovertextid)
+  const description = await translateEn(design.rollovertextid, "")
   const iconId = await downloadIcon(`Art/${design.icon}`, "designs")
   const rarity = design.rarity.replace("cRarity", "").toLowerCase()
   const materials = design.input.material.map(mat => {
@@ -32,7 +32,7 @@ export async function convertDesign(design: ApiDesign): Promise<Design> {
     rarity,
     materials,
     vendors: undefined,
-    search: undefined,
+    search: "",
   }
 
   result.vendors = await findAndConvertVendors(result)

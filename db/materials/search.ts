@@ -1,11 +1,7 @@
 import chalk from "chalk"
 
 import { Item, Materials } from "../interfaces"
-import {
-  SearchBuilder,
-  simplify,
-  WORD_SEPARATOR,
-} from "../shared/search"
+import { SearchBuilder } from "../shared/search-helpers"
 
 /**
  * Constructs a search string consisting of all keywords the

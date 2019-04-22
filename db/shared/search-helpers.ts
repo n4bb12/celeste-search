@@ -4,14 +4,18 @@ import { identity, uniq } from "lodash"
 export const WORD_SEPARATOR = "_"
 
 export class SearchBuilder {
-
-  private words = []
+  private words: string[] = []
 
   add(value: string | number) {
     const word = `${value}`
     this.words.push(word)
-    this.words.push(word.replace(/\s+/g, WORD_SEPARATOR))
     this.words.push(simplify(word))
+    this.addStrict(value)
+  }
+
+  addStrict(value: string | number) {
+    const word = `${value}`
+    this.words.push(word.replace(/\s+/g, WORD_SEPARATOR))
     this.words.push(simplify(word).replace(/\s+/g, WORD_SEPARATOR))
   }
 

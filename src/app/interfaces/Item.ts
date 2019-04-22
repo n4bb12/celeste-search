@@ -9,7 +9,7 @@ export interface Item {
   levels: number[]
   icon: number
   rarity: string
-  effects: ItemEffect[]
+  effects?: ItemEffect[]
   effectsRange?: boolean
   recipe?: Recipe
   vendors?: Vendor[]

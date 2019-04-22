@@ -30,7 +30,7 @@ export function addToLegendaryRotation(item: Item, trait: Trait): void {
 
   // items that are sold for gold don't need to be in the
   // rotation
-  if (item.vendors.length) {
+  if (item.vendors && item.vendors.length) {
     return
   }
 
@@ -38,6 +38,7 @@ export function addToLegendaryRotation(item: Item, trait: Trait): void {
   const rotation = isClassic ? "Classic" : "Celeste"
   const price = isClassic ? 350 : 700
 
+  item.vendors = item.vendors || []
   item.vendors.push({
     name: `Empire Store`,
     currency: "empire",
@@ -46,6 +47,5 @@ export function addToLegendaryRotation(item: Item, trait: Trait): void {
     rotation,
     price,
   })
-
   item.vendors.sort(compareVendors)
 }

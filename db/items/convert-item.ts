@@ -22,7 +22,7 @@ import {
  */
 export async function convertItem(trait: Trait): Promise<Item> {
   const name = await translateEn(trait.displaynameid, trait.name)
-  const type = await translateEn(trait.rollovertextid)
+  const type = await translateEn(trait.rollovertextid, "")
   const iconId = await downloadIcon(`Art/${trait.icon}`, "items")
 
   const item: Item = {
@@ -38,7 +38,7 @@ export async function convertItem(trait: Trait): Promise<Item> {
     vendors: undefined,
     quest: getQuestName(trait),
     event: isHalloweenReward(trait) ? "halloween" : isWinterReward(trait) ? "winter" : undefined,
-    search: undefined,
+    search: "",
   }
 
   if (item.levels.length === 0) {
@@ -50,13 +50,16 @@ export async function convertItem(trait: Trait): Promise<Item> {
 
   if (trait.rarity === "legendary") {
     addToLegendaryRotation(item, trait)
-    item.effectsRange = isReforgeable(trait)
+    if (item.effects) {
+      item.effectsRange = isReforgeable(trait)
+    }
   } else {
-    item.effectsRange = !item.vendors.length
+    if (item.effects) {
+      item.effectsRange = !item.vendors || !item.vendors.length
+    }
   }
 
   item.search = await buildSearchString(item, trait)
-  item.vendors = item.vendors.length ? item.vendors : undefined
 
   return item
 }

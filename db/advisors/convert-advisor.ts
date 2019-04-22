@@ -13,8 +13,8 @@ import { buildSearchString } from "./search"
  * used by the search app.
  */
 export async function convertAdvisor(advisor: ApiAdvisor): Promise<Advisor> {
-  const name = await translateEn(advisor.displaynameid)
-  const description = await translateEn(advisor.displaydescriptionid)
+  const name = await translateEn(advisor.displaynameid, advisor.name)
+  const description = await translateEn(advisor.displaydescriptionid, "")
   const iconId = await downloadIcon(`Art/${advisor.icon}`, "advisors")
   const civilization = convertCivilization(advisor.civilization)
 
@@ -32,11 +32,8 @@ export async function convertAdvisor(advisor: ApiAdvisor): Promise<Advisor> {
     civilization,
     rarities,
     vendors: undefined,
-    search: undefined,
+    search: "",
   }
-
-  result.vendors = await findAndConvertVendors({ name, rarity: advisor.rarity })
-  result.search = await buildSearchString(result)
 
   return result
 }

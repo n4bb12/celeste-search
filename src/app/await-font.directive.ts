@@ -23,7 +23,7 @@ const defaultOptions: AwaitFontOptions = {
   selector: "[cisAwaitFont]",
 })
 export class AwaitFontDirective implements OnInit {
-  @Input("cisAwaitFont") options: Partial<AwaitFontOptions>
+  @Input("cisAwaitFont") options: Partial<AwaitFontOptions> = {}
 
   constructor(private readonly el: ElementRef) { }
 

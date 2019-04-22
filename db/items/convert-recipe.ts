@@ -9,13 +9,14 @@ import { convertRecipeSchool } from "./convert-recipe-school"
  * Looks up the recipe for an item and if found, converts it
  * from the API format to the format used by the item search app.
  */
-export async function findAndConvertRecipe(trait: Trait): Promise<Recipe> {
+export async function findAndConvertRecipe(trait: Trait): Promise<Recipe | undefined> {
   const designs = await API.getDesigns()
 
-  const design: Design = Object.values(designs).find(apiDesign => {
+  const design = Object.values(designs).find(apiDesign => {
     if (apiDesign.output.trait) {
       return apiDesign.output.trait.id.toLowerCase() === trait.name.toLowerCase()
     }
+    return false
   })
 
   if (!design) {

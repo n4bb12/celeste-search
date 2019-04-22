@@ -5,6 +5,7 @@ import { Blueprint } from "../interfaces"
 import { translateEn } from "../shared/convert-text"
 import { findAndConvertVendors } from "../shared/convert-vendors"
 
+import { convertMaterials } from "./convert-materials"
 import { buildSearchString } from "./search"
 
 export async function convertBlueprint(blueprint: ApiBlueprint): Promise<Blueprint> {
@@ -17,12 +18,7 @@ export async function convertBlueprint(blueprint: ApiBlueprint): Promise<Bluepri
   const description = await translateEn(blueprint.rollovertextid)
   const iconId = await downloadIcon(`Art/${blueprint.icon}`, "blueprints")
   const rarity = blueprint.rarity.replace("cRarity", "").toLowerCase()
-  const materials = blueprint.cost.material.map(mat => {
-    return {
-      id: mat.id,
-      quantity: mat.quantity,
-    }
-  })
+  const materials = convertMaterials(blueprint)
 
   const result: Blueprint = {
     name,
@@ -31,7 +27,7 @@ export async function convertBlueprint(blueprint: ApiBlueprint): Promise<Bluepri
     rarity,
     materials,
     vendors: undefined,
-    search: undefined,
+    search: "",
   }
 
   result.vendors = await findAndConvertVendors(result)

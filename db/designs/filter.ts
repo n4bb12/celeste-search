@@ -7,5 +7,8 @@ export function includeDesign(design: Design) {
     console.log(chalk.yellow(`SKIPPED - Design has no name:`), design)
     return false
   }
+  if (design.name === "DebugProduction") {
+    return false
+  }
   return true
 }

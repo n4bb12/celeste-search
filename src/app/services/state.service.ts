@@ -8,8 +8,8 @@ import { map, skip } from "rxjs/operators"
 })
 export class StateService {
 
-  private tabSubject = new BehaviorSubject(null)
-  private searchSubject = new BehaviorSubject(null)
+  private tabSubject = new BehaviorSubject<number>(-1)
+  private searchSubject = new BehaviorSubject<string>("null")
 
   get tab(): number {
     return this.tabSubject.value

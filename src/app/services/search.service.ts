@@ -68,7 +68,7 @@ export class SearchService {
         return
       }
 
-      const results = []
+      const results: any[] = []
 
       for (const entry of entries) {
         if (isOutdated()) {

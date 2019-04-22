@@ -1,10 +1,17 @@
 import { Trait } from "celeste-api-types"
-import chalk from "chalk"
 
-import { API } from "../download"
 import { Item, Materials, Replacements } from "../interfaces"
-import { translateEn } from "../shared/convert-text"
-import { SearchBuilder, simplify, WORD_SEPARATOR } from "../shared/search"
+import {
+  SearchBuilder,
+  simplify,
+  WORD_SEPARATOR,
+} from "../shared/search-helpers"
+import {
+  searchByEffects,
+  searchByLevels,
+  searchByRecipe,
+  searchByVendor,
+} from "../shared/search-tags"
 
 import {
   isClassicItem,
@@ -23,67 +30,21 @@ import {
  * item can be found by.
  */
 export async function buildSearchString(item: Item, trait: Trait): Promise<string> {
-  const materials = await API.getMaterials()
   const builder = new SearchBuilder()
 
   builder.add("gears")
   builder.add("items")
+
   builder.add(trait.name)
+
   builder.add(item.name)
   builder.add(item.rarity)
   builder.add(item.type)
 
-  const levels: any[] = (item.levels.length > 0) ? item.levels : []
-  levels.forEach(level => {
-    builder.add(level)
-    builder.add("level " + level)
-  })
-
-  if (item.effects) {
-    item.effects.forEach(effect => {
-      builder.add(effect.name)
-    })
-  }
-
-  if (item.recipe) {
-    builder.add("recipes")
-    builder.add("craftables")
-    builder.add(item.recipe.school)
-
-    for (const ref of item.recipe.materials) {
-      builder.add(ref.quantity)
-
-      const material = materials[ref.id]
-
-      if (material) {
-        builder.add(await translateEn(material.displaynameid))
-      } else {
-        console.log(chalk.yellow("Material not found: " + ref.id))
-      }
-    }
-  }
-
-  [...item.vendors || []].forEach(vendor => {
-    builder.add("buyable")
-    builder.add("purchaseable")
-    builder.add("shops")
-    builder.add("stores")
-    builder.add("vendors")
-    builder.add("sold")
-
-    if (vendor.currency === "coin") {
-      builder.add("coins")
-      builder.add("money")
-      builder.add("gold")
-    } else {
-      builder.add("points")
-      builder.add("tokens")
-      builder.add(vendor.currency)
-      builder.add(vendor.currency + " points")
-      builder.add(vendor.currency + " tokens")
-    }
-    builder.add(vendor.name)
-  })
+  await searchByLevels(builder, item.levels)
+  await searchByEffects(builder, item.effects)
+  await searchByRecipe(builder, item.recipe)
+  await searchByVendor(builder, item.vendors)
 
   if (isSoldByCyprus(trait)) {
     builder.add("Cyprus")
@@ -109,7 +70,7 @@ export async function buildSearchString(item: Item, trait: Trait): Promise<strin
   if (isReforgeable(trait)) {
     builder.add("Reforgeable")
   }
-  if (item.vendors.some(vendor => vendor.currency === "empire")) {
+  if (item.vendors && item.vendors.some(vendor => vendor.currency === "empire")) {
     builder.add("Legendary Rotation")
   }
   if (isClassicItem(trait)) {
