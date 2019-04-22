@@ -3,6 +3,7 @@ import chalk from "chalk"
 
 import { API } from "../download"
 import { Item, Materials, Replacements } from "../interfaces"
+import { translateEn } from "../shared/convert-text"
 import { SearchBuilder, simplify, WORD_SEPARATOR } from "../shared/search"
 
 import {
@@ -49,17 +50,17 @@ export async function buildSearchString(item: Item, trait: Trait): Promise<strin
     builder.add("craftables")
     builder.add(item.recipe.school)
 
-    item.recipe.materials.forEach(ref => {
+    for (const ref of item.recipe.materials) {
       builder.add(ref.quantity)
 
       const material = materials[ref.id]
 
       if (material) {
-        builder.add(material.name)
+        builder.add(await translateEn(material.displaynameid))
       } else {
         console.log(chalk.yellow("Material not found: " + ref.id))
       }
-    })
+    }
   }
 
   [...item.vendors || []].forEach(vendor => {
