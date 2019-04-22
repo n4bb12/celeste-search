@@ -6,24 +6,26 @@
 
 .__tabs {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  margin: -1vmin 0;
+  margin: -1vmin;
+}
+
+.__tab-wrapper {
+  margin: 1vmin;
+  position: relative;
 }
 
 .__tab {
   display: flex;
   align-items: center;
-  margin: 1vmin;
-  width: 10rem;
   border-radius: ($border-radius / 2);
   background: $theme-text;
   color: $theme-shadow;
-  opacity: .5;
+  opacity: (1/3);
   transition-property: background-color, opacity;
 
   &:hover {
-    opacity: .75;
+    opacity: (2/3);
   }
 
   &:focus,
@@ -39,25 +41,14 @@
   }
 }
 
-.__name {
-  margin: 0 auto;
-}
-
 .__image {
+  width: 3rem;
   height: 3rem;
   border-radius: ($border-radius / 2);
 }
 
-// @media (max-width: 64rem) { // use later for 5 tabs
-//   .__name {
-//     display: none;
-//   }
-// }
-@media (max-width: 48rem) {
-  .__tab {
-    width: auto;
-  }
-  .__name {
-    display: none;
+@media (max-width: 1280px) {
+  .__tab-wrapper {
+    flex: 0;
   }
 }
