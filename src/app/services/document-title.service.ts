@@ -18,8 +18,8 @@ export class DocumenTitleService {
     this.state.changes.pipe(
       tap(changes => {
         const tab = TABS[changes.tab].name
-        const search = changes.search ? `"${changes.search}"` : null
-        const result = [tab, search].filter(Boolean).join(" – ")
+        const search = changes.search
+        const result = [search, tab].filter(Boolean).join(" - ")
 
         this.title.setTitle(result)
       }),
