@@ -9,14 +9,20 @@ button {
   height: 3rem;
   box-shadow: none;
   border-radius: 50%;
-  background: rgba($theme-text, .8);
+  background: transparent;
   color: $theme-shadow;
   opacity: .25;
   transform: translate3d(0,0,0);
   transition: opacity .1s ease-out;
 
-  &:hover,
-  &:focus {
+  &:hover {
+    opacity: 1;
+  }
+
+  &:focus,
+  &:active,
+  &.--active {
+    background: transparent;
     opacity: 1;
   }
 

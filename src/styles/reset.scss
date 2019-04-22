@@ -34,18 +34,25 @@ input {
 
 button {
   @include elevation(4);
-  background: rgba($theme-secondary, .8);
+
+  background: $theme-secondary;
+  transition: .2s ease-out background-color;
   cursor: pointer;
+
+  &:hover {
+    transition-duration: .1s;
+    background: $theme-primary--hover;
+  }
 
   &:focus,
   &:active,
   &.--active {
-    background: rgba($theme-primary, .8);
-  }
+    background: $theme-primary;
+    color: $theme-text;
 
-  &:hover {
-    opacity: 1;
-    transition: none;
+    &:hover {
+      background: $theme-primary--hover;
+    }
   }
 }
 

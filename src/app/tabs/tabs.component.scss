@@ -20,14 +20,21 @@
   background: $theme-text;
   color: $theme-shadow;
   opacity: .5;
-  transition: .2s ease-out;
-  transition-property: box-shadow, background-color, opacity;
 
+  &:hover {
+    opacity: .75;
+  }
+
+  &:focus,
+  &:active,
   &.--active {
     background: $theme-primary;
     color: $theme-text;
     opacity: 1;
-    transition: none;
+
+    &:hover {
+      background: $theme-primary--hover;
+    }
   }
 }
 
