@@ -9,7 +9,7 @@ import {
 
 import { MarketplaceItem } from "celeste-api-types"
 import { isEqual } from "lodash"
-import { distinctUntilChanged, map, tap } from "rxjs/operators"
+import { distinctUntilChanged, filter, map, tap } from "rxjs/operators"
 
 import { Item, Materials } from "../../interfaces"
 import { DbService, SettingsService } from "../../services"
@@ -63,6 +63,7 @@ export class ItemComponent implements OnInit, OnDestroy {
       distinctUntilChanged(isEqual),
       map(market => market.sort(byPrice)),
       tap(market => this.market = market),
+      filter(() => !this.destroyed),
       tap(() => this.changeRef.detectChanges()),
     ).subscribe()
   }
