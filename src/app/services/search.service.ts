@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core"
 
 import { uniq } from "lodash"
-import { BehaviorSubject, combineLatest } from "rxjs"
+import { BehaviorSubject } from "rxjs"
 import { debounceTime, tap } from "rxjs/operators"
 
 import { Entity } from "../interfaces"
@@ -35,15 +35,16 @@ export class SearchService {
 
   private performSearch(tab: number, search: string) {
     console.time("search")
+    const normalized = search.toLowerCase().trim()
     const id = TABS[tab].id
 
-    if (!search.trim()) {
+    if (!normalized) {
       this.results.next(EMPTY)
       console.timeEnd("search")
       return
     }
 
-    combineLatest(this.db.shared, this.db[id]).subscribe(([shared, db]) => {
+    this.db[id].subscribe(db => {
       const isOutdated = () => tab !== this.state.tab || search !== this.state.search
 
       if (isOutdated()) {
@@ -53,13 +54,13 @@ export class SearchService {
 
       const entries = db[id]
 
-      if (search.trim() === "*") {
+      if (["*", "all"].includes(normalized)) {
         this.results.next([...entries])
         console.timeEnd("search")
         return
       }
 
-      const words = this.getWords(search)
+      const words = this.getWords(normalized)
 
       if (words.length === 0) {
         console.timeEnd("search")
@@ -85,12 +86,10 @@ export class SearchService {
 
   private getWords(input: string): string[] {
     const words = input
-      .toLowerCase()
       .replace(/\s+/g, " ")
       .split(/\s+/)
 
     const withNumber = input
-      .toLowerCase()
       .replace(/(\w+)\s+(\d+)/g, "$1$2")
       .split(/\s+/)
 
