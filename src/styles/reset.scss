@@ -69,9 +69,10 @@ a {
 
 code {
   margin: 0 .1em;
-  padding: 0 .2em;
-  border-radius: $border-radius;
+  padding: .1em .2em;
+  border-radius: .2em;
   background: rgba($theme-secondary, .8);
+  font-family: inherit;
 }
 
 strong {
