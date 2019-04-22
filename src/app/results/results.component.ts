@@ -43,6 +43,8 @@ export class ResultsComponent implements OnInit, OnDestroy {
   private observer: IntersectionObserver
   displayed: Entity[] = []
 
+  private destroyed = false
+
   constructor(
     private changeRef: ChangeDetectorRef,
     private search: SearchService,
@@ -62,6 +64,7 @@ export class ResultsComponent implements OnInit, OnDestroy {
     if (this.observer) {
       this.observer.disconnect()
     }
+    this.destroyed = true
   }
 
   updateNumColumns() {
@@ -144,7 +147,9 @@ export class ResultsComponent implements OnInit, OnDestroy {
   private render() {
     console.log(`${TABS[this.tab].id}: ${this.displayed.length}/${this.filtered.length}`)
     requestAnimationFrame(() => {
-      this.changeRef.detectChanges()
+      if (!this.destroyed) {
+        this.changeRef.detectChanges()
+      }
     })
   }
 
