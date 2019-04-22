@@ -10,7 +10,7 @@ import {
 import { FormControl } from "@angular/forms"
 
 import { NgScrollbar } from "ngx-scrollbar"
-import { distinctUntilChanged, sampleTime, tap } from "rxjs/operators"
+import { distinctUntilChanged, map, sampleTime, tap } from "rxjs/operators"
 
 import { StateService } from "../services"
 
@@ -28,6 +28,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   readonly inputModel = new FormControl()
 
   input = ""
+  isEmpty = this.inputModel.valueChanges.pipe(map(input => !input))
 
   constructor(
     private state: StateService,
@@ -62,7 +63,9 @@ export class SearchComponent implements OnInit, AfterViewInit {
       return
     }
 
-    if (!window.getSelection().isCollapsed) {
+    const selection = window.getSelection()
+
+    if (!selection || !selection.isCollapsed) {
       return
     }
 
