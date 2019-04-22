@@ -14,15 +14,17 @@ export class EffectValuePipe implements PipeTransform {
   ) { }
 
   transform(effect: ItemEffect, level: number, modifier: number): string {
-    const base = (effect.amount - 1) * 100 + effect.scaling * 100 * (level + 3)
-    const modified = base * modifier
     const precision = +this.settings.controls.precision.value
-
+    const base = (effect.amount - 1) * 100 + effect.scaling * 100 * (level + 3)
     const sign = base < 0 ? "-" : "+"
-    const value = Math.abs(modified).toFixed(precision)
     const unit = "%"
 
-    return sign + value + unit
+    const modified = base * modifier
+    const absolute = Math.abs(modified)
+    const rounded = absolute.toFixed(precision + 1)
+    const truncated = rounded.substr(0, rounded.length - (precision === 0 ? 2 : 1))
+
+    return sign + truncated + unit
   }
 
 }
