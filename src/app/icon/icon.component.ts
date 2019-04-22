@@ -17,5 +17,6 @@ export class IconComponent {
     | "hints"
     | "columns"
     | "precision"
+    | "search"
 
 }

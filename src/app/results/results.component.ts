@@ -8,7 +8,8 @@ import {
   ViewChild,
 } from "@angular/core"
 
-import { debounceTime, tap } from "rxjs/operators"
+import { debounce } from "lodash"
+import { tap } from "rxjs/operators"
 
 import { Entity } from "../../../db/interfaces"
 import { SearchService, StateService, TABS } from "../services"
@@ -85,20 +86,26 @@ export class ResultsComponent implements OnInit, OnDestroy {
   private registerForTabChange() {
     this.state.tabChange.subscribe(tab => {
       this.tab = tab
-      this.displayed = empty
-      this.render()
     })
   }
 
   private registerForResults() {
+    const pushChunk = this.pushChunk
+    const pushChunkDebounced = debounce(pushChunk, 200)
+
     this.search.results.pipe(
       tap(changes => {
+        const isEmpty = !changes.length
+        const wasEmpty = !this.displayed.length
+
         this.filtered = changes
         this.displayed = empty
-      }),
-      debounceTime(100),
-      tap(() => {
-        this.pushChunk()
+
+        if (isEmpty || wasEmpty) {
+          pushChunk()
+        } else {
+          pushChunkDebounced()
+        }
       }),
     ).subscribe()
   }
