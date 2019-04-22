@@ -1,12 +1,12 @@
 .tooltip {
   display: none;
   position: absolute;
-  bottom: -.5em;
+  bottom: -.5rem;
   left: 50%;
   transform: translateX(-50%) translateY(100%);
   background: white;
   z-index: 1;
-  padding: .5em 1em;
+  padding: .5rem 1rem;
   color: black;
   font-size: .9rem;
   font-weight: 300;
