@@ -28,14 +28,14 @@ jobs:
       - image: circleci/node:10-browsers
     steps:
       - attach_workspace: { at: "." }
-      - run: yarn ng test --no-progress --no-watch --browsers ChromeHeadlessCI
+      - run: yarn test --no-progress --no-watch --browsers ChromeHeadlessCI
 
   e2e:
     docker:
       - image: circleci/node:10-browsers
     steps:
       - attach_workspace: { at: "." }
-      - run: yarn ng e2e --configuration production --protractor-config ./e2e/protractor-ci.conf.js
+      - run: yarn e2e --configuration production --protractor-config ./e2e/protractor-ci.conf.js
 
   build:
     docker:
