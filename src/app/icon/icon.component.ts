@@ -10,6 +10,7 @@ export class IconComponent {
 
   @Input() icon:
     | "clear"
+    | "close"
     | "up"
     | "menu"
     | "bug"
