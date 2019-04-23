@@ -1,9 +1,9 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "defaultProject": "celeste-item-search",
+  "defaultProject": "celeste-search",
   "newProjectRoot": "projects",
   "projects": {
-    "celeste-item-search": {
+    "celeste-search": {
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -42,7 +42,7 @@
             ],
             "index": "src/index.html",
             "main": "src/main.ts",
-            "outputPath": "dist/celeste-item-search",
+            "outputPath": "dist/celeste-search",
             "polyfills": "src/polyfills.ts",
             "scripts": [],
             "stylePreprocessorOptions": {
@@ -60,7 +60,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "celeste-item-search:build"
+            "browserTarget": "celeste-search:build"
           }
         },
         "lint": {
@@ -80,12 +80,12 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "celeste-item-search:build:production",
+              "browserTarget": "celeste-search:build:production",
               "progress": false
             }
           },
           "options": {
-            "browserTarget": "celeste-item-search:build"
+            "browserTarget": "celeste-search:build"
           }
         },
         "test": {
@@ -122,18 +122,18 @@
       },
       "sourceRoot": "src"
     },
-    "celeste-item-search-e2e": {
+    "celeste-search-e2e": {
       "architect": {
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "configurations": {
             "production": {
-              "devServerTarget": "celeste-item-search:serve:production",
+              "devServerTarget": "celeste-search:serve:production",
               "port": 8000
             }
           },
           "options": {
-            "devServerTarget": "celeste-item-search:serve",
+            "devServerTarget": "celeste-search:serve",
             "protractorConfig": "e2e/protractor.conf.js"
           }
         },

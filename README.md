@@ -8,20 +8,20 @@
 </p>
 
 <p align="center">
-  <a href="https://items.projectceleste.com">
+  <a href="https://search.projectceleste.com">
     <img alt="Item Search" src="https://flat.badgen.net/badge//item search?icon=chrome">
   </a>
-  <a href="https://celeste-item-search.netlify.com/">
+  <a href="https://celeste-search.netlify.com/">
     <img alt="Staging" src="https://flat.badgen.net/badge//staging/cyan?icon=chrome">
   </a>
-  <a href="https://github.com/n4bb12/celeste-item-search/issues/new">
+  <a href="https://github.com/n4bb12/celeste-search/issues/new">
     <img alt="Issues" src="https://flat.badgen.net/badge/github/create issue/pink?icon=github">
   </a>
 </p>
 
 ## Contributing
 
-Want to suggest a feature or report a bug? [Create an issue](https://github.com/n4bb12/celeste-item-search/issues/new).  
+Want to suggest a feature or report a bug? [Create an issue](https://github.com/n4bb12/celeste-search/issues/new).  
 Interested in writing a pull request? See the [contribution guide](CONTRIBUTING.md).
 
 #

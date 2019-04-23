@@ -1,5 +1,5 @@
 {
-  "name": "celeste-item-search",
+  "name": "celeste-search",
   "version": "0.0.0",
   "private": true,
   "keywords": [
@@ -23,9 +23,9 @@
     "slot",
     "stats"
   ],
-  "homepage": "https://github.com/n4bb12/celeste-item-search/blob/master/README.md",
-  "bugs": "https://github.com/n4bb12/celeste-item-search/issues",
-  "repository": "github:n4bb12/celeste-item-search",
+  "homepage": "https://github.com/n4bb12/celeste-search/blob/master/README.md",
+  "bugs": "https://github.com/n4bb12/celeste-search/issues",
+  "repository": "github:n4bb12/celeste-search",
   "license": "ISC",
   "author": "Abraham Schilling",
   "scripts": {
