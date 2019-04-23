@@ -34,8 +34,8 @@
     "db:watch": "nodemon --watch db --ext * --exec yarn db",
     "dev": "ng serve --open",
     "e2e": "ng e2e",
-    "lint": "ng lint",
     "gulp": "gulp",
+    "lint": "ng lint",
     "serve": "ng serve",
     "start": "ng serve",
     "test": "ng test"
