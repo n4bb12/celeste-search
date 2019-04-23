@@ -4,7 +4,7 @@
 </h1>
 
 <p align="center">
- Find items by name, slot, quality, level, effect, material or shop.
+ Find items, advisors, blueprints, designs and consumables – Search by anything
 </p>
 
 <p align="center">
