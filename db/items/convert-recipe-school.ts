@@ -15,7 +15,7 @@ const map = {
 
 /**
  * Converts crafting schools names from their API format to
- * the format used by the item search app.
+ * the format used by the Search app.
  */
 export function convertRecipeSchool(name: string): string {
   if (!map[name]) {

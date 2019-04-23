@@ -1,6 +1,6 @@
 <h1 align="center">
   <img alt="Logo" src="assets/logo.png" height="80">
-  Celeste Item Search
+  Celeste Search
 </h1>
 
 <p align="center">
@@ -9,7 +9,7 @@
 
 <p align="center">
   <a href="https://search.projectceleste.com">
-    <img alt="Item Search" src="https://flat.badgen.net/badge//item search?icon=chrome">
+    <img alt="Search" src="https://flat.badgen.net/badge//Search?icon=chrome">
   </a>
   <a href="https://celeste-search.netlify.com/">
     <img alt="Staging" src="https://flat.badgen.net/badge//staging/cyan?icon=chrome">

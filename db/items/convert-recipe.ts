@@ -7,7 +7,7 @@ import { convertRecipeSchool } from "./convert-recipe-school"
 
 /**
  * Looks up the recipe for an item and if found, converts it
- * from the API format to the format used by the item search app.
+ * from the API format to the format used by the Search app.
  */
 export async function findAndConvertRecipe(trait: Trait): Promise<Recipe | undefined> {
   const designs = await API.getDesigns()

@@ -7,7 +7,7 @@ import { convertEffectName } from "./convert-effect-name"
 
 /**
  * Converts item effects from their API format to the format
- * used by the item search app.
+ * used by the Search app.
  */
 export function convertEffects(trait: Trait): ItemEffect[] | undefined {
   if (!trait.effects) {

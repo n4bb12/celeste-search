@@ -19,7 +19,9 @@ export class DocumenTitleService {
       tap(changes => {
         const tab = TABS[changes.tab].name
         const search = changes.search
-        const result = [search, tab].filter(Boolean).join(" - ")
+        const appName = "Celeste Search"
+
+        const result = [search, tab, appName].filter(Boolean).join(" - ")
 
         this.title.setTitle(result)
       }),

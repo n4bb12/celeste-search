@@ -1,7 +1,7 @@
 {
   "$schema": "http://json.schemastore.org/web-manifest",
-  "name": "Celeste Item Search",
-  "short_name": "Item Search",
+  "name": "Celeste Search",
+  "short_name": "Search",
   "description": "ind items, advisors, blueprints, designs and consumables – Search by anything",
   "start_url": "/",
   "display": "minimal-ui",
