@@ -4,18 +4,15 @@
 </h1>
 
 <p align="center">
- Find items, advisors, blueprints, designs and consumables – Search by anything
+ Find items by name, slot, quality, level, effect, material or shop.
 </p>
 
 <p align="center">
   <a href="https://search.projectceleste.com">
-    <img alt="Search" src="https://flat.badgen.net/badge//Search?icon=chrome">
-  </a>
-  <a href="https://celeste-search.netlify.com/">
-    <img alt="Staging" src="https://flat.badgen.net/badge//staging/cyan?icon=chrome">
+    <img alt="App" src="https://flat.badgen.net/badge//App?icon=chrome">
   </a>
   <a href="https://github.com/n4bb12/celeste-search/issues/new">
-    <img alt="Issues" src="https://flat.badgen.net/badge/github/create issue/pink?icon=github">
+    <img alt="Create issue" src="https://flat.badgen.net/badge/GitHub/Create issue/pink?icon=github">
   </a>
 </p>
 

@@ -9,19 +9,16 @@
 
 <p align="center">
   <a href="https://search.projectceleste.com">
-    <img alt="Search" src="https://flat.badgen.net/badge//Search?icon=chrome">
-  </a>
-  <a href="https://celeste-search.netlify.com/">
-    <img alt="Staging" src="https://flat.badgen.net/badge//staging/cyan?icon=chrome">
+    <img alt="App" src="https://flat.badgen.net/badge//App?icon=chrome">
   </a>
   <a href="https://github.com/n4bb12/celeste-search/issues/new">
-    <img alt="Issues" src="https://flat.badgen.net/badge/github/create issue/pink?icon=github">
+    <img alt="Create issue" src="https://flat.badgen.net/badge/GitHub/Create issue/pink?icon=github">
   </a>
   <a href="https://app.netlify.com/sites/celeste-search/deploys">
-    <img alt="Issues" src="https://flat.badgen.net/badge/netlify/deploys/?icon=terminal&color=00ad9e">
+    <img alt="Deploys" src="https://flat.badgen.net/badge/netlify/Deploys/?icon=terminal&color=00ad9e">
   </a>
   <a href="https://circleci.com/gh/n4bb12/workflows/celeste-search">
-    <img alt="CircleCI" src="https://flat.badgen.net/circleci/github/n4bb12/celeste-search?icon=circleci">
+    <img alt="CI" src="https://flat.badgen.net/CI/github/n4bb12/celeste-search?icon=circleci">
   </a>
 </p>
 
