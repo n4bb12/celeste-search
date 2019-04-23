@@ -88,6 +88,7 @@
     "fs-extra": "^7.0.1",
     "gulp": "^4.0.0",
     "gulp-debug": "^4.0.0",
+    "gulp-replace": "^1.0.0",
     "gulp-responsive": "^2.13.0",
     "gulp-svgmin": "^2.2.0",
     "gulp-tinify": "^1.0.2",

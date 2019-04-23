@@ -35,6 +35,7 @@
           },
           "options": {
             "assets": [
+              "src/_redirects",
               "src/assets",
               "src/favicon.ico",
               "src/manifest.json",
@@ -95,11 +96,6 @@
           "options": {
             "assets": [
               "src/assets",
-              "src/favicon.ico",
-              "src/manifest.json",
-              "src/netlify.toml",
-              "src/robots.txt",
-              "src/sitemap.xml"
             ],
             "karmaConfig": "src/karma.conf.js",
             "main": "src/test.ts",

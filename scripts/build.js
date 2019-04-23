@@ -1,7 +1,6 @@
-const { series, parallel } = require("gulp")
-
+const { src, dest, series, parallel } = require("gulp")
 const exec = require("execa")
-const { readFile, writeFile } = require("fs-extra")
+const replace = require("gulp-replace")
 
 const dist = "dist/celeste-search"
 
@@ -10,12 +9,9 @@ function app() {
 }
 
 async function sitemap() {
-  let content = await readFile(`${dist}/sitemap.xml`, "utf8")
-
-  content = content
-    .replace(/LASTMOD/g, new Date().toISOString())
-
-  return writeFile(`${dist}/sitemap.xml`, content, "utf8")
+  return src(`${dist}/sitemap.xml`)
+    .pipe(replace(/__LASTMOD__/g, new Date().toISOString()))
+    .pipe(dest(dist))
 }
 
 async function robots() {
@@ -23,12 +19,9 @@ async function robots() {
     return
   }
 
-  const content = `
-User-agent: *
-Disallow:
-`.trim()
-
-  return writeFile(`${dist}/robots.xml`, content, "utf8")
+  return src(`${dist}/robots.txt`)
+    .pipe(replace(/Disallow:.*/, "Disallow:"))
+    .pipe(dest(dist))
 }
 
 module.exports = series(app, parallel(sitemap, robots))
