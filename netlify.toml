@@ -6,3 +6,9 @@
   from = "/*"
   to = "/index.html"
   status = 200
+
+[[redirects]]
+  from = "https://celeste-search.netlify.com/*"
+  to = "https://search.projectceleste.com/:splat"
+  status = 301
+  force = true
