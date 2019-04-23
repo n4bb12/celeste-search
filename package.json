@@ -29,7 +29,7 @@
   "license": "ISC",
   "author": "Abraham Schilling",
   "scripts": {
-    "build": "ng build -c production",
+    "build": "sh ./scripts/build.sh",
     "db": "ts-node --project db/tsconfig.json db/cli.ts",
     "db:watch": "nodemon --watch db --ext * --exec yarn db",
     "dev": "ng serve --open",

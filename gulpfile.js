@@ -1,11 +1,11 @@
 const { series, parallel } = require("gulp")
 
-const bg = require("./gulp/bg")
-const copy = require("./gulp/copy")
-const icons = require("./gulp/icons")
-const meta = require("./gulp/meta")
-const optimize = require("./gulp/optimize")
-const sprites = require("./gulp/sprites")
+const bg = require("./scripts/bg")
+const copy = require("./scripts/copy")
+const icons = require("./scripts/icons")
+const meta = require("./scripts/meta")
+const optimize = require("./scripts/optimize")
+const sprites = require("./scripts/sprites")
 
 exports.bg = bg
 exports.copy = copy

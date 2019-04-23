@@ -35,6 +35,7 @@
           },
           "options": {
             "assets": [
+              "src/sitemap.xml",
               "src/assets",
               "src/favicon.ico",
               "src/manifest.json",
@@ -92,8 +93,11 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "assets": [
+              "src/sitemap.xml",
+              "src/assets",
               "src/favicon.ico",
-              "src/assets"
+              "src/manifest.json",
+              "src/robots.txt"
             ],
             "karmaConfig": "src/karma.conf.js",
             "main": "src/test.ts",
