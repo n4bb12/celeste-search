@@ -18,7 +18,7 @@
     <img alt="Deploys" src="https://flat.badgen.net/badge/netlify/Deploys/?icon=terminal&color=00ad9e">
   </a>
   <a href="https://circleci.com/gh/n4bb12/workflows/celeste-search">
-    <img alt="CI" src="https://flat.badgen.net/CI/github/n4bb12/celeste-search?icon=circleci">
+    <img alt="CI" src="https://flat.badgen.net/circleci/github/n4bb12/celeste-search?icon=circleci">
   </a>
 </p>
 
