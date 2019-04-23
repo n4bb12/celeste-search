@@ -29,7 +29,7 @@
   "license": "ISC",
   "author": "Abraham Schilling",
   "scripts": {
-    "build": "sh ./scripts/build.sh",
+    "build": "gulp build",
     "db": "ts-node --project db/tsconfig.json db/cli.ts",
     "db:watch": "nodemon --watch db --ext * --exec yarn db",
     "dev": "ng serve --open",
@@ -83,6 +83,7 @@
     "celeste-api-types": "^1.3.1",
     "codelyzer": "~5.0.0",
     "del": "^4.1.0",
+    "execa": "^1.0.0",
     "filenamify": "^4.0.0",
     "fs-extra": "^7.0.1",
     "gulp": "^4.0.0",

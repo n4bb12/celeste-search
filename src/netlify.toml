@@ -1,7 +1,3 @@
-[build]
-  command = "yarn build"
-  publish = "dist/celeste-search"
-
 [[redirects]]
   from = "/*"
   to = "/index.html"
