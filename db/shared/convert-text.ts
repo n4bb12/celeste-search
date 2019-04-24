@@ -1,4 +1,5 @@
 import chalk from "chalk"
+import { get } from "lodash"
 
 import { API } from "../download"
 
@@ -11,13 +12,12 @@ export async function translateEn(id: number, fallback?: string) {
   const languages = await API.getLanguages()
 
   const translation =
-    languages.stringtablex.language.English.string[id] ||
-    languages.econstrings.language.English.string[id]
+    get(languages, `stringtablex.language.English.string[${id}].text`) ||
+    get(languages, `econstrings.language.English.string[${id}].text`)
 
-  if (translation && translation.text) {
-    return translation.text
+  if (!translation) {
+    console.log(chalk.yellow(`No translation found for ${id}, falling back to ${fallback}`))
   }
 
-  console.log(chalk.yellow(`No translation found for ${id}, falling back to ${fallback}`))
-  return fallback
+  return translation || fallback
 }

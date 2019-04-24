@@ -1,2 +1,2 @@
-export * from "./download-icon"
-export * from "./download-api-resource"
+export * from "./icons"
+export * from "./api"

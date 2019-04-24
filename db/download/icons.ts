@@ -7,16 +7,16 @@ const pathToId: { [iconPath: string]: Promise<number> } = {}
 const nextIconId: { [sprite: string]: number } = {}
 
 export async function downloadIcon(resource: string, spriteName: string, iconName?: string): Promise<number> {
-  return pathToId[resource] = pathToId[resource] || get(resource, spriteName, iconName)
+  return pathToId[resource] = pathToId[resource] || fetch(resource, spriteName, iconName)
 }
 
-async function get(resource: string, spriteName: string, iconName?: string) {
+async function fetch(path: string, spriteName: string, iconName?: string) {
   const iconId = nextIconId[spriteName] || 0
   nextIconId[spriteName] = iconId + 1
 
-  const path = resource.replace(/\\/g, "/")
+  const imagePath = path.replace(/\\/g, "/") + ".png"
   const spriteInput = `generated/sprites/${spriteName}/${iconName || iconId}.png`
-  const url = `https://images.projectceleste.com/${path}.png`
+  const url = `https://images.projectceleste.com/${imagePath}`
   const options = { responseType: "arraybuffer" }
 
   const filename = await download(url, options)

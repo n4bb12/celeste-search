@@ -24,12 +24,8 @@ import { download } from "./download"
 
 const cache = {}
 
-async function downloadApiResource<T extends { data: any }>(resource: string): Promise<T["data"]> {
-  return cache[resource] = cache[resource] || get(resource)
-}
-
-async function get(resource: string) {
-  const url = "https://api.projectceleste.com" + resource
+async function fetch(path: string) {
+  const url = "https://api.projectceleste.com" + path
   const options = { headers: { Accept: "application/json" } }
 
   const filename = await download(url, options)
@@ -38,36 +34,43 @@ async function get(resource: string) {
   return res.data
 }
 
+async function get<T extends { data: any }>(path: string): Promise<T["data"]> {
+  return cache[path] = cache[path] || fetch(path)
+}
+
 export class API {
 
   // Game
 
   static getAdvisors() {
-    return downloadApiResource<Advisors>("/game/advisors")
+    return get<Advisors>("/game/advisors")
   }
   static getBlueprints() {
-    return downloadApiResource<Blueprints>("/game/blueprints")
+    return get<Blueprints>("/game/blueprints")
   }
   static getDesigns() {
-    return downloadApiResource<Designs>("/game/designs")
+    return get<Designs>("/game/designs")
   }
   static getEconQuests() {
-    return downloadApiResource<EconQuests>("/game/econquests")
+    return get<EconQuests>("/game/econquests")
   }
   static getLanguages() {
-    return downloadApiResource<Languages>("/game/languages")
+    return get<Languages>("/game/languages")
   }
   static getLootRolls() {
-    return downloadApiResource<LootRolls>("/game/lootrolls")
+    return get<LootRolls>("/game/lootrolls")
   }
   static getMaterials() {
-    return downloadApiResource<Materials>("/game/materials")
+    return get<Materials>("/game/materials")
   }
   static getTraits() {
-    return downloadApiResource<Traits>("/game/traits")
+    return get<Traits>("/game/traits")
   }
   static getPrototypes() {
-    return downloadApiResource<Prototypes>("/game/protodata")
+    return get<Prototypes>("/game/protodata")
+  }
+  static getVendors() {
+    return get<Prototypes>("/game/vendors")
   }
 
   // Leaderboard
@@ -78,31 +81,31 @@ export class API {
   static getLeaderboard(name: "winter"): Promise<WinterEventLeaderboard>
 
   static getLeaderboard(name: string) {
-    return downloadApiResource(`/leaderboards/${name}`)
+    return get(`/leaderboards/${name}`)
   }
 
   // Marketplace
 
   static getMarketplace() {
-    return downloadApiResource<Marketplace>("/marketplace")
+    return get<Marketplace>("/marketplace")
   }
 
   // Stores
 
   static getStores() {
-    return downloadApiResource<Stores>("/stores")
+    return get<Stores>("/stores")
   }
 
   // Users
 
   static getUserProfile(id: string) {
-    return downloadApiResource<UserProfile>(`/users/${id}/profile`)
+    return get<UserProfile>(`/users/${id}/profile`)
   }
   static getOnlineUsers() {
-    return downloadApiResource<Online>(`/users/online`)
+    return get<Online>(`/users/online`)
   }
   static getRegisteredUsers() {
-    return downloadApiResource<Registered>(`/users/registered`)
+    return get<Registered>(`/users/registered`)
   }
 
 }
