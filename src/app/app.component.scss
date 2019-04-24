@@ -62,7 +62,7 @@ $spacing-body: 3 * $spacing-viewport;
 .__footer {
   width: 100%;
   max-width: 40rem;
-  padding: 8rem $spacing-viewport 4rem;
+  padding: (2*$spacing-viewport) $spacing-viewport $spacing-viewport;
   margin: 0 auto;
 }
 
