@@ -62,7 +62,7 @@ const buildMediaQueries = images => {
       addRule(bgImage)
     } else if (width !== height) {
       addRule(
-        `@media (max-width: ${width}px), (max-height: ${height}px) {`,
+        `@media (max-width: ${width}px) and (max-height: ${height}px) {`,
         indent + `${bgImage}`,
         `}`)
     } else {
