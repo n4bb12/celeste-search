@@ -14,10 +14,12 @@
 }
 .--positive {
   color: hsl(120, 80%, 50%);
+  font-weight: 700;
 }
 .--negative {
   @include text-shadow();
   color: hsl(0, 80%, 55%);
+  font-weight: 700;
 }
 .--note {
   color: hsl(0, 0%, 65%);
