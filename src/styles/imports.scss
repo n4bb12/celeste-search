@@ -8,8 +8,6 @@ $theme-shadow: #192B33;
 $theme-border: #768376;
 
 $border-radius: .75rem;
-
-$spacing-calc: calc(2.5rem + 2.5vmin);
 $spacing-viewport: 5vmin;
 
 @mixin elevation($z) {
@@ -19,11 +17,6 @@ $spacing-viewport: 5vmin;
 @mixin border() {
   border: .2rem solid $theme-border;
   border-radius: $border-radius;
-}
-
-@mixin background() {
-  @include elevation(2);
-  background: rgba(white, .25);
 }
 
 @mixin text-shadow() {

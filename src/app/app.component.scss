@@ -36,8 +36,9 @@ $spacing-body: 3 * $spacing-viewport;
   margin: 0 auto;
 
   .__form {
-    @include background();
+    @include elevation(2);
 
+    background: rgba(white, .25);
     border-radius: $border-radius;
     padding: ($spacing-viewport / 2);
 
