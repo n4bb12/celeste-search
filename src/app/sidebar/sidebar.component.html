@@ -1,4 +1,4 @@
-<cis-primary-button icon="menu" class="__open" (click)="open()">
+<cis-primary-button icon="menu" class="__open" (click)="open()" aria-label="Sidebar">
 </cis-primary-button>
 
 <div class="__sidebar" [class.--open]="isOpen" (window:keydown.escape)="close()"
