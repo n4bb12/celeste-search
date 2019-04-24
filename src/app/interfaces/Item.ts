@@ -14,6 +14,9 @@ export interface Item {
   recipe?: Recipe
   vendors?: Vendor[]
   quest?: string
-  event?: "halloween" | "winter"
+  event?: {
+    name: "halloween" | "winter"
+    year: 2018,
+  }
   search: string
 }

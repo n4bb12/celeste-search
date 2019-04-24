@@ -6,15 +6,11 @@ import { translateEn } from "../shared/convert-text"
 import { findVendors } from "../vendors"
 
 import { convertEffects } from "./convert-effects"
+import { convertEvent } from "./convert-event"
 import { findAndConvertRecipe } from "./convert-recipe"
 import { addToLegendaryRotation } from "./legendary-rotation"
 import { buildSearchString } from "./search"
-import {
-  getQuestName,
-  isHalloweenReward,
-  isReforgeable,
-  isWinterReward,
-} from "./source"
+import { getQuestName, isReforgeable } from "./source"
 
 /**
  * Converts items from their API format to the format
@@ -37,7 +33,7 @@ export async function convertItem(trait: Trait): Promise<Item> {
     recipe: undefined,
     vendors: undefined,
     quest: getQuestName(trait),
-    event: isHalloweenReward(trait) ? "halloween" : isWinterReward(trait) ? "winter" : undefined,
+    event: convertEvent(trait),
     search: "",
   }
 

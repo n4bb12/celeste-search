@@ -11,14 +11,14 @@ import {
 
 import {
   isClassicItem,
-  isHalloweenReward,
+  isHalloween2018Reward,
   isQuestReward,
   isReforgeable,
   isSoldByCouncilOfImhotep,
   isSoldByCyprus,
   isSoldByDelianLeague,
   isSoldByLegionOfCarthage,
-  isWinterReward,
+  isWinter2018Reward,
 } from "./source"
 
 export async function buildSearchString(item: Item, trait: Trait): Promise<string> {
@@ -50,10 +50,10 @@ export async function buildSearchString(item: Item, trait: Trait): Promise<strin
   if (isSoldByLegionOfCarthage(trait)) {
     builder.add("Legion of Carthage")
   }
-  if (isHalloweenReward(trait)) {
+  if (isHalloween2018Reward(trait)) {
     builder.add("Halloween Event 2018 Reward")
   }
-  if (isWinterReward(trait)) {
+  if (isWinter2018Reward(trait)) {
     builder.add("Winter Event 2018 Reward")
   }
   if (isQuestReward(trait)) {

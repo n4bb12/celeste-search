@@ -109,7 +109,8 @@
       </div>
       <span class="__mat-amount">{{ vendor.price | price }}</span>
       <span class="__mat-text">{{ vendor.currency | currency }}</span>
-      <span *ngIf="vendor.level && vendor.level !== level">
+      <span
+        *ngIf="vendor.level && vendor.level !== level || item.levels.length > 1">
         —&nbsp;&nbsp;Level {{ vendor.level }}
       </span>
     </div>
@@ -122,12 +123,12 @@
     </div>
 
     <div class="row --materials">
-      <div class="icon--materials icon--materials--{{ item.event || 'quest' }}">
+      <div class="icon--materials icon--materials--{{ item.event?.name || 'quest' }}">
       </div>
       <div class="__mat-text">
         <span *ngIf="item.quest">{{ item.quest }}</span>
-        <span *ngIf="item.event === 'halloween'">Halloween Event</span>
-        <span *ngIf="item.event === 'winter'">Winter Event</span>
+        <span *ngIf="item.event">{{ item.event?.name | titlecase }} Event
+          {{ item.event?.year }}</span>
       </div>
     </div>
   </div>

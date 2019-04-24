@@ -38,11 +38,11 @@ const questRewards = [
   "Bow1H_UASB",
 ]
 
-const eventHalloween = [
+const eventHalloween2018 = [
   "Sword1H_R005_LEG",
 ]
 
-const eventWinter = [
+const eventWinter2018 = [
   "Arrows_IceKing_LEG",
   "Axe2H_IceKing_LEG",
   "Staff2H_IceKing_LEG",
@@ -85,17 +85,17 @@ export function getQuestName(trait: Trait) {
   return quests[trait.name]
 }
 
-export function isHalloweenReward(trait: Trait) {
-  return eventHalloween.includes(trait.name)
+export function isHalloween2018Reward(trait: Trait) {
+  return eventHalloween2018.includes(trait.name)
 }
 
-export function isWinterReward(trait: Trait) {
-  return eventWinter.includes(trait.name)
+export function isWinter2018Reward(trait: Trait) {
+  return eventWinter2018.includes(trait.name)
 }
 
 export function isEventReward(trait: Trait) {
-  return isHalloweenReward(trait)
-    || isWinterReward(trait)
+  return isHalloween2018Reward(trait)
+    || isWinter2018Reward(trait)
 }
 
 /**
