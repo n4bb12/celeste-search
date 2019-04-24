@@ -28,9 +28,9 @@ export class DbService {
   readonly designs = this.fetch<Pick<DB, "designs">>("designs")
   readonly consumables = this.fetch<Pick<DB, "consumables">>("consumables")
 
-  readonly marketplace = interval(1000 * 60).pipe(
+  readonly marketplace = this.appRef.isStable.pipe(
+    flatMap(() => interval(1000 * 60)),
     startWith(-1),
-    delayWhen(() => this.appRef.isStable),
     flatMap(() => this.http.get<Marketplace>("https://api.projectceleste.com/marketplace")),
     publishReplay(1),
     refCount(),

@@ -4,6 +4,7 @@
   "short_name": "Search",
   "description": "Find items, advisors, blueprints, designs and consumables – Search by anything",
   "start_url": "/",
+  "scope": "/",
   "display": "minimal-ui",
   "background_color": "#fff",
   "theme_color": "#000",
