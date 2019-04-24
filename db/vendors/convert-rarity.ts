@@ -28,10 +28,16 @@ export function convertRarity(id: string) {
   if (id.startsWith("Craft")) {
     return
   }
+  if (id.startsWith("General")) {
+    return
+  }
   if (id.startsWith("Pantheon")) {
     return
   }
   if (id.includes("BasicStore")) {
+    return
+  }
+  if (id.includes("Resident0")) {
     return
   }
   if (id.includes("Warehouse")) {

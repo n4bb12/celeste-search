@@ -1,4 +1,4 @@
-import { uniqBy } from "lodash"
+import { isEqual, uniqWith } from "lodash"
 
 import { API } from "../download"
 import { Entity, Vendor } from "../interfaces"
@@ -62,8 +62,8 @@ export async function findVendors(entity: Entity): Promise<Vendor[] | undefined>
     }
   }
 
-  result.sort(compareVendors)
+  const unique = uniqWith(result, isEqual)
+  unique.sort(compareVendors)
 
-  return result.length ? result : undefined
-
+  return unique.length ? unique : undefined
 }
