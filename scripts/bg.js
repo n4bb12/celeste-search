@@ -95,7 +95,7 @@ const deleteBGs = () => del(paths.out + "/*")
  * Generates multiple sizes of background images.
  */
 const generateBGs = done => {
-  const images = buildImagesConfigs([1, 1.25, 1.5, 2, 3])
+  const images = buildImagesConfigs([1, 1.25, 1.5, 2])
 
   const writeImages = () => src(paths.in)
     .pipe(responsive({ "*": images }, { silent: true }))

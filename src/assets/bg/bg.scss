@@ -20,27 +20,19 @@ body {
     background-image: url("/assets/bg/bg-1152-648.png");
   }
 
-  @media (max-width: 648px), (max-height: 365px) {
-    background-image: url("/assets/bg/bg-648-365.png");
-  }
-
-  @media (max-aspect-ratio: 1/1) and (max-height: 1152px) {
+  @media (max-aspect-ratio: 1) and (max-height: 1152px) {
     background-image: url("/assets/bg/bg-1152.png");
   }
 
-  @media (max-aspect-ratio: 1/1) and (max-height: 998px) {
+  @media (max-aspect-ratio: 1) and (max-height: 998px) {
     background-image: url("/assets/bg/bg-998.png");
   }
 
-  @media (max-aspect-ratio: 1/1) and (max-height: 864px) {
+  @media (max-aspect-ratio: 1) and (max-height: 864px) {
     background-image: url("/assets/bg/bg-864.png");
   }
 
-  @media (max-aspect-ratio: 1/1) and (max-height: 648px) {
+  @media (max-aspect-ratio: 1) and (max-height: 648px) {
     background-image: url("/assets/bg/bg-648.png");
-  }
-
-  @media (max-aspect-ratio: 1/1) and (max-height: 365px) {
-    background-image: url("/assets/bg/bg-365.png");
   }
 }
