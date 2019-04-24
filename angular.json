@@ -30,7 +30,8 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "vendorChunk": false
+              "vendorChunk": false,
+              "serviceWorker": true
             }
           },
           "options": {

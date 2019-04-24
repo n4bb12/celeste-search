@@ -7,6 +7,8 @@ import { RouterModule } from "@angular/router"
 import { ClickOutsideModule } from "ng-click-outside"
 import { NgScrollbarModule } from "ngx-scrollbar"
 
+import { ServiceWorkerModule } from "@angular/service-worker"
+import { environment } from "../environments/environment"
 import { AppComponent } from "./app.component"
 import { AwaitFontDirective } from "./await-font.directive"
 import { BackToTopComponent } from "./back-to-top/back-to-top.component"
@@ -36,6 +38,7 @@ import { TabsComponent } from "./tabs/tabs.component"
     ReactiveFormsModule,
     RouterModule.forRoot([]),
     ClickOutsideModule,
+    ServiceWorkerModule.register("ngsw-worker.js", { enabled: environment.production }),
   ],
   declarations: [
     AdvisorComponent,
