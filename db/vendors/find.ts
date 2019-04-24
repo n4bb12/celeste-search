@@ -1,9 +1,11 @@
-import chalk from "chalk"
+import { uniqBy } from "lodash"
 
 import { API } from "../download"
 import { Entity, Vendor } from "../interfaces"
 import { translateEn } from "../shared/convert-text"
 
+import { convertCurrency } from "./convert-currency"
+import { convertRarity } from "./convert-rarity"
 import { compareVendors } from "./sort"
 
 /**
@@ -63,63 +65,5 @@ export async function findVendors(entity: Entity): Promise<Vendor[] | undefined>
   result.sort(compareVendors)
 
   return result.length ? result : undefined
-}
 
-function convertRarity(id: string) {
-  if (id.includes("_C")) {
-    return "common"
-  }
-  if (id.includes("_U")) {
-    return "uncommon"
-  }
-  if (id.includes("_R")) {
-    return "rare"
-  }
-  if (id.includes("_E")) {
-    return "epic"
-  }
-  if (id.includes("_L")) {
-    return "legendary"
-  }
-  if (id.startsWith("Vanity")) {
-    return
-  }
-  if (id.startsWith("Van_")) {
-    return
-  }
-  if (id.startsWith("Create")) {
-    return
-  }
-  if (id.startsWith("Craft")) {
-    return
-  }
-  if (id.startsWith("Pantheon")) {
-    return
-  }
-  if (id.includes("BasicStore")) {
-    return
-  }
-  if (id.includes("Warehouse")) {
-    return
-  }
-  console.log(chalk.yellow(`Can't determine rarity for ${id}`))
-}
-
-function convertCurrency(id: string): Vendor["currency"] {
-  if (id === "cCapResCoin") {
-    return "coin"
-  }
-  if (id.includes("cGameCurEmpirePoints")) {
-    return "empire"
-  }
-  if (id.includes("cCapResFactionPoints4")) {
-    return "sparta"
-  }
-  if (id.includes("cCapResFactionPoints1")) {
-    return "halloween"
-  }
-  if (id.includes("cCapResFactionPoints2")) {
-    return "winter"
-  }
-  throw new Error("Unknown currency: " + id)
 }
