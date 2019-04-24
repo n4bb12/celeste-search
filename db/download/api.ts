@@ -70,7 +70,7 @@ export class API {
     return get<Prototypes>("/game/protodata")
   }
   static getVendors() {
-    return get<Prototypes>("/game/vendors")
+    return get<any>("/game/vendors")
   }
 
   // Leaderboard
@@ -88,12 +88,6 @@ export class API {
 
   static getMarketplace() {
     return get<Marketplace>("/marketplace")
-  }
-
-  // Stores
-
-  static getStores() {
-    return get<Stores>("/stores")
   }
 
   // Users

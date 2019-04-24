@@ -3,8 +3,8 @@ import { Recipe } from "./Recipe"
 import { Vendor } from "./Vendor"
 
 export interface Item {
+  id: string
   name: string
-  trait: string
   type: string
   levels: number[]
   icon: number

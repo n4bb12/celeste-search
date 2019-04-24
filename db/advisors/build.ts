@@ -1,6 +1,6 @@
 import { API } from "../download"
 import { Advisor } from "../interfaces"
-import { findAndConvertVendors } from "../shared/convert-vendors"
+import { findVendors } from "../vendors"
 
 import { convertAdvisor } from "./convert-advisor"
 import { includeAdvisor } from "./filter"
@@ -28,7 +28,7 @@ export async function buildAdvisors(): Promise<Advisor[]> {
   const result = Object.values(mergedByName)
 
   for (const advisor of result) {
-    advisor.vendors = await findAndConvertVendors(advisor)
+    advisor.vendors = await findVendors(advisor)
     advisor.search = await buildSearchString(advisor)
   }
 

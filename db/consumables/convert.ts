@@ -7,6 +7,7 @@ export async function convertConsumable(consumable: any): Promise<Consumable> {
   const name = await translateEn(consumable.displaynameid, consumable.name)
 
   const result: Consumable = {
+    id: consumable.name,
     name,
     search: "",
   }

@@ -1,6 +1,7 @@
 import { Vendor } from "./Vendor"
 
 export interface Blueprint {
+  id: string
   name: string
   description?: string
   icon: number

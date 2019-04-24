@@ -80,7 +80,7 @@ export class ResultsComponent implements OnInit, OnDestroy {
   }
 
   trackResult(index: number, entity: Entity) {
-    return entity.name
+    return entity.id
   }
 
   private registerForTabChange() {

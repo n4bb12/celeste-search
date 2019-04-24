@@ -3,7 +3,7 @@ import { Trait } from "celeste-api-types"
 import { downloadIcon } from "../download"
 import { Item } from "../interfaces"
 import { translateEn } from "../shared/convert-text"
-import { findAndConvertVendors } from "../shared/convert-vendors"
+import { findVendors } from "../vendors"
 
 import { convertEffects } from "./convert-effects"
 import { findAndConvertRecipe } from "./convert-recipe"
@@ -27,7 +27,7 @@ export async function convertItem(trait: Trait): Promise<Item> {
 
   const item: Item = {
     name,
-    trait: trait.name,
+    id: trait.name,
     type,
     levels: trait.itemlevels.map(l => l - 3).filter(l => l > 0),
     icon: iconId,
@@ -46,7 +46,7 @@ export async function convertItem(trait: Trait): Promise<Item> {
   }
 
   item.recipe = await findAndConvertRecipe(trait)
-  item.vendors = await findAndConvertVendors(item)
+  item.vendors = await findVendors(item)
 
   if (trait.rarity === "legendary") {
     addToLegendaryRotation(item, trait)

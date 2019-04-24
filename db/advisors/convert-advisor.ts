@@ -3,7 +3,7 @@ import { Advisor as ApiAdvisor } from "celeste-api-types"
 import { downloadIcon } from "../download"
 import { Advisor } from "../interfaces"
 import { translateEn } from "../shared/convert-text"
-import { findAndConvertVendors } from "../shared/convert-vendors"
+import { findVendors } from "../vendors"
 
 import { convertCivilization } from "./convert-civilization"
 import { buildSearchString } from "./search"
@@ -26,6 +26,7 @@ export async function convertAdvisor(advisor: ApiAdvisor): Promise<Advisor> {
   }
 
   const result: Advisor = {
+    id: advisor.name,
     name,
     age: advisor.age + 1,
     level: advisor.minlevel,

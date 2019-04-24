@@ -6,6 +6,7 @@ export interface AdvisorRarity {
 }
 
 export interface Advisor {
+  id: string
   name: string
   age: number
   level: number

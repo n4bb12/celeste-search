@@ -1,6 +1,7 @@
 import { Vendor } from "./Vendor"
 
 export interface Design {
+  id: string
   name: string
   description: string
   icon: number

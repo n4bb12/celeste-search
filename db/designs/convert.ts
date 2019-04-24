@@ -3,7 +3,7 @@ import { Design as ApiDesign } from "celeste-api-types"
 import { downloadIcon } from "../download"
 import { Design } from "../interfaces"
 import { translateEn } from "../shared/convert-text"
-import { findAndConvertVendors } from "../shared/convert-vendors"
+import { findVendors } from "../vendors"
 
 import { buildSearchString } from "./search"
 
@@ -21,6 +21,7 @@ export async function convertDesign(design: ApiDesign): Promise<Design> {
   })
 
   const result: Design = {
+    id: design.name,
     name,
     description,
     icon: iconId,
@@ -30,7 +31,7 @@ export async function convertDesign(design: ApiDesign): Promise<Design> {
     search: "",
   }
 
-  result.vendors = await findAndConvertVendors(result)
+  result.vendors = await findVendors(result)
   result.search = await buildSearchString(result)
 
   return result

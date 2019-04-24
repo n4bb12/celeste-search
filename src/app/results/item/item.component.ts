@@ -59,7 +59,7 @@ export class ItemComponent implements OnInit, OnDestroy {
     }
 
     this.db.marketplace.pipe(
-      map(market => market.data.filter(entry => entry.ItemID === this.item.trait)),
+      map(market => market.data.filter(entry => entry.ItemID === this.item.id)),
       distinctUntilChanged(isEqual),
       map(market => market.sort(byPrice)),
       tap(market => this.market = market),

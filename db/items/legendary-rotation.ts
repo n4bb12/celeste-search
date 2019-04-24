@@ -1,7 +1,7 @@
 import { Trait } from "celeste-api-types"
 
 import { Item } from "../interfaces"
-import { compareVendors } from "../shared/sort-vendors"
+import { compareVendors } from "../vendors/sort"
 
 import { isClassicItem, isEventReward, isQuestReward } from "./source"
 

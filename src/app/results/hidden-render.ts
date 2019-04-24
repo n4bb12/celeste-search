@@ -9,8 +9,8 @@ export const hiddenRenderData: {
   consumable: Consumable,
 } = {
   item: {
+    id: "item_id",
     name: "name",
-    trait: "ArmorPlt_E006",
     type: "Armor Plating",
     levels: [
       40,
@@ -55,6 +55,7 @@ export const hiddenRenderData: {
     search: "search",
   },
   advisor: {
+    id: "advisor_id",
     name: "name",
     age: 4,
     level: 40,
@@ -75,6 +76,7 @@ export const hiddenRenderData: {
     search: "search",
   },
   blueprint: {
+    id: "blueprint_id",
     name: "name",
     description: "description",
     icon: 237,
@@ -91,6 +93,7 @@ export const hiddenRenderData: {
     search: "search",
   },
   design: {
+    id: "design_id",
     name: "name",
     description: "description",
     icon: 2,
@@ -104,6 +107,7 @@ export const hiddenRenderData: {
     search: "search",
   },
   consumable: {
+    id: "consumable_id",
     name: "name",
     search: "search",
   },
