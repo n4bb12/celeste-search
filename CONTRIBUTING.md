@@ -8,14 +8,20 @@
 </p>
 
 <p align="center">
+  <a href="http://items.projectceleste.com">
+    <img alt="Latest" src="https://flat.badgen.net/badge/App/Latest?icon=chrome&color=fb3">
+  </a>
   <a href="https://search.projectceleste.com">
-    <img alt="App" src="https://flat.badgen.net/badge//App?icon=chrome">
+    <img alt="Next" src="https://flat.badgen.net/badge/App/Next?icon=chrome&color=488489">
   </a>
   <a href="https://github.com/n4bb12/celeste-search/issues/new">
     <img alt="Create issue" src="https://flat.badgen.net/badge/GitHub/Create issue/pink?icon=github">
   </a>
+</p>
+
+<p align="center">
   <a href="https://app.netlify.com/sites/celeste-search/deploys">
-    <img alt="Deploys" src="https://flat.badgen.net/badge/netlify/Deploys/?icon=terminal&color=00ad9e">
+    <img alt="Deploys" src="https://flat.badgen.net/badge/netlify/deploys/?icon=terminal&color=00ad9e">
   </a>
   <a href="https://circleci.com/gh/n4bb12/workflows/celeste-search">
     <img alt="CI" src="https://flat.badgen.net/circleci/github/n4bb12/celeste-search?icon=circleci">
@@ -26,9 +32,11 @@
 
 ![Architecture](docs/architecture.svg)
 
+The app is deployed with pre-combiled static JSON data and icon sprites that is pulled from multiple sources. This makes the search resilient against potentially failing upstream sources.
+
 ## Angular CLI
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.1.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli).
 
 ### Development server
 

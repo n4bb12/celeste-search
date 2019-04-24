@@ -8,8 +8,11 @@
 </p>
 
 <p align="center">
+  <a href="http://items.projectceleste.com">
+    <img alt="Latest" src="https://flat.badgen.net/badge/App/Latest?icon=chrome&color=fb3">
+  </a>
   <a href="https://search.projectceleste.com">
-    <img alt="App" src="https://flat.badgen.net/badge//App?icon=chrome">
+    <img alt="Next" src="https://flat.badgen.net/badge/App/Next?icon=chrome&color=488489">
   </a>
   <a href="https://github.com/n4bb12/celeste-search/issues/new">
     <img alt="Create issue" src="https://flat.badgen.net/badge/GitHub/Create issue/pink?icon=github">
