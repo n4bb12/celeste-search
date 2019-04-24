@@ -69,13 +69,14 @@
 .row.--vendor {
   margin-top: 1rem;
   margin-bottom: .25rem;
+  flex-wrap: wrap;
 }
 
 .row.--materials {
   margin-left: .5rem;
   font-size: 90%;
   display: grid;
-  grid-template-columns: auto auto 1fr;
+  grid-template-columns: auto auto auto 1fr;
   grid-column-gap: .375rem;
   grid-row-gap: .125rem;
   align-items: center;

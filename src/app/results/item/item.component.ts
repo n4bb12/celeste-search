@@ -86,41 +86,6 @@ export class ItemComponent implements OnInit, OnDestroy {
     return [lowestInt, highestInt]
   }
 
-  formatPrice(range: [number, number?]): string {
-    const lowestInt = range[0]
-    const highestInt = range[1] || lowestInt
-
-    const abbr = this.priceAbbreviation(highestInt)
-    const lowestStr = this.convertPrice(lowestInt, abbr)
-    const highestStr = this.convertPrice(highestInt, abbr)
-
-    if (lowestStr === highestStr) {
-      return `${lowestStr}`
-    }
-
-    return `${lowestStr} – ${highestStr}`
-  }
-
-  private priceAbbreviation(price: number) {
-    if (price >= 10000000) {
-      return "M"
-    }
-    if (price >= 10000) {
-      return "k"
-    }
-    return ""
-  }
-
-  private convertPrice(price: number, abbreviation: "M" | "k" | "") {
-    if (abbreviation === "M") {
-      price = Math.round(price / 1000000)
-    }
-    if (abbreviation === "k") {
-      price = Math.round(price / 1000)
-    }
-    return price + abbreviation
-  }
-
   marketCount() {
     return this.market.length
   }

@@ -3,20 +3,26 @@ import { NgModule } from "@angular/core"
 import { ReactiveFormsModule } from "@angular/forms"
 import { BrowserModule } from "@angular/platform-browser"
 import { RouterModule } from "@angular/router"
+import { ServiceWorkerModule } from "@angular/service-worker"
 
 import { ClickOutsideModule } from "ng-click-outside"
 import { NgScrollbarModule } from "ngx-scrollbar"
 
-import { ServiceWorkerModule } from "@angular/service-worker"
 import { environment } from "../environments/environment"
+
 import { AppComponent } from "./app.component"
 import { AwaitFontDirective } from "./await-font.directive"
 import { BackToTopComponent } from "./back-to-top/back-to-top.component"
 import { IconButtonComponent } from "./icon-button/icon-button.component"
 import { IconComponent } from "./icon/icon.component"
 import { LegalComponent } from "./legal/legal.component"
-import { EffectValuePipe } from "./pipes/effect-value.pipe"
-import { KeysPipe } from "./pipes/keys.pipe"
+import {
+  CurrencyPipe,
+  EffectValuePipe,
+  KeysPipe,
+  PricePipe,
+  PriceRangePipe,
+} from "./pipes"
 import {
   PrimaryButtonComponent,
 } from "./primary-button/primary-button.component"
@@ -47,6 +53,9 @@ import { TabsComponent } from "./tabs/tabs.component"
     BackToTopComponent,
     BlueprintComponent,
     ConsumableComponent,
+    CurrencyPipe,
+    PriceRangePipe,
+    PricePipe,
     DesignComponent,
     EffectValuePipe,
     IconButtonComponent,
@@ -59,6 +68,9 @@ import { TabsComponent } from "./tabs/tabs.component"
     SearchComponent,
     SidebarComponent,
     TabsComponent,
+  ],
+  providers: [
+    PricePipe,
   ],
   bootstrap: [AppComponent],
 })

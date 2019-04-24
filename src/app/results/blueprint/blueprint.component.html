@@ -41,15 +41,18 @@
   <!-- VENDOR -->
   <div class="__vendors" *ngFor="let vendor of blueprint.vendors">
     <div class="row --vendor">
-      <div>
-        Purchasable&nbsp;at&nbsp;<strong>{{ vendor.name }}</strong><span *ngIf="vendor.rotation">
-          ({{ vendor.rotation }} Legendary Rotation)</span>:
-      </div>
+      <span>Purchasable at</span>
+      <span>&nbsp;<strong>{{ vendor.name }}</strong></span>
+      <span *ngIf="vendor.rotation">&nbsp;({{ vendor.rotation }} Legendary
+        Rotation)</span>:
     </div>
 
     <div class="row --materials">
-      <span class="icon--materials icon--materials--{{ vendor.currency.toLowerCase() }}"></span>
-      <span class="__mat-text">{{ vendor.price }}</span>
+      <div
+        class="icon--materials icon--materials--{{ vendor.currency.toLowerCase() }}">
+      </div>
+      <span class="__mat-amount">{{ vendor.price | price }}</span>
+      <span class="__mat-text">{{ vendor.currency | currency }}</span>
     </div>
   </div>
 
