@@ -30,12 +30,12 @@
 
   <!-- REQUIRED LEVEL -->
   <div class="row --level" *ngIf="advisor.level">
-    Required&nbsp;Level:&nbsp;&nbsp;{{ advisor.level }}
+    Required Level:&nbsp;&nbsp;{{ advisor.level }}
   </div>
 
   <!-- REQUIRED CIV -->
   <div class="row --civ" *ngIf="advisor.civilization">
-    <strong>Requires&nbsp;{{ advisor.civilization }}&nbsp;civilization</strong>
+    <strong>Requires {{ advisor.civilization }} civilization</strong>
   </div>
 
   <!-- VENDOR -->
@@ -43,7 +43,7 @@
     <div class="row --vendor">
       <span>Purchasable at</span>
       <span>&nbsp;<strong>{{ vendor.name }}</strong></span>
-      <span *ngIf="vendor.rotation">&nbsp;({{ vendor.rotation }} Legendary
+      <span *ngIf="vendor.rotation"> ({{ vendor.rotation }} Legendary
         Rotation)</span>:
     </div>
 

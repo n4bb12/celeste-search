@@ -166,6 +166,10 @@
   grid-column-gap: .375rem;
   grid-row-gap: .125rem;
   align-items: center;
+
+  + .row.--materials {
+    margin-top: .1rem;
+  }
 }
 
 .__mat-text,

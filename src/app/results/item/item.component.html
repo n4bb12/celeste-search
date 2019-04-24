@@ -44,14 +44,14 @@
   <!-- CURRENT LEVEL -->
   <div class="row --level">
     <div>
-      Required&nbsp;Level:&nbsp;&nbsp;{{ level }}
+      Required Level:&nbsp;&nbsp;{{ level }}
     </div>
   </div>
 
   <!-- LEVELS -->
   <div class="row --levels">
     <div>
-      Available&nbsp;at&nbsp;levels:&nbsp;&nbsp;
+      Available at levels:&nbsp;&nbsp;
     </div>
 
     <ng-container *ngIf="item.levels.length > 1">
@@ -78,7 +78,7 @@
   <div class="__recipe" *ngIf="item.recipe">
     <div class="row --recipe">
       <span>Craftable at</span>
-      <span>&nbsp;<strong>{{ item.recipe!.school }}&nbsp;School</strong></span>
+      <span>&nbsp;<strong>{{ item.recipe!.school }} School</strong></span>
       <span *ngIf="item.recipe!.level !== level">—&nbsp;&nbsp;Level
         {{ item.recipe!.level }}</span>:
     </div>
@@ -88,6 +88,7 @@
           <span class="icon--materials icon--materials--{{ mat.icon }}"></span>
           <span class="__mat-amount">{{ ref.quantity }}</span>
           <span class="__mat-text --{{ mat.rarity }}">{{ mat.name }}</span>
+          <span></span><!-- wrap line -->
         </ng-container>
       </ng-container>
     </div>
@@ -98,7 +99,7 @@
     <div class="row --vendor">
       <span>Purchasable at</span>
       <span>&nbsp;<strong>{{ vendor.name }}</strong></span>
-      <span *ngIf="vendor.rotation">&nbsp;({{ vendor.rotation }} Legendary
+      <span *ngIf="vendor.rotation"> ({{ vendor.rotation }} Legendary
         Rotation)</span>:
     </div>
 
@@ -108,8 +109,7 @@
       </div>
       <span class="__mat-amount">{{ vendor.price | price }}</span>
       <span class="__mat-text">{{ vendor.currency | currency }}</span>
-      <span
-        *ngIf="vendor.level && vendor.level !== level || item.levels.length > 1">
+      <span *ngIf="vendor.level && vendor.level !== level">
         —&nbsp;&nbsp;Level {{ vendor.level }}
       </span>
     </div>
@@ -142,7 +142,7 @@
       <div class="icon--materials icon--materials--market">
       </div>
       <div class="__mat-text">
-        <span>{{ marketRange() | priceRange }}</span>&nbsp;
+        <span>{{ marketRange() | priceRange }}</span>
         <span>—&nbsp;&nbsp;{{ marketCount()
           | i18nPlural:{ '=1' : '1 Offer', 'other' : '# Offers' } }}</span>
       </div>
