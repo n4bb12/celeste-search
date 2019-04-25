@@ -25,13 +25,13 @@ export class UpdateComponent implements AfterViewInit {
   readonly text = {
     idle: "",
     available: "Updating...",
-    activating: "Almost done...",
-    activated: "Done",
+    activating: "Click to Reload",
+    activated: "Reloading...",
   }
   readonly icon = {
     idle: "done",
     available: "busy",
-    activating: "busy",
+    activating: "done",
     activated: "done",
   }
 
@@ -40,13 +40,16 @@ export class UpdateComponent implements AfterViewInit {
    */
   constructor(
     private changeRef: ChangeDetectorRef,
-    private updates: SwUpdate,
+    private sw: SwUpdate,
   ) {
-    updates.available.subscribe(event => {
+    if (!sw.isEnabled) {
+      return
+    }
+    sw.available.subscribe(event => {
       console.log(event)
       this.setState("available")
     })
-    updates.activated.subscribe(event => {
+    sw.activated.subscribe(event => {
       console.log(event)
       this.setState("activated")
     })
@@ -58,7 +61,7 @@ export class UpdateComponent implements AfterViewInit {
 
   setState(state: SwState) {
     if (state === "activating") {
-      this.updates.activateUpdate().then(() => window.location.reload())
+      this.sw.activateUpdate().then(() => window.location.reload())
     }
     this.state = state
     this.changeRef.detectChanges()

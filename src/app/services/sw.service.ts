@@ -10,6 +10,9 @@ export class SwService {
     app: ApplicationRef,
     sw: SwUpdate,
   ) {
+    if (!sw.isEnabled) {
+      return
+    }
     app.isStable.subscribe(() => {
       setInterval(() => sw.checkForUpdate(), 5 * 60 * 1000)
     })
