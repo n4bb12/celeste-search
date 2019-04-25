@@ -1,5 +1,8 @@
-<cis-primary-button icon="menu" class="__open" (click)="open()" aria-label="Sidebar">
-</cis-primary-button>
+<div class="__open">
+  <cis-primary-button icon="menu" (click)="open()" aria-label="Sidebar">
+  </cis-primary-button>
+  <div class="tooltip">Options & Help</div>
+</div>
 
 <div class="__sidebar" [class.--open]="isOpen" (window:keydown.escape)="close()"
   (clickOutside)="close()" exclude=".__open">
@@ -32,8 +35,10 @@
     </div>
     <div class="__hints">
       <p>Type <code>*</code> or <code>all</code> to list all results</p>
-      <p>Type <code>coin</code>, <code>empire</code> ... to search by currency</p>
-      <p>Type <code>codexes</code>, <code>diamonds</code> ... to search by material</p>
+      <p>Type <code>coin</code>, <code>empire</code> ... to search by currency
+      </p>
+      <p>Type <code>codexes</code>, <code>diamonds</code> ... to search by
+        material</p>
       <p>Just try typing stuff...</p>
     </div>
   </div>
