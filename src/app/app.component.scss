@@ -96,4 +96,9 @@ cis-update {
     padding-left: $spacing-viewport;
     padding-right: $spacing-viewport;
   }
+  cis-update,
+  cis-sidebar,
+  .__sidebar-open {
+    display: none;
+  }
 }

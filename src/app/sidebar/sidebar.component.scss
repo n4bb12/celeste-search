@@ -1,11 +1,5 @@
 @import "imports";
 
-@include on-mobile() {
-  :host {
-    display: none;
-  }
-}
-
 .__close {
   z-index: 1;
   position: absolute;

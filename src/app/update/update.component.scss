@@ -26,9 +26,3 @@
     animation: rotate linear 1s infinite;
   }
 }
-
-@include on-mobile() {
-  .__update {
-    display: none;
-  }
-}
