@@ -50,7 +50,7 @@
     "@angular/forms": "~7.2.13",
     "@angular/platform-browser": "~7.2.13",
     "@angular/platform-browser-dynamic": "~7.2.13",
-    "@angular/pwa": "0.12",
+    "@angular/pwa": "0.13.8",
     "@angular/router": "~7.2.13",
     "@angular/service-worker": "~7.2.13",
     "@material/elevation": "^1.1.0",
