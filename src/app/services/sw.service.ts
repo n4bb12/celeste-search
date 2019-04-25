@@ -18,7 +18,7 @@ export class SwService {
     }
 
     appRef.isStable.pipe(
-      first(isStable => !isStable),
+      first(isStable => !!isStable),
       concatMap(() => interval(60 * 60 * 1000)),
       tap(() => sw.checkForUpdate()),
     )

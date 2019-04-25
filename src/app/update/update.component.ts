@@ -8,7 +8,7 @@ import { SwUpdate } from "@angular/service-worker"
 
 import { moveInOutLeft } from "../animations"
 
-const order = ["idle", "available", "activating", "activated"] // as const
+const order = ["idle", "available", "activating"] // as const
 type SwState = typeof order[number]
 
 @Component({
@@ -24,15 +24,14 @@ export class UpdateComponent implements AfterViewInit {
 
   readonly text = {
     idle: "",
-    available: "Updating...",
-    activating: "Click to Reload",
-    activated: "Reloading...",
+    available: "Click to Reload",
+    activating: "Reloading...",
+    activated: "Done",
   }
   readonly icon = {
     idle: "done",
     available: "busy",
-    activating: "done",
-    activated: "done",
+    activating: "busy",
   }
 
   /**
@@ -40,19 +39,16 @@ export class UpdateComponent implements AfterViewInit {
    */
   constructor(
     private changeRef: ChangeDetectorRef,
-    private sw: SwUpdate,
+    private swUpdate: SwUpdate,
   ) {
-    if (!sw.isEnabled) {
+    if (!swUpdate.isEnabled) {
       return
     }
-    sw.available.subscribe(event => {
-      console.log(event)
-      this.setState("available")
-    })
-    sw.activated.subscribe(event => {
-      console.log(event)
-      this.setState("activated")
-    })
+    swUpdate.available.subscribe(() => this.setState("available"))
+    swUpdate.activated.subscribe(() => this.setState("idle"))
+
+    swUpdate.available.subscribe(console.log)
+    swUpdate.activated.subscribe(console.log)
   }
 
   ngAfterViewInit() {
@@ -61,7 +57,7 @@ export class UpdateComponent implements AfterViewInit {
 
   setState(state: SwState) {
     if (state === "activating") {
-      this.sw.activateUpdate().then(() => window.location.reload())
+      this.swUpdate.activateUpdate().then(() => window.location.reload())
     }
     this.state = state
     this.changeRef.detectChanges()
