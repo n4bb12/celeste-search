@@ -18,7 +18,7 @@ type SwState = typeof order[number]
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [moveInOutLeft],
 })
-export class UpdateComponent implements AfterViewInit {
+export class UpdateComponent {
 
   state: SwState = "idle"
 
@@ -49,10 +49,6 @@ export class UpdateComponent implements AfterViewInit {
 
     swUpdate.available.subscribe(console.log)
     swUpdate.activated.subscribe(console.log)
-  }
-
-  ngAfterViewInit() {
-    this.transition()
   }
 
   setState(state: SwState) {
