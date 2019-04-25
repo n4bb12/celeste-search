@@ -5,6 +5,8 @@ import { Marketplace } from "celeste-api-types"
 import { forkJoin, from, interval, Observable, of } from "rxjs"
 import {
   catchError,
+  concatMap,
+  first,
   flatMap,
   map,
   publishReplay,
@@ -29,7 +31,8 @@ export class DbService {
   readonly consumables = this.fetch<Pick<DB, "consumables">>("consumables")
 
   readonly marketplace = this.appRef.isStable.pipe(
-    flatMap(() => interval(1000 * 60)),
+    first(isStable => !!isStable),
+    concatMap(() => interval(1000 * 60)),
     startWith(-1),
     flatMap(() => this.http.get<Marketplace>("https://api.projectceleste.com/marketplace")),
     catchError(error => of({ data: [] })),
