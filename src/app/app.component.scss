@@ -78,15 +78,17 @@ $spacing-buttons: $spacing-body / 2;
 cis-back-to-top {
   position: absolute;
   z-index: 1;
-  right: $spacing-viewport;
-  bottom: $spacing-viewport;
+  right: $spacing-buttons;
+  bottom: $spacing-buttons;
+  transform: translateX(50%) translateY(50%);
 }
 
 cis-update {
   position: absolute;
   z-index: 1;
-  top: $spacing-viewport;
-  left: $spacing-viewport;
+  top: $spacing-buttons;
+  left: $spacing-buttons;
+  transform: translateX(-50%) translateY(-50%);
 }
 
 @include on-mobile() {
