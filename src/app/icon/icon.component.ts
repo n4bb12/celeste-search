@@ -18,5 +18,7 @@ export class IconComponent {
     | "columns"
     | "precision"
     | "search"
+    | "busy"
+    | "done"
 
 }

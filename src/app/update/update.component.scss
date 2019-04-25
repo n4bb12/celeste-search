@@ -1,0 +1,26 @@
+@import 'imports';
+
+:host {
+  display: block;
+}
+
+.__update {
+  @include elevation(12);
+
+  display: block;
+  display: flex;
+  align-items: center;
+  height: 3rem;
+  border: 2px solid $theme-secondary;
+  border-radius: ($border-radius / 2);
+  background: $theme-primary;
+  padding: 0 1.5rem 0 1rem;
+}
+
+.__icon {
+  margin-right: 1rem;
+
+  &.--busy {
+    animation: rotate linear 1s infinite;
+  }
+}

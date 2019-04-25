@@ -2,9 +2,9 @@ import { HttpClient } from "@angular/common/http"
 import { ApplicationRef, Injectable } from "@angular/core"
 
 import { Marketplace } from "celeste-api-types"
-import { forkJoin, from, interval, Observable } from "rxjs"
+import { forkJoin, from, interval, Observable, of } from "rxjs"
 import {
-  delayWhen,
+  catchError,
   flatMap,
   map,
   publishReplay,
@@ -32,6 +32,7 @@ export class DbService {
     flatMap(() => interval(1000 * 60)),
     startWith(-1),
     flatMap(() => this.http.get<Marketplace>("https://api.projectceleste.com/marketplace")),
+    catchError(error => of({ data: [] })),
     publishReplay(1),
     refCount(),
   )

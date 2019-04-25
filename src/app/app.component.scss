@@ -73,6 +73,13 @@ cis-back-to-top {
   bottom: $spacing-viewport;
 }
 
+cis-update {
+  position: absolute;
+  z-index: 1;
+  top: $spacing-viewport;
+  left: $spacing-viewport;
+}
+
 @include on-mobile() {
   .__header, .__body {
     padding-left: $spacing-viewport;

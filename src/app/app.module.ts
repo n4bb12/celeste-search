@@ -36,6 +36,7 @@ import { SearchComponent } from "./search/search.component"
 import { SidebarComponent } from "./sidebar/sidebar.component"
 import { TabsComponent } from "./tabs/tabs.component"
 import { TooltipComponent } from "./tooltip/tooltip.component"
+import { UpdateComponent } from "./update/update.component"
 
 @NgModule({
   imports: [
@@ -55,8 +56,6 @@ import { TooltipComponent } from "./tooltip/tooltip.component"
     BlueprintComponent,
     ConsumableComponent,
     CurrencyPipe,
-    PriceRangePipe,
-    PricePipe,
     DesignComponent,
     EffectValuePipe,
     IconButtonComponent,
@@ -64,12 +63,15 @@ import { TooltipComponent } from "./tooltip/tooltip.component"
     ItemComponent,
     KeysPipe,
     LegalComponent,
+    PricePipe,
+    PriceRangePipe,
     PrimaryButtonComponent,
     ResultsComponent,
     SearchComponent,
     SidebarComponent,
     TabsComponent,
     TooltipComponent,
+    UpdateComponent,
   ],
   providers: [
     PricePipe,
