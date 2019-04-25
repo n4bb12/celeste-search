@@ -10,7 +10,7 @@ cis-tooltip {
   pointer-events: none;
   transition: opacity .1s ease-out;
 
-  .--shown {
+  &.--shown {
     opacity: 1;
     pointer-events: unset;
   }
