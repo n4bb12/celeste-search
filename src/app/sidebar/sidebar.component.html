@@ -1,51 +1,21 @@
+<cis-primary-button icon="menu" class="__open" (click)="open()"
+  aria-label="Sidebar">
+</cis-primary-button>
+
 <div class="__sidebar" [class.--open]="isOpen" (window:keydown.escape)="close()"
   (clickOutside)="close()" exclude=".__sidebar-open">
 
-  <cis-icon-button icon="close" class="__close" (click)="close()">
-  </cis-icon-button>
+  <div class="__buttons">
+    <button *ngFor="let text of ['Help', 'Settings']; index as i" type="button"
+      [class.--active]="tab === i" (click)="tab = i">{{ text }}</button>
 
-  <div class="__setting">
-    <div class="__description">
-      <cis-icon icon="precision"></cis-icon>
-      Decimals:&nbsp;&nbsp;{{ precision.value }}
-    </div>
-    <input class="__value" type="range" min="0" max="3" step="1"
-      [formControl]="precision">
+    <cis-icon-button icon="close" class="__close" (click)="close()">
+    </cis-icon-button>
   </div>
 
-  <div class="__setting">
-    <div class="__description">
-      <cis-icon icon="columns"></cis-icon>
-      Max Columns:&nbsp;&nbsp;{{ maxColumns.value }}
-    </div>
-    <input class="__value" type="range" min="2" max="5" step="1"
-      [formControl]=" maxColumns">
-  </div>
-
-  <div class="__setting">
-    <div class="__description">
-      <cis-icon icon="hints"></cis-icon>
-      Search Hints
-    </div>
-    <div class="__hints">
-      <p>Type <code>*</code> or <code>all</code> to list all results</p>
-      <p>Type <code>coin</code>, <code>empire</code> ... to search by currency
-      </p>
-      <p>Type <code>codexes</code>, <code>diamonds</code> ... to search by
-        material</p>
-      <p>Just try typing stuff...</p>
-    </div>
-  </div>
-
-  <div class="__setting">
-    <div class="__description">
-      <cis-icon icon="bug"></cis-icon>
-      Report a Bug
-    </div>
-    <p>
-      <a href="https://github.com/n4bb12/celeste-search/issues/new"
-        target="_blank" rel="noreferrer noopener">Create an issue</a>
-    </p>
+  <div class="__content">
+    <cis-help *ngIf="tab === 0"></cis-help>
+    <cis-settings *ngIf="tab === 1"></cis-settings>
   </div>
 
 </div>

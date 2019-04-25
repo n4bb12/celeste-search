@@ -5,8 +5,6 @@ import {
   Input,
 } from "@angular/core"
 
-import { SettingsService } from "../services/settings.service"
-
 @Component({
   selector: "cis-sidebar",
   templateUrl: "./sidebar.component.html",
@@ -15,14 +13,11 @@ import { SettingsService } from "../services/settings.service"
 })
 export class SidebarComponent {
 
-  @Input() isOpen = false
-
-  readonly precision = this.settings.controls.precision
-  readonly maxColumns = this.settings.controls.maxColumns
+  isOpen = false
+  tab = 0
 
   constructor(
     private changeRef: ChangeDetectorRef,
-    public settings: SettingsService,
   ) { }
 
   open() {

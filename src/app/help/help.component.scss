@@ -1,0 +1,23 @@
+@import "imports";
+
+.__setting {
+  margin-bottom: 1.5rem;
+}
+
+.__description {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+cis-icon {
+  width: 2em;
+  height: 2em;
+  margin-right: 1em;
+}
+
+p, .__hints {
+  margin: 0;
+  width: 100%;
+  padding: .5em 0;
+}
