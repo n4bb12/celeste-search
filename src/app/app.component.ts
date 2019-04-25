@@ -21,29 +21,11 @@ export class AppComponent {
   headerMaxWidth = this.calculateHeaderWidth(2)
 
   constructor(
-    private db: DbService,
     private sanitizer: DomSanitizer,
-    private state: StateService,
     private sw: SwService, // inject to trigger execution
     private title: DocumenTitleService, // inject to trigger execution
     private url: UrlService, // inject to trigger execution
-  ) {
-    this.state.tabChange.subscribe(tab => {
-      // prefetch tab data on tab change
-      const id = TABS[tab].id
-      this.db[id].subscribe()
-
-      // prefetch remaining data on app stable
-      requestAnimationFrame(() => {
-        this.db.shared.subscribe()
-        this.db.items.subscribe()
-        this.db.advisors.subscribe()
-        this.db.blueprints.subscribe()
-        this.db.designs.subscribe()
-        this.db.consumables.subscribe()
-      })
-    })
-  }
+  ) { }
 
   private calculateHeaderWidth(maxColumns: number) {
     return this.sanitizer.bypassSecurityTrustStyle(
