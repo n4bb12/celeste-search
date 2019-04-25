@@ -6,12 +6,14 @@
       "installMode": "prefetch",
       "resources": {
         "files": [
-          "/favicon.ico",
-          "/index.html",
+          "/*.(svg|cur|jpg|png|webp|gif|ani)",
+          "/*.(otf|ttf|woff|woff2)",
           "/*.css",
           "/*.js",
           "/assets/**",
-          "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)"
+          "/favicon.ico",
+          "/index.html",
+          "/manifest.json"
         ]
       }
     }
