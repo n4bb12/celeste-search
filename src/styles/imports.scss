@@ -24,9 +24,7 @@ $spacing-viewport: 5vmin;
 }
 
 @mixin on-mobile() {
-  @media
-    (max-width: 599.99px) and (orientation: portrait),
-    (max-width: 959.99px) and (orientation: landscape) {
+  @media (max-width: 768px) {
     @content
   }
 }
