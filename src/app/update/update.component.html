@@ -1,9 +1,12 @@
-<div class="__update" *ngIf="state !== 'idle'">
-  <cis-icon class="__icon --{{ icon[state] }}" [icon]="icon[state]"></cis-icon>
-  <div>
-    {{ text[state] }}
-  </div>
-  <button type="button" [attr.aria-label]="text[state]"
+<cis-tooltip class="__update" [text]="text[state]" *ngIf="state !== 'idle'"
+  @moveInOutLeft>
+
+  <button type="button" class="__action"
+    [class.--disabled]="state !== 'available'" [attr.aria-label]="text[state]"
     (click)="transition()">
+
+    <cis-icon class="__icon --{{ icon[state] }}" [icon]="icon[state]">
+    </cis-icon>
   </button>
-</div>
+
+</cis-tooltip>

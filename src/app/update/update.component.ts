@@ -6,6 +6,8 @@ import {
 } from "@angular/core"
 import { SwUpdate } from "@angular/service-worker"
 
+import { moveInOutLeft } from "../animations"
+
 const order = ["idle", "available", "activating", "activated"] // as const
 type SwState = typeof order[number]
 
@@ -14,17 +16,20 @@ type SwState = typeof order[number]
   templateUrl: "./update.component.html",
   styleUrls: ["./update.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [moveInOutLeft],
 })
 export class UpdateComponent implements AfterViewInit {
 
   state: SwState = "idle"
 
   readonly text = {
+    idle: "",
     available: "Updating...",
     activating: "Almost done...",
     activated: "Done",
   }
   readonly icon = {
+    idle: "done",
     available: "busy",
     activating: "busy",
     activated: "done",
@@ -48,7 +53,7 @@ export class UpdateComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // this.transition()
+    this.transition()
   }
 
   setState(state: SwState) {
@@ -64,8 +69,6 @@ export class UpdateComponent implements AfterViewInit {
     const next = (current + 1) % order.length
 
     this.setState(order[next])
-
-    // setTimeout(() => this.transition(), 1000)
   }
 
 }
