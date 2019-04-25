@@ -1,6 +1,7 @@
 @import "imports";
 
 $spacing-body: 3 * $spacing-viewport;
+$spacing-buttons: $spacing-body / 2;
 
 :host {
   width: 100%;
@@ -64,6 +65,14 @@ $spacing-body: 3 * $spacing-viewport;
   max-width: 40rem;
   padding: (2*$spacing-viewport) $spacing-viewport $spacing-viewport;
   margin: 0 auto;
+}
+
+.__sidebar-open {
+  position: fixed;
+  z-index: 1;
+  top: $spacing-buttons;
+  right: $spacing-buttons;
+  transform: translateX(50%) translateY(-50%);
 }
 
 cis-back-to-top {

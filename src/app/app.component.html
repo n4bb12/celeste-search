@@ -17,6 +17,12 @@
 
 </ng-scrollbar>
 
-<cis-back-to-top [scrollbarRef]="scrollbarRef"></cis-back-to-top>
-<cis-sidebar></cis-sidebar>
 <cis-update></cis-update>
+
+<cis-tooltip text="Options & Help" class="__sidebar-open">
+  <cis-primary-button icon="menu" (click)="sidebar.open()" aria-label="Sidebar">
+  </cis-primary-button>
+</cis-tooltip>
+<cis-sidebar #sidebar></cis-sidebar>
+
+<cis-back-to-top [scrollbarRef]="scrollbarRef"></cis-back-to-top>

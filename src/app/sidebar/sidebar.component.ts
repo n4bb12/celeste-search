@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  Input,
 } from "@angular/core"
 
 import { SettingsService } from "../services/settings.service"
@@ -14,7 +15,7 @@ import { SettingsService } from "../services/settings.service"
 })
 export class SidebarComponent {
 
-  isOpen = false
+  @Input() isOpen = false
 
   readonly precision = this.settings.controls.precision
   readonly maxColumns = this.settings.controls.maxColumns
