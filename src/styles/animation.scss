@@ -1,16 +1,4 @@
-@keyframes fadeIn {
-  from { opacity: .75 }
-    to { opacity: 1 }
-}
-
 @keyframes rotate {
   from { transform: rotate(0deg) }
     to { transform: rotate(360deg) }
-}
-
-.fade-in {
-  animation-name: fadeIn;
-  animation-fill-mode: forwards;
-  animation-duration: .4s;
-  animation-timing-function: linear;
 }

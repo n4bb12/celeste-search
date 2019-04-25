@@ -2,6 +2,7 @@ import { HttpClientModule } from "@angular/common/http"
 import { NgModule } from "@angular/core"
 import { ReactiveFormsModule } from "@angular/forms"
 import { BrowserModule } from "@angular/platform-browser"
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
 import { RouterModule } from "@angular/router"
 import { ServiceWorkerModule } from "@angular/service-worker"
 
@@ -41,6 +42,7 @@ import { UpdateComponent } from "./update/update.component"
 @NgModule({
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     NgScrollbarModule,
     ReactiveFormsModule,
