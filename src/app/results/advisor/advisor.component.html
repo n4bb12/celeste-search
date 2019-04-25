@@ -4,13 +4,20 @@
   <div class="row --header">
     <strong>Age {{ advisor.age }}</strong>
 
-    <div class="row --rarities" *ngIf="(advisor.rarities | keys).length >= 1">
-      <ng-container *ngFor="let rarity of advisor.rarities | keys">
-        <button type="button" class="__rarity --{{ rarity }}"
-          (click)="setRarity(rarity)">
+    <div class="row --rarities" *ngIf="rarities.length > 0">
+      <ng-container *ngFor="let rarity of rarities">
+
+        <cis-tooltip [text]="rarity | titlecase" *ngIf="rarities.length > 1">
+          <button type="button" class="__rarity --{{ rarity }}"
+            (click)="setRarity(rarity)">
+            {{ rarity }}
+          </button>
+        </cis-tooltip>
+
+        <div class="__rarity --{{ rarity }}" *ngIf="rarities.length === 1">
           {{ rarity }}
-          <div class="tooltip">{{ rarity }}</div>
-        </button>
+        </div>
+
       </ng-container>
     </div>
   </div>

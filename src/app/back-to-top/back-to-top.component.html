@@ -1,4 +1,4 @@
-<cis-primary-button icon="up" aria-label="Back to Top" (click)="scrollToTop()"
-  [class.--shown]="shown | async"></cis-primary-button>
-
-<div class="tooltip">Back to Top</div>
+<cis-tooltip text="Back to Top" [class.--shown]="shown | async">
+  <cis-primary-button icon="up" aria-label="Back to Top"
+    (click)="scrollToTop()"></cis-primary-button>
+</cis-tooltip>

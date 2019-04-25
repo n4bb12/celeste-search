@@ -1,3 +1,17 @@
+@import "imports";
+
+:host {
+  position: relative;
+  display: block;
+
+  &:hover,
+  &:active {
+    .tooltip {
+      display: block;
+    }
+  }
+}
+
 .tooltip {
   display: none;
   position: absolute;
@@ -13,12 +27,4 @@
   text-align: center;
   text-shadow: none;
   white-space: nowrap;
-}
-
-* {
-  &:hover, &:active {
-    & > .tooltip {
-      display: block;
-    }
-  }
 }

@@ -18,6 +18,7 @@ export class AdvisorComponent implements OnInit {
 
   @Input() advisor: Advisor
 
+  rarities: string[] = []
   rarity: AdvisorRarity & { id: string }
 
   constructor(
@@ -25,9 +26,9 @@ export class AdvisorComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const rarities = Object.keys(this.advisor.rarities)
-    const highest = rarities[rarities.length - 1]
-    this.setRarity(highest)
+    this.rarities = Object.keys(this.advisor.rarities)
+    const r = this.rarities
+    this.setRarity(r[r.length - 1])
   }
 
   setRarity(rarity: string) {

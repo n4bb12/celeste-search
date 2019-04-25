@@ -35,6 +35,7 @@ import { ResultsComponent } from "./results/results.component"
 import { SearchComponent } from "./search/search.component"
 import { SidebarComponent } from "./sidebar/sidebar.component"
 import { TabsComponent } from "./tabs/tabs.component"
+import { TooltipComponent } from "./tooltip/tooltip.component"
 
 @NgModule({
   imports: [
@@ -68,6 +69,7 @@ import { TabsComponent } from "./tabs/tabs.component"
     SearchComponent,
     SidebarComponent,
     TabsComponent,
+    TooltipComponent,
   ],
   providers: [
     PricePipe,

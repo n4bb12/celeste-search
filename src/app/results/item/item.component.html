@@ -28,15 +28,14 @@
         <span class="__value --left" *ngIf="effect.scaling">
           {{ effect | effectValue:level:1 }}
         </span>
-        <span class="__value --right"
+        <cis-tooltip class="__value --right" text="Effect Range (+/- 5%)"
           *ngIf="effect.scaling && item.effectsRange">
           {{
           (effect | effectValue:level:0.95).slice(0, -1) +
           ' — ' +
           (effect | effectValue:level:1.05).slice(1)
           }}
-          <div class="tooltip">Effect Range (+/- 5%)</div>
-        </span>
+        </cis-tooltip>
       </li>
     </ul>
   </div>
@@ -57,12 +56,11 @@
     <ng-container *ngIf="item.levels.length > 1">
       <ng-container *ngFor="let level of item.levels">
 
-        <div class="__level">
+        <cis-tooltip class="__level" [text]="level">
           <button type="button" (click)="setLevel(level)">
             {{ level }}
-            <div class="tooltip">{{ level }}</div>
           </button>
-        </div>
+        </cis-tooltip>
 
       </ng-container>
     </ng-container>
@@ -123,7 +121,8 @@
     </div>
 
     <div class="row --materials">
-      <div class="icon--materials icon--materials--{{ item.event?.name || 'quest' }}">
+      <div
+        class="icon--materials icon--materials--{{ item.event?.name || 'quest' }}">
       </div>
       <div class="__mat-text">
         <span *ngIf="item.quest">{{ item.quest }}</span>

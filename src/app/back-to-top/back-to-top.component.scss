@@ -5,12 +5,12 @@
   display: block;
 }
 
-cis-primary-button {
+cis-tooltip {
   opacity: 0;
   pointer-events: none;
   transition: opacity .1s ease-out;
 
-  &.--shown {
+  .--shown {
     opacity: 1;
     pointer-events: unset;
   }
