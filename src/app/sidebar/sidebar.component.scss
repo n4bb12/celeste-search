@@ -3,28 +3,26 @@
 .__sidebar {
   @include elevation(8);
 
-  display: block;
   position: fixed;
   z-index: 2;
   top: 0;
   right: 0;
   bottom: 0;
-  transform: translateX(105%);
   width: 100vw;
-  max-width: 25rem;
+  max-width: 30rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
   background: $theme-text;
   color: $theme-shadow;
   text-shadow: none;
-  transition: ease-out .2s transform;
   will-change: transform;
   overflow: hidden;
-
-  &.--open {
-    transform: translateX(0%);
-  }
 }
 
 .__buttons {
+  flex: 0;
   display: flex;
   padding: .5rem;
 
@@ -60,5 +58,6 @@
 }
 
 .__content {
-  padding: 1rem 2rem;
+  flex: 1;
+  padding: 1rem 3rem 1rem 2rem;
 }

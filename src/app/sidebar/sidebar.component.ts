@@ -2,14 +2,16 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  Input,
 } from "@angular/core"
+
+import { enterLeaveRight } from "../animations"
 
 @Component({
   selector: "cis-sidebar",
   templateUrl: "./sidebar.component.html",
   styleUrls: ["./sidebar.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [enterLeaveRight],
 })
 export class SidebarComponent {
 
