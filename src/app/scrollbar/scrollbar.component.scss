@@ -15,10 +15,15 @@ ng-scrollbar {
 
   &.--dark {
     --scrollbar-thumb-color: #{$theme-secondary};
-    --scrollbar-thumb-hover-color: #{$theme-text};
+    --scrollbar-thumb-hover-color: #{$theme-primary};
   }
+}
 
-  .ng-scrollbar-thumb {
-    @include elevation(4);
+::ng-deep {
+  .ng-scroll-view {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
   }
 }

@@ -12,13 +12,11 @@
   z-index: 2;
   top: 0;
   right: 0;
-  bottom: 0;
-  width: 100vw;
+  width: 100%;
+  height: 100%;
   max-width: 30rem;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  justify-content: flex-start;
   background: $theme-text;
   color: $theme-shadow;
   text-shadow: none;
@@ -63,6 +61,10 @@
 }
 
 .__content {
+  height: 0;
   flex: 1;
+}
+
+.__hints {
   padding: 1rem 3rem 1rem 2rem;
 }

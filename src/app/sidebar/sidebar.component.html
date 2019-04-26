@@ -9,11 +9,13 @@
     </cis-icon-button>
   </div>
 
-  <cis-scrollbar>
-    <div class="__content">
-      <cis-help *ngIf="tab === 0"></cis-help>
-      <cis-settings *ngIf="tab === 1"></cis-settings>
-    </div>
-  </cis-scrollbar>
+  <div class="__content">
+    <cis-scrollbar theme="dark">
+      <div class="__hints">
+        <cis-help *ngIf="tab === 0"></cis-help>
+        <cis-settings *ngIf="tab === 1"></cis-settings>
+      </div>
+    </cis-scrollbar>
+  </div>
 
 </div>
