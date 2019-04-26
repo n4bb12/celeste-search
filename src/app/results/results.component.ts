@@ -72,7 +72,7 @@ export class ResultsComponent implements OnInit, OnDestroy {
   }
 
   updateNumColumns() {
-    const optimalColumns = Math.floor(window.innerWidth / 30 / rem)
+    const optimalColumns = Math.floor(window.innerWidth / 35 / rem)
     const boundedColumns = Math.max(1, Math.min(optimalColumns, +this.settings.controls.maxColumns.value))
 
     if (this.numColumns !== boundedColumns) {
