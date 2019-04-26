@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img alt="Logo" src="assets/logo.png" height="80">
+  <img alt="Logo" src="assets/logo.png" height="48">
   Celeste Search
 </h1>
 
@@ -17,6 +17,12 @@
   <a href="https://github.com/n4bb12/celeste-search/issues/new">
     <img alt="Create issue" src="https://flat.badgen.net/badge/GitHub/Create issue/pink?icon=github">
   </a>
+  <a href="https://circleci.com/gh/n4bb12/workflows/celeste-search">
+    <img alt="CI" src="https://flat.badgen.net/circleci/github/n4bb12/celeste-search?icon=circleci">
+  </a>
+  <a href="https://app.netlify.com/sites/celeste-search/deploys">
+    <img alt="Deploys" src="https://flat.badgen.net/badge/netlify/deploys/?icon=terminal&color=00ad9e">
+  </a>
 </p>
 
 ## Contributing
@@ -25,6 +31,14 @@ Want to suggest a feature or report a bug? [Create an issue](https://github.com/
 Interested in writing a pull request? See the [contribution guide](CONTRIBUTING.md).
 
 #
+
+#### Tested on BrowserStack
+
+<a href="https://www.browserstack.com">
+  <img alt="BrowserStack" src="docs/browserstack.png" height="48">
+</a>
+
+https://www.browserstack.com
 
 #### Source Code License
 

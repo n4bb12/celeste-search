@@ -1,33 +1,3 @@
-<h1 align="center">
-  <img alt="Logo" src="assets/logo.png" height="80">
-  Celeste Search
-</h1>
-
-<p align="center">
- Find items, advisors, blueprints, designs and consumables – Search by anything
-</p>
-
-<p align="center">
-  <a href="http://items.projectceleste.com">
-    <img alt="Latest" src="https://flat.badgen.net/badge/App/Latest?icon=chrome&color=fb3">
-  </a>
-  <a href="https://search.projectceleste.com">
-    <img alt="Next" src="https://flat.badgen.net/badge/App/Next?icon=chrome&color=488489">
-  </a>
-  <a href="https://github.com/n4bb12/celeste-search/issues/new">
-    <img alt="Create issue" src="https://flat.badgen.net/badge/GitHub/Create issue/pink?icon=github">
-  </a>
-</p>
-
-<p align="center">
-  <a href="https://app.netlify.com/sites/celeste-search/deploys">
-    <img alt="Deploys" src="https://flat.badgen.net/badge/netlify/deploys/?icon=terminal&color=00ad9e">
-  </a>
-  <a href="https://circleci.com/gh/n4bb12/workflows/celeste-search">
-    <img alt="CI" src="https://flat.badgen.net/circleci/github/n4bb12/celeste-search?icon=circleci">
-  </a>
-</p>
-
 ## Architecture
 
 ![Architecture](docs/architecture.svg)
