@@ -12,6 +12,7 @@ import { debounce } from "lodash"
 import { tap } from "rxjs/operators"
 
 import { Entity } from "../../../db/interfaces"
+import { fadeIn } from "../animations"
 import { SearchService, StateService, TABS } from "../services"
 import { SettingsService } from "../services/settings.service"
 
@@ -25,6 +26,7 @@ const empty = []
   templateUrl: "./results.component.html",
   styleUrls: ["./results.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [fadeIn],
 })
 export class ResultsComponent implements OnInit, OnDestroy {
 

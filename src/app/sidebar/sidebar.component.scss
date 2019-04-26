@@ -1,18 +1,5 @@
 @import "imports";
 
-@include on-mobile() {
-  :host {
-    display: none;
-  }
-}
-
-.__open {
-  z-index: 1;
-  position: fixed;
-  top: $spacing-viewport;
-  right: $spacing-viewport;
-}
-
 .__close {
   z-index: 1;
   position: absolute;

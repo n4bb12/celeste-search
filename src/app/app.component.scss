@@ -1,6 +1,7 @@
 @import "imports";
 
 $spacing-body: 3 * $spacing-viewport;
+$spacing-buttons: $spacing-body / 2;
 
 :host {
   width: 100%;
@@ -32,6 +33,7 @@ $spacing-body: 3 * $spacing-viewport;
 
 .__header {
   width: 100%;
+  max-width: 100%;
   padding: $spacing-viewport $spacing-body;
   margin: 0 auto;
 
@@ -66,16 +68,38 @@ $spacing-body: 3 * $spacing-viewport;
   margin: 0 auto;
 }
 
+.__sidebar-open {
+  position: fixed;
+  z-index: 1;
+  top: $spacing-buttons;
+  right: $spacing-buttons;
+  transform: translateX(50%) translateY(-50%);
+}
+
 cis-back-to-top {
   position: absolute;
   z-index: 1;
-  right: $spacing-viewport;
-  bottom: $spacing-viewport;
+  right: $spacing-buttons;
+  bottom: $spacing-buttons;
+  transform: translateX(50%) translateY(50%);
+}
+
+cis-update {
+  position: absolute;
+  z-index: 1;
+  top: $spacing-buttons;
+  left: $spacing-buttons;
+  transform: translateX(-50%) translateY(-50%);
 }
 
 @include on-mobile() {
   .__header, .__body {
     padding-left: $spacing-viewport;
     padding-right: $spacing-viewport;
+  }
+  cis-update,
+  cis-sidebar,
+  .__sidebar-open {
+    display: none;
   }
 }

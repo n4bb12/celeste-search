@@ -8,7 +8,7 @@ $theme-shadow: #192B33;
 $theme-border: #768376;
 
 $border-radius: .75rem;
-$spacing-viewport: 5vmin;
+$spacing-viewport: 6vmin;
 
 @mixin elevation($z) {
   @include mdc-elevation($z, $theme-shadow, 0);
@@ -24,9 +24,7 @@ $spacing-viewport: 5vmin;
 }
 
 @mixin on-mobile() {
-  @media
-    (max-width: 599.99px) and (orientation: portrait),
-    (max-width: 959.99px) and (orientation: landscape) {
+  @media (max-width: 992px) {
     @content
   }
 }

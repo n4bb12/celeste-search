@@ -2,9 +2,11 @@ import { HttpClient } from "@angular/common/http"
 import { ApplicationRef, Injectable } from "@angular/core"
 
 import { Marketplace } from "celeste-api-types"
-import { forkJoin, from, interval, Observable } from "rxjs"
+import { forkJoin, from, interval, Observable, of } from "rxjs"
 import {
-  delayWhen,
+  catchError,
+  concatMap,
+  first,
   flatMap,
   map,
   publishReplay,
@@ -25,13 +27,15 @@ export class DbService {
   readonly items = this.fetch<Pick<DB, "items">>("items")
   readonly advisors = this.fetch<Pick<DB, "advisors">>("advisors")
   readonly blueprints = this.fetch<Pick<DB, "blueprints">>("blueprints")
-  readonly designs = this.fetch<Pick<DB, "designs">>("designs")
-  readonly consumables = this.fetch<Pick<DB, "consumables">>("consumables")
+  // readonly designs = this.fetch<Pick<DB, "designs">>("designs")
+  // readonly consumables = this.fetch<Pick<DB, "consumables">>("consumables")
 
   readonly marketplace = this.appRef.isStable.pipe(
-    flatMap(() => interval(1000 * 60)),
+    first(isStable => !!isStable),
+    concatMap(() => interval(1000 * 60)),
     startWith(-1),
     flatMap(() => this.http.get<Marketplace>("https://api.projectceleste.com/marketplace")),
+    catchError(error => of({ data: [] })),
     publishReplay(1),
     refCount(),
   )

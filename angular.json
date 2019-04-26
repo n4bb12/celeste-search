@@ -95,7 +95,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "assets": [
-              "src/assets",
+              "src/assets"
             ],
             "karmaConfig": "src/karma.conf.js",
             "main": "src/test.ts",

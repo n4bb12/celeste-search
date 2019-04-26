@@ -1,0 +1,28 @@
+@import 'imports';
+
+:host {
+  display: block;
+}
+
+.__action {
+  @include elevation(12);
+
+  box-shadow: none;
+  border: 2px solid $theme-secondary;
+  border-radius: 50%;
+  background: $theme-primary;
+
+  &.--disabled {
+    pointer-events: none;
+  }
+}
+
+.__icon {
+  width: 3rem;
+  height: 3rem;
+  padding: .75rem;
+
+  &.--busy {
+    animation: rotate linear 1s infinite;
+  }
+}

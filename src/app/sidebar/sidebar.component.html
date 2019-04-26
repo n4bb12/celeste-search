@@ -1,10 +1,5 @@
-<cis-tooltip text="Options & Help" class="__open">
-  <cis-primary-button icon="menu" (click)="open()" aria-label="Sidebar">
-  </cis-primary-button>
-</cis-tooltip>
-
 <div class="__sidebar" [class.--open]="isOpen" (window:keydown.escape)="close()"
-  (clickOutside)="close()" exclude=".__open">
+  (clickOutside)="close()" exclude=".__sidebar-open">
 
   <cis-icon-button icon="close" class="__close" (click)="close()">
   </cis-icon-button>

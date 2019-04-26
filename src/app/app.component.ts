@@ -1,10 +1,8 @@
 import { Component } from "@angular/core"
 import { DomSanitizer } from "@angular/platform-browser"
 
-import { TABS, UrlService } from "./services"
-import { DbService } from "./services/db.service"
+import { SwService, UrlService } from "./services"
 import { DocumenTitleService } from "./services/document-title.service"
-import { StateService } from "./services/state.service"
 
 const viewportSpacing = "5vmin"
 const bodySpacing = `3 * ${viewportSpacing}`
@@ -18,31 +16,14 @@ const columnWidth = "30rem"
 })
 export class AppComponent {
 
-  headerMaxWidth = this.calculateHeaderWidth(2)
+  headerWidth = this.calculateHeaderWidth(2)
 
   constructor(
-    private db: DbService,
     private sanitizer: DomSanitizer,
-    private state: StateService,
-    private url: UrlService, // inject to trigger execution
+    private sw: SwService, // inject to trigger execution
     private title: DocumenTitleService, // inject to trigger execution
-  ) {
-    this.state.tabChange.subscribe(tab => {
-      // prefetch tab data on tab change
-      const id = TABS[tab].id
-      this.db[id].subscribe()
-
-      // prefetch remaining data on app stable
-      requestAnimationFrame(() => {
-        this.db.shared.subscribe()
-        this.db.items.subscribe()
-        this.db.advisors.subscribe()
-        this.db.blueprints.subscribe()
-        this.db.designs.subscribe()
-        this.db.consumables.subscribe()
-      })
-    })
-  }
+    private url: UrlService, // inject to trigger execution
+  ) { }
 
   private calculateHeaderWidth(maxColumns: number) {
     return this.sanitizer.bypassSecurityTrustStyle(
