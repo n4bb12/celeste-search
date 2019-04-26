@@ -16,7 +16,7 @@ const columnWidth = "30rem"
 })
 export class AppComponent {
 
-  headerMaxWidth = this.calculateHeaderWidth(2)
+  headerWidth = this.calculateHeaderWidth(2)
 
   constructor(
     private sanitizer: DomSanitizer,
