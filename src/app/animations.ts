@@ -10,6 +10,6 @@ export const fadeIn = trigger("fadeIn", [
 export const moveInLeft = trigger("moveInLeft", [
   transition(":enter", [
     style({ transform: "translateX(-100vw)" }),
-    animate(".5s ease-out"),
+    animate("1s ease-out"),
   ]),
 ])
