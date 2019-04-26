@@ -2,7 +2,7 @@
 
 ![Architecture](docs/architecture.svg)
 
-The app is deployed with pre-combiled static JSON data and icon sprites that is pulled from multiple sources. This makes the search resilient against potentially failing upstream sources.
+The app is deployed with pre-combiled static JSON files and icon sprites that are created from multiple sources. This makes the search resilient against potential upstream failures and API changes.
 
 ## Angular CLI
 
