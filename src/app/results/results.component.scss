@@ -21,13 +21,6 @@
   max-width: 30rem;
 }
 
-@include on-mobile() {
-  .__col {
-    max-width: unset;
-  }
-}
-
-
 cis-item,
 cis-advisor,
 cis-blueprint,
