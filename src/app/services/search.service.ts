@@ -88,8 +88,9 @@ export class SearchService {
 
     const words = input.split(" ")
 
-    const withNumber = input
-      .replace(/(\b.+?\b)\s+(\b\d+\b)/g, "$1$2")
+    const withNumber = (input + " ")
+      .replace(/(\b.+?)\s+([0-9]+\s)/g, "$1$2")
+      .trim()
       .split(/\s+/)
 
     return uniq([...words, ...withNumber]
