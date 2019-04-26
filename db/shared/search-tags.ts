@@ -36,8 +36,6 @@ export async function searchByMaterial(
   const materials = await API.getMaterials()
 
   for (const ref of refs) {
-    builder.add(ref.quantity)
-
     const material = materials[ref.id]
 
     if (material) {

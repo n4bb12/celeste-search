@@ -1,0 +1,39 @@
+@import "imports";
+
+:host {
+  position: relative;
+  display: block;
+}
+
+.__setting {
+  margin-bottom: 2rem;
+}
+
+.__description {
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+}
+
+cis-icon {
+  width: 2em;
+  height: 2em;
+  margin-right: 1em;
+}
+
+summary {
+  font-weight: 700;
+  margin: 2rem 0 1rem;
+}
+
+.__grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-column-gap: 2rem;
+  grid-row-gap: 1em;
+  margin: 0 1rem;
+
+  :nth-child(2n) {
+    font-weight: 700;
+  }
+}

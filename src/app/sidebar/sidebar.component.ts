@@ -2,27 +2,24 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  Input,
 } from "@angular/core"
 
-import { SettingsService } from "../services/settings.service"
+import { enterLeaveRight } from "../animations"
 
 @Component({
   selector: "cis-sidebar",
   templateUrl: "./sidebar.component.html",
   styleUrls: ["./sidebar.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [enterLeaveRight],
 })
 export class SidebarComponent {
 
-  @Input() isOpen = false
-
-  readonly precision = this.settings.controls.precision
-  readonly maxColumns = this.settings.controls.maxColumns
+  isOpen = false
+  tab = 0
 
   constructor(
     private changeRef: ChangeDetectorRef,
-    public settings: SettingsService,
   ) { }
 
   open() {

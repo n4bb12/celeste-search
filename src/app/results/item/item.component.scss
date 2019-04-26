@@ -1,14 +1,10 @@
 @import "imports";
 
 :host {
-  @include text-shadow();
-
   position: relative;
   display: block;
-  font-weight: 400;
 
   &:hover {
-    position: relative;
     z-index: 1;
   }
 }

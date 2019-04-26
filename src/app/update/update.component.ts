@@ -1,12 +1,11 @@
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
 } from "@angular/core"
 import { SwUpdate } from "@angular/service-worker"
 
-import { moveInLeft } from "../animations"
+import { enterLeft } from "../animations"
 
 const order = ["idle", "available", "activating"] // as const
 type SwState = typeof order[number]
@@ -16,7 +15,7 @@ type SwState = typeof order[number]
   templateUrl: "./update.component.html",
   styleUrls: ["./update.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [moveInLeft],
+  animations: [enterLeft],
 })
 export class UpdateComponent {
 

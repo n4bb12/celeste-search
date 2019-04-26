@@ -53,7 +53,7 @@ export class SearchService {
 
       const entries = db[id]
 
-      if (["*", "all"].includes(normalized)) {
+      if (["*", "all", "everything", "anything"].includes(normalized)) {
         this.results.next([...entries])
         console.timeEnd("search")
         return
@@ -84,17 +84,25 @@ export class SearchService {
   }
 
   private getWords(input: string): string[] {
-    const words = input
-      .replace(/\s+/g, " ")
-      .split(/\s+/)
+    input = this.simplify(input)
 
-    const withNumber = input
-      .replace(/(\w+)\s+(\d+)/g, "$1$2")
+    const words = input.split(" ")
+
+    const withNumber = (input + " ")
+      .replace(/(\b.+?)\s+([0-9]+\s)/g, "$1$2")
+      .trim()
       .split(/\s+/)
 
     return uniq([...words, ...withNumber]
       .map(w => w.trim())
       .filter(w => w !== ""))
+  }
+
+  simplify(text: string) {
+    return (text || "")
+      .replace(/["']/g, "")
+      .replace(/\s+/, " ")
+      .trim()
   }
 
 }

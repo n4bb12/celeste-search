@@ -14,6 +14,7 @@ import { environment } from "../environments/environment"
 import { AppComponent } from "./app.component"
 import { AwaitFontDirective } from "./await-font.directive"
 import { BackToTopComponent } from "./back-to-top/back-to-top.component"
+import { HelpComponent } from "./help/help.component"
 import { IconButtonComponent } from "./icon-button/icon-button.component"
 import { IconComponent } from "./icon/icon.component"
 import { LegalComponent } from "./legal/legal.component"
@@ -33,7 +34,9 @@ import { ConsumableComponent } from "./results/consumable/consumable.component"
 import { DesignComponent } from "./results/design/design.component"
 import { ItemComponent } from "./results/item/item.component"
 import { ResultsComponent } from "./results/results.component"
+import { ScrollbarComponent } from "./scrollbar/scrollbar.component"
 import { SearchComponent } from "./search/search.component"
+import { SettingsComponent } from "./settings/settings.component"
 import { SidebarComponent } from "./sidebar/sidebar.component"
 import { TabsComponent } from "./tabs/tabs.component"
 import { TooltipComponent } from "./tooltip/tooltip.component"
@@ -60,6 +63,7 @@ import { UpdateComponent } from "./update/update.component"
     CurrencyPipe,
     DesignComponent,
     EffectValuePipe,
+    HelpComponent,
     IconButtonComponent,
     IconComponent,
     ItemComponent,
@@ -69,7 +73,9 @@ import { UpdateComponent } from "./update/update.component"
     PriceRangePipe,
     PrimaryButtonComponent,
     ResultsComponent,
+    ScrollbarComponent,
     SearchComponent,
+    SettingsComponent,
     SidebarComponent,
     TabsComponent,
     TooltipComponent,

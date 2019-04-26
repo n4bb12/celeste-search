@@ -3,7 +3,7 @@
 @import "imports";
 
 * {
-  box-sizing: border-box;
+  box-sizing: border-box !important;
 }
 
 body {
@@ -76,7 +76,7 @@ code {
 }
 
 strong {
-  font-weight: normal;
+  font-weight: 400;
   color: #e6c953;
 }
 
@@ -106,4 +106,8 @@ button,
 select,
 a {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+summary {
+  cursor: pointer;
 }

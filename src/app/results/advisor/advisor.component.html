@@ -35,14 +35,16 @@
     {{ rarity.description }}
   </div>
 
-  <!-- REQUIRED LEVEL -->
-  <div class="row --level" *ngIf="advisor.level">
-    Required Level:&nbsp;&nbsp;{{ advisor.level }}
-  </div>
+  <div class="row --footer">
+    <!-- REQUIRED LEVEL -->
+    <div class="row --level" *ngIf="advisor.level">
+      Required Level:&nbsp;&nbsp;{{ advisor.level }}
+    </div>
 
-  <!-- REQUIRED CIV -->
-  <div class="row --civ" *ngIf="advisor.civilization">
-    <strong>Requires {{ advisor.civilization }} civilization</strong>
+    <!-- REQUIRED CIV -->
+    <div class="row --civ" *ngIf="advisor.civilization">
+      <strong>Requires {{ advisor.civilization | titlecase }} civilization</strong>
+    </div>
   </div>
 
   <!-- VENDOR -->

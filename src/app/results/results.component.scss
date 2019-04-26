@@ -6,10 +6,13 @@
 }
 
 .__grid {
+  @include text-shadow();
+
   display: flex;
   align-items: flex-start;
   justify-content: center;
   margin: -.5rem;
+  font-weight: 400;
 }
 
 .__col {
@@ -17,13 +20,6 @@
   width: 100%;
   max-width: 30rem;
 }
-
-@include on-mobile() {
-  .__col {
-    max-width: unset;
-  }
-}
-
 
 cis-item,
 cis-advisor,

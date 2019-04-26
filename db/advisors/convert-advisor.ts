@@ -3,10 +3,8 @@ import { Advisor as ApiAdvisor } from "celeste-api-types"
 import { downloadIcon } from "../download"
 import { Advisor } from "../interfaces"
 import { translateEn } from "../shared/convert-text"
-import { findVendors } from "../vendors"
 
 import { convertCivilization } from "./convert-civilization"
-import { buildSearchString } from "./search"
 
 /**
  * Converts advisors from their API format to the format
