@@ -84,17 +84,24 @@ export class SearchService {
   }
 
   private getWords(input: string): string[] {
-    const words = input
-      .replace(/\s+/g, " ")
-      .split(/\s+/)
+    input = this.simplify(input)
+
+    const words = input.split(" ")
 
     const withNumber = input
-      .replace(/(\w+)\s+(\d+)/g, "$1$2")
+      .replace(/(\b.+?\b)\s+(\b\d+\b)/g, "$1$2")
       .split(/\s+/)
 
     return uniq([...words, ...withNumber]
       .map(w => w.trim())
       .filter(w => w !== ""))
+  }
+
+  simplify(text: string) {
+    return (text || "")
+      .replace(/["']/g, "")
+      .replace(/\s+/, " ")
+      .trim()
   }
 
 }

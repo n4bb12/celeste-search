@@ -35,10 +35,10 @@ export class SearchBuilder {
 
 }
 
-export function simplify(text: string, characters: string = "a-zA-Z0-9") {
+export function simplify(text: string) {
   return (text || "")
-    .replace(/'/, "")
-    .replace(new RegExp(`[^${characters} ]`, "gi"), " ")
+    .replace(/["']/g, "")
+    .replace(/[^a-zA-Z0-9"]/gi, " ")
     .replace(/\s+/, " ")
     .trim()
 }
