@@ -1,5 +1,10 @@
 @import "imports";
 
+:host {
+  position: relative;
+  display: block;
+}
+
 .__setting {
   margin-bottom: 2rem;
 }

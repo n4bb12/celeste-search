@@ -1,5 +1,10 @@
 @import "imports";
 
+:host {
+  position: relative;
+  display: block;
+}
+
 .__sidebar {
   @include elevation(8);
 
