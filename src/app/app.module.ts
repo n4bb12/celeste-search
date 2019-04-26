@@ -38,6 +38,7 @@ import { ScrollbarComponent } from "./scrollbar/scrollbar.component"
 import { SearchComponent } from "./search/search.component"
 import { SettingsComponent } from "./settings/settings.component"
 import { SidebarComponent } from "./sidebar/sidebar.component"
+import { SwitchComponent } from "./switch/switch.component"
 import { TabsComponent } from "./tabs/tabs.component"
 import { TooltipComponent } from "./tooltip/tooltip.component"
 import { UpdateComponent } from "./update/update.component"
@@ -77,6 +78,7 @@ import { UpdateComponent } from "./update/update.component"
     SearchComponent,
     SettingsComponent,
     SidebarComponent,
+    SwitchComponent,
     TabsComponent,
     TooltipComponent,
     UpdateComponent,

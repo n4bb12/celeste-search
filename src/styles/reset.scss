@@ -109,10 +109,8 @@ a {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
+button,
+summary,
 input[type="range"] {
-  cursor: pointer;
-}
-
-summary {
   cursor: pointer;
 }

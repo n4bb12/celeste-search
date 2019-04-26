@@ -1,0 +1,12 @@
+<button class="__toggle" (click)="toggle()" type="button">
+
+  <div class="__text" [class.--active]="isOff()">{{ off }}</div>
+
+  <div class="__visual">
+    <div class="__track"></div>
+    <div class="__knob" [class.--active]="isOn()"></div>
+  </div>
+
+  <div class="__text" [class.--active]="isOn()">{{ on }}</div>
+
+</button>
