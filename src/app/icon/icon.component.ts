@@ -20,5 +20,6 @@ export class IconComponent {
     | "busy"
     | "done"
     | "reload"
+    | "everything"
 
 }

@@ -4,6 +4,7 @@ import { FormControl } from "@angular/forms"
 export interface Settings {
   precision: number
   maxColumns: number
+  defaultToEverything: boolean
 }
 
 const storageKey = "setting"
@@ -13,10 +14,17 @@ const storageKey = "setting"
 })
 export class SettingsService {
 
-  readonly controls = {
-    precision: new FormControl(),
-    maxColumns: new FormControl(),
-  }
+  precision = new FormControl()
+  maxColumns = new FormControl()
+  defaultToEverything = new FormControl()
+
+  private readonly controls: {
+    [K in keyof Settings]: FormControl
+  } = {
+      precision: this.precision,
+      maxColumns: this.maxColumns,
+      defaultToEverything: this.defaultToEverything,
+    }
 
   constructor() {
     this.init()
@@ -28,6 +36,7 @@ export class SettingsService {
     return {
       precision: 1,
       maxColumns: 3,
+      defaultToEverything: false,
     }
   }
 

@@ -23,16 +23,16 @@ cis-icon {
 
 summary {
   font-weight: 700;
-  margin: 1rem 0 .5rem;
+  margin: 1rem 0 0;
   padding: .5rem 0;
 }
 
 .__grid {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  grid-column-gap: 2rem;
-  grid-row-gap: 1em;
-  margin: 0 1rem;
+  grid-column-gap: 1rem;
+  grid-row-gap: 1rem;
+  margin: 1rem 0 1rem 1rem;
 
   :nth-child(2n) {
     font-weight: 700;

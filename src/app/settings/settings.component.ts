@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core"
 
-import { SettingsService } from "../services/settings.service"
+import { SettingsService } from "../services"
 
 @Component({
   selector: "cis-settings",
@@ -10,11 +10,12 @@ import { SettingsService } from "../services/settings.service"
 })
 export class SettingsComponent {
 
-  readonly precision = this.settings.controls.precision
-  readonly maxColumns = this.settings.controls.maxColumns
+  readonly precision = this.settings.precision
+  readonly maxColumns = this.settings.maxColumns
+  readonly defaultToEverything = this.settings.defaultToEverything
 
   constructor(
-    public settings: SettingsService,
+    private settings: SettingsService,
   ) { }
 
 }

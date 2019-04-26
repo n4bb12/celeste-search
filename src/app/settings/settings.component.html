@@ -13,5 +13,15 @@
     Max Columns:&nbsp;&nbsp;{{ maxColumns.value }}
   </div>
   <input class="__value" type="range" min="2" max="5" step="1"
-    [formControl]=" maxColumns">
+    [formControl]="maxColumns">
+</div>
+
+<div class="__setting">
+  <div class="__description">
+    <cis-icon icon="everything"></cis-icon>
+    By Default Show:
+  </div>
+  <cis-switch class="__value" off="Nothing" on="Everything"
+    [formControl]="defaultToEverything">
+  </cis-switch>
 </div>

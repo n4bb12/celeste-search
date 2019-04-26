@@ -14,7 +14,7 @@ export class EffectValuePipe implements PipeTransform {
   ) { }
 
   transform(effect: ItemEffect, level: number, modifier: number): string {
-    const precision = +this.settings.controls.precision.value
+    const precision = +this.settings.precision.value
     const base = (effect.amount - 1) * 100 + effect.scaling * 100 * (level + 3)
     const sign = base < 0 ? "-" : "+"
     const unit = "%"

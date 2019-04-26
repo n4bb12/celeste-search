@@ -4,7 +4,7 @@ import { DomSanitizer } from "@angular/platform-browser"
 import { SwService, UrlService } from "./services"
 import { DocumenTitleService } from "./services/document-title.service"
 
-const viewportSpacing = "5vmin"
+const viewportSpacing = "6vmin"
 const bodySpacing = `3 * ${viewportSpacing}`
 const bodyNegativeMargin = "1rem"
 const columnWidth = "30rem"

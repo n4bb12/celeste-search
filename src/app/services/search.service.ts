@@ -7,6 +7,7 @@ import { tap } from "rxjs/operators"
 import { Entity } from "../interfaces"
 
 import { DbService } from "./db.service"
+import { SettingsService } from "./settings.service"
 import { StateService } from "./state.service"
 import { TABS } from "./tabs"
 
@@ -22,6 +23,7 @@ export class SearchService {
   constructor(
     private db: DbService,
     private state: StateService,
+    private settings: SettingsService,
   ) {
     this.state.tabChange.pipe(
       tap(() => this.results.next(EMPTY)),
@@ -30,18 +32,15 @@ export class SearchService {
     this.state.changes.pipe(
       tap(value => this.performSearch(value.tab, value.search)),
     ).subscribe()
+
+    this.settings.defaultToEverything.valueChanges.pipe(
+      tap(() => this.performSearch(this.state.tab, this.state.search)),
+    ).subscribe()
   }
 
   private performSearch(tab: number, search: string) {
     console.time("search")
-    const normalized = search.toLowerCase().trim()
     const id = TABS[tab].id
-
-    if (!normalized) {
-      this.results.next(EMPTY)
-      console.timeEnd("search")
-      return
-    }
 
     this.db[id].subscribe(db => {
       const isOutdated = () => tab !== this.state.tab || search !== this.state.search
@@ -51,10 +50,19 @@ export class SearchService {
         return
       }
 
+      const normalized = search.toLowerCase().trim()
       const entries = db[id]
 
-      if (["*", "all", "everything", "anything"].includes(normalized)) {
+      if (this.settings.defaultToEverything.value
+        || ["*", "all", "everything", "anything"].includes(normalized)
+      ) {
         this.results.next([...entries])
+        console.timeEnd("search")
+        return
+      }
+
+      if (!normalized) {
+        this.results.next(EMPTY)
         console.timeEnd("search")
         return
       }
