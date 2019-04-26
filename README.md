@@ -32,7 +32,9 @@ Interested in writing a pull request? See the [contribution guide](CONTRIBUTING.
 
 #
 
-#### Tested on BrowserStack
+#### Special Thanks
+
+Thanks to BrowserStack for providing their awesome real-device web-based testing service!
 
 <a href="https://www.browserstack.com">
   <img alt="BrowserStack" src="docs/browserstack.png" height="48">
