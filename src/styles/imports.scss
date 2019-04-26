@@ -24,7 +24,7 @@ $spacing-viewport: 6vmin;
 }
 
 @mixin on-mobile() {
-  @media (max-width: 768px) {
+  @media (max-width: 992px) {
     @content
   }
 }
