@@ -1,10 +1,8 @@
 import { Component } from "@angular/core"
 import { DomSanitizer } from "@angular/platform-browser"
 
-import { SwService, TABS, UrlService } from "./services"
-import { DbService } from "./services/db.service"
+import { SwService, UrlService } from "./services"
 import { DocumenTitleService } from "./services/document-title.service"
-import { StateService } from "./services/state.service"
 
 const viewportSpacing = "5vmin"
 const bodySpacing = `3 * ${viewportSpacing}`

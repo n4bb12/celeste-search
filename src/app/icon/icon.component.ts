@@ -20,5 +20,6 @@ export class IconComponent {
     | "search"
     | "busy"
     | "done"
+    | "reload"
 
 }

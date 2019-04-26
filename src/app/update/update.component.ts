@@ -6,7 +6,7 @@ import {
 } from "@angular/core"
 import { SwUpdate } from "@angular/service-worker"
 
-import { moveInOutLeft } from "../animations"
+import { moveInLeft } from "../animations"
 
 const order = ["idle", "available", "activating"] // as const
 type SwState = typeof order[number]
@@ -16,7 +16,7 @@ type SwState = typeof order[number]
   templateUrl: "./update.component.html",
   styleUrls: ["./update.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [moveInOutLeft],
+  animations: [moveInLeft],
 })
 export class UpdateComponent {
 
@@ -24,13 +24,12 @@ export class UpdateComponent {
 
   readonly text = {
     idle: "",
-    available: "Click to Reload",
+    available: "Update available.<br>Click to reload",
     activating: "Reloading...",
-    activated: "Done",
   }
   readonly icon = {
     idle: "done",
-    available: "busy",
+    available: "reload",
     activating: "busy",
   }
 
@@ -53,7 +52,8 @@ export class UpdateComponent {
 
   setState(state: SwState) {
     if (state === "activating") {
-      this.swUpdate.activateUpdate().then(() => window.location.reload())
+      this.swUpdate.activateUpdate()
+        .finally(() => window.location.reload())
     }
     this.state = state
     this.changeRef.detectChanges()

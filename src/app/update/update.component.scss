@@ -9,7 +9,7 @@
 
   box-shadow: none;
   border: 2px solid $theme-secondary;
-  border-radius: $border-radius;
+  border-radius: 50%;
   background: $theme-primary;
 
   &.--disabled {
