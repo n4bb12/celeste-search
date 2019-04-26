@@ -90,7 +90,8 @@ pre {
 }
 
 ::selection {
-  background: rgba($theme-primary, .8);
+  background: $theme-primary;
+  color: $theme-text;
   text-shadow: none;
 }
 
