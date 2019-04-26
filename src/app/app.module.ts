@@ -34,6 +34,7 @@ import { ConsumableComponent } from "./results/consumable/consumable.component"
 import { DesignComponent } from "./results/design/design.component"
 import { ItemComponent } from "./results/item/item.component"
 import { ResultsComponent } from "./results/results.component"
+import { ScrollbarComponent } from "./scrollbar/scrollbar.component"
 import { SearchComponent } from "./search/search.component"
 import { SettingsComponent } from "./settings/settings.component"
 import { SidebarComponent } from "./sidebar/sidebar.component"
@@ -72,6 +73,7 @@ import { UpdateComponent } from "./update/update.component"
     PriceRangePipe,
     PrimaryButtonComponent,
     ResultsComponent,
+    ScrollbarComponent,
     SearchComponent,
     SettingsComponent,
     SidebarComponent,

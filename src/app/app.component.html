@@ -1,8 +1,8 @@
-<ng-scrollbar #scrollbarRef [compact]="true" cisAwaitFont>
+<cis-scrollbar #scrollbar cisAwaitFont>
 
   <div class="__header" [style.width]="headerWidth">
     <div class="__form">
-      <cis-search [scrollbarRef]="scrollbarRef"></cis-search>
+      <cis-search [scrollbarRef]="scrollbar.ref"></cis-search>
       <cis-tabs></cis-tabs>
     </div>
   </div>
@@ -15,7 +15,7 @@
     <cis-legal></cis-legal>
   </div>
 
-</ng-scrollbar>
+</cis-scrollbar>
 
 <cis-update></cis-update>
 
@@ -25,4 +25,4 @@
 </cis-tooltip>
 <cis-sidebar #sidebar></cis-sidebar>
 
-<cis-back-to-top [scrollbarRef]="scrollbarRef"></cis-back-to-top>
+<cis-back-to-top [scrollbarRef]="scrollbar.ref"></cis-back-to-top>

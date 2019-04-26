@@ -1,0 +1,23 @@
+@import "imports";
+
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+ng-scrollbar {
+  --scrollbar-size: .5rem;
+  --scrollbar-border-radius: #{$border-radius};
+  --scrollbar-thumb-color: #{$theme-text};
+  --scrollbar-thumb-hover-color: #{$theme-secondary};
+
+  &.--dark {
+    --scrollbar-thumb-color: #{$theme-secondary};
+    --scrollbar-thumb-hover-color: #{$theme-text};
+  }
+
+  .ng-scrollbar-thumb {
+    @include elevation(4);
+  }
+}

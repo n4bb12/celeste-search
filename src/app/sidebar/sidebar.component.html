@@ -1,9 +1,5 @@
-<cis-primary-button icon="menu" class="__open" (click)="open()"
-  aria-label="Sidebar">
-</cis-primary-button>
-
-<div class="__sidebar" [class.--open]="isOpen" (window:keydown.escape)="close()"
-  (clickOutside)="close()" exclude=".__sidebar-open">
+<div class="__sidebar" *ngIf="isOpen" (window:keydown.escape)="close()"
+  (clickOutside)="close()" exclude=".__sidebar-open" @enterLeaveRight>
 
   <div class="__buttons">
     <button *ngFor="let text of ['Help', 'Settings']; index as i" type="button"
@@ -13,11 +9,11 @@
     </cis-icon-button>
   </div>
 
-  <ng-scrollbar #scrollbarRef [compact]="true" cisAwaitFont>
+  <cis-scrollbar>
     <div class="__content">
       <cis-help *ngIf="tab === 0"></cis-help>
       <cis-settings *ngIf="tab === 1"></cis-settings>
     </div>
-  </ng-scrollbar>
+  </cis-scrollbar>
 
 </div>
