@@ -17,6 +17,7 @@
   text-shadow: none;
   transition: ease-out .2s transform;
   will-change: transform;
+  overflow: hidden;
 
   &.--open {
     transform: translateX(0%);

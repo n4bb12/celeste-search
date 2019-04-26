@@ -42,13 +42,13 @@ export async function buildSearchString(item: Item, trait: Trait): Promise<strin
     builder.add("Cyprus")
   }
   if (isSoldByCouncilOfImhotep(trait)) {
-    builder.add("Council of Imhotep")
+    builder.add("Council of Imhotep Alliance")
   }
   if (isSoldByDelianLeague(trait)) {
-    builder.add("Delian League")
+    builder.add("Delian League Alliance")
   }
   if (isSoldByLegionOfCarthage(trait)) {
-    builder.add("Legion of Carthage")
+    builder.add("Legion of Carthage Alliance")
   }
   if (isHalloween2018Reward(trait)) {
     builder.add("Halloween Event 2018 Reward")

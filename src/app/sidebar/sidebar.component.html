@@ -13,9 +13,11 @@
     </cis-icon-button>
   </div>
 
-  <div class="__content">
-    <cis-help *ngIf="tab === 0"></cis-help>
-    <cis-settings *ngIf="tab === 1"></cis-settings>
-  </div>
+  <ng-scrollbar #scrollbarRef [compact]="true" cisAwaitFont>
+    <div class="__content">
+      <cis-help *ngIf="tab === 0"></cis-help>
+      <cis-settings *ngIf="tab === 1"></cis-settings>
+    </div>
+  </ng-scrollbar>
 
 </div>

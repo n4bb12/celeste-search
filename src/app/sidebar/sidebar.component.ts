@@ -13,7 +13,7 @@ import {
 })
 export class SidebarComponent {
 
-  isOpen = false
+  isOpen = true
   tab = 0
 
   constructor(
