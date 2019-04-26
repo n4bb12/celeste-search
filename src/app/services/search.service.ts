@@ -51,9 +51,10 @@ export class SearchService {
       }
 
       const normalized = search.toLowerCase().trim()
+      const isEmpty = !normalized
       const entries = db[id]
 
-      if (this.settings.defaultToEverything.value
+      if (isEmpty && this.settings.defaultToEverything.value
         || ["*", "all", "everything", "anything"].includes(normalized)
       ) {
         this.results.next([...entries])
@@ -61,7 +62,7 @@ export class SearchService {
         return
       }
 
-      if (!normalized) {
+      if (isEmpty) {
         this.results.next(EMPTY)
         console.timeEnd("search")
         return
