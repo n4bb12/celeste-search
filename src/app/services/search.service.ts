@@ -53,7 +53,7 @@ export class SearchService {
 
       const entries = db[id]
 
-      if (["*", "all"].includes(normalized)) {
+      if (["*", "all", "everything", "anything"].includes(normalized)) {
         this.results.next([...entries])
         console.timeEnd("search")
         return
