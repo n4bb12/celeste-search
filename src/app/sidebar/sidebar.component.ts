@@ -15,7 +15,7 @@ import { enterLeaveRight } from "../animations"
 })
 export class SidebarComponent {
 
-  isOpen = true
+  isOpen = false
   tab = 0
 
   constructor(
