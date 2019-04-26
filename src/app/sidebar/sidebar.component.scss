@@ -33,6 +33,7 @@
     margin: .5rem;
     flex: 1;
     box-shadow: none;
+    border-radius: $border-radius / 2;
     background: $theme-secondary;
     color: $theme-text;
     opacity: 1/3;
