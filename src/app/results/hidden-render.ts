@@ -79,6 +79,7 @@ export const hiddenRenderData: {
     civilization: "greek",
     rarities: {
       legendary: {
+        id: "rarity_id",
         icon: 338,
         description: "description",
       },

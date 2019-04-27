@@ -32,7 +32,7 @@ export async function convertBlueprint(blueprint: ApiBlueprint): Promise<Bluepri
     search: "",
   }
 
-  result.vendors = await findVendors(result)
+  result.vendors = await findVendors(result.id)
   result.search = await buildSearchString(result)
 
   return result
