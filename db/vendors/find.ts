@@ -67,7 +67,11 @@ export async function findVendors(id: string): Promise<Vendor[] | undefined> {
     }
   }
 
-  const unique = uniqWith(result, isEqual)
+  const unique = uniqWith(result, (a, b) => {
+    const aWithoutId = { ...a, id: null }
+    const bWithoutId = { ...b, id: null }
+    return isEqual(aWithoutId, bWithoutId)
+  })
   unique.sort(compareVendors)
 
   return unique.length ? unique : undefined
