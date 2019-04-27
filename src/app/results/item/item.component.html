@@ -73,7 +73,7 @@
   </div>
 
   <!-- RECIPE -->
-  <div class="__recipe" *ngIf="item.recipe">
+  <div class="__recipe" *ngIf="materials && item.recipe">
     <div class="row --source">
       <span>Craftable at</span>
       <span>&nbsp;<strong>{{ item.recipe!.school }} School</strong></span>
