@@ -5,7 +5,7 @@ const replace = require("gulp-replace")
 const dist = "dist/celeste-search"
 
 function app() {
-  return exec.shell("yarn ng build -c production")
+  return exec.shell("yarn ng build -c production", { stdio: "inherit" })
 }
 
 async function sitemap() {
