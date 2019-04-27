@@ -48,26 +48,6 @@
     </div>
   </div>
 
-  <!-- VENDOR -->
-  <div class="__vendors" *ngFor="let vendor of advisor.vendors">
-    <div class="row --vendor">
-      <span>Purchasable at</span>
-      <span>&nbsp;<strong>{{ vendor.name }}</strong></span>
-      <span>,&nbsp;{{ vendor.location }}:</span>
-    </div>
-
-    <div class="row --materials">
-      <div
-        class="icon--materials icon--materials--{{ vendor.currency.toLowerCase() }}">
-      </div>
-      <span class="__mat-amount">{{ vendor.price | price }}</span>
-      <span class="__mat-text">{{ vendor.currency | currency }}</span>
-      <span
-        *ngIf="vendor.rarity !== rarity.id || (advisor.rarities | keys).length > 1">
-        —&nbsp;&nbsp;
-        <span class="__rarity --{{ vendor.rarity }}">{{ vendor.rarity }}</span>
-      </span>
-    </div>
-  </div>
+  <cis-vendors [vendors]="advisor.vendors"></cis-vendors>
 
 </div>

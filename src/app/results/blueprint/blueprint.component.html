@@ -24,7 +24,7 @@
 
   <!-- COST -->
   <div class="__recipe" *ngIf="blueprint.materials?.length > 0">
-    <div class="row --recipe">
+    <div class="row --source">
       Cost:
     </div>
     <div class="row --materials">
@@ -32,28 +32,14 @@
         <ng-container *ngIf="materials[ref.id] as mat">
           <span class="icon--materials icon--materials--{{ mat.icon }}"></span>
           <span class="__mat-amount">{{ ref.quantity }}</span>
-          <span class="__mat-text --{{ mat.rarity }}">{{ mat.name }}</span>
+          <span class="--{{ mat.rarity }}">{{ mat.name }}</span>
+          <span></span><!-- wrap line -->
           <span></span><!-- wrap line -->
         </ng-container>
       </ng-container>
     </div>
   </div>
 
-  <!-- VENDOR -->
-  <div class="__vendors" *ngFor="let vendor of blueprint.vendors">
-    <div class="row --vendor">
-      <span>Purchasable at</span>
-      <span>&nbsp;<strong>{{ vendor.name }}</strong></span>
-      <span>,&nbsp;{{ vendor.location }}:</span>
-    </div>
-
-    <div class="row --materials">
-      <div
-        class="icon--materials icon--materials--{{ vendor.currency.toLowerCase() }}">
-      </div>
-      <span class="__mat-amount">{{ vendor.price | price }}</span>
-      <span class="__mat-text">{{ vendor.currency | currency }}</span>
-    </div>
-  </div>
+  <cis-vendors [vendors]="blueprint.vendors"></cis-vendors>
 
 </div>

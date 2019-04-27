@@ -24,7 +24,7 @@ const empty = []
 @Component({
   selector: "cis-results",
   templateUrl: "./results.component.html",
-  styleUrls: ["./results.component.scss"],
+  styleUrls: ["./results.component.scss", "./results.shared.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [fadeIn],
 })

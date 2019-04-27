@@ -33,7 +33,11 @@ import { BlueprintComponent } from "./results/blueprint/blueprint.component"
 import { ConsumableComponent } from "./results/consumable/consumable.component"
 import { DesignComponent } from "./results/design/design.component"
 import { ItemComponent } from "./results/item/item.component"
+import {
+  MarketplaceComponent,
+} from "./results/marketplace/marketplace.component"
 import { ResultsComponent } from "./results/results.component"
+import { VendorsComponent } from "./results/vendors/vendors.component"
 import { ScrollbarComponent } from "./scrollbar/scrollbar.component"
 import { SearchComponent } from "./search/search.component"
 import { SettingsComponent } from "./settings/settings.component"
@@ -70,6 +74,7 @@ import { UpdateComponent } from "./update/update.component"
     ItemComponent,
     KeysPipe,
     LegalComponent,
+    MarketplaceComponent,
     PricePipe,
     PriceRangePipe,
     PrimaryButtonComponent,
@@ -82,6 +87,7 @@ import { UpdateComponent } from "./update/update.component"
     TabsComponent,
     TooltipComponent,
     UpdateComponent,
+    VendorsComponent,
   ],
   providers: [
     PricePipe,

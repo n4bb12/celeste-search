@@ -5,6 +5,14 @@
   display: block;
 }
 
+cis-item,
+cis-advisor,
+cis-blueprint,
+cis-design,
+cis-consumable {
+  padding: .5rem;
+}
+
 .__grid {
   @include text-shadow();
 
@@ -19,14 +27,6 @@
   flex: 1;
   width: 100%;
   max-width: 30rem;
-}
-
-cis-item,
-cis-advisor,
-cis-blueprint,
-cis-design,
-cis-consumable {
-  padding: .5rem;
 }
 
 

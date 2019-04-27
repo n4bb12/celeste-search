@@ -6,7 +6,7 @@ import {
   OnInit,
 } from "@angular/core"
 
-import { Blueprint } from "../../interfaces"
+import { Blueprint, Materials } from "../../interfaces"
 import { DbService } from "../../services"
 
 @Component({
@@ -19,7 +19,7 @@ export class BlueprintComponent implements OnInit {
 
   @Input() blueprint: Blueprint
 
-  materials = {}
+  materials: Materials
 
   constructor(
     private changeRef: ChangeDetectorRef,

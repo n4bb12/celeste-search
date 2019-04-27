@@ -79,15 +79,4 @@ export class ItemComponent implements OnInit, OnDestroy {
     }
   }
 
-  marketRange() {
-    const lowestInt = this.market[0].ItemPrice
-    const highestInt = this.market[this.market.length - 1].ItemPrice
-
-    return [lowestInt, highestInt]
-  }
-
-  marketCount() {
-    return this.market.length
-  }
-
 }

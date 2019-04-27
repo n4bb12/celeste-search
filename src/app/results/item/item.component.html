@@ -48,7 +48,7 @@
   </div>
 
   <!-- LEVELS -->
-  <div class="row --levels">
+  <div class="row --levels --note">
     <div>
       Available at levels:&nbsp;&nbsp;
     </div>
@@ -74,7 +74,7 @@
 
   <!-- RECIPE -->
   <div class="__recipe" *ngIf="item.recipe">
-    <div class="row --recipe">
+    <div class="row --source">
       <span>Craftable at</span>
       <span>&nbsp;<strong>{{ item.recipe!.school }} School</strong></span>
       <span *ngIf="item.recipe!.level !== level">—&nbsp;&nbsp;Level
@@ -85,86 +85,47 @@
         <ng-container *ngIf="materials && materials[ref.id] as mat">
           <span class="icon--materials icon--materials--{{ mat.icon }}"></span>
           <span class="__mat-amount">{{ ref.quantity }}</span>
-          <span class="__mat-text --{{ mat.rarity }}">{{ mat.name }}</span>
+          <span class="--{{ mat.rarity }}">{{ mat.name }}</span>
+          <span></span><!-- wrap line -->
           <span></span><!-- wrap line -->
         </ng-container>
       </ng-container>
     </div>
   </div>
 
-  <!-- VENDOR -->
-  <div class="__vendors" *ngFor="let vendor of item.vendors">
-    <div class="row --vendor">
-      <span>Purchasable at</span>
-      <span>&nbsp;<strong>{{ vendor.name }}</strong></span>
-      <span>,&nbsp;{{ vendor.location }}:</span>
-      <span class="__vendor-rotation" *ngIf="vendor.rotation">
-        <span>({{ vendor.rotation }} Legendary Rotation)</span>
-      </span>
-    </div>
-
-    <div class="row --materials">
-      <div
-        class="icon--materials icon--materials--{{ vendor.currency.toLowerCase() }}">
-      </div>
-      <span class="__mat-amount">{{ vendor.price | price }}</span>
-      <span class="__mat-text">{{ vendor.currency | currency }}</span>
-      <span
-        *ngIf="vendor.level && vendor.level !== level && item.levels.length > 1">
-        —&nbsp;&nbsp;Level {{ vendor.level }}
-      </span>
-    </div>
-  </div>
-
   <!-- QUEST, EVENT -->
-  <div class="__vendors" *ngIf="item.quest || item.event">
-    <div class="row --vendor">
+  <div *ngIf="item.quest || item.event">
+    <div class="row --source">
       <span>Reward from</span>:
     </div>
 
     <div class="row --materials">
-      <div
-        class="icon--materials icon--materials--{{ item.event?.name || 'quest' }}">
-      </div>
-      <div class="__mat-text">
-        <span *ngIf="item.quest">{{ item.quest }}</span>
-        <span *ngIf="item.event">{{ item.event?.name | titlecase }} Event
-          {{ item.event?.year }}</span>
-      </div>
+      <span
+        class="icon--materials icon--materials--{{ item.event?.name || 'quest' }}"></span>
+      <span *ngIf="item.quest">{{ item.quest }}</span>
+      <span *ngIf="item.event">{{ item.event?.name | titlecase }} Event
+        {{ item.event?.year }}</span>
     </div>
   </div>
 
   <!-- STARTING -->
-  <div class="__vendors" *ngIf="item.starting?.length">
-    <div class="row --vendor">
+  <div *ngIf="item.starting?.length">
+    <div class="row --source">
       <span>Pro Civilization Starting Gear</span>:
     </div>
 
     <div class="row --materials">
       <ng-container *ngFor="let civ of item.starting">
         <span class="icon--materials icon--materials--{{ civ }}"></span>
-        <span class="__mat-text">{{ civ | titlecase }}</span>
+        <span>{{ civ | titlecase }}</span>
+        <span></span><!-- wrap line -->
         <span></span><!-- wrap line -->
         <span></span><!-- wrap line -->
       </ng-container>
     </div>
   </div>
 
-  <!-- MARKETPLACE -->
-  <div class="__vendors" *ngIf="market?.length">
-    <div class="row --vendor">
-      <span>Sold at <strong>Global Marketplace</strong></span>:
-    </div>
-
-    <div class="row --materials">
-      <div class="icon--materials icon--materials--market">
-      </div>
-      <div class="__mat-text">
-        <span>{{ marketRange() | priceRange }}</span>
-        <span>—&nbsp;&nbsp;{{ marketCount()
-          | i18nPlural:{ '=1' : '1 Offer', 'other' : '# Offers' } }}</span>
-      </div>
-    </div>
-  </div>
+  <cis-vendors [vendors]="item.vendors" [levels]="item.levels"></cis-vendors>
+  <cis-marketplace [market]="market"></cis-marketplace>
 
 </div>
