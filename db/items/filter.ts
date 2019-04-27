@@ -1,9 +1,11 @@
-import { Trait } from "celeste-api-types"
 import chalk from "chalk"
 
-export function includeItem(trait: Trait) {
-  if (trait.itemlevels.length > 0) {
-    return true
+import { Item } from "../interfaces"
+
+export function includeItem(item: Item) {
+  if (!item.levels.length) {
+    console.log(chalk.yellow(`SKIPPED - Item has no levels: ${item.name} (${item.id})`))
+    return false
   }
-  console.log(chalk.yellow(`SKIPPED - Item has no levels: ${trait.name} (${trait.dbid})`))
+  return true
 }

@@ -10,7 +10,7 @@ import { convertEvent } from "./convert-event"
 import { findAndConvertRecipe } from "./convert-recipe"
 import { addToLegendaryRotation } from "./legendary-rotation"
 import { buildSearchString } from "./search"
-import { getQuestName, isReforgeable } from "./source"
+import { getQuestName, isReforgeable, isStartingGear } from "./source"
 
 /**
  * Converts items from their API format to the format
@@ -38,7 +38,12 @@ export async function convertItem(trait: Trait): Promise<Item> {
   }
 
   if (item.levels.length === 0) {
-    item.levels = [40]
+    if (trait.traittype.toLowerCase().startsWith("vanity")) {
+      item.levels = [1]
+    }
+    if (isStartingGear(trait)) {
+      item.levels = [20]
+    }
   }
 
   item.recipe = await findAndConvertRecipe(trait)
