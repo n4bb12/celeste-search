@@ -154,6 +154,12 @@
   flex-wrap: wrap;
 }
 
+.__vendor-rotation {
+  width: 100%;
+  margin-bottom: .25rem;
+  color: hsl(0, 0%, 65%);
+}
+
 .row.--materials {
   margin-left: .5rem;
   font-size: 90%;

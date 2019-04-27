@@ -6,6 +6,7 @@ import { translateEn } from "../shared/convert-text"
 
 import { convertCurrency } from "./convert-currency"
 import { convertRarity } from "./convert-rarity"
+import { vendorLocations } from "./locations"
 import { compareVendors } from "./sort"
 
 /**
@@ -54,6 +55,7 @@ export async function findVendors(entity: Entity): Promise<Vendor[] | undefined>
         result.push({
           id: vendor.protounit,
           name,
+          location: vendorLocations[vendor.protounit],
           level: sold.level - 3,
           rarity: convertRarity(sold.id),
           currency: convertCurrency(price.type),

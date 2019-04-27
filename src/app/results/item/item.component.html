@@ -97,8 +97,10 @@
     <div class="row --vendor">
       <span>Purchasable at</span>
       <span>&nbsp;<strong>{{ vendor.name }}</strong></span>
-      <span *ngIf="vendor.rotation"> ({{ vendor.rotation }} Legendary
-        Rotation)</span>:
+      <span>,&nbsp;{{ vendor.location }}:</span>
+      <span class="__vendor-rotation" *ngIf="vendor.rotation">
+        <span>({{ vendor.rotation }} Legendary Rotation)</span>
+      </span>
     </div>
 
     <div class="row --materials">
