@@ -49,6 +49,29 @@ const eventWinter2018 = [
   "Sling2H_IceKing_LEG",
 ]
 
+const persianStartingGear = [
+  "ArmorBldg_U201", "ArmorClth_R201", "ArmorLgt_R201", "ArmorMed_R201",
+  "ArmorPlt_U201", "ArrowOH_U201_VR", "Ballista2H_U201_VR", "Bow1H_U201",
+  "FishingNet1H_U201", "Javalin2H_U201", "RamHead2H_U201", "Scepter2H_U201",
+  "Shield1H_U201", "Spear1H_U201", "Spear2H_U201", "Sword1H_U201", "Tool1H_U201",
+]
+
+const babylonianStartingGear = [
+  "ArmorBldg_U201", "ArmorClth_R201", "ArmorLgt_R201", "ArmorMed_R201",
+  "ArmorPlt_U201", "ArrowOH_U201_VR", "Ballista2H_U201_VR", "Bow1H_U201",
+  "FishingNet1H_U201", "Javalin2H_U201", "RamHead2H_U201", "Scepter2H_U201",
+  "Shield1H_U201", "Sling2H_U201", "Spear1H_U201", "Spear2H_U201",
+  "Sword1H_U201", "Tool1H_U201",
+]
+
+const norseStartingGear = [
+  "ArmorBldg_U201", "ArmorClth_R201", "ArmorLgt_R201", "ArmorMed_R201",
+  "ArmorPlt_U201", "ArrowOH_U201_VR", "Axe2H_U201", "Ballista2H_U201_VR",
+  "Bow1H_U201", "FireThrower2H_U201", "FishingNet1H_U201", "Javalin2H_U201",
+  "RamHead2H_U201", "Scepter2H_U201", "Shield1H_U201", "Spear1H_U201",
+  "Spear2H_U201", "Sword1H_U201", "Tool1H_U201",
+]
+
 /**
  * Starting at this ID, all items were created by the celeste team.
  */
@@ -111,4 +134,22 @@ export function isReforgeable(trait: Trait) {
 
 export function isClassicItem(trait: Trait) {
   return trait.dbid < celesteLegendariesStart
+}
+
+export function isPersianStartingGear(trait: Trait) {
+  return persianStartingGear.includes(trait.name)
+}
+
+export function isBabylonianStartingGear(trait: Trait) {
+  return babylonianStartingGear.includes(trait.name)
+}
+
+export function isNorseStartingGear(trait: Trait) {
+  return norseStartingGear.includes(trait.name)
+}
+
+export function isStartingGear(trait: Trait) {
+  return isPersianStartingGear(trait)
+    || isBabylonianStartingGear(trait)
+    || isNorseStartingGear(trait)
 }

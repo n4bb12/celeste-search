@@ -31,4 +31,16 @@ export const currencies = [
     resource: "Art/UserInterface/Icons/Buildings/AvatarMarket_ua",
     iconName: "market",
   },
+  {
+    resource: "Art/UserInterface/Avatar/RegionShieldC04_4_ua",
+    iconName: "persian",
+  },
+  {
+    resource: "Art/UserInterface/Avatar/RegionShieldC06_4_ua",
+    iconName: "babylonian",
+  },
+  {
+    resource: "Art/UserInterface/Avatar/RegionShieldC07_4_ua",
+    iconName: "norse",
+  },
 ]

@@ -5,6 +5,7 @@
     "@n4bb12/config-tslint"
   ],
   "rules": {
+    "angular-whitespace": false,
     "jsdoc-format": false,
     "max-line-length": [
       true,

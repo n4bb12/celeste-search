@@ -3,6 +3,7 @@ import { Trait } from "celeste-api-types"
 import { Item } from "../interfaces"
 import { compareVendors } from "../vendors/sort"
 
+import { vendorLocations } from "../vendors/locations"
 import { isClassicItem, isEventReward, isQuestReward } from "./source"
 
 export function addToLegendaryRotation(item: Item, trait: Trait): void {
@@ -42,6 +43,7 @@ export function addToLegendaryRotation(item: Item, trait: Trait): void {
   item.vendors.push({
     id: "Gn_Cap_GeneralEmpireStore01",
     name: "Empire Store",
+    location: vendorLocations.Gn_Cap_GeneralEmpireStore01,
     currency: "empire",
     rarity: "legendary",
     level: 40,

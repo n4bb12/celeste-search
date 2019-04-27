@@ -97,8 +97,10 @@
     <div class="row --vendor">
       <span>Purchasable at</span>
       <span>&nbsp;<strong>{{ vendor.name }}</strong></span>
-      <span *ngIf="vendor.rotation"> ({{ vendor.rotation }} Legendary
-        Rotation)</span>:
+      <span>,&nbsp;{{ vendor.location }}:</span>
+      <span class="__vendor-rotation" *ngIf="vendor.rotation">
+        <span>({{ vendor.rotation }} Legendary Rotation)</span>
+      </span>
     </div>
 
     <div class="row --materials">
@@ -108,13 +110,13 @@
       <span class="__mat-amount">{{ vendor.price | price }}</span>
       <span class="__mat-text">{{ vendor.currency | currency }}</span>
       <span
-        *ngIf="vendor.level && vendor.level !== level || item.levels.length > 1">
+        *ngIf="vendor.level && vendor.level !== level && item.levels.length > 1">
         —&nbsp;&nbsp;Level {{ vendor.level }}
       </span>
     </div>
   </div>
 
-  <!-- QUEST -->
+  <!-- QUEST, EVENT -->
   <div class="__vendors" *ngIf="item.quest || item.event">
     <div class="row --vendor">
       <span>Reward from</span>:
@@ -129,6 +131,22 @@
         <span *ngIf="item.event">{{ item.event?.name | titlecase }} Event
           {{ item.event?.year }}</span>
       </div>
+    </div>
+  </div>
+
+  <!-- STARTING -->
+  <div class="__vendors" *ngIf="item.starting?.length">
+    <div class="row --vendor">
+      <span>Pro Civilization Starting Gear</span>:
+    </div>
+
+    <div class="row --materials">
+      <ng-container *ngFor="let civ of item.starting">
+        <span class="icon--materials icon--materials--{{ civ }}"></span>
+        <span class="__mat-text">{{ civ | titlecase }}</span>
+        <span></span><!-- wrap line -->
+        <span></span><!-- wrap line -->
+      </ng-container>
     </div>
   </div>
 

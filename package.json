@@ -108,7 +108,7 @@
     "protractor": "~5.4.2",
     "ts-node": "~8.0.3",
     "tslint": "^5.15.0",
-    "tslint-angular": "^1.1.2",
+    "tslint-angular": "^2.0.0",
     "typeface-lato": "^0.0.54",
     "typescript": "^3.2.4"
   },

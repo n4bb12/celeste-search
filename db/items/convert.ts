@@ -10,7 +10,14 @@ import { convertEvent } from "./convert-event"
 import { findAndConvertRecipe } from "./convert-recipe"
 import { addToLegendaryRotation } from "./legendary-rotation"
 import { buildSearchString } from "./search"
-import { getQuestName, isReforgeable } from "./source"
+import {
+  getQuestName,
+  isBabylonianStartingGear,
+  isNorseStartingGear,
+  isPersianStartingGear,
+  isReforgeable,
+  isStartingGear,
+} from "./source"
 
 /**
  * Converts items from their API format to the format
@@ -34,11 +41,25 @@ export async function convertItem(trait: Trait): Promise<Item> {
     vendors: undefined,
     quest: getQuestName(trait),
     event: convertEvent(trait),
+    starting: [
+      isPersianStartingGear(trait) && "persian",
+      isBabylonianStartingGear(trait) && "babylonian",
+      isNorseStartingGear(trait) && "norse",
+    ].filter(Boolean) as string[],
     search: "",
   }
 
-  if (item.levels.length === 0) {
-    item.levels = [40]
+  if (!item.levels.length) {
+    if (trait.traittype.toLowerCase().startsWith("vanity")) {
+      item.levels = [1]
+    }
+    if (isStartingGear(trait)) {
+      item.levels = [20]
+    }
+  }
+
+  if (!item.starting!.length) {
+    delete item.starting
   }
 
   item.recipe = await findAndConvertRecipe(trait)
@@ -47,7 +68,7 @@ export async function convertItem(trait: Trait): Promise<Item> {
   if (trait.rarity === "legendary") {
     addToLegendaryRotation(item, trait)
     if (item.effects) {
-      item.effectsRange = isReforgeable(trait)
+      item.effectsRange = isReforgeable(trait) || undefined
     }
   } else {
     if (item.effects) {

@@ -73,6 +73,7 @@ export async function searchByVendor(builder: SearchBuilder, vendors?: Vendor[])
 
     builder.addStrict(vendor.id)
     builder.add(vendor.name)
+    builder.add(vendor.location)
 
     if (vendor.currency === "coin") {
       builder.add("coins")

@@ -18,5 +18,6 @@ export interface Item {
     name: "halloween" | "winter"
     year: 2018,
   }
+  starting?: string[]
   search: string
 }
