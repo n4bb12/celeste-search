@@ -1,3 +1,5 @@
+import { MarketplaceItem } from "celeste-api-types"
+
 import { Vendor } from "./Vendor"
 
 export interface AdvisorRarity {
@@ -12,6 +14,7 @@ export interface Advisor {
   level: number
   civilization: string | undefined
   vendors: Vendor[] | undefined
+  marketplace: MarketplaceItem[] | undefined
   rarities: {
     [index: string]: AdvisorRarity,
   }

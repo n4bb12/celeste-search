@@ -39,6 +39,7 @@ export async function convertItem(trait: Trait): Promise<Item> {
     effectsRange: undefined,
     recipe: undefined,
     vendors: undefined,
+    marketplace: undefined,
     quest: getQuestName(trait),
     event: convertEvent(trait),
     starting: [

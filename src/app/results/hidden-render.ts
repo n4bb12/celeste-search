@@ -55,6 +55,17 @@ export const hiddenRenderData: {
         price: 1750,
       },
     ],
+    marketplace: [
+      {
+        ItemID: "Mehrab_R_III",
+        ItemType: "Advisor",
+        ItemLevel: 7,
+        ItemCount: 1,
+        ItemPrice: 5000,
+        DateTimeExpiry: "2019-05-27T15:16:49.5272071Z",
+        ItemSeed: 0,
+      },
+    ],
     quest: "quest",
     event: { name: "halloween", year: 2018 },
     starting: ["persian", "babylonian", "norse"],
@@ -65,6 +76,7 @@ export const hiddenRenderData: {
     name: "name",
     age: 4,
     level: 40,
+    civilization: "greek",
     rarities: {
       legendary: {
         icon: 338,
@@ -79,6 +91,17 @@ export const hiddenRenderData: {
         rarity: "uncommon",
         currency: "coin",
         price: 225,
+      },
+    ],
+    marketplace: [
+      {
+        ItemID: "Mehrab_R_III",
+        ItemType: "Advisor",
+        ItemLevel: 7,
+        ItemCount: 1,
+        ItemPrice: 5000,
+        DateTimeExpiry: "2019-05-27T15:16:49.5272071Z",
+        ItemSeed: 0,
       },
     ],
     search: "search",
@@ -100,6 +123,17 @@ export const hiddenRenderData: {
         price: 50,
       },
     ],
+    marketplace: [
+      {
+        ItemID: "Mehrab_R_III",
+        ItemType: "Advisor",
+        ItemLevel: 7,
+        ItemCount: 1,
+        ItemPrice: 5000,
+        DateTimeExpiry: "2019-05-27T15:16:49.5272071Z",
+        ItemSeed: 0,
+      },
+    ],
     search: "search",
   },
   design: {
@@ -112,6 +146,27 @@ export const hiddenRenderData: {
       {
         id: "AnimalHide",
         quantity: 26,
+      },
+    ],
+    vendors: [
+      {
+        id: "gn_Cap_LootStore06",
+        name: "name",
+        location: "location",
+        level: 0,
+        currency: "empire",
+        price: 50,
+      },
+    ],
+    marketplace: [
+      {
+        ItemID: "Mehrab_R_III",
+        ItemType: "Advisor",
+        ItemLevel: 7,
+        ItemCount: 1,
+        ItemPrice: 5000,
+        DateTimeExpiry: "2019-05-27T15:16:49.5272071Z",
+        ItemSeed: 0,
       },
     ],
     search: "search",

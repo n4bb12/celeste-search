@@ -1,3 +1,5 @@
+import { MarketplaceItem } from "celeste-api-types"
+
 import { Vendor } from "./Vendor"
 
 export interface Design {
@@ -8,5 +10,6 @@ export interface Design {
   rarity: string
   materials: Array<{ id: string, quantity: number }>
   vendors: Vendor[] | undefined
+  marketplace: MarketplaceItem[] | undefined
   search: string
 }

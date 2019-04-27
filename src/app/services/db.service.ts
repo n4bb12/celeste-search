@@ -35,7 +35,7 @@ export class DbService {
     concatMap(() => interval(1000 * 60)),
     startWith(-1),
     flatMap(() => this.http.get<Marketplace>("https://api.projectceleste.com/marketplace")),
-    catchError(error => of({ data: [] })),
+    catchError(error => of({ timestamp: new Date().toString(), data: [] } as Marketplace)),
     publishReplay(1),
     refCount(),
   )
@@ -47,7 +47,7 @@ export class DbService {
 
   private fetch<T>(name: string): Observable<T> {
     return forkJoin(
-      this.fetchData(name),
+      this.fetchData<T>(name),
       this.fetchSprite(name),
     ).pipe(
       map(([data]) => data as T),
@@ -56,8 +56,8 @@ export class DbService {
     )
   }
 
-  private fetchData(name: string) {
-    return this.http.get(`/assets/db/${name}.json`)
+  private fetchData<T>(name: string) {
+    return this.http.get<T>(`/assets/db/${name}.json`)
   }
 
   private fetchSprite(name: string) {

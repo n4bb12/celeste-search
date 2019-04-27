@@ -9,7 +9,8 @@ import {
 
 import { MarketplaceItem } from "celeste-api-types"
 import { isEqual } from "lodash"
-import { distinctUntilChanged, filter, map, tap } from "rxjs/operators"
+import { Subscription } from "rxjs"
+import { distinctUntilChanged, map, tap } from "rxjs/operators"
 
 import { Item, Materials } from "../../interfaces"
 import { DbService, SettingsService } from "../../services"
@@ -28,7 +29,7 @@ export class ItemComponent implements OnInit, OnDestroy {
   materials: Materials
   market: MarketplaceItem[]
 
-  private destroyed = false
+  private subscriptions: Subscription[] = []
 
   constructor(
     private changeRef: ChangeDetectorRef,
@@ -39,44 +40,37 @@ export class ItemComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.level = this.item.levels[this.item.levels.length - 1]
 
-    if (this.item.recipe) {
-      this.db.shared.subscribe(db => {
-        if (!this.destroyed) {
-          this.materials = db.materials
-          this.changeRef.detectChanges()
-        }
-      })
-    }
+    const materialsSub = this.db.shared.subscribe(db => {
+      this.materials = db.materials
+      this.changeRef.detectChanges()
+    })
 
-    this.settings.precision.valueChanges.subscribe(() => {
-      if (!this.destroyed) {
-        this.changeRef.detectChanges()
-      }
+    const precisionSub = this.settings.precision.valueChanges.subscribe(() => {
+      this.changeRef.detectChanges()
     })
 
     const byPrice = (a: MarketplaceItem, b: MarketplaceItem) => {
       return a.ItemPrice / a.ItemCount - b.ItemPrice / b.ItemCount
     }
 
-    this.db.marketplace.pipe(
+    const marketplaceSub = this.db.marketplace.pipe(
       map(market => market.data.filter(entry => entry.ItemID === this.item.id)),
       distinctUntilChanged(isEqual),
       map(market => market.sort(byPrice)),
       tap(market => this.market = market),
-      filter(() => !this.destroyed),
       tap(() => this.changeRef.detectChanges()),
     ).subscribe()
+
+    this.subscriptions.push(materialsSub, precisionSub, marketplaceSub)
   }
 
   ngOnDestroy() {
-    this.destroyed = true
+    this.subscriptions.forEach(sub => sub.unsubscribe())
   }
 
   setLevel(level: number) {
-    if (!this.destroyed) {
-      this.level = level
-      this.changeRef.detectChanges()
-    }
+    this.level = level
+    this.changeRef.detectChanges()
   }
 
 }
