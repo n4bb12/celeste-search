@@ -54,6 +54,9 @@ export const hiddenRenderData: {
         price: 1750,
       },
     ],
+    quest: "quest",
+    event: { name: "halloween", year: 2018 },
+    starting: ["persian", "babylonian", "norse"],
     search: "search",
   },
   advisor: {

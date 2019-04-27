@@ -10,8 +10,11 @@ import {
 } from "../shared/search-tags"
 
 import {
+  isBabylonianStartingGear,
   isClassicItem,
   isHalloween2018Reward,
+  isNorseStartingGear,
+  isPersianStartingGear,
   isQuestReward,
   isReforgeable,
   isSoldByCouncilOfImhotep,
@@ -68,6 +71,15 @@ export async function buildSearchString(item: Item, trait: Trait): Promise<strin
     builder.add("Classic")
   } else {
     builder.add("Celeste")
+  }
+  if (isBabylonianStartingGear(trait)) {
+    builder.add("Babylonian Starting Gear")
+  }
+  if (isPersianStartingGear(trait)) {
+    builder.add("Persian Starting Gear")
+  }
+  if (isNorseStartingGear(trait)) {
+    builder.add("Norse Starting Gear")
   }
 
   if ([
