@@ -1,13 +1,3 @@
-@import "imports";
-
 :host {
   display: block;
-}
-
-.icon--blueprints {
-  $size: 64px;
-  border-radius: 10px;
-  background-color: $theme-border;
-  width: $size;
-  height: $size;
 }

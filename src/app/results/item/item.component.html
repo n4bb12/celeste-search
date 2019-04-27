@@ -1,21 +1,5 @@
-<div class="__inside" *ngIf="item">
-
-  <!-- TYPE -->
-  <div class="row --header">
-    <strong>{{ item.type }}</strong>
-
-    <div class="__rarity --{{ item.rarity }}">
-      {{ item.rarity }}
-    </div>
-  </div>
-
-  <!-- NAME -->
-  <div class="row --name">
-    <div class="icon--items icon--items--{{ item.icon }}"></div>
-    <div class="__name --{{ item.rarity }}">
-      {{ item.name }}
-    </div>
-  </div>
+<cis-shell [id]="item.id" [name]="item.name" [type]="item.type" [rarity]="item.rarity"
+  [icon]="item.icon" sprite="items">
 
   <!-- EFFECTS -->
   <div class="row --effects">
@@ -108,7 +92,7 @@
     </div>
   </div>
 
-  <!-- STARTING -->
+  <!-- STARTING GEAR -->
   <div *ngIf="item.starting?.length">
     <div class="row --source">
       <span>
@@ -128,6 +112,5 @@
   </div>
 
   <cis-vendors [vendors]="item.vendors" [levels]="item.levels"></cis-vendors>
-  <cis-marketplace [market]="market"></cis-marketplace>
 
-</div>
+</cis-shell>

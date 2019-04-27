@@ -1,0 +1,21 @@
+@import "imports";
+
+:host {
+  display: block;
+}
+
+.icon--items,
+.icon--advisors,
+.icon--blueprints,
+.icon--designs,
+.icon--consumables {
+  $size: 64px;
+  border-radius: 10px;
+  background-color: $theme-border;
+  width: $size;
+  height: $size;
+}
+
+.icon--advisors {
+  border-radius: 4px;
+}

@@ -1,62 +1,30 @@
-<div class="__inside" *ngIf="design">
-
-  <!-- TYPE -->
-  <div class="row --header">
-    <strong>Design</strong>
-
-    <div class="__rarity --{{ design.rarity }}">
-      {{ design.rarity }}
-    </div>
-  </div>
-
-  <!-- NAME -->
-  <div class="row --name">
-    <div class="icon--designs icon--designs--{{ design.icon }}"></div>
-    <div class="__name --{{ design.rarity }}">
-      {{ design.name }}
-    </div>
-  </div>
-
-  <!-- DESCRIPTION -->
-  <div class="row --description --positive">
-    {{ design.description }}
-  </div>
+<cis-shell [id]="design.id" [name]="design.name" type="Design" [rarity]="design.rarity"
+  [icon]="design.icon" sprite="designs"
+  [description]="design.description" [vendors]="design.vendors">
 
   <!-- COST -->
-  <div class="__recipe" *ngIf="materials && design.materials?.length > 0">
-    <div class="row --source">
-      Cost:
-    </div>
-    <div class="row --materials">
-      <ng-container *ngFor="let ref of design.materials">
-        <ng-container *ngIf="materials[ref.id] as mat">
-          <span class="icon--materials icon--materials--{{ mat.icon }}"></span>
-          <span class="__mat-amount">{{ ref.quantity }}</span>
-          <span class="--{{ mat.rarity }}">{{ mat.name }}</span>
-          <span></span><!-- wrap line -->
-          <span></span><!-- wrap line -->
-        </ng-container>
-      </ng-container>
-    </div>
-  </div>
+  <ng-container *ngIf="design.materials?.length > 0">
+    <ng-container *ngIf="(materials | async) as materials">
 
-  <!-- VENDOR -->
-  <div *ngFor="let vendor of design.vendors">
-    <div class="row --source">
-      <span>Purchasable at</span>
-      <span>&nbsp;<strong>{{ vendor.name }}</strong></span>
-      <span>,&nbsp;{{ vendor.location }}:</span>
-    </div>
+      <div class="__recipe">
+        <div class="row --source">
+          Cost:
+        </div>
+        <div class="row --materials">
+          <ng-container *ngFor="let ref of design.materials">
+            <ng-container *ngIf="materials[ref.id] as mat">
+              <span
+                class="icon--materials icon--materials--{{ mat.icon }}"></span>
+              <span class="__mat-amount">{{ ref.quantity }}</span>
+              <span class="--{{ mat.rarity }}">{{ mat.name }}</span>
+              <span></span><!-- wrap line -->
+              <span></span><!-- wrap line -->
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
 
-    <div class="row --materials">
-      <span
-        class="icon--materials icon--materials--{{ vendor.currency.toLowerCase() }}"></span>
-      <span class="__mat-amount">{{ vendor.price | price }}</span>
-      <span>{{ vendor.currency | currency }}</span>
-    </div>
-  </div>
+    </ng-container>
+  </ng-container>
 
-  <cis-vendors [vendors]="design.vendors"></cis-vendors>
-  <cis-marketplace [market]="market"></cis-marketplace>
-
-</div>
+</cis-shell>

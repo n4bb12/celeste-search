@@ -8,7 +8,7 @@
     height: $size;
   }
 
-  .__inside {
+  .__wrapper {
     @include elevation(4);
     @include border();
 

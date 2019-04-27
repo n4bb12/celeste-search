@@ -1,18 +1,8 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  Input,
-  OnDestroy,
-  OnInit,
-} from "@angular/core"
+import { ChangeDetectionStrategy, Component, Input } from "@angular/core"
 
-import { MarketplaceItem } from "celeste-api-types"
-import { isEqual } from "lodash"
-import { Subscription } from "rxjs"
-import { distinctUntilChanged, map, tap } from "rxjs/operators"
+import { map } from "rxjs/operators"
 
-import { Design, Materials } from "../../interfaces"
+import { Design } from "../../interfaces"
 import { DbService } from "../../services"
 
 @Component({
@@ -21,43 +11,16 @@ import { DbService } from "../../services"
   styleUrls: ["./design.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DesignComponent implements OnInit, OnDestroy {
+export class DesignComponent {
 
   @Input() design: Design
 
-  materials: Materials
-  market: MarketplaceItem[]
-
-  private subscriptions: Subscription[] = []
+  materials = this.db.shared.pipe(
+    map(shared => shared.materials),
+  )
 
   constructor(
-    private changeRef: ChangeDetectorRef,
     private db: DbService,
   ) { }
-
-  ngOnInit() {
-    const materialsSub = this.db.shared.subscribe(db => {
-      this.materials = db.materials
-      this.changeRef.detectChanges()
-    })
-
-    const byPrice = (a: MarketplaceItem, b: MarketplaceItem) => {
-      return a.ItemPrice / a.ItemCount - b.ItemPrice / b.ItemCount
-    }
-
-    const marketplaceSub = this.db.marketplace.pipe(
-      map(market => market.data.filter(entry => entry.ItemID === this.design.id)),
-      distinctUntilChanged(isEqual),
-      map(market => market.sort(byPrice)),
-      tap(market => this.market = market),
-      tap(() => this.changeRef.detectChanges()),
-    ).subscribe()
-
-    this.subscriptions.push(materialsSub, marketplaceSub)
-  }
-
-  ngOnDestroy() {
-    this.subscriptions.forEach(sub => sub.unsubscribe())
-  }
 
 }

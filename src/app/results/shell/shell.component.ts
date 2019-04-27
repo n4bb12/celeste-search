@@ -12,21 +12,27 @@ import { isEqual } from "lodash"
 import { Subscription } from "rxjs"
 import { distinctUntilChanged, map, tap } from "rxjs/operators"
 
-import { Advisor, AdvisorRarity } from "../../interfaces"
+import { Blueprint, Item, Materials } from "../../interfaces"
 import { DbService } from "../../services"
 
 @Component({
-  selector: "cis-advisor",
-  templateUrl: "./advisor.component.html",
-  styleUrls: ["./advisor.component.scss"],
+  selector: "cis-shell",
+  templateUrl: "./shell.component.html",
+  styleUrls: ["./shell.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AdvisorComponent implements OnInit, OnDestroy {
+export class ShellComponent implements OnInit, OnDestroy {
 
-  @Input() advisor: Advisor
+  @Input() id: Item["id"]
+  @Input() name: Item["name"]
+  @Input() description: Blueprint["description"]
+  @Input() type: Item["type"]
+  @Input() rarity: Item["rarity"]
+  @Input() icon: Item["icon"]
+  @Input() sprite: "icons" | "advisors" | "blueprints" | "designs" | "consumables"
+  @Input() vendors: Item["vendors"]
 
-  rarities: string[] = []
-  rarity: AdvisorRarity & { id: string }
+  materials: Materials
   marketplace: MarketplaceItem[]
 
   private subscriptions: Subscription[] = []
@@ -37,29 +43,24 @@ export class AdvisorComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.rarities = Object.keys(this.advisor.rarities)
-    const r = this.rarities
-    this.setRarity(r[r.length - 1])
+    const materialsSub = this.db.shared.subscribe(db => {
+      this.materials = db.materials
+      this.changeRef.detectChanges()
+    })
 
     const byPrice = (a: MarketplaceItem, b: MarketplaceItem) => {
       return a.ItemPrice / a.ItemCount - b.ItemPrice / b.ItemCount
     }
 
     const marketplaceSub = this.db.marketplace.pipe(
-      map(market => market.data.filter(entry => entry.ItemID === this.advisor.id)),
+      map(market => market.data.filter(entry => entry.ItemID === this.id)),
       distinctUntilChanged(isEqual),
       map(market => market.sort(byPrice)),
       tap(market => this.marketplace = market),
       tap(() => this.changeRef.detectChanges()),
     ).subscribe()
 
-    this.subscriptions.push(marketplaceSub)
-  }
-
-  setRarity(rarity: string) {
-    this.advisor = { ...this.advisor }
-    this.rarity = { ...this.advisor.rarities[rarity], id: rarity }
-    this.changeRef.detectChanges()
+    this.subscriptions.push(materialsSub, marketplaceSub)
   }
 
   ngOnDestroy() {

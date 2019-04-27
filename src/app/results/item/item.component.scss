@@ -1,12 +1,7 @@
 @import "imports";
 
 :host {
-  position: relative;
   display: block;
-
-  &:hover {
-    z-index: 1;
-  }
 }
 
 .icon--items {

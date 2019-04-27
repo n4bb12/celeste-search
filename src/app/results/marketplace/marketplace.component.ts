@@ -10,11 +10,11 @@ import { MarketplaceItem } from "celeste-api-types"
 })
 export class MarketplaceComponent {
 
-  @Input() market: MarketplaceItem[]
+  @Input() marketplace: MarketplaceItem[]
 
   getPriceRange() {
-    const lowestInt = this.market[0].ItemPrice
-    const highestInt = this.market[this.market.length - 1].ItemPrice
+    const lowestInt = this.marketplace[0].ItemPrice
+    const highestInt = this.marketplace[this.marketplace.length - 1].ItemPrice
 
     return [lowestInt, highestInt]
   }
