@@ -28,6 +28,7 @@ export async function convertBlueprint(blueprint: ApiBlueprint): Promise<Bluepri
     rarity,
     materials,
     vendors: undefined,
+    marketplace: undefined,
     search: "",
   }
 

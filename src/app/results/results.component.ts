@@ -9,6 +9,7 @@ import {
 } from "@angular/core"
 
 import { debounce } from "lodash"
+import { Subscription } from "rxjs"
 import { tap } from "rxjs/operators"
 
 import { Entity } from "../../../db/interfaces"
@@ -24,7 +25,7 @@ const empty = []
 @Component({
   selector: "cis-results",
   templateUrl: "./results.component.html",
-  styleUrls: ["./results.component.scss"],
+  styleUrls: ["./results.component.scss", "./results.shared.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [fadeIn],
 })
@@ -47,7 +48,7 @@ export class ResultsComponent implements OnInit, OnDestroy {
   private observer: IntersectionObserver
   displayed: Entity[] = []
 
-  private destroyed = false
+  private subscriptions: Subscription[] = []
 
   constructor(
     private changeRef: ChangeDetectorRef,
@@ -68,11 +69,11 @@ export class ResultsComponent implements OnInit, OnDestroy {
     if (this.observer) {
       this.observer.disconnect()
     }
-    this.destroyed = true
+    this.subscriptions.forEach(sub => sub.unsubscribe())
   }
 
   updateNumColumns() {
-    const optimalColumns = Math.floor(window.innerWidth / 35 / rem)
+    const optimalColumns = Math.floor(window.innerWidth / 30 / rem)
     const boundedColumns = Math.max(1, Math.min(optimalColumns, +this.settings.maxColumns.value))
 
     if (this.numColumns !== boundedColumns) {
@@ -86,16 +87,17 @@ export class ResultsComponent implements OnInit, OnDestroy {
   }
 
   private registerForTabChange() {
-    this.state.tabChange.subscribe(tab => {
+    const tabChangeSub = this.state.tabChange.subscribe(tab => {
       this.tab = tab
     })
+    this.subscriptions.push(tabChangeSub)
   }
 
   private registerForResults() {
     const pushChunk = this.pushChunk
     const pushChunkDebounced = debounce(pushChunk, 200)
 
-    this.search.results.pipe(
+    const resultsSub = this.search.results.pipe(
       tap(changes => {
         const isEmpty = !changes.length
         const wasEmpty = !this.displayed.length
@@ -110,12 +112,14 @@ export class ResultsComponent implements OnInit, OnDestroy {
         }
       }),
     ).subscribe()
+    this.subscriptions.push(resultsSub)
   }
 
   private registerForSettingsChanges() {
-    this.settings.maxColumns.valueChanges.subscribe(() => {
+    const maxColumnsSub = this.settings.maxColumns.valueChanges.subscribe(() => {
       requestAnimationFrame(() => this.updateNumColumns())
     })
+    this.subscriptions.push(maxColumnsSub)
   }
 
   private setupInfiniteScroll() {
@@ -160,9 +164,7 @@ export class ResultsComponent implements OnInit, OnDestroy {
   private render() {
     console.log(`${TABS[this.tab].id}: ${this.displayed.length}/${this.filtered.length}`)
     requestAnimationFrame(() => {
-      if (!this.destroyed) {
-        this.changeRef.detectChanges()
-      }
+      this.changeRef.detectChanges()
     })
   }
 

@@ -17,54 +17,6 @@
   height: $size;
 }
 
-.icon--materials {
-  $size: 24px;
-  border-radius: 3px;
-  width: $size;
-  height: $size;
-}
-
-.__inside {
-  @include elevation(4);
-  @include border();
-
-  width: 100%;
-  margin: 0 auto;
-  background: $theme-shadow;
-  padding: .75rem;
-  font-size: 14px;
-  color: white;
-  opacity: .95;
-}
-
-.row {
-  display: flex;
-
-  span {
-    white-space: nowrap;
-  }
-}
-
-.row.--header {
-  justify-content: space-between;
-}
-
-.__rarity {
-  text-transform: capitalize;
-}
-
-.row.--name {
-  margin: .75rem 0;
-}
-
-.__name {
-  margin-left: .25rem;
-  padding: .25rem;
-  font-size: 18px;
-  font-weight: 700;
-  flex: 1;
-}
-
 .row.--effects {
   margin: 0;
   margin-left: .25rem;
@@ -116,14 +68,9 @@
   }
 }
 
-.row.--level {
-  margin-top: 1rem;
-}
-
 .row.--levels {
   margin-top: .25rem;
   font-size: 90%;
-  color: hsl(0, 0%, 65%);
   flex-wrap: wrap;
 
   .__level {
@@ -145,40 +92,4 @@
       }
     }
   }
-}
-
-.row.--recipe,
-.row.--vendor {
-  margin-top: 1rem;
-  margin-bottom: .25rem;
-  flex-wrap: wrap;
-}
-
-.__vendor-rotation {
-  width: 100%;
-  margin-bottom: .25rem;
-  color: hsl(0, 0%, 65%);
-}
-
-.row.--materials {
-  margin-left: .5rem;
-  font-size: 90%;
-  display: grid;
-  grid-template-columns: auto auto auto 1fr;
-  grid-column-gap: .375rem;
-  grid-row-gap: .125rem;
-  align-items: center;
-
-  + .row.--materials {
-    margin-top: .1rem;
-  }
-}
-
-.__mat-text,
-.__mat-amount {
-  margin-top: .125rem;
-}
-
-.__mat-amount {
-  text-align: right;
 }

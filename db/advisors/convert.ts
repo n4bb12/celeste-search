@@ -31,6 +31,7 @@ export async function convertAdvisor(advisor: ApiAdvisor): Promise<Advisor> {
     civilization,
     rarities,
     vendors: undefined,
+    marketplace: undefined,
     search: "",
   }
 

@@ -28,6 +28,7 @@ export async function convertDesign(design: ApiDesign): Promise<Design> {
     rarity,
     materials,
     vendors: undefined,
+    marketplace: undefined,
     search: "",
   }
 
