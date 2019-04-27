@@ -42,16 +42,16 @@
 
   <!-- CURRENT LEVEL -->
   <div class="row --level">
-    <div>
+    <span>
       Required Level:&nbsp;&nbsp;{{ level }}
-    </div>
+    </span>
   </div>
 
   <!-- LEVELS -->
   <div class="row --levels --note">
-    <div>
+    <span>
       Available at levels:&nbsp;&nbsp;
-    </div>
+    </span>
 
     <ng-container *ngIf="item.levels.length > 1">
       <ng-container *ngFor="let level of item.levels">
@@ -65,7 +65,7 @@
       </ng-container>
     </ng-container>
 
-    <ng-container *ngIf="item.levels.length <= 1">
+    <ng-container *ngIf="item.levels.length < 2">
       <div class="__level">
         {{ item.levels[0] || '?' }}
       </div>
@@ -96,7 +96,7 @@
   <!-- QUEST, EVENT -->
   <div *ngIf="item.quest || item.event">
     <div class="row --source">
-      <span>Reward from</span>:
+      <span>Reward from:</span>
     </div>
 
     <div class="row --materials">
@@ -111,7 +111,9 @@
   <!-- STARTING -->
   <div *ngIf="item.starting?.length">
     <div class="row --source">
-      <span>Pro Civilization Starting Gear</span>:
+      <span>
+        Pro Civilization Starting Gear:
+      </span>
     </div>
 
     <div class="row --materials">

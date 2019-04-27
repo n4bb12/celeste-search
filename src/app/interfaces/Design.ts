@@ -7,6 +7,6 @@ export interface Design {
   icon: number
   rarity: string
   materials: Array<{ id: string, quantity: number }>
-  vendors?: Vendor[]
+  vendors: Vendor[] | undefined
   search: string
 }

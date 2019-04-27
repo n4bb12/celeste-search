@@ -10,8 +10,8 @@ export interface Advisor {
   name: string
   age: number
   level: number
-  civilization?: string
-  vendors?: Vendor[]
+  civilization: string | undefined
+  vendors: Vendor[] | undefined
   rarities: {
     [index: string]: AdvisorRarity,
   }

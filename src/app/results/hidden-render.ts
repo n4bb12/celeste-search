@@ -49,6 +49,7 @@ export const hiddenRenderData: {
         id: "gn_Cap_LootStore06",
         name: "name",
         location: "location",
+        blueprint: true,
         level: 40,
         currency: "coin",
         price: 1750,

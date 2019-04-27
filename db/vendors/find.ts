@@ -47,15 +47,15 @@ export async function findVendors(entity: Entity): Promise<Vendor[] | undefined>
 
         const proto = prototypes[vendor.protounit.toLowerCase()]
         const name = proto.DisplayNameID && await translateEn(proto.DisplayNameID) || vendor.protounit
-
-        if (!price) {
-          console.log(item)
-        }
+        const location = vendorLocations[vendor.protounit]
 
         result.push({
           id: vendor.protounit,
           name,
-          location: vendorLocations[vendor.protounit],
+          location: location && location.startsWith("Blueprint")
+            ? vendorLocations.Gn_Cap_GeneralEmpireStore01
+            : location,
+          blueprint: location && location.startsWith("Blueprint") || false,
           level: sold.level - 3,
           rarity: convertRarity(sold.id),
           currency: convertCurrency(price.type),

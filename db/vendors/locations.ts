@@ -1,4 +1,6 @@
-export const vendorLocations = {
+export const vendorLocations: {
+  [id: string]: string,
+} = {
   Eg_Cap_BasicStore01: "Egyptian Capital City",
   Gr_Cap_BasicStore01: "Greek Capital City",
   Gr_Cap_BasicStoreMycenae01: "Mycenae",
