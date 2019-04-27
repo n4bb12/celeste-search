@@ -46,7 +46,9 @@ export const hiddenRenderData: {
     },
     vendors: [
       {
-        name: "Blueprint, Exquisite Epic Edges",
+        id: "gn_Cap_LootStore06",
+        name: "name",
+        location: "location",
         level: 40,
         currency: "coin",
         price: 1750,
@@ -67,7 +69,9 @@ export const hiddenRenderData: {
     },
     vendors: [
       {
+        id: "gn_Cap_LootStore06",
         name: "name",
+        location: "location",
         rarity: "uncommon",
         currency: "coin",
         price: 225,
@@ -84,7 +88,9 @@ export const hiddenRenderData: {
     materials: [],
     vendors: [
       {
+        id: "gn_Cap_LootStore06",
         name: "name",
+        location: "location",
         level: 0,
         currency: "empire",
         price: 50,
