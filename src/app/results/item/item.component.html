@@ -108,7 +108,7 @@
       <span class="__mat-amount">{{ vendor.price | price }}</span>
       <span class="__mat-text">{{ vendor.currency | currency }}</span>
       <span
-        *ngIf="vendor.level && vendor.level !== level || item.levels.length > 1">
+        *ngIf="vendor.level && vendor.level !== level && item.levels.length > 1">
         —&nbsp;&nbsp;Level {{ vendor.level }}
       </span>
     </div>
