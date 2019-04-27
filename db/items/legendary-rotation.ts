@@ -40,7 +40,8 @@ export function addToLegendaryRotation(item: Item, trait: Trait): void {
 
   item.vendors = item.vendors || []
   item.vendors.push({
-    name: `Empire Store`,
+    id: "Gn_Cap_GeneralEmpireStore01",
+    name: "Empire Store",
     currency: "empire",
     rarity: "legendary",
     level: 40,

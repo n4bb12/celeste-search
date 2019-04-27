@@ -52,6 +52,7 @@ export async function findVendors(entity: Entity): Promise<Vendor[] | undefined>
         }
 
         result.push({
+          id: vendor.protounit,
           name,
           level: sold.level - 3,
           rarity: convertRarity(sold.id),

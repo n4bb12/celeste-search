@@ -71,6 +71,9 @@ export async function searchByVendor(builder: SearchBuilder, vendors?: Vendor[])
     builder.add("vendors")
     builder.add("sold")
 
+    builder.addStrict(vendor.id)
+    builder.add(vendor.name)
+
     if (vendor.currency === "coin") {
       builder.add("coins")
       builder.add("money")
@@ -82,6 +85,5 @@ export async function searchByVendor(builder: SearchBuilder, vendors?: Vendor[])
       builder.add(vendor.currency + " points")
       builder.add(vendor.currency + " tokens")
     }
-    builder.add(vendor.name)
   })
 }
