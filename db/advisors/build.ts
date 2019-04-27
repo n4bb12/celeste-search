@@ -2,7 +2,7 @@ import { API } from "../download"
 import { Advisor } from "../interfaces"
 import { findVendors } from "../vendors"
 
-import { convertAdvisor } from "./convert-advisor"
+import { convertAdvisor } from "./convert"
 import { includeAdvisor } from "./filter"
 import { buildSearchString } from "./search"
 import { compareAdvisors } from "./sort"

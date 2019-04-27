@@ -1,7 +1,7 @@
 import { API } from "../download"
 import { Blueprint } from "../interfaces"
 
-import { convertBlueprint } from "./convert-blueprint"
+import { convertBlueprint } from "./convert"
 import { includeBlueprint } from "./filter"
 import { compareBlueprints } from "./sort"
 

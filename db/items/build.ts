@@ -1,7 +1,7 @@
 import { API } from "../download"
 import { Item, Materials } from "../interfaces"
 
-import { convertItem } from "./convert-item"
+import { convertItem } from "./convert"
 import { includeItem } from "./filter"
 import { compareItems } from "./sort"
 
