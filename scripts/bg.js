@@ -1,5 +1,5 @@
 const { src, dest, series, parallel } = require("gulp")
-const { writeFile } = require("fs-extra")
+const { writeFile, ensureDir } = require("fs-extra")
 const debug = require("gulp-debug")
 const del = require("del")
 const responsive = require("gulp-responsive")
@@ -94,7 +94,7 @@ const deleteBGs = () => del(paths.out + "/*")
 /**
  * Generates multiple sizes of background images.
  */
-const generateBGs = done => {
+async function generateBGs(done) {
   const images = buildImagesConfigs([1, 1.25, 1.5, 2])
 
   const writeImages = () => src(paths.in)
@@ -102,8 +102,10 @@ const generateBGs = done => {
     .pipe(debug())
     .pipe(dest(paths.out))
 
-  const writeCSS = () => {
+  async function writeCSS() {
     const scss = buildMediaQueries(images)
+
+    await ensureDir(paths.out)
     return writeFile(paths.out + "/bg.scss", scss, "utf8")
   }
 
