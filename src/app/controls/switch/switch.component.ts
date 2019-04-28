@@ -27,20 +27,13 @@ export class InputSwitchComponent implements ControlValueAccessor {
   @Input() off = "Off"
 
   active = false
+  hovering = false
 
   private propagateChange: any = noop
 
   toggle() {
     this.active = !this.active
     this.propagateChange(this.active)
-  }
-
-  isOff() {
-    return !this.active
-  }
-
-  isOn() {
-    return !!this.active
   }
 
   /** @ControlValueAccessor */

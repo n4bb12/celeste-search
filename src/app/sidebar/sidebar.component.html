@@ -1,11 +1,24 @@
-<div class="__sidebar" *ngIf="isOpen" (window:keydown.escape)="close()"
-  (clickOutside)="close()" exclude=".__sidebar-open" @enterLeaveRight>
+<div
+  *ngIf="isOpen"
+  class="__sidebar"
+  (window:keydown.escape)="close()"
+  (clickOutside)="close()"
+  exclude=".__sidebar-open"
+  @enterLeaveRight
+>
 
   <div class="__buttons">
-    <button *ngFor="let text of ['Help', 'Settings']; index as i" type="button"
-      [class.--active]="tab === i" (click)="tab = i">{{ text }}</button>
+    <button
+      *ngFor="let text of ['Help', 'Settings']; index as i"
+      [class.--active]="tab === i"
+      (click)="tab = i"
+    >{{ text }}</button>
 
-    <cis-icon-button icon="close" class="__close" (click)="close()">
+    <cis-icon-button
+      icon="close"
+      class="__close"
+      (click)="close()"
+    >
     </cis-icon-button>
   </div>
 

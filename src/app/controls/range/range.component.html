@@ -1,12 +1,24 @@
-<button type="button" class="__clickable" [class.--dragging]="dragging"
-  (pointerdown)="handlePointerdown($event)"
-  (window:pointermove)="handlePointermove($event)"
-  (window:pointerup)="handlePointerup($event)">
+<button
+  type="button"
+  class="__clickarea"
+  [class.--dragging]="dragging"
+  [class.--hovering]="hovering"
+  (pointerenter)="hovering = true"
+  (pointerleave)="hovering = false"
+  (pointerdown)="onPointerdown($event)"
+  (window:pointermove)="onPointermove($event)"
+  (window:pointerup)="onPointerup($event)"
+>
 
-  <div class="__visual">
-    <div class="__track" #track></div>
-    <div class="__knob-translate"
-      [style.transform]="'translateX(' + (ratio * 100) + '%)'">
+  <div class="__controls">
+    <div
+      class="__track"
+      #track
+    ></div>
+    <div
+      class="__knob-translate"
+      [style.transform]="'translateX(' + (ratio * 100) + '%)'"
+    >
       <div class="__knob"></div>
     </div>
   </div>

@@ -35,6 +35,7 @@ export class InputRangeComponent implements ControlValueAccessor, OnChanges {
 
   ratio = 0
   dragging = false
+  hovering = false
 
   private propagateChange: any = noop
 
@@ -42,18 +43,18 @@ export class InputRangeComponent implements ControlValueAccessor, OnChanges {
     this.updateValue(this.value)
   }
 
-  handlePointerdown(event: MouseEvent) {
+  onPointerdown(event: MouseEvent) {
     this.updateRatio(event)
     this.dragging = true
   }
 
-  handlePointermove(event: MouseEvent) {
+  onPointermove(event: MouseEvent) {
     if (this.dragging) {
       this.updateRatio(event)
     }
   }
 
-  handlePointerup(event: MouseEvent) {
+  onPointerup(event: MouseEvent) {
     if (this.dragging) {
       this.updateRatio(event)
     }

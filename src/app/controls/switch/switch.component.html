@@ -1,12 +1,22 @@
-<button class="__clickable" (click)="toggle()" type="button">
+<button
+  type="button"
+  class="__clickarea"
+  [class.--active]="active"
+  [class.--hovering]="hovering"
+  (pointerenter)="hovering = true"
+  (pointerleave)="hovering = false"
+  (pointerup)="toggle()"
+>
 
-  <div class="__text" [class.--active]="isOff()">{{ off }}</div>
+  <div class="__text --off">{{ off }}</div>
 
-  <div class="__visual">
+  <div class="__controls">
     <div class="__track"></div>
-    <div class="__knob" [class.--active]="isOn()"></div>
+    <div class="__knob-translate">
+      <div class="__knob"></div>
+    </div>
   </div>
 
-  <div class="__text" [class.--active]="isOn()">{{ on }}</div>
+  <div class="__text --on">{{ on }}</div>
 
 </button>
