@@ -47,11 +47,11 @@ export async function findVendors(id: string): Promise<Vendor[] | undefined> {
 
         const proto = prototypes[vendor.protounit.toLowerCase()]
         const name = proto.DisplayNameID && await translateEn(proto.DisplayNameID) || vendor.protounit
-        const location = vendorLocations[vendor.protounit]
-        const normalLocation = location && location.startsWith("Blueprint")
+        const location = vendorLocations[vendor.protounit] || vendor.protounit
+        const normalLocation = location.startsWith("Blueprint")
           ? vendorLocations.Gn_Cap_GeneralEmpireStore01
           : location
-        const blueprint = location && location.startsWith("Blueprint") || undefined
+        const blueprint = location.startsWith("Blueprint") || undefined
 
         result.push({
           id: vendor.protounit,
