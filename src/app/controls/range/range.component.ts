@@ -4,7 +4,6 @@ import {
   forwardRef,
   Input,
   OnChanges,
-  OnInit,
   SimpleChanges,
   ViewChild,
 } from "@angular/core"
@@ -24,7 +23,7 @@ import { noop } from "lodash"
     },
   ],
 })
-export class InputRangeComponent implements ControlValueAccessor, OnInit, OnChanges {
+export class InputRangeComponent implements ControlValueAccessor, OnChanges {
 
   @Input() min = 0
   @Input() max = 100
@@ -38,10 +37,6 @@ export class InputRangeComponent implements ControlValueAccessor, OnInit, OnChan
   dragging = false
 
   private propagateChange: any = noop
-
-  ngOnInit() {
-    this.updateValue(this.value)
-  }
 
   ngOnChanges(changes: SimpleChanges) {
     this.updateValue(this.value)
