@@ -29,7 +29,6 @@ export class InputRangeComponent implements ControlValueAccessor, OnChanges {
   @Input() max = 100
   @Input() step = 1
   @Input() value = 0
-  @Input() snap = true
 
   @ViewChild("track") track: ElementRef
 
@@ -37,15 +36,15 @@ export class InputRangeComponent implements ControlValueAccessor, OnChanges {
   dragging = false
   hovering = false
 
-  private propagateChange: any = noop
+  private propagateChange: (value: number) => void = noop
 
   ngOnChanges(changes: SimpleChanges) {
     this.updateValue(this.value)
   }
 
   onPointerdown(event: MouseEvent) {
-    this.updateRatio(event)
     this.dragging = true
+    this.updateRatio(event)
   }
 
   onPointermove(event: MouseEvent) {
@@ -56,14 +55,14 @@ export class InputRangeComponent implements ControlValueAccessor, OnChanges {
 
   onPointerup(event: MouseEvent) {
     if (this.dragging) {
+      this.dragging = false
       this.updateRatio(event)
     }
-    this.dragging = false
   }
 
   private updateRatio(event: MouseEvent) {
     const track = this.track.nativeElement.getBoundingClientRect()
-    const ratio = (event.clientX - track.left) / (track.width)
+    const ratio = (event.clientX - track.left) / track.width
 
     this.ratio = Math.max(0, Math.min(1, ratio))
 
@@ -75,15 +74,12 @@ export class InputRangeComponent implements ControlValueAccessor, OnChanges {
   }
 
   private updateValue(value: number) {
-    const { min, max, step, snap } = this
-    const range = max - min
+    const { min, max, step } = this
 
-    if (snap) {
-      value = Math.round(value / step) * step
-    }
+    value = Math.round(value / step) * step
     value = Math.max(min, Math.min(max, value))
 
-    this.ratio = (value - min) / range
+    this.ratio = (value - min) / (max - min)
 
     if (this.value !== value) {
       this.value = value
