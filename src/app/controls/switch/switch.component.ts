@@ -9,19 +9,19 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms"
 import { noop } from "lodash"
 
 @Component({
-  selector: "cis-switch",
+  selector: "cis-input-switch",
   templateUrl: "./switch.component.html",
   styleUrls: ["./switch.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => SwitchComponent),
+      useExisting: forwardRef(() => InputSwitchComponent),
       multi: true,
     },
   ],
 })
-export class SwitchComponent implements ControlValueAccessor {
+export class InputSwitchComponent implements ControlValueAccessor {
 
   @Input() on = "On"
   @Input() off = "Off"
