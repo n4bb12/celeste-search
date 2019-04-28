@@ -14,6 +14,7 @@ import { environment } from "../environments/environment"
 import { AppComponent } from "./app.component"
 import { AwaitFontDirective } from "./await-font.directive"
 import { BackToTopComponent } from "./back-to-top/back-to-top.component"
+import { InputRangeComponent, InputSwitchComponent } from "./controls"
 import { HelpComponent } from "./help/help.component"
 import { IconButtonComponent } from "./icon-button/icon-button.component"
 import { IconComponent } from "./icon/icon.component"
@@ -43,7 +44,6 @@ import { ScrollbarComponent } from "./scrollbar/scrollbar.component"
 import { SearchComponent } from "./search/search.component"
 import { SettingsComponent } from "./settings/settings.component"
 import { SidebarComponent } from "./sidebar/sidebar.component"
-import { SwitchComponent } from "./switch/switch.component"
 import { TabsComponent } from "./tabs/tabs.component"
 import { TooltipComponent } from "./tooltip/tooltip.component"
 import { UpdateComponent } from "./update/update.component"
@@ -72,6 +72,8 @@ import { UpdateComponent } from "./update/update.component"
     HelpComponent,
     IconButtonComponent,
     IconComponent,
+    InputRangeComponent,
+    InputSwitchComponent,
     ItemComponent,
     KeysPipe,
     LegalComponent,
@@ -85,7 +87,6 @@ import { UpdateComponent } from "./update/update.component"
     SettingsComponent,
     ShellComponent,
     SidebarComponent,
-    SwitchComponent,
     TabsComponent,
     TooltipComponent,
     UpdateComponent,

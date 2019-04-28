@@ -1,27 +1,29 @@
 <div class="__setting">
   <div class="__description">
     <cis-icon icon="precision"></cis-icon>
-    Shown Decimals:&nbsp;&nbsp;{{ precision.value }}
+    <strong>Shown Decimals:</strong>&nbsp;&nbsp;
+    {{ precision.value }}
   </div>
-  <input class="__value" type="range" min="0" max="3" step="1"
-    [formControl]="precision">
+  <cis-input-range [min]="0" [max]="3" [formControl]="precision">
+  </cis-input-range>
 </div>
 
 <div class="__setting">
   <div class="__description">
     <cis-icon icon="columns"></cis-icon>
-    Max Columns:&nbsp;&nbsp;{{ maxColumns.value }}
+    <strong>Max Columns:</strong>&nbsp;&nbsp;
+    {{ maxColumns.value }}
   </div>
-  <input class="__value" type="range" min="2" max="5" step="1"
-    [formControl]="maxColumns">
+  <cis-input-range [min]="1" [max]="5" [formControl]="maxColumns">
+  </cis-input-range>
 </div>
 
 <div class="__setting">
   <div class="__description">
     <cis-icon icon="everything"></cis-icon>
-    By Default Show:
+    <strong>By Default Show:</strong>
   </div>
-  <cis-switch class="__value" off="Nothing" on="Everything"
+  <cis-input-switch off="Nothing" on="Everything"
     [formControl]="defaultToEverything">
-  </cis-switch>
+  </cis-input-switch>
 </div>
