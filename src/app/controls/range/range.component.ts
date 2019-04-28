@@ -67,7 +67,8 @@ export class InputRangeComponent implements ControlValueAccessor, OnInit, OnChan
 
   private updateRatio(event: MouseEvent) {
     const track = this.track.nativeElement.getBoundingClientRect()
-    const ratio = (event.clientX - track.x) / (track.width)
+    const ratio = (event.clientX - track.left) / (track.width)
+    console.log({ event, track, ratio })
 
     this.ratio = Math.max(0, Math.min(1, ratio))
 
@@ -86,6 +87,8 @@ export class InputRangeComponent implements ControlValueAccessor, OnInit, OnChan
       const factor = 1 / step
       value = Math.round(value * factor) / factor
     }
+
+    value = Math.max(min, Math.min(max, value))
 
     this.ratio = (value - min) / range
 
