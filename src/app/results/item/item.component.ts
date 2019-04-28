@@ -7,10 +7,7 @@ import {
   OnInit,
 } from "@angular/core"
 
-import { MarketplaceItem } from "celeste-api-types"
-import { isEqual } from "lodash"
 import { Subscription } from "rxjs"
-import { distinctUntilChanged, map, tap } from "rxjs/operators"
 
 import { Item, Materials } from "../../interfaces"
 import { DbService, SettingsService } from "../../services"
@@ -27,7 +24,6 @@ export class ItemComponent implements OnInit, OnDestroy {
 
   level: number
   materials: Materials
-  market: MarketplaceItem[]
 
   private subscriptions: Subscription[] = []
 
@@ -49,19 +45,7 @@ export class ItemComponent implements OnInit, OnDestroy {
       this.changeRef.detectChanges()
     })
 
-    const byPrice = (a: MarketplaceItem, b: MarketplaceItem) => {
-      return a.ItemPrice / a.ItemCount - b.ItemPrice / b.ItemCount
-    }
-
-    const marketplaceSub = this.db.marketplace.pipe(
-      map(market => market.data.filter(entry => entry.ItemID === this.item.id)),
-      distinctUntilChanged(isEqual),
-      map(market => market.sort(byPrice)),
-      tap(market => this.market = market),
-      tap(() => this.changeRef.detectChanges()),
-    ).subscribe()
-
-    this.subscriptions.push(materialsSub, precisionSub, marketplaceSub)
+    this.subscriptions.push(materialsSub, precisionSub)
   }
 
   ngOnDestroy() {

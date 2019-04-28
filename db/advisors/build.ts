@@ -1,8 +1,11 @@
-import { API } from "../download"
+import { merge } from "lodash"
+
+import { API, downloadIcon } from "../download"
 import { Advisor } from "../interfaces"
+import { translateEn } from "../shared/convert-text"
 import { findVendors } from "../vendors"
 
-import { convertAdvisor } from "./convert"
+import { convertCivilization } from "./convert-civilization"
 import { includeAdvisor } from "./filter"
 import { buildSearchString } from "./search"
 import { compareAdvisors } from "./sort"
@@ -10,29 +13,45 @@ import { compareAdvisors } from "./sort"
 export async function buildAdvisors(): Promise<Advisor[]> {
   console.log("Build advisors...")
 
-  const advisors = await API.getAdvisors()
-  const conversions = Object.values(advisors).map(convertAdvisor)
-  const singleAdvisors = await Promise.all(conversions)
   const mergedByName: { [name: string]: Advisor } = {}
+  const advisors = await API.getAdvisors()
 
-  singleAdvisors.forEach(advisor => {
-    const merged = mergedByName[advisor.name]
+  for (const advisor of Object.values(advisors)) {
+    const name = await translateEn(advisor.displaynameid, advisor.name)
+    const description = await translateEn(advisor.displaydescriptionid, "")
+    const iconId = await downloadIcon(`Art/${advisor.icon}`, "advisors")
+    const civilization = convertCivilization(advisor.civilization)
 
-    if (merged) {
-      merged.rarities = { ...merged.rarities, ...advisor.rarities }
-    } else {
-      mergedByName[advisor.name] = advisor
+    const rarity: Advisor["rarities"][string] = {
+      id: advisor.name,
+      icon: iconId,
+      description,
     }
-  })
 
-  const result = Object.values(mergedByName)
+    const rarities: Advisor["rarities"] = {
+      [advisor.rarity]: rarity,
+    }
 
-  for (const advisor of result) {
-    advisor.vendors = await findVendors(advisor)
-    advisor.search = await buildSearchString(advisor)
+    const result: Advisor = {
+      id: advisor.name.replace(/_.+/, ""),
+      name,
+      age: advisor.age + 1,
+      level: advisor.minlevel,
+      civilization,
+      rarities,
+      vendors: undefined,
+      marketplace: undefined,
+      search: "",
+    }
+    result.vendors = await findVendors(rarity.id)
+
+    const merged = merge(mergedByName[name], result)
+    merged.search = await buildSearchString(merged)
+
+    mergedByName[name] = merged
   }
 
-  return result
+  return Object.values(mergedByName)
     .filter(includeAdvisor)
     .sort(compareAdvisors)
 }

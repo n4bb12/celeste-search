@@ -8,7 +8,7 @@
     height: $size;
   }
 
-  .__inside {
+  .__wrapper {
     @include elevation(4);
     @include border();
 
@@ -72,6 +72,7 @@
     grid-column-gap: .375rem;
     grid-row-gap: .125rem;
     align-items: center;
+    cursor: text;
 
     + .row.--materials {
       margin-top: .1rem;

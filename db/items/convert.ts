@@ -64,7 +64,7 @@ export async function convertItem(trait: Trait): Promise<Item> {
   }
 
   item.recipe = await findAndConvertRecipe(trait)
-  item.vendors = await findVendors(item)
+  item.vendors = await findVendors(item.id)
 
   if (trait.rarity === "legendary") {
     addToLegendaryRotation(item, trait)

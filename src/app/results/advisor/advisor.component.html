@@ -1,4 +1,4 @@
-<div class="__inside" *ngIf="advisor">
+<cis-shell [id]="advisor.id" [rarity]="rarity" [vendors]="advisor.vendors">
 
   <!-- TYPE -->
   <div class="row --header">
@@ -48,7 +48,4 @@
     </div>
   </div>
 
-  <cis-vendors [vendors]="advisor.vendors"></cis-vendors>
-  <cis-marketplace [market]="market"></cis-marketplace>
-
-</div>
+</cis-shell>

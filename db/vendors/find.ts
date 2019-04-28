@@ -1,7 +1,7 @@
 import { isEqual, uniqWith } from "lodash"
 
 import { API } from "../download"
-import { Entity, Vendor } from "../interfaces"
+import { Vendor } from "../interfaces"
 import { translateEn } from "../shared/convert-text"
 
 import { convertCurrency } from "./convert-currency"
@@ -13,15 +13,15 @@ import { compareVendors } from "./sort"
  * Searches all vendors and collects the ones that sell the
  * specified item.
  */
-export async function findVendors(entity: Entity): Promise<Vendor[] | undefined> {
+export async function findVendors(id: string): Promise<Vendor[] | undefined> {
   const result: Vendor[] = []
 
   const vendors = await API.getVendors()
   const prototypes = await API.getPrototypes()
 
   // unfortunately, casing is not always consistent
-  Object.keys(prototypes).forEach(id => {
-    prototypes[id.toLowerCase()] = prototypes[id]
+  Object.keys(prototypes).forEach(protoId => {
+    prototypes[protoId.toLowerCase()] = prototypes[protoId]
   })
 
   for (const vendor of Object.values<any>(vendors)) {
@@ -39,7 +39,7 @@ export async function findVendors(entity: Entity): Promise<Vendor[] | undefined>
         p.lootroll ||
         p.quest
 
-      if (entity.id === sold.id) {
+      if (id === sold.id) {
         const c = item.cost
         const price =
           c.capitalresource ||
@@ -48,15 +48,17 @@ export async function findVendors(entity: Entity): Promise<Vendor[] | undefined>
         const proto = prototypes[vendor.protounit.toLowerCase()]
         const name = proto.DisplayNameID && await translateEn(proto.DisplayNameID) || vendor.protounit
         const location = vendorLocations[vendor.protounit]
+        const normalLocation = location && location.startsWith("Blueprint")
+          ? vendorLocations.Gn_Cap_GeneralEmpireStore01
+          : location
+        const blueprint = location && location.startsWith("Blueprint") || undefined
 
         result.push({
           id: vendor.protounit,
           name,
-          location: location && location.startsWith("Blueprint")
-            ? vendorLocations.Gn_Cap_GeneralEmpireStore01
-            : location,
-          blueprint: location && location.startsWith("Blueprint") || false,
-          level: sold.level - 3,
+          location: normalLocation,
+          blueprint,
+          level: sold.level && sold.level - 3 || undefined,
           rarity: convertRarity(sold.id),
           currency: convertCurrency(price.type),
           price: price.quantity,
@@ -65,7 +67,11 @@ export async function findVendors(entity: Entity): Promise<Vendor[] | undefined>
     }
   }
 
-  const unique = uniqWith(result, isEqual)
+  const unique = uniqWith(result, (a, b) => {
+    const aWithoutId = { ...a, id: null }
+    const bWithoutId = { ...b, id: null }
+    return isEqual(aWithoutId, bWithoutId)
+  })
   unique.sort(compareVendors)
 
   return unique.length ? unique : undefined

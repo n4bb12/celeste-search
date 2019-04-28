@@ -1,46 +1,30 @@
-<div class="__inside" *ngIf="blueprint">
-
-  <!-- TYPE -->
-  <div class="row --header">
-    <strong>Blueprint</strong>
-
-    <div class="__rarity --{{ blueprint.rarity }}">
-      {{ blueprint.rarity }}
-    </div>
-  </div>
-
-  <!-- NAME -->
-  <div class="row --name">
-    <div class="icon--blueprints icon--blueprints--{{ blueprint.icon }}"></div>
-    <div class="__name --{{ blueprint.rarity }}">
-      {{ blueprint.name }}
-    </div>
-  </div>
-
-  <!-- DESCRIPTION -->
-  <div class="row --description --positive">
-    {{ blueprint.description }}
-  </div>
+<cis-shell [id]="blueprint.id" [name]="blueprint.name" type="Blueprint" [rarity]="blueprint.rarity"
+  [icon]="blueprint.icon" sprite="blueprints"
+  [description]="blueprint.description" [vendors]="blueprint.vendors">
 
   <!-- COST -->
-  <div class="__recipe" *ngIf="materials && blueprint.materials?.length > 0">
-    <div class="row --source">
-      Cost:
-    </div>
-    <div class="row --materials">
-      <ng-container *ngFor="let ref of blueprint.materials">
-        <ng-container *ngIf="materials[ref.id] as mat">
-          <span class="icon--materials icon--materials--{{ mat.icon }}"></span>
-          <span class="__mat-amount">{{ ref.quantity }}</span>
-          <span class="--{{ mat.rarity }}">{{ mat.name }}</span>
-          <span></span><!-- wrap line -->
-          <span></span><!-- wrap line -->
-        </ng-container>
-      </ng-container>
-    </div>
-  </div>
+  <ng-container *ngIf="blueprint.materials?.length > 0">
+    <ng-container *ngIf="(materials | async) as materials">
 
-  <cis-vendors [vendors]="blueprint.vendors"></cis-vendors>
-  <cis-marketplace [market]="market"></cis-marketplace>
+      <div class="__recipe">
+        <div class="row --source">
+          Cost:
+        </div>
+        <div class="row --materials">
+          <ng-container *ngFor="let ref of blueprint.materials">
+            <ng-container *ngIf="materials[ref.id] as mat">
+              <span
+                class="icon--materials icon--materials--{{ mat.icon }}"></span>
+              <span class="__mat-amount">{{ ref.quantity }}</span>
+              <span class="--{{ mat.rarity }}">{{ mat.name }}</span>
+              <span></span><!-- wrap line -->
+              <span></span><!-- wrap line -->
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
 
-</div>
+    </ng-container>
+  </ng-container>
+
+</cis-shell>

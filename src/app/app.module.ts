@@ -37,6 +37,7 @@ import {
   MarketplaceComponent,
 } from "./results/marketplace/marketplace.component"
 import { ResultsComponent } from "./results/results.component"
+import { ShellComponent } from "./results/shell/shell.component"
 import { VendorsComponent } from "./results/vendors/vendors.component"
 import { ScrollbarComponent } from "./scrollbar/scrollbar.component"
 import { SearchComponent } from "./search/search.component"
@@ -82,6 +83,7 @@ import { UpdateComponent } from "./update/update.component"
     ScrollbarComponent,
     SearchComponent,
     SettingsComponent,
+    ShellComponent,
     SidebarComponent,
     SwitchComponent,
     TabsComponent,
