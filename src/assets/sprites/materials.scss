@@ -4,6 +4,9 @@
   background-repeat: no-repeat;
   background-position: -100% -100%;
   background-size: 100%;
+  background-clip: padding-box;
+  width: 24px;
+  height: 24px;
   max-width: 100%;
   overflow: hidden;
 }

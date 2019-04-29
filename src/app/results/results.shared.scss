@@ -1,13 +1,6 @@
 @import "imports";
 
 ::ng-deep {
-  .icon--materials {
-    $size: 24px;
-    border-radius: 3px;
-    width: $size;
-    height: $size;
-  }
-
   .__wrapper {
     @include elevation(4);
     @include border();

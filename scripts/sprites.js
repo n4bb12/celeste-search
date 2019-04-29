@@ -14,7 +14,7 @@ function toRoundedPercent(value) {
 /**
  * Generates the CSS for a sprite.
  */
-const cssTemplate = name => data => {
+const cssTemplate = (name, size) => data => {
   const sharedClass = [
     `.icon--${name} {`,
     `  display: block;`,
@@ -22,6 +22,9 @@ const cssTemplate = name => data => {
     `  background-repeat: no-repeat;`,
     `  background-position: -100% -100%;`,
     `  background-size: 100%;`,
+    `  background-clip: padding-box;`,
+    `  width: ${size}px;`,
+    `  height: ${size}px;`,
     `  max-width: 100%;`,
     `  overflow: hidden;`,
     `}`,
@@ -81,7 +84,7 @@ const sprite = (name, size) => {
     .pipe(spritesmith({
       imgName: `${name}.png`,
       cssName: `${name}.scss`,
-      cssTemplate: cssTemplate(name),
+      cssTemplate: cssTemplate(name, size),
       algorithm: "top-down",
     }))
     .pipe(dest(paths.out))
@@ -96,7 +99,7 @@ const sprite = (name, size) => {
  * `gulp sprites`
  */
 module.exports = parallel(
-  sprite("materials", 32),
+  sprite("materials", 24),
   sprite("items", 64),
   sprite("advisors", 64),
   sprite("blueprints", 64),
