@@ -27,8 +27,16 @@
   <ng-content></ng-content>
 
   <!-- SOURCES -->
-  <cis-vendors *ngIf="vendors" [vendors]="vendors"></cis-vendors>
-  <cis-marketplace *ngIf="marketplace" [marketplace]="marketplace">
+  <cis-vendors
+    *ngIf="vendors"
+    [vendors]="vendors"
+    [levels]="levels"
+    [rarities]="rarities"
+  ></cis-vendors>
+  <cis-marketplace
+    *ngIf="marketplace"
+    [marketplace]="marketplace"
+  >
   </cis-marketplace>
 
 </div>

@@ -27,7 +27,7 @@
         <span>Level {{ vendor.level }}</span>
       </ng-container>
 
-      <ng-container *ngIf="vendor.rarity">
+      <ng-container *ngIf="vendor.rarity && rarities?.length > 1">
         <span>—</span>
         <span class="--{{ vendor.rarity }}">{{ vendor.rarity | titlecase }}</span>
       </ng-container>

@@ -1,6 +1,13 @@
-<cis-shell [id]="design.id" [name]="design.name" type="Design" [rarity]="design.rarity"
-  [icon]="design.icon" sprite="designs"
-  [description]="design.description" [vendors]="design.vendors">
+<cis-shell
+  [id]="design.id"
+  [name]="design.name"
+  type="Design"
+  [rarity]="design.rarity"
+  [icon]="design.icon"
+  sprite="designs"
+  [description]="design.description"
+  [vendors]="design.vendors"
+>
 
   <!-- COST -->
   <ng-container *ngIf="design.materials?.length > 0">

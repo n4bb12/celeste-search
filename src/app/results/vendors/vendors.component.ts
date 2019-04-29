@@ -11,6 +11,7 @@ import { Vendor } from "../../interfaces"
 export class VendorsComponent {
 
   @Input() vendors: Vendor[]
-  @Input() levels: number[]
+  @Input() levels?: number[]
+  @Input() rarities?: string[]
 
 }

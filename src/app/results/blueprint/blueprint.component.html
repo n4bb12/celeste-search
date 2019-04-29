@@ -1,6 +1,13 @@
-<cis-shell [id]="blueprint.id" [name]="blueprint.name" type="Blueprint" [rarity]="blueprint.rarity"
-  [icon]="blueprint.icon" sprite="blueprints"
-  [description]="blueprint.description" [vendors]="blueprint.vendors">
+<cis-shell
+  [id]="blueprint.id"
+  [name]="blueprint.name"
+  type="Blueprint"
+  [rarity]="blueprint.rarity"
+  [icon]="blueprint.icon"
+  sprite="blueprints"
+  [description]="blueprint.description"
+  [vendors]="blueprint.vendors"
+>
 
   <!-- COST -->
   <ng-container *ngIf="blueprint.materials?.length > 0">

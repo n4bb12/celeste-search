@@ -31,6 +31,8 @@ export class ShellComponent implements OnInit, OnDestroy {
   @Input() icon: Item["icon"]
   @Input() sprite: "icons" | "advisors" | "blueprints" | "designs" | "consumables"
   @Input() vendors: Item["vendors"]
+  @Input() levels?: number[]
+  @Input() rarities?: string[]
 
   materials: Materials
   marketplace: MarketplaceItem[]
