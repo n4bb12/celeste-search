@@ -8,7 +8,7 @@ export interface Design {
   description: string
   icon: number
   rarity: string
-  materials: Array<{ id: string, quantity: number }>
+  materials: Array<{ id: string, quantity: number }> | undefined
   vendors: Vendor[] | undefined
   marketplace: MarketplaceItem[] | undefined
   search: string

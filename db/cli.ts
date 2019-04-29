@@ -11,20 +11,20 @@ import { buildMaterials } from "./materials/build"
 async function buildDB() {
   console.log("Build database...")
 
-  const materials = await buildMaterials()
-  const items = await buildItems(materials)
+  const items = await buildItems()
   const advisors = await buildAdvisors()
   const blueprints = await buildBlueprints()
   const designs = await buildDesigns()
   const consumables = await buildConsumables()
+  const materials = await buildMaterials(items, blueprints, designs)
 
   const db: DB = {
-    materials,
     items,
     advisors,
     blueprints,
     designs,
     consumables,
+    materials,
   }
 
   return db

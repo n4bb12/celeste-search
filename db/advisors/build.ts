@@ -19,12 +19,12 @@ export async function buildAdvisors(): Promise<Advisor[]> {
   for (const advisor of Object.values(advisors)) {
     const name = await translateEn(advisor.displaynameid, advisor.name)
     const description = await translateEn(advisor.displaydescriptionid, "")
-    const iconId = await downloadIcon(`Art/${advisor.icon}`, "advisors")
+    const icon = await downloadIcon(`Art/${advisor.icon}`, "advisors")
     const civilization = convertCivilization(advisor.civilization)
 
     const rarity: Advisor["rarities"][string] = {
       id: advisor.name,
-      icon: iconId,
+      icon,
       description,
     }
 

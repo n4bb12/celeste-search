@@ -6,14 +6,12 @@ import { translateEn } from "../shared/convert-text"
 
 export async function convertMaterial(material: ApiMaterial): Promise<Material> {
   const name = await translateEn(material.displaynameid, material.name)
-  const iconId = await downloadIcon(`Art/${material.icon}`, "materials")
+  const icon = await downloadIcon(`Art/${material.icon}`, "materials")
   const rarity = material.rarity.substr("cRarity".length).toLowerCase()
 
-  const result: Material = {
+  return {
     name,
-    icon: iconId,
+    icon,
     rarity,
   }
-
-  return result
 }

@@ -1,11 +1,11 @@
 import { API } from "../download"
-import { Item, Materials } from "../interfaces"
+import { Item } from "../interfaces"
 
 import { convertItem } from "./convert"
 import { includeItem } from "./filter"
 import { compareItems } from "./sort"
 
-export async function buildItems(materials: Materials): Promise<Item[]> {
+export async function buildItems(): Promise<Item[]> {
   console.log("Build items...")
 
   const traits = await API.getTraits()

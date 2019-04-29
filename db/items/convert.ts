@@ -26,14 +26,14 @@ import {
 export async function convertItem(trait: Trait): Promise<Item> {
   const name = await translateEn(trait.displaynameid, trait.name)
   const type = await translateEn(trait.rollovertextid, "")
-  const iconId = await downloadIcon(`Art/${trait.icon}`, "items")
+  const icon = await downloadIcon(`Art/${trait.icon}`, "items")
 
   const item: Item = {
     name,
     id: trait.name,
     type,
     levels: trait.itemlevels.map(l => l - 3).filter(l => l > 0),
-    icon: iconId,
+    icon,
     rarity: trait.rarity,
     effects: convertEffects(trait),
     effectsRange: undefined,
