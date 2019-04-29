@@ -31,6 +31,7 @@ const generateAppIcons = () => {
   return src(paths.in)
     .pipe(responsive({ "*": images }, { silent: true }))
     .pipe(dest(paths.out))
+    .pipe(dest("src/assets/meta"))
 }
 
 /**

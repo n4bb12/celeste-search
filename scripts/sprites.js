@@ -85,6 +85,7 @@ const sprite = (name, size) => {
       algorithm: "top-down",
     }))
     .pipe(dest(paths.out))
+    .pipe(dest("src/assets/sprites"))
 
   fn.displayName = `sprites.${name}`
 

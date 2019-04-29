@@ -101,6 +101,7 @@ async function generateBGs(done) {
     .pipe(responsive({ "*": images }, { silent: true }))
     .pipe(debug())
     .pipe(dest(paths.out))
+    .pipe(dest("src/assets/bg"))
 
   async function writeCSS() {
     const scss = buildMediaQueries(images)
