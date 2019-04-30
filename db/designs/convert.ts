@@ -40,7 +40,6 @@ export async function convertDesign(design: ApiDesign): Promise<Design> {
     description,
     icon,
     rarity,
-    type,
     school,
     materials,
     vendors: undefined,

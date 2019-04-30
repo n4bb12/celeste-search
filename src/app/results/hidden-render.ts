@@ -142,7 +142,6 @@ export const hiddenRenderData: {
     description: "description",
     icon: 2,
     rarity: "uncommon",
-    type: "trait",
     school: "Craftsmen",
     materials: [
       {

@@ -12,7 +12,7 @@ export async function buildSearchString(design: Design, apiDesign: ApiDesign): P
   builder.addStrict(design.id)
   builder.add(design.description)
   builder.add(design.rarity)
-  builder.add(design.type)
+  builder.add(design.school)
   builder.add(design.outputId)
   builder.add(design.outputName)
 
