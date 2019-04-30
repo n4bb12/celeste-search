@@ -9,11 +9,10 @@ export async function buildSearchString(design: Design, apiDesign: ApiDesign): P
 
   builder.add("designs")
 
-  builder.addStrict(design.id)
   builder.add(design.description)
   builder.add(design.rarity)
   builder.add(design.school)
-  builder.add(design.outputId)
+  builder.addStrict(design.outputId)
   builder.add(design.outputName)
 
   if (design.outputLevel) {
