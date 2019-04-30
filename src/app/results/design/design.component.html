@@ -46,7 +46,7 @@
   </ng-container>
 
   <!-- LEVEL -->
-  <div class="row --level">
+  <div *ngIf="design.outputLevel" class="row --level">
     <span>
       Level:&nbsp;&nbsp;{{ design.outputLevel }}
     </span>
