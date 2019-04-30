@@ -25,6 +25,7 @@ export async function convertDesign(design: ApiDesign): Promise<Design> {
   const rarity = design.rarity.replace("cRarity", "").toLowerCase()
   const materials = convertMaterials(design)
   const type = Object.keys(design.output)[0]
+  const school = type === "material" ? "Material" : design.tag
 
   const output = design.output[type]
   const outputId = output.id.toLowerCase()
@@ -39,6 +40,7 @@ export async function convertDesign(design: ApiDesign): Promise<Design> {
     icon,
     rarity,
     type,
+    school,
     materials,
     vendors: undefined,
     marketplace: undefined,

@@ -22,8 +22,6 @@ export async function buildMaterials(
     return ids.concat((design.materials || []).map(mat => mat.id))
   }, [] as string[])
 
-  console.log(JSON.stringify(uniq(itemMats), null, 2))
-
   const allUsedMaterials = uniq([
     ...itemMats,
     ...blueprintMats,

@@ -1,7 +1,7 @@
 <div class="__wrapper">
 
   <!-- TYPE / RARITY -->
-  <div *ngIf="type && rarity" class="row --header">
+  <div *ngIf="type || rarity" class="row --header">
     <strong>{{ type }}</strong>
 
     <div class="__rarity --{{ rarity }}">
