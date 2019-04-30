@@ -2,6 +2,7 @@ import { Design as ApiDesign } from "celeste-api-types"
 
 import { API, downloadIcon } from "../download"
 import { Design } from "../interfaces"
+import { convertRecipeSchool } from "../items/convert-recipe-school"
 import { translateEn } from "../shared/convert-text"
 import { findVendors } from "../vendors"
 
@@ -25,7 +26,7 @@ export async function convertDesign(design: ApiDesign): Promise<Design> {
   const rarity = design.rarity.replace("cRarity", "").toLowerCase()
   const materials = convertMaterials(design)
   const type = Object.keys(design.output)[0]
-  const school = type === "material" ? "Material" : design.tag
+  const school = type === "material" ? "Material" : convertRecipeSchool(design.tag)
 
   const output = design.output[type]
   const outputId = output.id.toLowerCase()
