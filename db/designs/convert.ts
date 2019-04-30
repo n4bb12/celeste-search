@@ -26,7 +26,7 @@ export async function convertDesign(design: ApiDesign): Promise<Design> {
   const rarity = design.rarity.replace("cRarity", "").toLowerCase()
   const materials = convertMaterials(design)
   const type = Object.keys(design.output)[0]
-  const school = type === "material" ? "Material" : convertRecipeSchool(design.tag)
+  const school = description.replace(/Use: Grants an? (.+?) the ability to create .+/, "$1")
 
   const output = design.output[type]
   const outputId = output.id.toLowerCase()
