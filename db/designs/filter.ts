@@ -1,6 +1,6 @@
 import chalk from "chalk"
 
-import { Design } from "../interfaces/Design"
+import { Design } from "../interfaces"
 
 export function includeDesign(design: Design) {
   if (!design.name) {
@@ -8,6 +8,10 @@ export function includeDesign(design: Design) {
     return false
   }
   if (design.name === "DebugProduction") {
+    return false
+  }
+  // removed since 2013 or something
+  if (design.name.endsWith("requires a craftsmen hall")) {
     return false
   }
   return true
