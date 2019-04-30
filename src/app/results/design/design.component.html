@@ -1,7 +1,7 @@
 <cis-shell
   [id]="design.id"
-  [name]="design.name"
-  [type]="design.type + ' Recipe'"
+  [name]="'Recipe: ' + design.outputName"
+  [type]="design.type | designType"
   [rarity]="design.rarity"
   [icon]="design.icon"
   sprite="designs"
@@ -33,5 +33,12 @@
 
     </ng-container>
   </ng-container>
+
+  <!-- LEVEL -->
+  <div class="row --level">
+    <span>
+      Required Level:&nbsp;&nbsp;{{ design.outputLevel }}
+    </span>
+  </div>
 
 </cis-shell>

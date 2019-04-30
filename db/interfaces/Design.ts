@@ -4,7 +4,6 @@ import { Vendor } from "./Vendor"
 
 export interface Design {
   id: string
-  name: string
   description: string
   icon: number
   rarity: string
@@ -12,5 +11,9 @@ export interface Design {
   type: string
   vendors: Vendor[] | undefined
   marketplace: MarketplaceItem[] | undefined
+  outputId: string
+  outputName: string
+  outputIcon: number
+  outputLevel: number | undefined
   search: string
 }

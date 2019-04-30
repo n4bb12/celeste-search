@@ -139,7 +139,6 @@ export const hiddenRenderData: {
   },
   design: {
     id: "design_id",
-    name: "name",
     description: "description",
     icon: 2,
     rarity: "uncommon",
@@ -171,6 +170,10 @@ export const hiddenRenderData: {
         ItemSeed: 0,
       },
     ],
+    outputId: "design_output_id",
+    outputName: "name",
+    outputIcon: 2,
+    outputLevel: 2,
     search: "search",
   },
   consumable: {

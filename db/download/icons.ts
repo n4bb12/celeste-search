@@ -7,10 +7,12 @@ const pathToId: { [iconPath: string]: Promise<number> } = {}
 const nextIconId: { [sprite: string]: number } = {}
 
 export async function downloadIcon(resource: string, spriteName: string, iconName?: string): Promise<number> {
-  return pathToId[resource] = pathToId[resource] || fetch(resource, spriteName, iconName)
+  return pathToId[resource + spriteName]
+    = pathToId[resource + spriteName] || fetch(resource, spriteName, iconName)
 }
 
 async function fetch(path: string, spriteName: string, iconName?: string) {
+
   const iconId = nextIconId[spriteName] || 0
   nextIconId[spriteName] = iconId + 1
 
