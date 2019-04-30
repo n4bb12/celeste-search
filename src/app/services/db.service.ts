@@ -27,7 +27,7 @@ export class DbService {
   readonly items = this.fetch<Pick<DB, "items">>("items")
   readonly advisors = this.fetch<Pick<DB, "advisors">>("advisors")
   readonly blueprints = this.fetch<Pick<DB, "blueprints">>("blueprints")
-  // readonly designs = this.fetch<Pick<DB, "designs">>("designs")
+  readonly designs = this.fetch<Pick<DB, "designs">>("designs")
   // readonly consumables = this.fetch<Pick<DB, "consumables">>("consumables")
 
   readonly marketplace = this.appRef.isStable.pipe(

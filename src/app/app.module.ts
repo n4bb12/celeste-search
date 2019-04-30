@@ -26,6 +26,7 @@ import {
   PricePipe,
   PriceRangePipe,
 } from "./pipes"
+import { DesignTypePipe } from "./pipes/design-type.pipe"
 import {
   PrimaryButtonComponent,
 } from "./primary-button/primary-button.component"
@@ -68,6 +69,7 @@ import { UpdateComponent } from "./update/update.component"
     ConsumableComponent,
     CurrencyPipe,
     DesignComponent,
+    DesignTypePipe,
     EffectValuePipe,
     HelpComponent,
     IconButtonComponent,

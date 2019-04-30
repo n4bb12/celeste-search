@@ -1,5 +1,14 @@
-import { Design } from "../interfaces"
+import { Design, RARITIES } from "../interfaces"
 
 export function compareDesigns(a: Design, b: Design) {
-  return a.name.localeCompare(b.name)
+  const aRarity = a.rarity
+  const bRarity = b.rarity
+
+  if (aRarity !== bRarity) {
+    const aRarityIndex = RARITIES.indexOf(aRarity)
+    const bRarityIndex = RARITIES.indexOf(bRarity)
+    return aRarityIndex - bRarityIndex
+  }
+
+  return a.outputName.localeCompare(b.outputName)
 }

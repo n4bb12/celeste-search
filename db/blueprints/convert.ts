@@ -10,18 +10,21 @@ import { buildSearchString } from "./search"
 
 export async function convertBlueprint(blueprint: ApiBlueprint): Promise<Blueprint> {
   const prototypes = await API.getPrototypes()
-  const proto = prototypes[blueprint.protounit]
-  const displaynameid = proto && proto.DisplayNameID
-  const name = displaynameid && await translateEn(displaynameid)
-    || blueprint.displaynameid && await translateEn(blueprint.displaynameid)
-    || blueprint.name
+
+  // unfortunately, casing is not always consistent
+  Object.keys(prototypes).forEach(protoId => {
+    prototypes[protoId.toLowerCase()] = prototypes[protoId]
+  })
+
+  const proto = prototypes[blueprint.protounit.toLowerCase()]
+  const name = await translateEn(proto.DisplayNameID!, blueprint.name)
   const description = await translateEn(blueprint.rollovertextid)
   const icon = await downloadIcon(`Art/${blueprint.icon}`, "blueprints")
   const rarity = blueprint.rarity.replace("cRarity", "").toLowerCase()
   const materials = convertMaterials(blueprint)
 
   const result: Blueprint = {
-    id: blueprint.name,
+    id: blueprint.protounit,
     name,
     description,
     icon,
