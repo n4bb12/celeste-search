@@ -14,6 +14,7 @@ export async function convertDesign(design: ApiDesign): Promise<Design> {
   const icon = await downloadIcon(`Art/${design.icon}`, "designs")
   const rarity = design.rarity.replace("cRarity", "").toLowerCase()
   const materials = convertMaterials(design)
+  const type = design.tag.startsWith("[") ? "Material" : design.tag
 
   const result: Design = {
     id: design.name,
@@ -21,6 +22,7 @@ export async function convertDesign(design: ApiDesign): Promise<Design> {
     description,
     icon,
     rarity,
+    type,
     materials,
     vendors: undefined,
     marketplace: undefined,
@@ -28,7 +30,7 @@ export async function convertDesign(design: ApiDesign): Promise<Design> {
   }
 
   result.vendors = await findVendors(result.id)
-  result.search = await buildSearchString(result)
+  result.search = await buildSearchString(result, design)
 
   return result
 }

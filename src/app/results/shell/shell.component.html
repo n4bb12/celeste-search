@@ -10,8 +10,8 @@
   </div>
 
   <!-- ICON / NAME -->
-  <div *ngIf="icon && sprite && name" class="row --name">
-    <div *ngIf="icon" class="icon--{{ sprite }} icon--{{ sprite }}--{{ icon }}">
+  <div *ngIf="icon && sprite || name" class="row --name">
+    <div *ngIf="icon && sprite" class="icon--{{ sprite }} icon--{{ sprite }}--{{ icon }}">
     </div>
     <div *ngIf="name" class="__name --{{ rarity }}">
       {{ name }}

@@ -143,6 +143,7 @@ export const hiddenRenderData: {
     description: "description",
     icon: 2,
     rarity: "uncommon",
+    type: "Construction",
     materials: [
       {
         id: "AnimalHide",
