@@ -30,7 +30,6 @@ export async function convertDesign(design: ApiDesign): Promise<Design> {
 
   const output = design.output[type]
   const outputId = output.id.toLowerCase()
-  const outputLevel = output.level ? output.level - 3 : undefined
   const outputDetails: any = allTraits[outputId] || allMats[outputId]
   const outputName = await translateEn(outputDetails.displaynameid, outputDetails.name)
   const outputIcon = await downloadIcon(`Art/${outputDetails.icon}`, "designs")
@@ -47,7 +46,6 @@ export async function convertDesign(design: ApiDesign): Promise<Design> {
     outputId,
     outputName,
     outputIcon,
-    outputLevel,
     search: "",
   }
 

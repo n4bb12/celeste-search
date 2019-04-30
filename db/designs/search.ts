@@ -15,10 +15,6 @@ export async function buildSearchString(design: Design, apiDesign: ApiDesign): P
   builder.addStrict(design.outputId)
   builder.add(design.outputName)
 
-  if (design.outputLevel) {
-    builder.add(design.outputLevel)
-  }
-
   await searchByMaterial(builder, design.materials)
   await searchByVendor(builder, design.vendors)
 

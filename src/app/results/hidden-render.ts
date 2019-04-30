@@ -173,7 +173,6 @@ export const hiddenRenderData: {
     outputId: "design_output_id",
     outputName: "name",
     outputIcon: 2,
-    outputLevel: 2,
     search: "search",
   },
   consumable: {

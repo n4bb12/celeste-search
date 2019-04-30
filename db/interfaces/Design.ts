@@ -14,6 +14,5 @@ export interface Design {
   outputId: string
   outputName: string
   outputIcon: number
-  outputLevel: number | undefined
   search: string
 }
