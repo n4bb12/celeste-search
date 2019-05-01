@@ -8,17 +8,29 @@
   <div class="row --header">
     <strong>Age {{ advisor.age }}</strong>
 
-    <div class="row --rarities" *ngIf="rarities.length > 0">
+    <div
+      class="row --rarities"
+      *ngIf="rarities.length > 0"
+    >
       <ng-container *ngFor="let rarity of rarities">
 
-        <cis-tooltip [text]="rarity | titlecase" *ngIf="rarities.length > 1">
-          <button type="button" class="__rarity --{{ rarity }}"
-            (click)="setRarity(rarity)">
+        <cis-tooltip
+          [text]="rarity | titlecase"
+          *ngIf="rarities.length > 1"
+        >
+          <button
+            type="button"
+            class="__rarity --{{ rarity }}"
+            (click)="setRarity(rarity)"
+          >
             {{ rarity }}
           </button>
         </cis-tooltip>
 
-        <div class="__rarity --{{ rarity }}" *ngIf="rarities.length === 1">
+        <div
+          class="__rarity --{{ rarity }}"
+          *ngIf="rarities.length === 1"
+        >
           {{ rarity }}
         </div>
 
@@ -41,15 +53,25 @@
 
   <div class="row --footer">
     <!-- REQUIRED LEVEL -->
-    <div class="row --level" *ngIf="advisor.level">
+    <div
+      class="row --level"
+      *ngIf="advisor.level"
+    >
       Required Level:&nbsp;&nbsp;{{ advisor.level }}
     </div>
 
     <!-- REQUIRED CIV -->
-    <div class="row --civ" *ngIf="advisor.civilization">
+    <div
+      class="row --civ"
+      *ngIf="advisor.civilization"
+    >
       <strong>Requires {{ advisor.civilization | titlecase }}
         civilization</strong>
     </div>
   </div>
+
+  <!-- SOURCES -->
+  <cis-marketplace [marketplace]="marketplace | async">
+  </cis-marketplace>
 
 </cis-shell>

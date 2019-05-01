@@ -5,9 +5,26 @@
   </div>
 
   <div class="row --materials">
-    <span class="icon--materials icon--materials--market"></span>
-    <span>{{ marketplace | priceRange }}</span>
-    <span>—</span>
-    <span>{{ marketplace?.length | i18nPlural:{ '=1' : '1 Offer', 'other' : '# Offers' } }}</span>
+    <ng-container *ngFor="let group of marketplace">
+
+      <span class="icon--materials icon--materials--coin"></span>
+
+      <span>{{ group.offerings | priceRange }}</span>
+
+      <span *ngIf="group.rarity || group.level" class="--note">—</span>
+      <span
+        *ngIf="group.rarity"
+        class="--{{ group.rarity }}"
+      >{{ group.rarity | titlecase }}</span>
+      <span *ngIf="group.level">Level {{ group.level }}</span>
+
+      <span class="--note">—</span>
+      <span class="--note">
+        {{ group.offerings.length | i18nPlural:{ '=1' : '1 Offer', 'other' : '# Offers' } }}
+      </span>
+
+      <span *ngIf="!group.rarity && !group.level"></span><!-- wrap line -->
+
+    </ng-container>
   </div>
 </ng-container>

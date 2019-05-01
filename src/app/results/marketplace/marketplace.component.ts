@@ -1,6 +1,14 @@
 import { ChangeDetectionStrategy, Component, Input } from "@angular/core"
 
-import { MarketplaceItem } from "celeste-api-types"
+export interface Offering {
+  price: number
+}
+
+export interface OfferingGroup {
+  offerings: Offering[]
+  rarity?: string
+  level?: number
+}
 
 @Component({
   selector: "cis-marketplace",
@@ -10,6 +18,6 @@ import { MarketplaceItem } from "celeste-api-types"
 })
 export class MarketplaceComponent {
 
-  @Input() marketplace?: MarketplaceItem[]
+  @Input() marketplace: OfferingGroup[]
 
 }

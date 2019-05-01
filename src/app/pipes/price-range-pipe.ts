@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from "@angular/core"
 
-import { MarketplaceItem } from "celeste-api-types"
+import { Offering } from "../results/marketplace/marketplace.component"
 
 import { PricePipe } from "./price-pipe"
 
@@ -13,13 +13,13 @@ export class PriceRangePipe implements PipeTransform {
     private pricePipe: PricePipe,
   ) { }
 
-  transform(marketplace?: MarketplaceItem[]): string {
-    if (!marketplace || !marketplace.length) {
+  transform(offerings?: Offering[]): string {
+    if (!offerings || !offerings.length) {
       return ""
     }
 
-    const lowestInt = marketplace[0].ItemPrice
-    const highestInt = marketplace[marketplace.length - 1].ItemPrice
+    const lowestInt = offerings[0].price
+    const highestInt = offerings[offerings.length - 1].price
 
     const abbr = this.pricePipe.abbreviate(highestInt)
     const lowestStr = this.pricePipe.convertPrice(lowestInt, abbr)

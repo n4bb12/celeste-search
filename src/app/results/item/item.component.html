@@ -5,6 +5,7 @@
   [rarity]="item.rarity"
   [icon]="item.icon"
   sprite="items"
+  [level]="level"
   [levels]="item.levels"
 >
 
@@ -79,6 +80,7 @@
           <span class="--{{ mat.rarity }}">{{ mat.name }}</span>
           <span></span><!-- wrap line -->
           <span></span><!-- wrap line -->
+          <span></span><!-- wrap line -->
         </ng-container>
       </ng-container>
     </div>
@@ -111,6 +113,7 @@
       <ng-container *ngFor="let civ of item.starting">
         <span class="icon--materials icon--materials--{{ civ }}"></span>
         <span>{{ civ | titlecase }}</span>
+        <span></span><!-- wrap line -->
         <span></span><!-- wrap line -->
         <span></span><!-- wrap line -->
         <span></span><!-- wrap line -->
