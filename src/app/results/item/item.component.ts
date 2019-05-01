@@ -8,8 +8,9 @@ import {
 } from "@angular/core"
 
 import { Subscription } from "rxjs"
+import { map } from "rxjs/operators"
 
-import { Item, Materials } from "../../interfaces"
+import { Item } from "../../interfaces"
 import { DbService, SettingsService } from "../../services"
 
 @Component({
@@ -22,8 +23,11 @@ export class ItemComponent implements OnInit, OnDestroy {
 
   @Input() item: Item
 
-  level: number
-  materials: Materials
+  level?: number
+
+  materials = this.db.shared.pipe(
+    map(shared => shared.materials),
+  )
 
   private subscriptions: Subscription[] = []
 
@@ -36,16 +40,11 @@ export class ItemComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.level = this.item.levels[this.item.levels.length - 1]
 
-    const materialsSub = this.db.shared.subscribe(db => {
-      this.materials = db.materials
-      this.changeRef.detectChanges()
-    })
-
     const precisionSub = this.settings.precision.valueChanges.subscribe(() => {
       this.changeRef.detectChanges()
     })
 
-    this.subscriptions.push(materialsSub, precisionSub)
+    this.subscriptions.push(precisionSub)
   }
 
   ngOnDestroy() {

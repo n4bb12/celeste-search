@@ -1,21 +1,12 @@
 import { HttpClient } from "@angular/common/http"
-import { ApplicationRef, Injectable } from "@angular/core"
+import { Injectable } from "@angular/core"
 
-import { Marketplace } from "celeste-api-types"
-import { forkJoin, from, interval, Observable, of } from "rxjs"
-import {
-  catchError,
-  concatMap,
-  first,
-  flatMap,
-  map,
-  publishReplay,
-  refCount,
-  startWith,
-} from "rxjs/operators"
+import { combineLatest, from, Observable } from "rxjs"
+import { map, publishReplay, refCount } from "rxjs/operators"
 
 import { DB } from "../interfaces"
 
+import { MarketplaceService } from "./marketplace.service"
 import { TABS } from "./tabs"
 
 @Injectable({
@@ -23,34 +14,33 @@ import { TABS } from "./tabs"
 })
 export class DbService {
 
-  readonly shared = this.fetch<Pick<DB, "materials">>("shared")
-  readonly items = this.fetch<Pick<DB, "items">>("items")
-  readonly advisors = this.fetch<Pick<DB, "advisors">>("advisors")
-  readonly blueprints = this.fetch<Pick<DB, "blueprints">>("blueprints")
-  readonly designs = this.fetch<Pick<DB, "designs">>("designs")
-  // readonly consumables = this.fetch<Pick<DB, "consumables">>("consumables")
-
-  readonly marketplace = this.appRef.isStable.pipe(
-    first(isStable => !!isStable),
-    concatMap(() => interval(1000 * 60)),
-    startWith(-1),
-    flatMap(() => this.http.get<Marketplace>("https://api.projectceleste.com/marketplace")),
-    catchError(error => of({ timestamp: new Date().toString(), data: [] } as Marketplace)),
-    publishReplay(1),
-    refCount(),
+  readonly shared = combineLatest(
+    this.fetch<"materials">("shared"),
+    this.marketplace.fetch(),
+  ).pipe(
+    map(([shared, marketplaceById]) => {
+      return { ...shared, marketplaceById }
+    }),
   )
+
+  readonly items = this.fetch<"items">("items")
+  readonly advisors = this.fetch<"advisors">("advisors")
+  readonly blueprints = this.fetch<"blueprints">("blueprints")
+  readonly designs = this.fetch<"designs">("designs")
+
+  // readonly consumables = this.fetch<Pick<DB, "consumables">>("consumables")
 
   constructor(
     private http: HttpClient,
-    private appRef: ApplicationRef,
+    private marketplace: MarketplaceService,
   ) { }
 
-  private fetch<T>(name: string): Observable<T> {
-    return forkJoin(
+  private fetch<T extends keyof DB>(name: string): Observable<Pick<DB, T>> {
+    return combineLatest(
       this.fetchData<T>(name),
       this.fetchSprite(name),
     ).pipe(
-      map(([data]) => data as T),
+      map(([data]) => data as any),
       publishReplay(1),
       refCount(),
     )

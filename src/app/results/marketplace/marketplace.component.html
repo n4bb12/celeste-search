@@ -1,13 +1,13 @@
 <!-- MARKETPLACE -->
-<ng-container *ngIf="marketplace?.length">
+<ng-container *ngIf="marketplace?.length > 0">
   <div class="row --source">
     <span>Sold at <strong>Global Marketplace</strong></span>:
   </div>
 
   <div class="row --materials">
     <span class="icon--materials icon--materials--market"></span>
-    <span>{{ getPriceRange() | priceRange }}</span>
+    <span>{{ marketplace | priceRange }}</span>
     <span>—</span>
-    <span>{{ marketplace.length | i18nPlural:{ '=1' : '1 Offer', 'other' : '# Offers' } }}</span>
+    <span>{{ marketplace?.length | i18nPlural:{ '=1' : '1 Offer', 'other' : '# Offers' } }}</span>
   </div>
 </ng-container>
