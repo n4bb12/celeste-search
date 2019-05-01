@@ -42,6 +42,7 @@ export async function buildAdvisors(): Promise<Advisor[]> {
       vendors: undefined,
       marketplace: undefined,
       search: "",
+      searchDynamic: undefined,
     }
     result.vendors = await findVendors(rarity.id)
 

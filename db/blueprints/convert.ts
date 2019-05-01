@@ -33,6 +33,7 @@ export async function convertBlueprint(blueprint: ApiBlueprint): Promise<Bluepri
     vendors: undefined,
     marketplace: undefined,
     search: "",
+    searchDynamic: undefined,
   }
 
   result.vendors = await findVendors(result.id)

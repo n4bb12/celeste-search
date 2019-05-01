@@ -23,4 +23,5 @@ export interface Item {
   } | undefined
   starting: string[] | undefined
   search: string
+  searchDynamic: string | undefined
 }

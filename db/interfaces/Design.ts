@@ -15,4 +15,5 @@ export interface Design {
   outputName: string
   outputIcon: number
   search: string
+  searchDynamic: string | undefined
 }

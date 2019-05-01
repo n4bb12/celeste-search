@@ -70,6 +70,7 @@ export const hiddenRenderData: {
     event: { name: "halloween", year: 2018 },
     starting: ["persian", "babylonian", "norse"],
     search: "search",
+    searchDynamic: "searchDynamic",
   },
   advisor: {
     id: "advisor_id",
@@ -106,6 +107,7 @@ export const hiddenRenderData: {
       },
     ],
     search: "search",
+    searchDynamic: "searchDynamic",
   },
   blueprint: {
     id: "blueprint_id",
@@ -136,6 +138,7 @@ export const hiddenRenderData: {
       },
     ],
     search: "search",
+    searchDynamic: "searchDynamic",
   },
   design: {
     id: "design_id",
@@ -174,6 +177,7 @@ export const hiddenRenderData: {
     outputName: "name",
     outputIcon: 2,
     search: "search",
+    searchDynamic: "searchDynamic",
   },
   consumable: {
     id: "consumable_id",
@@ -203,5 +207,6 @@ export const hiddenRenderData: {
       },
     ],
     search: "search",
+    searchDynamic: "searchDynamic",
   },
 }

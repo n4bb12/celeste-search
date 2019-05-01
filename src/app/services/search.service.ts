@@ -81,7 +81,10 @@ export class SearchService {
         if (isOutdated()) {
           break
         }
-        if (words.every(word => entry.search.includes(word))) {
+
+        const fullText = `${entry.search} ${entry.searchDynamic}`
+
+        if (words.every(word => fullText.includes(word))) {
           results.push(entry)
         }
       }

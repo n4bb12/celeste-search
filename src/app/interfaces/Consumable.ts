@@ -11,4 +11,5 @@ export interface Consumable {
   vendors: Vendor[] | undefined
   marketplace: MarketplaceItem[] | undefined
   search: string
+  searchDynamic: string | undefined
 }

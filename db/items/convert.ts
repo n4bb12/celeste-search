@@ -48,6 +48,7 @@ export async function convertItem(trait: Trait): Promise<Item> {
       isNorseStartingGear(trait) && "norse",
     ].filter(Boolean) as string[],
     search: "",
+    searchDynamic: undefined,
   }
 
   if (!item.levels.length) {

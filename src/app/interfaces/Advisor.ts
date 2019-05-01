@@ -20,4 +20,5 @@ export interface Advisor {
     [index: string]: AdvisorRarity,
   }
   search: string
+  searchDynamic: string | undefined
 }
