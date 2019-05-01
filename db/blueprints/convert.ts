@@ -24,7 +24,7 @@ export async function convertBlueprint(blueprint: ApiBlueprint): Promise<Bluepri
   const materials = convertMaterials(blueprint)
 
   const result: Blueprint = {
-    id: blueprint.protounit,
+    id: blueprint.name.toLowerCase(),
     name,
     description,
     icon,

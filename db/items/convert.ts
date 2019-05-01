@@ -29,7 +29,7 @@ export async function convertItem(trait: Trait): Promise<Item> {
   const icon = await downloadIcon(`Art/${trait.icon}`, "items")
 
   const item: Item = {
-    id: trait.name,
+    id: trait.name.toLowerCase(),
     name,
     type,
     levels: trait.itemlevels.map(l => l - 3).filter(l => l > 0),

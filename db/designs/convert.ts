@@ -35,7 +35,7 @@ export async function convertDesign(design: ApiDesign): Promise<Design> {
   const outputIcon = await downloadIcon(`Art/${outputDetails.icon}`, "designs")
 
   const result: Design = {
-    id: design.name,
+    id: design.name.toLowerCase(),
     description,
     icon,
     rarity,

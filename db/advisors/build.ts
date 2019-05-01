@@ -23,7 +23,7 @@ export async function buildAdvisors(): Promise<Advisor[]> {
     const civilization = convertCivilization(advisor.civilization)
 
     const rarity: Advisor["rarities"][string] = {
-      id: advisor.name,
+      id: advisor.name.toLowerCase(),
       icon,
       description,
     }
@@ -33,7 +33,7 @@ export async function buildAdvisors(): Promise<Advisor[]> {
     }
 
     const result: Advisor = {
-      id: advisor.name.replace(/_.+/, ""),
+      id: rarity.id.replace(/_.+/, ""),
       name,
       age: advisor.age + 1,
       level: advisor.minlevel,
