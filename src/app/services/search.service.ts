@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core"
 
 import { uniq } from "lodash"
 import { BehaviorSubject, combineLatest } from "rxjs"
-import { tap } from "rxjs/operators"
+import { take, tap } from "rxjs/operators"
 
 import { Entity } from "../interfaces"
 
@@ -46,9 +46,11 @@ export class SearchService {
 
     const id = TABS[tab].id
 
-    combineLatest<any[]>(
+    const sub = combineLatest<any[]>(
       this.db[TABS[tab].id],
       this.marketplace.byId,
+    ).pipe(
+      take(1),
     ).subscribe(([entries, marketplaceById]) => {
       const isStale = () => tab !== this.state.tab || search !== this.state.search
 
