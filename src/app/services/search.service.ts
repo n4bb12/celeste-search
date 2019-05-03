@@ -41,17 +41,19 @@ export class SearchService {
   }
 
   private performSearch(tab: number, search: string) {
-    console.time("search")
+    const perfKey = `search "${search}"`
+    console.time(perfKey)
+
     const id = TABS[tab].id
 
     combineLatest<any[]>(
-      this.db[id],
+      this.db[TABS[tab].id],
       this.marketplace.byId,
     ).subscribe(([entries, marketplaceById]) => {
       const isStale = () => tab !== this.state.tab || search !== this.state.search
 
       if (isStale()) {
-        console.timeEnd("search")
+        console.timeEnd(perfKey)
         return
       }
 
@@ -62,20 +64,20 @@ export class SearchService {
         || ["*", "all", "everything", "anything"].includes(normalized)
       ) {
         this.results.next([...entries])
-        console.timeEnd("search")
+        console.timeEnd(perfKey)
         return
       }
 
       if (isEmpty) {
         this.results.next(EMPTY)
-        console.timeEnd("search")
+        console.timeEnd(perfKey)
         return
       }
 
       const words = this.getWords(normalized)
 
       if (words.length === 0) {
-        console.timeEnd("search")
+        console.timeEnd(perfKey)
         return
       }
 
@@ -104,7 +106,7 @@ export class SearchService {
 
       this.results.next(results.length ? results : EMPTY)
 
-      console.timeEnd("search")
+      console.timeEnd(perfKey)
     })
   }
 
