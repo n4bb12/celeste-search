@@ -23,10 +23,13 @@ export class PricePipe implements PipeTransform {
 
   convertPrice(price: number, abbreviation: "M" | "k" | "") {
     if (abbreviation === "M") {
-      price = Math.round(price / 1000000)
+      return (price / 1000 / 1000).toFixed(0) + abbreviation
     }
     if (abbreviation === "k") {
-      price = Math.round(price / 1000)
+      if (price >= 20000) {
+        return (price / 1000).toFixed(0) + abbreviation
+      }
+      return (price / 1000).toFixed(1) + abbreviation
     }
     return price + abbreviation
   }
