@@ -47,7 +47,6 @@ export async function convertDesign(design: ApiDesign): Promise<Design> {
     outputName,
     outputIcon,
     search: "",
-    searchDynamic: undefined,
   }
 
   result.vendors = await findVendors(result.id)

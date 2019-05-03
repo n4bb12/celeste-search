@@ -24,5 +24,4 @@ export const consumable: Consumable = {
     },
   ],
   search: "search",
-  searchDynamic: "searchDynamic",
 }

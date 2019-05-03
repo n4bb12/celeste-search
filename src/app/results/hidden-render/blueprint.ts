@@ -25,5 +25,4 @@ export const blueprint: Blueprint = {
     },
   ],
   search: "search",
-  searchDynamic: "searchDynamic",
 }

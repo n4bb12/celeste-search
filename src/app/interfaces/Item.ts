@@ -4,7 +4,6 @@ import { Recipe } from "./Recipe"
 import { Vendor } from "./Vendor"
 
 export interface Item {
-  // static
   id: string
   name: string
   type: string
@@ -22,8 +21,5 @@ export interface Item {
   } | undefined
   starting: string[] | undefined
   search: string
-
-  // dynamic
   marketplace: MarketplaceQuery[]
-  searchDynamic: string | undefined
 }

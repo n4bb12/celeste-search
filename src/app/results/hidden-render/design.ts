@@ -33,5 +33,4 @@ export const design: Design = {
   outputName: "name",
   outputIcon: 2,
   search: "search",
-  searchDynamic: "searchDynamic",
 }

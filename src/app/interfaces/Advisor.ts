@@ -8,7 +8,6 @@ export interface AdvisorRarity {
 }
 
 export interface Advisor {
-  // static
   id: string
   name: string
   age: number
@@ -19,8 +18,5 @@ export interface Advisor {
     [index: string]: AdvisorRarity,
   }
   search: string
-
-  // dynamic
   marketplace: MarketplaceQuery[]
-  searchDynamic: string | undefined
 }

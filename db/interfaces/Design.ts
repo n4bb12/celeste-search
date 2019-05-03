@@ -2,7 +2,6 @@ import { MarketplaceQuery } from "./MarketplaceQuery"
 import { Vendor } from "./Vendor"
 
 export interface Design {
-  // static
   id: string
   description: string
   icon: number
@@ -14,8 +13,5 @@ export interface Design {
   outputName: string
   outputIcon: number
   search: string
-
-  // dynamic
   marketplace: MarketplaceQuery[]
-  searchDynamic: string | undefined
 }

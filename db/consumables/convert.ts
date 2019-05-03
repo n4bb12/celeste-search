@@ -19,7 +19,6 @@ export async function convertConsumable(consumable: any): Promise<Consumable> {
     vendors: undefined,
     search: "",
     marketplace: [],
-    searchDynamic: undefined,
   }
 
   result.search = await buildSearchString(result)

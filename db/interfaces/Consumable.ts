@@ -2,7 +2,6 @@ import { MarketplaceQuery } from "./MarketplaceQuery"
 import { Vendor } from "./Vendor"
 
 export interface Consumable {
-  // static
   id: string
   name: string
   description: string
@@ -10,8 +9,5 @@ export interface Consumable {
   rarity: string
   vendors: Vendor[] | undefined
   search: string
-
-  // dynamic
   marketplace: MarketplaceQuery[]
-  searchDynamic: string | undefined
 }

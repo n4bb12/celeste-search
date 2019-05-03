@@ -31,5 +31,4 @@ export const advisor: Advisor = {
     },
   ],
   search: "search",
-  searchDynamic: "searchDynamic",
 }
