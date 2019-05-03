@@ -2,19 +2,16 @@ import { HttpClient } from "@angular/common/http"
 import { ApplicationRef, Injectable } from "@angular/core"
 
 import { Marketplace, MarketplaceItem } from "celeste-api-types"
-import { isEqual } from "lodash"
 import { interval, Observable, of } from "rxjs"
 import {
   catchError,
   concatMap,
-  distinctUntilChanged,
   first,
   flatMap,
   map,
   publishReplay,
   refCount,
   startWith,
-  tap,
 } from "rxjs/operators"
 
 import { MarketplaceQuery } from "../interfaces"
@@ -62,29 +59,30 @@ export class MarketplaceService {
       }, {} as MarketplaceById)),
   )
 
+  groupByQuery(marketplaceById: MarketplaceById, queries: MarketplaceQuery[]) {
+    const groups: OfferingGroup[] = []
+
+    queries.forEach(q => {
+      const offerings = (marketplaceById[q.id] || [])
+        .filter(o => !q.level || q.level === o.ItemLevel - 3)
+        .map(o => ({ price: o.ItemPrice }))
+        .sort((a, b) => a.price - b.price)
+
+      if (offerings.length) {
+        groups.push({
+          offerings,
+          level: q.level,
+          rarity: q.rarity,
+        })
+      }
+    })
+
+    return groups
+  }
+
   queryOfferings(queries: MarketplaceQuery[]): Observable<OfferingGroup[]> {
     return this.byId.pipe(
-      map(marketplaceById => {
-        const groups: OfferingGroup[] = []
-
-        queries.forEach(q => {
-          const offerings = (marketplaceById[q.id] || [])
-            .filter(o => !q.level || q.level === o.ItemLevel - 3)
-            .map(o => ({ price: o.ItemPrice }))
-            .sort((a, b) => a.price - b.price)
-
-          if (offerings.length) {
-            groups.push({
-              offerings,
-              level: q.level,
-              rarity: q.rarity,
-            })
-          }
-        })
-
-        return groups
-      }),
-      distinctUntilChanged(isEqual),
+      map(marketplaceById => this.groupByQuery(marketplaceById, queries)),
       publishReplay(1),
       refCount(),
     )
