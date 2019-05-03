@@ -1,13 +1,12 @@
 import { HttpClient } from "@angular/common/http"
 import { Injectable } from "@angular/core"
 
-import { combineLatest, from, Observable } from "rxjs"
+import { combineLatest, Observable } from "rxjs"
 import { map, publishReplay, refCount } from "rxjs/operators"
 
 import { Advisor, Blueprint, Design, Item, Materials } from "../interfaces"
 
 import { MarketplaceById, MarketplaceService } from "./marketplace.service"
-import { TABS } from "./tabs"
 
 export interface Shared {
   materials: Materials
@@ -41,9 +40,6 @@ export class DbService {
   ) { }
 
   private fetch<T = any>(name: string): Observable<T> {
-    // prefetch corresponding sprite
-    this.fetchSprite(name).subscribe()
-
     // merge latest marketplace data
     return combineLatest(
       this.fetchData<T>(name),
@@ -59,17 +55,6 @@ export class DbService {
 
   private fetchData<T>(name: string) {
     return this.http.get<T>(`/assets/db/${name}.json`)
-  }
-
-  private fetchSprite(name: string): Observable<any> {
-    if (TABS.some(tab => tab.id === name)) {
-      return from(new Promise(resolve => {
-        const sprite = new Image()
-        sprite.onload = resolve
-        sprite.src = `/assets/sprites/${name}.png`
-      }))
-    }
-    return from([null])
   }
 
 }
