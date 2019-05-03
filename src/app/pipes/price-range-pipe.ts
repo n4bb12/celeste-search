@@ -21,9 +21,8 @@ export class PriceRangePipe implements PipeTransform {
     const lowestInt = offerings[0].price
     const highestInt = offerings[offerings.length - 1].price
 
-    const abbr = this.pricePipe.abbreviate(highestInt)
-    const lowestStr = this.pricePipe.convertPrice(lowestInt, abbr)
-    const highestStr = this.pricePipe.convertPrice(highestInt, abbr)
+    const lowestStr = this.pricePipe.transform(lowestInt)
+    const highestStr = this.pricePipe.transform(highestInt)
 
     if (lowestStr === highestStr) {
       return `${lowestStr}`
