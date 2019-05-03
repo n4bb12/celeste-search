@@ -71,6 +71,7 @@ export class MarketplaceService {
           const offerings = (marketplaceById[q.id] || [])
             .filter(o => !q.level || q.level === o.ItemLevel - 3)
             .map(o => ({ price: o.ItemPrice }))
+            .sort((a, b) => a.price - b.price)
 
           if (offerings.length) {
             groups.push({
