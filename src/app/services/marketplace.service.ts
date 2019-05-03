@@ -24,7 +24,7 @@ export interface MarketplaceById {
 })
 export class MarketplaceService {
 
-  private indexMarketplaceById = (marketplace: Marketplace) => {
+  private indexMarketplaceById = (marketplace: Marketplace): MarketplaceById => {
     return Object.values(marketplace.data)
       .reduce((result, current) => {
         const id = current.ItemID.toLowerCase()
@@ -34,18 +34,16 @@ export class MarketplaceService {
       }, {})
   }
 
-  fetch(): Observable<MarketplaceById> {
-    return this.appRef.isStable.pipe(
-      first(isStable => !!isStable),
-      concatMap(() => interval(1000 * 60)),
-      startWith(-1),
-      flatMap(() => this.http.get<Marketplace>("https://api.projectceleste.com/marketplace")),
-      map(this.indexMarketplaceById),
-      catchError(error => of({})),
-      publishReplay(1),
-      refCount(),
-    )
-  }
+  readonly observable = this.appRef.isStable.pipe(
+    first(isStable => !!isStable),
+    concatMap(() => interval(1000 * 60)),
+    startWith(-1),
+    flatMap(() => this.http.get<Marketplace>("https://api.projectceleste.com/marketplace")),
+    map(this.indexMarketplaceById),
+    catchError(error => of({} as MarketplaceById)),
+    publishReplay(1),
+    refCount(),
+  )
 
   constructor(
     private http: HttpClient,

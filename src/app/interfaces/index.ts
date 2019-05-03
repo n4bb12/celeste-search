@@ -1,7 +1,6 @@
 export * from "./Advisor"
 export * from "./Blueprint"
 export * from "./Consumable"
-export * from "./DB"
 export * from "./Design"
 export * from "./Entity"
 export * from "./Item"

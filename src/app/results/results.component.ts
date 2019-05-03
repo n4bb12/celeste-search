@@ -112,6 +112,7 @@ export class ResultsComponent implements OnInit, OnDestroy {
         }
       }),
     ).subscribe()
+
     this.subscriptions.push(resultsSub)
   }
 

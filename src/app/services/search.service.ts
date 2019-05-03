@@ -42,7 +42,7 @@ export class SearchService {
     console.time("search")
     const id = TABS[tab].id
 
-    this.db[id].subscribe(db => {
+    this.db[id].subscribe(entries => {
       const isOutdated = () => tab !== this.state.tab || search !== this.state.search
 
       if (isOutdated()) {
@@ -52,7 +52,6 @@ export class SearchService {
 
       const normalized = search.toLowerCase().trim()
       const isEmpty = !normalized
-      const entries = db[id]
 
       if (isEmpty && this.settings.defaultToEverything.value
         || ["*", "all", "everything", "anything"].includes(normalized)

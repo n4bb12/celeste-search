@@ -4,43 +4,54 @@ import { Injectable } from "@angular/core"
 import { combineLatest, from, Observable } from "rxjs"
 import { map, publishReplay, refCount } from "rxjs/operators"
 
-import { DB } from "../interfaces"
+import { Advisor, Blueprint, Design, Item, Materials } from "../interfaces"
 
-import { MarketplaceService } from "./marketplace.service"
+import { MarketplaceById, MarketplaceService } from "./marketplace.service"
 import { TABS } from "./tabs"
+
+export interface Shared {
+  materials: Materials
+  marketplaceById: MarketplaceById
+}
 
 @Injectable({
   providedIn: "root",
 })
 export class DbService {
 
-  readonly shared = combineLatest(
-    this.fetch<"materials">("shared"),
-    this.marketplace.fetch(),
+  readonly shared: Observable<Shared> = combineLatest(
+    this.fetch("shared"),
+    this.marketplace.observable,
   ).pipe(
     map(([shared, marketplaceById]) => {
       return { ...shared, marketplaceById }
     }),
   )
 
-  readonly items = this.fetch<"items">("items")
-  readonly advisors = this.fetch<"advisors">("advisors")
-  readonly blueprints = this.fetch<"blueprints">("blueprints")
-  readonly designs = this.fetch<"designs">("designs")
+  readonly items = this.fetch<Item[]>("items")
+  readonly advisors = this.fetch<Advisor[]>("advisors")
+  readonly blueprints = this.fetch<Blueprint[]>("blueprints")
+  readonly designs = this.fetch<Design[]>("designs")
 
-  // readonly consumables = this.fetch<Pick<DB, "consumables">>("consumables")
+  // readonly consumables = this.fetch<Consumable[]>("consumables")
 
   constructor(
     private http: HttpClient,
     private marketplace: MarketplaceService,
   ) { }
 
-  private fetch<T extends keyof DB>(name: string): Observable<Pick<DB, T>> {
+  private fetch<T = any>(name: string): Observable<T> {
+    // prefetch corresponding sprite
+    this.fetchSprite(name).subscribe()
+
+    // merge latest marketplace data
     return combineLatest(
       this.fetchData<T>(name),
-      this.fetchSprite(name),
+      this.marketplace.observable,
     ).pipe(
-      map(([data]) => data as any),
+      map(([data, marketplace]) => {
+        return data
+      }),
       publishReplay(1),
       refCount(),
     )
@@ -50,7 +61,7 @@ export class DbService {
     return this.http.get<T>(`/assets/db/${name}.json`)
   }
 
-  private fetchSprite(name: string) {
+  private fetchSprite(name: string): Observable<any> {
     if (TABS.some(tab => tab.id === name)) {
       return from(new Promise(resolve => {
         const sprite = new Image()

@@ -4,31 +4,8 @@ import { buildAdvisors } from "./advisors/build"
 import { buildBlueprints } from "./blueprints/build"
 import { buildConsumables } from "./consumables/build"
 import { buildDesigns } from "./designs/build"
-import { DB } from "./interfaces"
 import { buildItems } from "./items/build"
 import { buildMaterials } from "./materials/build"
-
-async function buildDB() {
-  console.log("Build database...")
-
-  const items = await buildItems()
-  const advisors = await buildAdvisors()
-  const blueprints = await buildBlueprints()
-  const designs = await buildDesigns()
-  const consumables = await buildConsumables()
-  const materials = await buildMaterials(items, blueprints, designs)
-
-  const db: DB = {
-    items,
-    advisors,
-    blueprints,
-    designs,
-    consumables,
-    materials,
-  }
-
-  return db
-}
 
 async function cleanup() {
   const dirs = [
@@ -44,23 +21,23 @@ async function cleanup() {
   }
 }
 
-async function saveDB(db: DB) {
-  const {
-    materials,
+async function createDB() {
+  console.log("Build database...")
+
+  const items = await buildItems()
+  const advisors = await buildAdvisors()
+  const blueprints = await buildBlueprints()
+  const designs = await buildDesigns()
+  const consumables = await buildConsumables()
+  const materials = await buildMaterials(items, blueprints, designs)
+
+  const results = {
     items,
     advisors,
     blueprints,
     designs,
     consumables,
-  } = db
-
-  const results = {
     shared: { materials },
-    items: { items },
-    advisors: { advisors },
-    blueprints: { blueprints },
-    designs: { designs },
-    consumables: { consumables },
   }
 
   for (const key of Object.keys(results)) {
@@ -75,7 +52,7 @@ async function copyInterfaces() {
 
 async function buildAndSaveDB() {
   await cleanup()
-  await saveDB(await buildDB())
+  await createDB()
   await copyInterfaces()
 }
 
