@@ -100,6 +100,7 @@
               <span></span><!-- wrap line -->
               <span></span><!-- wrap line -->
               <span></span><!-- wrap line -->
+              <span></span><!-- wrap line -->
             </ng-container>
           </ng-container>
         </div>
@@ -116,7 +117,7 @@
 
     <div class="row --materials">
       <span
-        class="icon--materials icon--materials--{{ item.event!.name || 'quest' }}"
+        class="icon--materials icon--materials--{{ item.event?.name || 'quest' }}"
       ></span>
       <span *ngIf="item.quest">{{ item.quest }}</span>
       <span *ngIf="item.event">{{ item.event!.name | titlecase }} Event
@@ -136,6 +137,7 @@
       <ng-container *ngFor="let civ of item.starting">
         <span class="icon--materials icon--materials--{{ civ }}"></span>
         <span>{{ civ | titlecase }}</span>
+        <span></span><!-- wrap line -->
         <span></span><!-- wrap line -->
         <span></span><!-- wrap line -->
         <span></span><!-- wrap line -->

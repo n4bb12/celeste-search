@@ -12,6 +12,7 @@
         <span class="icon--materials icon--materials--coin"></span>
 
         <span>{{ group.offerings | priceRange }}</span>
+        <span>{{ 'coin' | currency }}</span>
 
         <ng-container *ngIf="group.rarity && queries.length > 1">
           <span class="--note">—</span>
