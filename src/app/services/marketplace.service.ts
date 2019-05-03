@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http"
 import { ApplicationRef, Injectable } from "@angular/core"
 
 import { Marketplace, MarketplaceItem } from "celeste-api-types"
-import { interval, Observable, of } from "rxjs"
+import { interval, of } from "rxjs"
 import {
   catchError,
   concatMap,
@@ -12,7 +12,6 @@ import {
   publishReplay,
   refCount,
   startWith,
-  tap,
 } from "rxjs/operators"
 
 export interface MarketplaceById {

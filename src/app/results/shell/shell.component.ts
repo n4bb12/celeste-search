@@ -10,7 +10,7 @@ import { Observable } from "rxjs"
 import { distinctUntilChanged, map, tap } from "rxjs/operators"
 
 import { Blueprint, Item } from "../../interfaces"
-import { DbService } from "../../services"
+import { DbService, Shared } from "../../services"
 import { OfferingGroup } from "../marketplace/marketplace.component"
 
 @Component({
@@ -42,30 +42,37 @@ export class ShellComponent implements OnInit {
   ngOnInit() {
     if (!this.marketplace) {
       this.marketplace = this.db.shared.pipe(
-        map(shared => {
-          const levels = this.levels || [-1]
-          return levels.map(level => {
-            const offerings = shared.marketplaceById[this.id]
-            if (!offerings) {
-              return
-            }
-            const group: OfferingGroup = {
-              offerings: offerings
-                .filter(o => level < 0 || o.ItemLevel === level + 3)
-                .map(o => ({ price: o.ItemPrice }))
-                .sort((a, b) => a.price - b.price),
-              level: levels.length > 1 ? level : undefined,
-            }
-            if (!group.offerings.length) {
-              return
-            }
-            return group
-          }).filter(Boolean) as any
-        }),
+        map(shared => this.getMarketplaceGroups(shared)),
         distinctUntilChanged(),
         tap(() => this.changeRef.detectChanges()),
       )
     }
+  }
+
+  private getMarketplaceGroups(shared: Shared) {
+    const levels = this.levels || [-1]
+
+    return levels.map(level => {
+      const offerings = shared.marketplaceById[this.id]
+
+      if (!offerings) {
+        return
+      }
+
+      const group: OfferingGroup = {
+        offerings: offerings
+          .filter(o => level < 0 || o.ItemLevel === level + 3)
+          .map(o => ({ price: o.ItemPrice }))
+          .sort((a, b) => a.price - b.price),
+        level: levels.length > 1 ? level : undefined,
+      }
+
+      if (!group.offerings.length) {
+        return
+      }
+
+      return group
+    }).filter(Boolean) as any
   }
 
 }

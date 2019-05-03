@@ -10,14 +10,13 @@ import {
 
 import { debounce } from "lodash"
 import { Subscription } from "rxjs"
-import { tap } from "rxjs/operators"
 
 import { Entity } from "../../../db/interfaces"
 import { fadeIn } from "../animations"
 import { SearchService, StateService, TABS } from "../services"
 import { SettingsService } from "../services/settings.service"
 
-import { hiddenRenderData } from "./hidden-render"
+import { advisor, blueprint, consumable, design, item } from "./hidden-render"
 
 const rem = 15
 const empty = []
@@ -35,11 +34,11 @@ export class ResultsComponent implements OnInit, OnDestroy {
 
   readonly activeTabChange = this.state.tabChange
 
-  readonly hiddenRenderItem = hiddenRenderData.item
-  readonly hiddenRenderAdvisor = hiddenRenderData.advisor
-  readonly hiddenRenderBlueprint = hiddenRenderData.blueprint
-  readonly hiddenRenderDesign = hiddenRenderData.design
-  readonly hiddenRenderConsumable = hiddenRenderData.consumable
+  readonly hiddenRenderItem = item
+  readonly hiddenRenderAdvisor = advisor
+  readonly hiddenRenderBlueprint = blueprint
+  readonly hiddenRenderDesign = design
+  readonly hiddenRenderConsumable = consumable
 
   numColumns = 3
   tab = 0
@@ -97,21 +96,21 @@ export class ResultsComponent implements OnInit, OnDestroy {
     const pushChunk = this.pushChunk
     const pushChunkDebounced = debounce(pushChunk, 200)
 
-    const resultsSub = this.search.results.pipe(
-      tap(changes => {
-        const isEmpty = !changes.length
-        const wasEmpty = !this.displayed.length
+    const pushChanges = (changes: Entity[]) => {
+      const isEmpty = !changes.length
+      const wasEmpty = !this.displayed.length
 
-        this.filtered = changes
-        this.displayed = empty
+      this.filtered = changes
+      this.displayed = empty
 
-        if (isEmpty || wasEmpty) {
-          pushChunk()
-        } else {
-          pushChunkDebounced()
-        }
-      }),
-    ).subscribe()
+      if (isEmpty || wasEmpty) {
+        pushChunk()
+      } else {
+        pushChunkDebounced()
+      }
+    }
+
+    const resultsSub = this.search.results.subscribe(pushChanges)
 
     this.subscriptions.push(resultsSub)
   }

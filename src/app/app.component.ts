@@ -26,9 +26,8 @@ export class AppComponent {
   ) { }
 
   private calculateHeaderWidth(maxColumns: number) {
-    return this.sanitizer.bypassSecurityTrustStyle(
-      `calc(${maxColumns} * ${columnWidth} - ${bodyNegativeMargin} + 2 * ${bodySpacing})`,
-    ) as string
+    const style = `calc(${maxColumns} * ${columnWidth} - ${bodyNegativeMargin} + 2 * ${bodySpacing})`
+    return this.sanitizer.bypassSecurityTrustStyle(style) as string
   }
 
 }
