@@ -8,8 +8,9 @@ import {
   ViewChild,
 } from "@angular/core"
 
-import { debounce } from "lodash"
+import { debounce, isEqual } from "lodash"
 import { Subscription } from "rxjs"
+import { distinctUntilChanged, tap } from "rxjs/operators"
 
 import { Entity } from "../../../db/interfaces"
 import { fadeIn } from "../animations"
@@ -110,7 +111,10 @@ export class ResultsComponent implements OnInit, OnDestroy {
       }
     }
 
-    const resultsSub = this.search.results.subscribe(pushChanges)
+    const resultsSub = this.search.results.pipe(
+      distinctUntilChanged(isEqual),
+      tap(pushChanges),
+    ).subscribe()
 
     this.subscriptions.push(resultsSub)
   }
