@@ -4,7 +4,7 @@ import { Item } from "../interfaces"
 import { compareVendors } from "../vendors/sort"
 
 import { vendorLocations } from "../vendors/locations"
-import { isClassicItem, isEventReward, isQuestReward } from "./source"
+import { isClassicItem, isEventReward, isQuestReward, isSoldForCoin } from "./source"
 
 export function addToLegendaryRotation(item: Item, trait: Trait): void {
   if (item.rarity !== "legendary") {
@@ -31,7 +31,7 @@ export function addToLegendaryRotation(item: Item, trait: Trait): void {
 
   // items that are sold for gold don't need to be in the
   // rotation
-  if (item.vendors && item.vendors.length) {
+  if (item.vendors && item.vendors.length || isSoldForCoin(trait)) {
     return
   }
 
