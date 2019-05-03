@@ -1,12 +1,13 @@
 import { Injectable } from "@angular/core"
 
 import { uniq } from "lodash"
-import { BehaviorSubject } from "rxjs"
+import { BehaviorSubject, combineLatest } from "rxjs"
 import { tap } from "rxjs/operators"
 
 import { Entity } from "../interfaces"
 
 import { DbService } from "./db.service"
+import { MarketplaceService } from "./marketplace.service"
 import { SettingsService } from "./settings.service"
 import { StateService } from "./state.service"
 import { TABS } from "./tabs"
@@ -22,6 +23,7 @@ export class SearchService {
 
   constructor(
     private db: DbService,
+    private marketplace: MarketplaceService,
     private state: StateService,
     private settings: SettingsService,
   ) {
@@ -42,10 +44,13 @@ export class SearchService {
     console.time("search")
     const id = TABS[tab].id
 
-    this.db[id].subscribe(entries => {
-      const isOutdated = () => tab !== this.state.tab || search !== this.state.search
+    combineLatest<any[]>(
+      this.db[id],
+      this.marketplace.byId,
+    ).subscribe(([entries, marketplaceById]) => {
+      const isStale = () => tab !== this.state.tab || search !== this.state.search
 
-      if (isOutdated()) {
+      if (isStale()) {
         console.timeEnd("search")
         return
       }
@@ -77,11 +82,20 @@ export class SearchService {
       const results: any[] = []
 
       for (const entry of entries) {
-        if (isOutdated()) {
+        if (isStale()) {
           break
         }
 
-        const fullText = `${entry.search} ${entry.searchDynamic}`
+        let searchDynamic = ""
+
+        entry.marketplace.forEach(query => {
+          const offerings = marketplaceById[query.id]
+          if (offerings && offerings.length > 0) {
+            searchDynamic += " global marketplace"
+          }
+        })
+
+        const fullText = `${entry.search}${searchDynamic}`
 
         if (words.every(word => fullText.includes(word))) {
           results.push(entry)
