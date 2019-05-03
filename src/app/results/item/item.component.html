@@ -12,16 +12,24 @@
   <!-- EFFECTS -->
   <div class="row --effects">
     <ul>
-      <li *ngFor="let effect of item.effects || []"
+      <li
+        *ngFor="let effect of item.effects || []"
         [class.--positive]="effect.beneficial"
-        [class.--negative]="!effect.beneficial">
+        [class.--negative]="!effect.beneficial"
+      >
         <span>{{ effect.name }}<ng-container *ngIf="effect.scaling">:
           </ng-container></span>
-        <span class="__value --left" *ngIf="effect.scaling">
+        <span
+          class="__value --left"
+          *ngIf="effect.scaling"
+        >
           {{ effect | effectValue:level:1 }}
         </span>
-        <cis-tooltip class="__value --right" text="Effect Range (+/- 5%)"
-          *ngIf="effect.scaling && item.effectsRange">
+        <cis-tooltip
+          class="__value --right"
+          text="Effect Range (+/- 5%)"
+          *ngIf="effect.scaling && item.effectsRange"
+        >
           {{
           (effect | effectValue:level:0.95).slice(0, -1) +
           ' — ' +
@@ -48,8 +56,14 @@
     <ng-container *ngIf="item.levels.length > 1">
       <ng-container *ngFor="let level of item.levels">
 
-        <cis-tooltip class="__level" [text]="level">
-          <button type="button" (click)="setLevel(level)">
+        <cis-tooltip
+          class="__level"
+          [text]="level"
+        >
+          <button
+            type="button"
+            (click)="setLevel(level)"
+          >
             {{ level }}
           </button>
         </cis-tooltip>
@@ -65,26 +79,33 @@
   </div>
 
   <!-- RECIPE -->
-  <div class="__recipe" *ngIf="materials && item.recipe">
-    <div class="row --source">
-      <span>Craftable at</span>
-      <span>&nbsp;<strong>{{ item.recipe!.school }} School</strong></span>
-      <span *ngIf="item.recipe!.level !== level">—&nbsp;&nbsp;Level
-        {{ item.recipe!.level }}</span>:
-    </div>
-    <div class="row --materials">
-      <ng-container *ngFor="let ref of item.recipe!.materials">
-        <ng-container *ngIf="materials && materials[ref.id] as mat">
-          <span class="icon--materials icon--materials--{{ mat.icon }}"></span>
-          <span class="__mat-amount">{{ ref.quantity }}</span>
-          <span class="--{{ mat.rarity }}">{{ mat.name }}</span>
-          <span></span><!-- wrap line -->
-          <span></span><!-- wrap line -->
-          <span></span><!-- wrap line -->
-        </ng-container>
-      </ng-container>
-    </div>
-  </div>
+  <ng-container *ngIf="item.recipe">
+    <ng-container *ngIf="materials | async as materials">
+
+      <div class="__recipe">
+        <div class="row --source">
+          <span>Craftable at</span>
+          <span>&nbsp;<strong>{{ item.recipe!.school }} School</strong></span>
+          <span *ngIf="item.recipe!.level !== level">—&nbsp;&nbsp;Level
+            {{ item.recipe!.level }}</span>:
+        </div>
+        <div class="row --materials">
+          <ng-container *ngFor="let ref of item.recipe!.materials">
+            <ng-container *ngIf="materials![ref.id] as mat">
+              <span
+                class="icon--materials icon--materials--{{ mat.icon }}"></span>
+              <span class="__mat-amount">{{ ref.quantity }}</span>
+              <span class="--{{ mat.rarity }}">{{ mat.name }}</span>
+              <span></span><!-- wrap line -->
+              <span></span><!-- wrap line -->
+              <span></span><!-- wrap line -->
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+
+    </ng-container>
+  </ng-container>
 
   <!-- QUEST, EVENT -->
   <div *ngIf="item.quest || item.event">
@@ -94,10 +115,11 @@
 
     <div class="row --materials">
       <span
-        class="icon--materials icon--materials--{{ item.event?.name || 'quest' }}"></span>
+        class="icon--materials icon--materials--{{ item.event!.name || 'quest' }}"
+      ></span>
       <span *ngIf="item.quest">{{ item.quest }}</span>
-      <span *ngIf="item.event">{{ item.event?.name | titlecase }} Event
-        {{ item.event?.year }}</span>
+      <span *ngIf="item.event">{{ item.event!.name | titlecase }} Event
+        {{ item.event!.year }}</span>
     </div>
   </div>
 
@@ -121,6 +143,9 @@
     </div>
   </div>
 
-  <cis-vendors [vendors]="item.vendors" [levels]="item.levels"></cis-vendors>
+  <cis-vendors
+    [vendors]="item.vendors"
+    [levels]="item.levels"
+  ></cis-vendors>
 
 </cis-shell>
