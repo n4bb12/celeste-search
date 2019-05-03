@@ -14,7 +14,7 @@ import { compareVendors } from "./sort"
  * specified item.
  */
 export async function findVendors(id: string): Promise<Vendor[] | undefined> {
-  const result: Vendor[] = []
+  const results: Vendor[] = []
 
   const vendors = await API.getVendors()
   const prototypes = await API.getPrototypes()
@@ -39,7 +39,7 @@ export async function findVendors(id: string): Promise<Vendor[] | undefined> {
         p.lootroll ||
         p.quest
 
-      if (id === sold.id) {
+      if (id === sold.id.toLowerCase()) {
         const c = item.cost
         const price =
           c.capitalresource ||
@@ -53,7 +53,7 @@ export async function findVendors(id: string): Promise<Vendor[] | undefined> {
           : location
         const blueprint = location.startsWith("Blueprint") || undefined
 
-        result.push({
+        results.push({
           id: vendor.protounit,
           name,
           location: normalLocation,
@@ -67,7 +67,7 @@ export async function findVendors(id: string): Promise<Vendor[] | undefined> {
     }
   }
 
-  const unique = uniqWith(result, (a, b) => {
+  const unique = uniqWith(results, (a, b) => {
     const aWithoutId = { ...a, id: null }
     const bWithoutId = { ...b, id: null }
     return isEqual(aWithoutId, bWithoutId)
