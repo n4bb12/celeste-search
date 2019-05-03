@@ -8,6 +8,7 @@ export async function buildSearchString(design: Design, apiDesign: ApiDesign): P
   const builder = new SearchBuilder()
 
   builder.add("designs")
+  builder.add("Recipe: ")
 
   builder.add(design.description)
   builder.add(design.rarity)
