@@ -1,8 +1,8 @@
-import { MarketplaceItem } from "celeste-api-types"
-
+import { MarketplaceQuery } from "./MarketplaceQuery"
 import { Vendor } from "./Vendor"
 
 export interface Design {
+  // static
   id: string
   description: string
   icon: number
@@ -10,10 +10,12 @@ export interface Design {
   materials: Array<{ id: string, quantity: number }> | undefined
   school: string
   vendors: Vendor[] | undefined
-  marketplace: MarketplaceItem[] | undefined
   outputId: string
   outputName: string
   outputIcon: number
   search: string
+
+  // dynamic
+  marketplace: MarketplaceQuery[]
   searchDynamic: string | undefined
 }

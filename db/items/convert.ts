@@ -39,7 +39,7 @@ export async function convertItem(trait: Trait): Promise<Item> {
     effectsRange: undefined,
     recipe: undefined,
     vendors: undefined,
-    marketplace: undefined,
+    marketplace: [],
     quest: getQuestName(trait),
     event: convertEvent(trait),
     starting: [
@@ -79,6 +79,7 @@ export async function convertItem(trait: Trait): Promise<Item> {
   }
 
   item.search = await buildSearchString(item, trait)
+  item.marketplace = item.levels.map(level => ({ id: item.id, level }))
 
   return item
 }

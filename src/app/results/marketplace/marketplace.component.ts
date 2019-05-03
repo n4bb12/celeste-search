@@ -1,14 +1,14 @@
-import { ChangeDetectionStrategy, Component, Input } from "@angular/core"
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnChanges,
+} from "@angular/core"
 
-export interface Offering {
-  price: number
-}
+import { Observable, of } from "rxjs"
 
-export interface OfferingGroup {
-  offerings: Offering[]
-  rarity?: string
-  level?: number
-}
+import { MarketplaceQuery } from "../../interfaces"
+import { MarketplaceService, OfferingGroup } from "../../services"
 
 @Component({
   selector: "cis-marketplace",
@@ -16,8 +16,22 @@ export interface OfferingGroup {
   styleUrls: ["./marketplace.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MarketplaceComponent {
+export class MarketplaceComponent implements OnChanges {
 
-  @Input() marketplace: OfferingGroup[]
+  @Input() queries: MarketplaceQuery[]
+
+  groups: Observable<OfferingGroup[]> = of([])
+
+  constructor(
+    private service: MarketplaceService,
+  ) { }
+
+  ngOnChanges() {
+    if (this.queries && this.queries.length) {
+      this.groups = this.service.queryOfferings(this.queries)
+    } else {
+      this.groups = of([])
+    }
+  }
 
 }

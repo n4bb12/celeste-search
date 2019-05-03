@@ -26,8 +26,8 @@ export interface Shared {
 export class DbService {
 
   readonly shared: Observable<Shared> = combineLatest(
-    this.fetch("shared"),
-    this.marketplace.observable,
+    this.fetch<{ materials: Materials }>("shared"),
+    this.marketplace.byId,
   ).pipe(
     map(([shared, marketplaceById]) => {
       return { ...shared, marketplaceById }
@@ -45,22 +45,11 @@ export class DbService {
     private marketplace: MarketplaceService,
   ) { }
 
-  private fetch<T = any>(name: string): Observable<T> {
-    // merge latest marketplace data
-    return combineLatest(
-      this.fetchData<T>(name),
-      this.marketplace.observable,
-    ).pipe(
-      map(([data, marketplace]) => {
-        return data
-      }),
+  private fetch<T>(name: string) {
+    return this.http.get<T>(`/assets/db/${name}.json`).pipe(
       publishReplay(1),
       refCount(),
     )
-  }
-
-  private fetchData<T>(name: string) {
-    return this.http.get<T>(`/assets/db/${name}.json`)
   }
 
 }

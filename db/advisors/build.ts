@@ -40,14 +40,22 @@ export async function buildAdvisors(): Promise<Advisor[]> {
       civilization,
       rarities,
       vendors: undefined,
-      marketplace: undefined,
       search: "",
+      marketplace: [],
       searchDynamic: undefined,
     }
     result.vendors = await findVendors(rarity.id)
 
     const merged = merge(mergedByName[name], result)
     merged.search = await buildSearchString(merged)
+
+    merged.marketplace = Object.keys(merged.rarities).reduce((queries, key) => {
+      queries.push({
+        id: merged.rarities[key].id,
+        rarity: key,
+      })
+      return queries
+    }, [] as typeof result.marketplace)
 
     mergedByName[name] = merged
   }

@@ -49,13 +49,9 @@ export const item: Item = {
   ],
   marketplace: [
     {
-      ItemID: "Mehrab_R_III",
-      ItemType: "Advisor",
-      ItemLevel: 7,
-      ItemCount: 1,
-      ItemPrice: 5000,
-      DateTimeExpiry: "2019-05-27T15:16:49.5272071Z",
-      ItemSeed: 0,
+      id: "alexander_l_iv",
+      rarity: "legendary",
+      level: 40,
     },
   ],
   quest: "quest",

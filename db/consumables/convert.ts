@@ -17,12 +17,13 @@ export async function convertConsumable(consumable: any): Promise<Consumable> {
     icon,
     rarity,
     vendors: undefined,
-    marketplace: undefined,
     search: "",
+    marketplace: [],
     searchDynamic: undefined,
   }
 
   result.search = await buildSearchString(result)
+  result.marketplace.push({ id: result.id })
 
   return result
 }

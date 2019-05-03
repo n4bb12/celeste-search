@@ -1,10 +1,10 @@
-import { MarketplaceItem } from "celeste-api-types"
-
 import { ItemEffect } from "./ItemEffect"
+import { MarketplaceQuery } from "./MarketplaceQuery"
 import { Recipe } from "./Recipe"
 import { Vendor } from "./Vendor"
 
 export interface Item {
+  // static
   id: string
   name: string
   type: string
@@ -15,7 +15,6 @@ export interface Item {
   effectsRange: boolean | undefined
   recipe: Recipe | undefined
   vendors: Vendor[] | undefined
-  marketplace: MarketplaceItem[] | undefined
   quest: string | undefined
   event: {
     name: "halloween" | "winter"
@@ -23,5 +22,8 @@ export interface Item {
   } | undefined
   starting: string[] | undefined
   search: string
+
+  // dynamic
+  marketplace: MarketplaceQuery[]
   searchDynamic: string | undefined
 }

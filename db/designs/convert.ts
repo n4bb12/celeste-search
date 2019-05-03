@@ -42,7 +42,7 @@ export async function convertDesign(design: ApiDesign): Promise<Design> {
     school,
     materials,
     vendors: undefined,
-    marketplace: undefined,
+    marketplace: [],
     outputId,
     outputName,
     outputIcon,
@@ -52,6 +52,7 @@ export async function convertDesign(design: ApiDesign): Promise<Design> {
 
   result.vendors = await findVendors(result.id)
   result.search = await buildSearchString(result, design)
+  result.marketplace.push({ id: result.id })
 
   return result
 }

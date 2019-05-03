@@ -31,13 +31,14 @@ export async function convertBlueprint(blueprint: ApiBlueprint): Promise<Bluepri
     rarity,
     materials,
     vendors: undefined,
-    marketplace: undefined,
     search: "",
+    marketplace: [],
     searchDynamic: undefined,
   }
 
   result.vendors = await findVendors(result.id)
   result.search = await buildSearchString(result)
+  result.marketplace.push({ id: result.id })
 
   return result
 }

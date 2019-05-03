@@ -1,15 +1,17 @@
-import { MarketplaceItem } from "celeste-api-types"
-
+import { MarketplaceQuery } from "./MarketplaceQuery"
 import { Vendor } from "./Vendor"
 
 export interface Consumable {
+  // static
   id: string
   name: string
   description: string
   icon: number
   rarity: string
   vendors: Vendor[] | undefined
-  marketplace: MarketplaceItem[] | undefined
   search: string
+
+  // dynamic
+  marketplace: MarketplaceQuery[]
   searchDynamic: string | undefined
 }

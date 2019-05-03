@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from "@angular/core"
 
-import { Offering } from "../results/marketplace/marketplace.component"
+import { Offering } from "../services"
 
 import { PricePipe } from "./price-pipe"
 

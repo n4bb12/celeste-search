@@ -6,11 +6,7 @@ import {
   OnInit,
 } from "@angular/core"
 
-import { distinctUntilChanged, map, tap } from "rxjs/operators"
-
-import { Advisor, AdvisorRarity, RARITIES } from "../../interfaces"
-import { DbService } from "../../services"
-import { OfferingGroup } from "../marketplace/marketplace.component"
+import { Advisor, AdvisorRarity } from "../../interfaces"
 
 @Component({
   selector: "cis-advisor",
@@ -25,33 +21,8 @@ export class AdvisorComponent implements OnInit {
   rarities: string[] = []
   rarity: AdvisorRarity & { id: string }
 
-  marketplace = this.db.shared.pipe(
-    map(shared => {
-      return RARITIES.map(key => {
-        const details = this.advisor.rarities[key]
-        if (!details) {
-          return
-        }
-        const offerings = shared.marketplaceById[details.id]
-        if (!offerings) {
-          return
-        }
-        const group: OfferingGroup = {
-          offerings: offerings
-            .map(o => ({ price: o.ItemPrice }))
-            .sort((a, b) => a.price - b.price),
-          rarity: this.rarities.length > 1 ? key : undefined,
-        }
-        return group
-      }).filter(Boolean)
-    }),
-    distinctUntilChanged(),
-    tap(() => this.changeRef.detectChanges()),
-  )
-
   constructor(
     private changeRef: ChangeDetectorRef,
-    private db: DbService,
   ) { }
 
   ngOnInit() {
