@@ -14,7 +14,7 @@ import {
   startWith,
 } from "rxjs/operators"
 
-import { MarketplaceQuery } from "../interfaces"
+import { MarketplaceQuery, RARITIES } from "../interfaces"
 
 export interface MarketplaceById {
   [id: string]: MarketplaceItem[] | undefined
@@ -78,6 +78,8 @@ export class MarketplaceService {
     })
 
     return groups
+      .sort((a, b) => RARITIES.indexOf(a.rarity || "") - RARITIES.indexOf(b.rarity || ""))
+      .sort((a, b) => (b.level || 0) - (a.level || 0))
   }
 
   queryOfferings(queries: MarketplaceQuery[]): Observable<OfferingGroup[]> {
