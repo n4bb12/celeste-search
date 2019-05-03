@@ -7,7 +7,14 @@ import { compareConsumables } from "./sort"
 export async function buildConsumables(): Promise<Consumable[]> {
   console.log("Build consumables...")
 
-  const consumables = {}
+  const consumables = [
+    {
+      name: "",
+      description: "",
+      icon: "UserInterface\\Icons\\Consumable\\ConSlowEnemy4_ua",
+      rarity: "",
+    },
+  ]
   const conversions = Object.values(consumables).map(convertConsumable)
   const results = await Promise.all(conversions)
 

@@ -1,0 +1,13 @@
+.icon--consumables {
+  display: block;
+  background-image: url("/assets/sprites/consumables.png");
+  background-repeat: no-repeat;
+  background-position: -100% -100%;
+  background-size: 100%;
+  background-clip: padding-box;
+  width: 64px;
+  height: 64px;
+  max-width: 100%;
+  overflow: hidden;
+}
+.icon--consumables--0 { background-position: 0 0; }

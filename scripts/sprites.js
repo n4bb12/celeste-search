@@ -44,7 +44,7 @@ const cssTemplate = (name, size) => data => {
 
   const iconClasses = data.sprites.map(entry => {
     const { y, height, total_height } = entry
-    const percentY = toRoundedPercent(y / (total_height - height))
+    const percentY = toRoundedPercent(y / (total_height - height) || 0)
 
     return [
       `.icon--${name}--${entry.name}`.padEnd(iconSelectorLength) + "{",
@@ -104,4 +104,5 @@ module.exports = parallel(
   sprite("advisors", 64),
   sprite("blueprints", 64),
   sprite("designs", 64),
+  sprite("consumables", 64),
 )

@@ -4,7 +4,14 @@ import { Injectable } from "@angular/core"
 import { combineLatest, Observable } from "rxjs"
 import { map, publishReplay, refCount } from "rxjs/operators"
 
-import { Advisor, Blueprint, Design, Item, Materials } from "../interfaces"
+import {
+  Advisor,
+  Blueprint,
+  Consumable,
+  Design,
+  Item,
+  Materials,
+} from "../interfaces"
 
 import { MarketplaceById, MarketplaceService } from "./marketplace.service"
 
@@ -31,8 +38,7 @@ export class DbService {
   readonly advisors = this.fetch<Advisor[]>("advisors")
   readonly blueprints = this.fetch<Blueprint[]>("blueprints")
   readonly designs = this.fetch<Design[]>("designs")
-
-  // readonly consumables = this.fetch<Consumable[]>("consumables")
+  readonly consumables = this.fetch<Consumable[]>("consumables")
 
   constructor(
     private http: HttpClient,

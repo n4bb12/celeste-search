@@ -7,7 +7,7 @@ import { buildSearchString } from "./search"
 export async function convertConsumable(consumable: any): Promise<Consumable> {
   const name = await translateEn(consumable.displaynameid, consumable.name)
   const description = await translateEn(consumable.rollovertextid, "")
-  const icon = await downloadIcon(`Art/${consumable.icon}`, "blueprints")
+  const icon = await downloadIcon(`Art/${consumable.icon}`, "consumables")
   const rarity = consumable.rarity.replace("cRarity", "").toLowerCase()
 
   const result: Consumable = {
