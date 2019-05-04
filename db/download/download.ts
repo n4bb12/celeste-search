@@ -3,7 +3,6 @@ import Bottleneck from "bottleneck"
 import chalk from "chalk"
 import filenamify from "filenamify"
 import { mkdirp, pathExists, writeFile } from "fs-extra"
-import { isPlainObject } from "lodash"
 import { dirname } from "path"
 
 const cache: { [index: string]: Promise<any> } = {}
@@ -47,12 +46,20 @@ export async function download(url: string, options: AxiosRequestConfig): Promis
     return axios.request(config)
   })
 
-  const response = await cache[filename]
+  let data = filename.startsWith("download-cache/api")
+    ? JSON.stringify({}, null, 2)
+    : ""
+
+  try {
+    const response = await cache[filename]
+    data = filename.startsWith("download-cache/api")
+      ? JSON.stringify(response.data, null, 2)
+      : response.data
+  } catch (error) {
+    console.error(error.stack)
+  }
 
   await mkdirp(dirname(filename))
-  const data = isPlainObject(response.data)
-    ? JSON.stringify(response.data, null, 2)
-    : response.data
   await writeFile(filename, data)
 
   return filename
