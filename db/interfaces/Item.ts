@@ -8,7 +8,7 @@ export interface Item {
   name: string
   type: string
   levels: number[]
-  icon: number
+  icon: string
   rarity: string
   effects: ItemEffect[] | undefined
   effectsRange: boolean | undefined

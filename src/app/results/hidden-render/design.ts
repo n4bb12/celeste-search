@@ -3,7 +3,7 @@ import { Design } from "../../interfaces"
 export const design: Design = {
   id: "design_id",
   description: "description",
-  icon: 2,
+  icon: "Qsi8Lz42",
   rarity: "uncommon",
   school: "Craftsmen",
   materials: [
@@ -31,6 +31,6 @@ export const design: Design = {
   ],
   outputId: "design_output_id",
   outputName: "name",
-  outputIcon: 2,
+  outputIcon: "Qsi8Lz42",
   search: "search",
 }

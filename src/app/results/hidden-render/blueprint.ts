@@ -4,7 +4,7 @@ export const blueprint: Blueprint = {
   id: "blueprint_id",
   name: "name",
   description: "description",
-  icon: 237,
+  icon: "QGzs6E0U",
   rarity: "common",
   materials: [],
   vendors: [

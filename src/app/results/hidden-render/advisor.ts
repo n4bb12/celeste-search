@@ -9,7 +9,7 @@ export const advisor: Advisor = {
   rarities: {
     legendary: {
       id: "rarity_id",
-      icon: 338,
+      icon: "CxsWN9Z6",
       description: "description",
     },
   },

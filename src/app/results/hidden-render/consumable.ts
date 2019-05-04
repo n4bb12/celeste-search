@@ -4,7 +4,7 @@ export const consumable: Consumable = {
   id: "consumable_id",
   name: "name",
   description: "description",
-  icon: 2,
+  icon: "bBglsTxp",
   rarity: "uncommon",
   vendors: [
     {

@@ -7,7 +7,7 @@ export const item: Item = {
   levels: [
     40,
   ],
-  icon: 22,
+  icon: "M72n1hPX",
   rarity: "epic",
   effects: [
     {

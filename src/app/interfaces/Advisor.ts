@@ -4,7 +4,7 @@ import { Vendor } from "./Vendor"
 export interface AdvisorRarity {
   id: string
   description: string
-  icon: number,
+  icon: string,
 }
 
 export interface Advisor {

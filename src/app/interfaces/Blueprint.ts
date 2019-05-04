@@ -5,7 +5,7 @@ export interface Blueprint {
   id: string
   name: string
   description: string | undefined
-  icon: number
+  icon: string
   rarity: string
   materials: Array<{ id: string, quantity: number }> | undefined
   vendors: Vendor[] | undefined

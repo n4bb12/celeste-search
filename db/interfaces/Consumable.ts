@@ -5,7 +5,7 @@ export interface Consumable {
   id: string
   name: string
   description: string
-  icon: number
+  icon: string
   rarity: string
   vendors: Vendor[] | undefined
   search: string

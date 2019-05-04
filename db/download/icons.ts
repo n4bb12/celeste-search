@@ -1,21 +1,28 @@
+import crypto from "crypto"
 import { copy, mkdirp } from "fs-extra"
+import nanoid from "nanoid"
 import { dirname } from "path"
 
 import { download } from "./download"
 
-const pathToId: { [iconPath: string]: Promise<number> } = {}
-const nextIconId: { [sprite: string]: number } = {}
+const pathToId: { [iconPath: string]: Promise<string> } = {}
 
-export async function downloadIcon(resource: string, spriteName: string, iconName?: string): Promise<number> {
+export async function downloadIcon(resource: string, spriteName: string, iconName?: string): Promise<string> {
   return pathToId[resource + spriteName]
     = pathToId[resource + spriteName] || fetch(resource, spriteName, iconName)
 }
 
+function hash(data: string): string {
+  return crypto
+    .createHash("sha1")
+    .update(data)
+    .digest("base64")
+    .replace(/[\W]/g, "")
+    .substr(0, 8)
+}
+
 async function fetch(path: string, spriteName: string, iconName?: string) {
-
-  const iconId = nextIconId[spriteName] || 0
-  nextIconId[spriteName] = iconId + 1
-
+  const iconId = hash(path)
   const imagePath = path.replace(/\\/g, "/") + ".png"
   const spriteInput = `generated/sprites/${spriteName}/${iconName || iconId}.png`
   const url = `https://images.projectceleste.com/${imagePath}`

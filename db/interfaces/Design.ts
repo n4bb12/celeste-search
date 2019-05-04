@@ -4,14 +4,14 @@ import { Vendor } from "./Vendor"
 export interface Design {
   id: string
   description: string
-  icon: number
+  icon: string
   rarity: string
   materials: Array<{ id: string, quantity: number }> | undefined
   school: string
   vendors: Vendor[] | undefined
   outputId: string
   outputName: string
-  outputIcon: number
+  outputIcon: string
   search: string
   marketplace: MarketplaceQuery[]
 }

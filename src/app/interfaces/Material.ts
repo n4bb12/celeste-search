@@ -1,6 +1,6 @@
 export interface Material {
   name: string
-  icon: number
+  icon: string
   rarity: string
 }
 
