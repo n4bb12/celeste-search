@@ -1,5 +1,6 @@
 import { Trait } from "celeste-api-types"
 import { uniqBy } from "lodash"
+import yn from "yn"
 
 import { ItemEffect } from "../interfaces"
 
@@ -45,7 +46,7 @@ export function convertEffects(trait: Trait): ItemEffect[] | undefined {
         name: convertEffectName(effect),
         amount: effect.amount,
         scaling: effect.scaling,
-        beneficial: effect.bonus === "true",
+        beneficial: !!yn(effect.bonus),
       }
 
       return itemEffect

@@ -114,7 +114,8 @@
     "tslint-angular": "^2.0.0",
     "tslint-eslint-rules": "^5.4.0",
     "typeface-lato": "^0.0.54",
-    "typescript": "^3.2.4"
+    "typescript": "^3.2.4",
+    "yn": "^3.1.0"
   },
   "$schema": "http://json.schemastore.org/package"
 }

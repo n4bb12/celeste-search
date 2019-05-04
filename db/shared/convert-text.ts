@@ -16,7 +16,7 @@ export async function translateEn(id: number, fallback?: string) {
     get(languages, `econstrings.language.English.string[${id}].text`)
 
   if (!translation) {
-    console.log(chalk.yellow(`No translation found for ${id}, falling back to ${fallback}`))
+    console.log(chalk.yellow(`No translation found for ${id}, falling back to "${fallback}"`))
   }
 
   return translation || fallback

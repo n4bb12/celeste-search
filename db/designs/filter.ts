@@ -1,11 +1,12 @@
 import { Design as ApiDesign } from "celeste-api-types"
 import chalk from "chalk"
+import yn from "yn"
 
 import { Design } from "../interfaces"
 
 export function includeApiDesign(design: ApiDesign) {
   // non-tradeable recipes are removed ones
-  if (design.tradeable !== "true") {
+  if (!yn(design.tradeable)) {
     return false
   }
   // FIXME: add these once we have consumables in the API
