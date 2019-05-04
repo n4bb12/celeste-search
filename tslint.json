@@ -12,9 +12,15 @@
       120
     ],
     "member-ordering": false,
-    "no-non-null-assertion": false
+    "no-non-null-assertion": false,
+    "ter-indent": [
+      true,
+      2
+    ],
+    "variable-name": false
   },
   "rulesDirectory": [
-    "node_modules/codelyzer"
+    "node_modules/codelyzer",
+    "node_modules/tslint-eslint-rules/dist/rules"
   ]
 }

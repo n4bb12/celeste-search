@@ -21,10 +21,10 @@ export class SettingsService {
   private readonly controls: {
     [K in keyof Settings]: FormControl
   } = {
-      precision: this.precision,
-      maxColumns: this.maxColumns,
-      defaultToEverything: this.defaultToEverything,
-    }
+    precision: this.precision,
+    maxColumns: this.maxColumns,
+    defaultToEverything: this.defaultToEverything,
+  }
 
   constructor() {
     this.init()
