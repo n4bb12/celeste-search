@@ -1,6 +1,6 @@
 [[redirects]]
-  from = "https://celeste-search.netlify.com/*"
-  to = "https://search.projectceleste.com/:splat"
+  from = "https://search.projectceleste.com/*"
+  to = "https://celeste-search.netlify.com/:splat"
   status = 301
   force = true
 

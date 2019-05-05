@@ -11,7 +11,7 @@
   <a href="http://items.projectceleste.com">
     <img alt="Latest" src="https://flat.badgen.net/badge/App/Latest?icon=chrome&color=fb3">
   </a>
-  <a href="https://search.projectceleste.com">
+  <a href="https://celeste-search.netlify.com">
     <img alt="Next" src="https://flat.badgen.net/badge/App/Next?icon=chrome&color=488489">
   </a>
   <a href="https://raw.githubusercontent.com/n4bb12/celeste-search/master/LICENSE">

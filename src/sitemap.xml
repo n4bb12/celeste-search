@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
    <url>
-      <loc>https://search.projectceleste.com/</loc>
+      <loc>https://celeste-search.netlify.com/</loc>
       <lastmod>__LASTMOD__</lastmod>
       <changefreq>weekly</changefreq>
       <priority>1.0</priority>

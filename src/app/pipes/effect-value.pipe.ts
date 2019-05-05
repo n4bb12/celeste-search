@@ -19,6 +19,8 @@ export class EffectValuePipe implements PipeTransform {
     const sign = base < 0 ? "-" : "+"
     const unit = "%"
 
+    console.log(JSON.stringify({ effect, precision, base, sign, unit }, null, 2))
+
     const modified = base * modifier
     const absolute = Math.abs(modified)
     const rounded = absolute.toFixed(precision)
