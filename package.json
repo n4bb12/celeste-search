@@ -117,5 +117,5 @@
     "typescript": "^3.2.4",
     "yn": "^3.1.0"
   },
-  "$schema": "http://json.schemastore.org/package"
+  "$schema": "https://json.schemastore.org/package"
 }

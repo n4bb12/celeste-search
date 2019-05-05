@@ -8,7 +8,7 @@
 </p>
 
 <p align="center">
-  <a href="http://items.projectceleste.com">
+  <a href="https://items.projectceleste.com">
     <img alt="Latest" src="https://flat.badgen.net/badge/App/Latest?icon=chrome&color=fb3">
   </a>
   <a href="https://celeste-search.netlify.com">

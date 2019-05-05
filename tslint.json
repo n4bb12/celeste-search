@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json.schemastore.org/tslint",
+  "$schema": "https://json.schemastore.org/tslint",
   "extends": [
     "tslint-angular",
     "@n4bb12/config-tslint"
