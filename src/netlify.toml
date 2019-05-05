@@ -1,0 +1,15 @@
+[[redirects]]
+  from = "https://celeste-search.netlify.com/*"
+  to = "https://search.projectceleste.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/assets/meta/app-16.png"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
