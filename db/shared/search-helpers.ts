@@ -19,13 +19,17 @@ export class SearchBuilder {
   }
 
   build() {
-    const result = uniq(
-      this.words
-        .filter(identity)
-        .join(" ")
-        .trim()
-        .toLowerCase()
-        .split(/\s+/))
+    const cleaned = this.words
+      .filter(identity)
+      .join(" ")
+      .trim()
+      .toLowerCase()
+      .split(/\s+/)
+
+    const unique = uniq(cleaned)
+      .filter(word => !cleaned.some(other => other !== word && other.includes(word)))
+
+    const result = unique
       .sort()
       .join(" ")
 
