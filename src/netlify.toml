@@ -10,6 +10,16 @@
   status = 200
 
 [[headers]]
+  for = "/*.css"
+[headers.values]
+  Cache-Control = "max-age=31536000, public, immutable"
+
+[[headers]]
+  for = "/*.js"
+[headers.values]
+  Cache-Control = "max-age=31536000, public, immutable"
+
+[[headers]]
   for = "/assets/meta/app-16.png"
   [headers.values]
     Access-Control-Allow-Origin = "*"

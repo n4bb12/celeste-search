@@ -36,10 +36,10 @@
           },
           "options": {
             "assets": [
-              "src/netlify.toml",
               "src/assets",
               "src/favicon.ico",
               "src/manifest.json",
+              "src/netlify.toml",
               "src/robots.txt",
               "src/sitemap.xml"
             ],
