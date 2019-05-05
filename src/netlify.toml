@@ -5,6 +5,18 @@
   force = true
 
 [[redirects]]
+  from = "http://search.projectceleste.com/*"
+  to = "https://celeste-search.netlify.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://celeste-search.netlify.com/*"
+  to = "https://celeste-search.netlify.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
