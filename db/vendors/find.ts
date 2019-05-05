@@ -5,7 +5,6 @@ import { Vendor } from "../interfaces"
 import { translateEn } from "../shared/convert-text"
 
 import { convertCurrency } from "./convert-currency"
-import { convertRarity } from "./convert-rarity"
 import { vendorLocations } from "./locations"
 import { compareVendors } from "./sort"
 
@@ -18,11 +17,6 @@ export async function findVendors(id: string): Promise<Vendor[] | undefined> {
 
   const vendors = await API.getVendors()
   const prototypes = await API.getPrototypes()
-
-  // unfortunately, casing is not always consistent
-  Object.keys(prototypes).forEach(protoId => {
-    prototypes[protoId.toLowerCase()] = prototypes[protoId]
-  })
 
   for (const vendor of Object.values<any>(vendors)) {
     const items = vendor.itemsets.itemset.items.item
@@ -39,29 +33,37 @@ export async function findVendors(id: string): Promise<Vendor[] | undefined> {
         p.lootroll ||
         p.quest
 
-      if (id === sold.id.toLowerCase()) {
+      if (id === sold.id) {
         const c = item.cost
         const price =
           c.capitalresource ||
           c.gamecurrency
 
-        const proto = prototypes[vendor.protounit.toLowerCase()]
+        const proto = prototypes[vendor.protounit]
         const name = proto.DisplayNameID && await translateEn(proto.DisplayNameID) || vendor.protounit
-        const location = vendorLocations[vendor.protounit] || vendor.protounit
-        const normalLocation = location.startsWith("Blueprint")
-          ? vendorLocations.Gn_Cap_GeneralEmpireStore01
-          : location
-        const blueprint = location.startsWith("Blueprint") || undefined
+
+        let location = vendorLocations[vendor.protounit]
+        let blueprint: boolean | undefined
+
+        if (!location) {
+          throw new Error(`Vendor "${vendor.protounit}" does not have a mapped location`)
+        }
+
+        if (location.startsWith("Blueprint")) {
+          location = vendorLocations.gn_cap_generalempirestore01
+          blueprint = true
+        }
 
         results.push({
           id: vendor.protounit,
           name,
-          location: normalLocation,
+          location,
           blueprint,
           level: sold.level && sold.level - 3 || undefined,
-          rarity: convertRarity(sold.id),
+          rarity: undefined,
           currency: convertCurrency(price.type),
           price: price.quantity,
+          rotation: undefined,
         })
       }
     }

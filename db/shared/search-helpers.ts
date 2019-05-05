@@ -1,4 +1,3 @@
-import chalk from "chalk"
 import { identity, uniq } from "lodash"
 
 export const WORD_SEPARATOR = "_"
@@ -12,6 +11,10 @@ export class SearchBuilder {
   }
 
   addStrict(value: string | number) {
+    if (value === undefined || value === null) {
+      throw new Error(`Attempted to add search word '${value}' to `
+        + JSON.stringify(this.words))
+    }
     this.words.push(`${value}`)
   }
 
@@ -25,10 +28,6 @@ export class SearchBuilder {
         .split(/\s+/))
       .sort()
       .join(" ")
-
-    if (result.includes("undefined")) {
-      throw new Error(result.replace(/undefined/g, chalk.red("undefined")))
-    }
 
     return result
   }

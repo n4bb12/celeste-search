@@ -3,9 +3,9 @@ export interface Vendor {
   name: string
   location: string
   blueprint?: boolean
-  level?: number
-  rarity?: "legendary" | "epic" | "rare" | "uncommon" | "common"
+  level: number | undefined
+  rarity: "legendary" | "epic" | "rare" | "uncommon" | "common" | undefined
   price: number
   currency: "coin" | "empire" | "sparta" | "crete" | "halloween" | "winter"
-  rotation?: string
+  rotation: string | undefined
 }

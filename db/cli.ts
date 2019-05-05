@@ -8,6 +8,8 @@ import { buildItems } from "./items/build"
 import { buildMaterials } from "./materials/build"
 
 async function cleanup() {
+  console.log("Cleanup...")
+
   const dirs = [
     "generated/db",
     "generated/sprites",
@@ -22,7 +24,7 @@ async function cleanup() {
 }
 
 async function createDB() {
-  console.log("Build database...")
+  console.log("Build...")
 
   const items = await buildItems()
   const advisors = await buildAdvisors()
@@ -47,6 +49,8 @@ async function createDB() {
 }
 
 async function copyInterfaces() {
+  console.log("Copy...")
+
   await copy("db/interfaces", "src/app/interfaces")
 }
 

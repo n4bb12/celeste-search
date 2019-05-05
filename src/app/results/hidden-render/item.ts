@@ -45,6 +45,8 @@ export const item: Item = {
       level: 40,
       currency: "coin",
       price: 1750,
+      rarity: "common",
+      rotation: "classic",
     },
   ],
   marketplace: [

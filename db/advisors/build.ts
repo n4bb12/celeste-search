@@ -23,7 +23,7 @@ export async function buildAdvisors(): Promise<Advisor[]> {
     const civilization = convertCivilization(advisor.civilization)
 
     const rarity: Advisor["rarities"][string] = {
-      id: advisor.name.toLowerCase(),
+      id: advisor.name,
       icon,
       description,
     }
@@ -43,7 +43,11 @@ export async function buildAdvisors(): Promise<Advisor[]> {
       search: "",
       marketplace: [],
     }
-    result.vendors = await findVendors(rarity.id)
+
+    result.vendors = await findVendors(rarity.id);
+    (result.vendors || []).forEach(vendor => {
+      vendor.rarity = advisor.rarity
+    })
 
     const merged = merge(mergedByName[name], result)
     merged.search = await buildSearchString(merged)

@@ -11,7 +11,7 @@ export async function convertConsumable(consumable: any): Promise<Consumable> {
   const rarity = consumable.rarity.replace("cRarity", "").toLowerCase()
 
   const result: Consumable = {
-    id: consumable.name.toLowerCase(),
+    id: consumable.name,
     name,
     description,
     icon,

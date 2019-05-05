@@ -14,7 +14,7 @@ export async function findAndConvertRecipe(trait: Trait): Promise<Recipe | undef
 
   const design = Object.values(designs).find(apiDesign => {
     if (apiDesign.output.trait) {
-      return apiDesign.output.trait.id.toLowerCase() === trait.name.toLowerCase()
+      return apiDesign.output.trait.id === trait.name
     }
     return false
   })

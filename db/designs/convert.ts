@@ -13,14 +13,6 @@ export async function convertDesign(design: ApiDesign): Promise<Design> {
   const allTraits = await API.getTraits()
   const allMats = await API.getMaterials()
 
-  // unfortunately, casing is not always consistent
-  Object.keys(allTraits).forEach(id => {
-    allTraits[id.toLowerCase()] = allTraits[id]
-  })
-  Object.keys(allMats).forEach(id => {
-    allMats[id.toLowerCase()] = allMats[id]
-  })
-
   const description = await translateEn(design.rollovertextid, "")
   const icon = await downloadIcon(`Art/${design.icon}`, "designs")
   const rarity = design.rarity.replace("cRarity", "").toLowerCase()
@@ -29,13 +21,13 @@ export async function convertDesign(design: ApiDesign): Promise<Design> {
   const school = description.replace(/Use: Grants an? (.+?) the ability to create .+/, "$1")
 
   const output = design.output[type]
-  const outputId = output.id.toLowerCase()
+  const outputId = output.id
   const outputDetails: any = allTraits[outputId] || allMats[outputId]
   const outputName = await translateEn(outputDetails.displaynameid, outputDetails.name)
   const outputIcon = await downloadIcon(`Art/${outputDetails.icon}`, "designs")
 
   const result: Design = {
-    id: design.name.toLowerCase(),
+    id: design.name,
     description,
     icon,
     rarity,

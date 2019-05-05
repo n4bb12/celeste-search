@@ -3,73 +3,73 @@ import { Trait } from "celeste-api-types"
 import { quests } from "./quests"
 
 const cyprusLegendaries = [
-  "ArrowOH_L001",
-  "Bow1H_L001",
-  "Staff2H_L002",
-  "Sword1H_L001",
-  "Shield1H_L001",
-  "ArmorLgt_L001",
-  "Spear2H_L002_SR",
-  "ArmorMed_L002",
-  "Gear_L001",
-  "ArmorPlt_L001",
+  "arrowoh_l001",
+  "bow1h_l001",
+  "staff2h_l002",
+  "sword1h_l001",
+  "shield1h_l001",
+  "armorlgt_l001",
+  "spear2h_l002_sr",
+  "armormed_l002",
+  "gear_l001",
+  "armorplt_l001",
 ]
 
 const allianceCouncilOfImhotep = [
-  "ArmorBldg_LC01",
-  "FishingNet1H_LC01",
-  "Gear_Prst_LC01",
+  "armorbldg_lc01",
+  "fishingnet1h_lc01",
+  "gear_prst_lc01",
 ]
 
 const allianceDelianLeague = [
-  "Tool1H_LC01",
-  "Gear_Bldg_LC01",
-  "ArmorMed_LC01",
+  "tool1h_lc01",
+  "gear_bldg_lc01",
+  "armormed_lc01",
 ]
 
 const allianceLegionOfCarthage = [
-  "ArmorPlt_LC01",
-  "ArrowOH_LC01",
-  "Gear_LC01",
+  "armorplt_lc01",
+  "arrowoh_lc01",
+  "gear_lc01",
 ]
 
 const questRewards = [
-  "Spears2H_ALS",
-  "Bow1H_UASB",
+  "spears2h_als",
+  "bow1h_uasb",
 ]
 
 const eventHalloween2018 = [
-  "Sword1H_R005_LEG",
+  "sword1h_r005_leg",
 ]
 
 const eventWinter2018 = [
-  "Arrows_IceKing_LEG",
-  "Axe2H_IceKing_LEG",
-  "Staff2H_IceKing_LEG",
-  "Sling2H_IceKing_LEG",
+  "arrows_iceking_leg",
+  "axe2h_iceking_leg",
+  "staff2h_iceking_leg",
+  "sling2h_iceking_leg",
 ]
 
 const persianStartingGear = [
-  "ArmorBldg_U201", "ArmorClth_R201", "ArmorLgt_R201", "ArmorMed_R201",
-  "ArmorPlt_U201", "ArrowOH_U201_VR", "Ballista2H_U201_VR", "Bow1H_U201",
-  "FishingNet1H_U201", "Javalin2H_U201", "RamHead2H_U201", "Scepter2H_U201",
-  "Shield1H_U201", "Spear1H_U201", "Spear2H_U201", "Sword1H_U201", "Tool1H_U201",
+  "armorbldg_u201", "armorclth_r201", "armorlgt_r201", "armormed_r201",
+  "armorplt_u201", "arrowoh_u201_vr", "ballista2h_u201_vr", "bow1h_u201",
+  "fishingnet1h_u201", "javalin2h_u201", "ramhead2h_u201", "scepter2h_u201",
+  "shield1h_u201", "spear1h_u201", "spear2h_u201", "sword1h_u201", "tool1h_u201",
 ]
 
 const babylonianStartingGear = [
-  "ArmorBldg_U201", "ArmorClth_R201", "ArmorLgt_R201", "ArmorMed_R201",
-  "ArmorPlt_U201", "ArrowOH_U201_VR", "Ballista2H_U201_VR", "Bow1H_U201",
-  "FishingNet1H_U201", "Javalin2H_U201", "RamHead2H_U201", "Scepter2H_U201",
-  "Shield1H_U201", "Sling2H_U201", "Spear1H_U201", "Spear2H_U201",
-  "Sword1H_U201", "Tool1H_U201",
+  "armorbldg_u201", "armorclth_r201", "armorlgt_r201", "armormed_r201",
+  "armorplt_u201", "arrowoh_u201_vr", "ballista2h_u201_vr", "bow1h_u201",
+  "fishingnet1h_u201", "javalin2h_u201", "ramhead2h_u201", "scepter2h_u201",
+  "shield1h_u201", "sling2h_u201", "spear1h_u201", "spear2h_u201",
+  "sword1h_u201", "tool1h_u201",
 ]
 
 const norseStartingGear = [
-  "ArmorBldg_U201", "ArmorClth_R201", "ArmorLgt_R201", "ArmorMed_R201",
-  "ArmorPlt_U201", "ArrowOH_U201_VR", "Axe2H_U201", "Ballista2H_U201_VR",
-  "Bow1H_U201", "FireThrower2H_U201", "FishingNet1H_U201", "Javalin2H_U201",
-  "RamHead2H_U201", "Scepter2H_U201", "Shield1H_U201", "Spear1H_U201",
-  "Spear2H_U201", "Sword1H_U201", "Tool1H_U201",
+  "armorbldg_u201", "armorclth_r201", "armorlgt_r201", "armormed_r201",
+  "armorplt_u201", "arrowoh_u201_vr", "axe2h_u201", "ballista2h_u201_vr",
+  "bow1h_u201", "firethrower2h_u201", "fishingnet1h_u201", "javalin2h_u201",
+  "ramhead2h_u201", "scepter2h_u201", "shield1h_u201", "spear1h_u201",
+  "spear2h_u201", "sword1h_u201", "tool1h_u201",
 ]
 
 /**

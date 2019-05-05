@@ -13,7 +13,7 @@ export function includeApiDesign(design: ApiDesign) {
   if ((design.output as any).consumable) {
     return false
   }
-  if (design.name === "DebugProduction") {
+  if (design.name === "debugproduction") {
     return false
   }
   return true

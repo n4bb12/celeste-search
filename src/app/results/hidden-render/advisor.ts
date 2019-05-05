@@ -18,9 +18,11 @@ export const advisor: Advisor = {
       id: "gn_Cap_LootStore06",
       name: "name",
       location: "location",
-      rarity: "uncommon",
+      level: 0,
       currency: "coin",
       price: 225,
+      rarity: "uncommon",
+      rotation: "classic",
     },
   ],
   marketplace: [

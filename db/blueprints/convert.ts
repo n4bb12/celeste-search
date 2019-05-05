@@ -11,12 +11,7 @@ import { buildSearchString } from "./search"
 export async function convertBlueprint(blueprint: ApiBlueprint): Promise<Blueprint> {
   const prototypes = await API.getPrototypes()
 
-  // unfortunately, casing is not always consistent
-  Object.keys(prototypes).forEach(protoId => {
-    prototypes[protoId.toLowerCase()] = prototypes[protoId]
-  })
-
-  const proto = prototypes[blueprint.protounit.toLowerCase()]
+  const proto = prototypes[blueprint.protounit]
   const name = await translateEn(proto.DisplayNameID!, blueprint.name)
   const description = await translateEn(blueprint.rollovertextid)
   const icon = await downloadIcon(`Art/${blueprint.icon}`, "blueprints")
@@ -24,7 +19,7 @@ export async function convertBlueprint(blueprint: ApiBlueprint): Promise<Bluepri
   const materials = convertMaterials(blueprint)
 
   const result: Blueprint = {
-    id: blueprint.name.toLowerCase(),
+    id: blueprint.name,
     name,
     description,
     icon,
