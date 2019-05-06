@@ -43,8 +43,11 @@ export class MarketplaceService {
     first(isStable => !!isStable),
     concatMap(() => interval(1000 * 60)),
     startWith(-1),
-    flatMap(() => this.http.get<Marketplace>("https://api.projectceleste.com/marketplace")),
-    catchError(error => of({} as Marketplace)),
+    flatMap(() => this.http.get<Marketplace>("https://celeste-api.netlify.com/marketplace")),
+    catchError(error => of({
+      timestamp: new Date().toISOString(),
+      data: [],
+    } as Marketplace)),
     publishReplay(1),
     refCount(),
   )

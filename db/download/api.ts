@@ -15,7 +15,7 @@ import { download } from "./download"
 const cache = {}
 
 async function fetch(path: string) {
-  const url = "https://api.projectceleste.com" + path
+  const url = "https://celeste-api.netlify.com" + path
   const options = { headers: { Accept: "application/json" } }
 
   const filename = await download(url, options)
