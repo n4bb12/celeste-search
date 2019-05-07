@@ -44,6 +44,13 @@ export class MarketplaceService {
     concatMap(() => interval(1000 * 60)),
     startWith(-1),
     flatMap(() => this.http.get<Marketplace>("https://celeste-api.netlify.com/marketplace")),
+    map(res => {
+      // Don't show data that is older than a day
+      if (new Date().getTime() - new Date(res.timestamp).getTime() > 1 * 24 * 60 * 60 * 1000) {
+        res.data = []
+      }
+      return res
+    }),
     catchError(error => of({
       timestamp: new Date().toISOString(),
       data: [],
