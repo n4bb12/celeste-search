@@ -43,7 +43,7 @@ export async function findVendors(id: string): Promise<Vendor[] | undefined> {
         const name = proto.DisplayNameID && await translateEn(proto.DisplayNameID) || vendor.protounit
 
         let location = vendorLocations[vendor.protounit]
-        let blueprint: boolean | undefined
+        let blueprint: true | undefined
 
         if (!location) {
           throw new Error(`Vendor "${vendor.protounit}" does not have a mapped location`)

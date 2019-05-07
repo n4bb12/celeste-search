@@ -27,7 +27,7 @@ export function convertEffects(trait: Trait): ItemEffect[] | undefined {
       return true
     })
     .map(effect => {
-      // This is the negative effect "Snare" that gets displayed ingame as a positive.
+      // This is the "Snare" effect that gets displayed as a positive effect ingame.
       if (effect.subtype === "TargetSpeedBoost") {
         effect.amount = 1 + (1 - effect.amount)
         effect.scaling = -effect.scaling
@@ -46,7 +46,7 @@ export function convertEffects(trait: Trait): ItemEffect[] | undefined {
         name: convertEffectName(effect),
         amount: effect.amount,
         scaling: effect.scaling,
-        beneficial: !!yn(effect.bonus),
+        beneficial: !!yn(effect.bonus) || undefined,
       }
 
       return itemEffect
