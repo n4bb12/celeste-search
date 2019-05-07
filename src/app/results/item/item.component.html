@@ -18,18 +18,18 @@
         [class.--positive]="effect.beneficial"
         [class.--negative]="!effect.beneficial"
       >
-        <span>{{ effect.name }}<ng-container *ngIf="effect.scaling">:
+        <span>{{ effect.name }}<ng-container *ngIf="!effect.action">:
           </ng-container></span>
         <span
           class="__value --left"
-          *ngIf="effect.scaling"
+          *ngIf="!effect.action"
         >
           {{ effect | effectValue:level:1 }}
         </span>
         <cis-tooltip
           class="__value --right"
           text="Effect Range (+/- 5%)"
-          *ngIf="effect.scaling && item.effectsRange"
+          *ngIf="!effect.action && item.effectsRange"
         >
           {{
           (effect | effectValue:level:0.95).slice(0, -1) +

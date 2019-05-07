@@ -47,6 +47,7 @@ export function convertEffects(trait: Trait): ItemEffect[] | undefined {
         amount: effect.amount,
         scaling: effect.scaling,
         beneficial: !!yn(effect.bonus) || undefined,
+        action: effect.subtype.startsWith("ActionEnable") || undefined,
       }
 
       return itemEffect

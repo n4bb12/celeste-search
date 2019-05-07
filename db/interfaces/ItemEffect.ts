@@ -3,4 +3,5 @@ export interface ItemEffect {
   amount: number
   scaling: number
   beneficial: true | undefined
+  action: true | undefined
 }
