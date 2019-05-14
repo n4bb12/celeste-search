@@ -14,6 +14,8 @@ const limiter = new Bottleneck({
   reservoirRefreshInterval: 100,
 })
 
+const isApiRequest = /\bapi\b/
+
 /**
  * This serves as a download proxy and caches downloaded
  * files for faster local development.
@@ -46,13 +48,13 @@ export async function download(url: string, options: AxiosRequestConfig): Promis
     return axios.request(config)
   })
 
-  let data = filename.startsWith("download-cache/api")
+  let data = isApiRequest.test(filename)
     ? JSON.stringify({}, null, 2)
     : ""
 
   try {
     const response = await cache[filename]
-    data = filename.startsWith("download-cache/api")
+    data = isApiRequest.test(filename)
       ? JSON.stringify(response.data, null, 2)
       : response.data
   } catch (error) {
