@@ -30,7 +30,7 @@ export class InputRangeComponent implements ControlValueAccessor, OnChanges {
   @Input() step = 1
   @Input() value = 0
 
-  @ViewChild("track") track: ElementRef
+  @ViewChild("track", { static: true }) track: ElementRef
 
   ratio = 0
   dragging = false

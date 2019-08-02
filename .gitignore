@@ -6,3 +6,4 @@ download-cache
 generated
 IMPROVEMENTS.md
 node_modules
+.vscode

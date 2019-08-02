@@ -15,7 +15,7 @@ import { NgScrollbar } from "ngx-scrollbar"
 })
 export class ScrollbarComponent {
 
-  @ViewChild(NgScrollbar) ref: NgScrollbar
+  @ViewChild(NgScrollbar, { static: true }) ref: NgScrollbar
   @Input() theme: "light" | "dark" = "light"
 
 }

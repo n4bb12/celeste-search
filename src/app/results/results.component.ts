@@ -31,7 +31,7 @@ const empty = []
 })
 export class ResultsComponent implements OnInit, OnDestroy {
 
-  @ViewChild("sentinal") sentinel: ElementRef
+  @ViewChild("sentinal", { static: true }) sentinel: ElementRef
 
   readonly activeTabChange = this.state.tabChange
 

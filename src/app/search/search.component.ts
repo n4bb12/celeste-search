@@ -23,7 +23,7 @@ import { StateService } from "../services"
 export class SearchComponent implements OnInit, AfterViewInit {
 
   @Input() scrollbarRef: NgScrollbar
-  @ViewChild("inputRef") inputRef: ElementRef
+  @ViewChild("inputRef", { static: true }) inputRef: ElementRef
 
   readonly inputModel = new FormControl()
 
