@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core"
 
 import { uniq } from "lodash"
-import { BehaviorSubject, combineLatest } from "rxjs"
+import { BehaviorSubject, combineLatest, Observable } from "rxjs"
 import { take, tap } from "rxjs/operators"
 
 import { Entity } from "../interfaces"
@@ -46,8 +46,8 @@ export class SearchService {
 
     const id = TABS[tab].id
 
-    const sub = combineLatest<any[]>([
-      this.db[TABS[tab].id],
+    const sub = combineLatest([
+      this.db[id] as Observable<any>,
       this.marketplace.byId,
     ]).pipe(
       take(1),
