@@ -17,7 +17,7 @@ import { MarketplaceById, MarketplaceService } from "./marketplace.service"
 
 export interface Shared {
   materials: Materials
-  marketplaceById: MarketplaceById
+  marketplaceById?: MarketplaceById
 }
 
 @Injectable({
@@ -25,10 +25,10 @@ export interface Shared {
 })
 export class DbService {
 
-  readonly shared: Observable<Shared> = combineLatest(
+  readonly shared: Observable<Shared> = combineLatest([
     this.fetch<{ materials: Materials }>("shared"),
     this.marketplace.byId,
-  ).pipe(
+  ]).pipe(
     map(([shared, marketplaceById]) => {
       return { ...shared, marketplaceById }
     }),

@@ -44,7 +44,10 @@ export class StateService {
   }
 
   get changes() {
-    return combineLatest(this.tabChange, this.searchChange).pipe(
+    return combineLatest([
+      this.tabChange,
+      this.searchChange,
+    ]).pipe(
       map(([tab, search]) => ({ tab, search })),
     )
   }

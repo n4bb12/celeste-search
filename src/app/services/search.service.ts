@@ -46,10 +46,10 @@ export class SearchService {
 
     const id = TABS[tab].id
 
-    const sub = combineLatest<any[]>(
+    const sub = combineLatest<any[]>([
       this.db[TABS[tab].id],
       this.marketplace.byId,
-    ).pipe(
+    ]).pipe(
       take(1),
     ).subscribe(([entries, marketplaceById]) => {
       const isStale = () => tab !== this.state.tab || search !== this.state.search
