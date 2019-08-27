@@ -66,6 +66,9 @@
     "tslib": "^1.9.0",
     "zone.js": "~0.9.0"
   },
+  "engines": {
+    "node": "10.x"
+  },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.802.0",
     "@angular/cli": "~8.2.0",
@@ -94,7 +97,7 @@
     "gulp": "^4.0.0",
     "gulp-debug": "^4.0.0",
     "gulp-replace": "^1.0.0",
-    "gulp-responsive": "^2.13.0",
+    "gulp-responsive": "^2.14.0",
     "gulp-svgmin": "^2.2.0",
     "gulp-tinify": "^1.0.2",
     "gulp.spritesmith": "^6.9.0",
