@@ -6,19 +6,16 @@
   exclude=".__sidebar-open"
   @enterLeaveRight
 >
-
   <div class="__buttons">
     <button
       *ngFor="let text of ['Help', 'Settings']; index as i"
       [class.--active]="tab === i"
       (click)="tab = i"
-    >{{ text }}</button>
-
-    <cis-icon-button
-      icon="close"
-      class="__close"
-      (click)="close()"
     >
+      {{ text }}
+    </button>
+
+    <cis-icon-button icon="close" class="__close" (click)="close()">
     </cis-icon-button>
   </div>
 
@@ -30,5 +27,4 @@
       </div>
     </cis-scrollbar>
   </div>
-
 </div>

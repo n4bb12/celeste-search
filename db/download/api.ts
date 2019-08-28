@@ -29,7 +29,7 @@ async function get<T extends { data: any }>(path: string): Promise<T["data"]> {
 }
 
 function lowerCaseKeys<T>(json: T) {
-  Object.keys(json).forEach(key => {
+  Object.keys(json || {} as T).forEach(key => {
     if (key !== key.toLowerCase()) {
       json[key.toLowerCase()] = json[key]
       delete json[key]
@@ -38,7 +38,7 @@ function lowerCaseKeys<T>(json: T) {
 }
 
 function lowerCaseName<T>(json: T) {
-  Object.values(json).forEach(value => {
+  Object.values(json || {} as T).forEach(value => {
     value.name = value.name.toLowerCase()
   })
 }

@@ -1,6 +1,8 @@
 import { Component } from "@angular/core"
 import { DomSanitizer } from "@angular/platform-browser"
 
+import { NgScrollbar } from "ngx-scrollbar"
+
 import { SwService, UrlService } from "./services"
 import { DocumenTitleService } from "./services/document-title.service"
 

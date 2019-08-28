@@ -1,11 +1,11 @@
 const { src, dest, series, parallel } = require("gulp")
-const exec = require("execa")
+const execa = require("execa")
 const replace = require("gulp-replace")
 
 const dist = "dist/celeste-search"
 
 function app() {
-  return exec.shell("yarn ng build -c production", { stdio: "inherit" })
+  return execa("yarn ng build -c production", { stdio: "inherit", shell: true })
 }
 
 async function sitemap() {

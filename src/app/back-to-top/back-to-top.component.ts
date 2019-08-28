@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   Input,
-  OnInit,
+  OnChanges,
 } from "@angular/core"
 
 import { NgScrollbar } from "ngx-scrollbar"
@@ -15,21 +15,19 @@ import { map } from "rxjs/operators"
   styleUrls: ["./back-to-top.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BackToTopComponent implements OnInit {
+export class BackToTopComponent implements OnChanges {
 
-  @Input() scrollbarRef: NgScrollbar
+  @Input() scrollbar: NgScrollbar
   shown: Observable<boolean>
 
-  ngOnInit() {
-    const scrollbar = this.scrollbarRef.scrollable
-
-    this.shown = scrollbar.elementScrolled().pipe(
-      map(() => scrollbar.measureScrollOffset("top") > 0),
+  ngOnChanges() {
+    this.shown = this.scrollbar.scrolled.pipe(
+      map(e => e.target.scrollTop > 0),
     )
   }
 
   scrollToTop() {
-    this.scrollbarRef.scrollToTop()
+    this.scrollbar.scrollToTop()
   }
 
 }

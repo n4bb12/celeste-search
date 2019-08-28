@@ -22,7 +22,7 @@ import { StateService } from "../services"
 })
 export class SearchComponent implements OnInit, AfterViewInit {
 
-  @Input() scrollbarRef: NgScrollbar
+  @Input() scrollbar: NgScrollbar
   @ViewChild("inputRef", { static: true }) inputRef: ElementRef
 
   readonly inputModel = new FormControl()
@@ -40,7 +40,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.inputModel.valueChanges.pipe(
-      tap(() => this.scrollbarRef.scrollToTop()),
+      tap(() => this.scrollbar.scrollToTop()),
       tap(input => this.state.search = input),
     ).subscribe()
   }
@@ -67,9 +67,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
       return
     }
 
-    const y = this.scrollbarRef.scrollable.measureScrollOffset("top")
     this.inputRef.nativeElement.focus()
-    this.scrollbarRef.scrollYTo(y)
   }
 
 }

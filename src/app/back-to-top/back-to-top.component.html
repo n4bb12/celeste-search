@@ -1,4 +1,3 @@
-<cis-tooltip text="Back to Top" [class.--shown]="shown | async">
-  <cis-primary-button icon="up" aria-label="Back to Top"
-    (click)="scrollToTop()"></cis-primary-button>
+<cis-tooltip text="Back to Top" [class.--shown]="shown | async" *ngIf="scrollbar">
+  <cis-primary-button icon="up" aria-label="Back to Top" (click)="scrollToTop()"></cis-primary-button>
 </cis-tooltip>

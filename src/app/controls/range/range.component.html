@@ -9,18 +9,13 @@
   (window:pointermove)="onPointermove($event)"
   (window:pointerup)="onPointerup($event)"
 >
-
   <div class="__controls">
-    <div
-      class="__track"
-      #track
-    ></div>
+    <div class="__track" #track></div>
     <div
       class="__knob-translate"
-      [style.transform]="'translateX(' + (ratio * 100) + '%)'"
+      [style.transform]="'translateX(' + ratio * 100 + '%)'"
     >
       <div class="__knob"></div>
     </div>
   </div>
-
 </button>

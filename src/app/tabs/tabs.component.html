@@ -1,15 +1,19 @@
 <div class="__tabs">
-
   <ng-container *ngFor="let tab of tabs; let i = index">
     <cis-tooltip [text]="tab.name" class="__tab-wrapper">
-      <button type="button" class="__tab" aria-label="tab.name"
+      <button
+        type="button"
+        class="__tab"
+        aria-label="tab.name"
         [class.--active]="(activeTabChange | async) === i"
-        (click)="setActiveTab(i)">
-
-        <img [alt]="tab.name" class="__image"
-          src="/assets/tabs/{{ tab.icon }}.png">
+        (click)="setActiveTab(i)"
+      >
+        <img
+          [alt]="tab.name"
+          class="__image"
+          src="/assets/tabs/{{ tab.icon }}.png"
+        />
       </button>
     </cis-tooltip>
   </ng-container>
-
 </div>

@@ -26,7 +26,7 @@ async function fetch(path: string, spriteName: string, iconName?: string) {
   const imagePath = path.replace(/\\/g, "/") + ".png"
   const spriteInput = `generated/sprites/${spriteName}/${iconName || iconId}.png`
   const url = `https://images.projectceleste.com/${imagePath}`
-  const options = { responseType: "arraybuffer" }
+  const options = { responseType: "arraybuffer" } as const
 
   const filename = await download(url, options)
   await mkdirp(dirname(spriteInput))

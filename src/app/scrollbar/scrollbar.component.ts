@@ -3,6 +3,9 @@ import {
   Component,
   Input,
   ViewChild,
+  AfterViewInit,
+  Output,
+  EventEmitter,
 } from "@angular/core"
 
 import { NgScrollbar } from "ngx-scrollbar"
@@ -13,9 +16,16 @@ import { NgScrollbar } from "ngx-scrollbar"
   styleUrls: ["./scrollbar.component.scss"],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ScrollbarComponent {
+export class ScrollbarComponent implements AfterViewInit {
+
+  @Input() theme: "light" | "dark" = "light"
+
+  @Output() refChange = new EventEmitter<NgScrollbar>()
 
   @ViewChild(NgScrollbar, { static: true }) ref: NgScrollbar
-  @Input() theme: "light" | "dark" = "light"
+
+  ngAfterViewInit() {
+    this.refChange.emit(this.ref)
+  }
 
 }
