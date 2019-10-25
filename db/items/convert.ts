@@ -73,7 +73,10 @@ export async function convertItem(trait: Trait): Promise<Item> {
     }
   } else {
     if (item.effects) {
-      item.effectsRange = !item.vendors || !item.vendors.length
+      item.effectsRange = !item.vendors
+        || !item.vendors.length
+        || item.levels.length > 1
+        || undefined
     }
   }
 
