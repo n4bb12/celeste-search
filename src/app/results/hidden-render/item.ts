@@ -15,6 +15,7 @@ export const item: Item = {
       amount: 1.0398,
       scaling: 0.0134,
       beneficial: true,
+      action: true,
     },
   ],
   effectsRange: true,

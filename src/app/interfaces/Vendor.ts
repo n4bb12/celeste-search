@@ -2,7 +2,7 @@ export interface Vendor {
   id: string
   name: string
   location: string
-  blueprint?: boolean
+  blueprint: true | undefined
   level: number | undefined
   rarity: "legendary" | "epic" | "rare" | "uncommon" | "common" | undefined
   price: number

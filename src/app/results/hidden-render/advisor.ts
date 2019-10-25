@@ -23,6 +23,7 @@ export const advisor: Advisor = {
       price: 225,
       rarity: "uncommon",
       rotation: "classic",
+      blueprint: true,
     },
   ],
   marketplace: [

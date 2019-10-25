@@ -22,6 +22,7 @@ export const design: Design = {
       price: 50,
       rarity: "common",
       rotation: "classic",
+      blueprint: true,
     },
   ],
   marketplace: [

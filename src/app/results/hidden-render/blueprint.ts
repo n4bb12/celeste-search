@@ -17,6 +17,7 @@ export const blueprint: Blueprint = {
       price: 50,
       rarity: "common",
       rotation: "classic",
+      blueprint: true,
     },
   ],
   marketplace: [

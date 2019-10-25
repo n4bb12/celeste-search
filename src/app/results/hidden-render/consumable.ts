@@ -16,6 +16,7 @@ export const consumable: Consumable = {
       price: 50,
       rarity: "common",
       rotation: "classic",
+      blueprint: true,
     },
   ],
   marketplace: [
