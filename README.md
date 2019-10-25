@@ -8,11 +8,8 @@
 </p>
 
 <p align="center">
-  <a href="https://items.projectceleste.com">
-    <img alt="Latest" src="https://flat.badgen.net/badge/App/Latest?icon=chrome&color=fb3">
-  </a>
   <a href="https://celeste-search.netlify.com">
-    <img alt="Next" src="https://flat.badgen.net/badge/App/Next?icon=chrome&color=488489">
+    <img alt="Latest" src="https://flat.badgen.net/badge/App/Next?icon=chrome&color=488489">
   </a>
   <a href="https://raw.githubusercontent.com/n4bb12/celeste-search/master/LICENSE">
     <img alt="License" src="https://flat.badgen.net/github/license/n4bb12/celeste-search?icon=github">
