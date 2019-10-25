@@ -1,11 +1,11 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
-  Input,
-  ViewChild,
-  AfterViewInit,
-  Output,
   EventEmitter,
+  Input,
+  Output,
+  ViewChild,
 } from "@angular/core"
 
 import { NgScrollbar } from "ngx-scrollbar"

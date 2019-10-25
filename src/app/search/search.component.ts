@@ -28,7 +28,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   readonly inputModel = new FormControl()
 
   input = ""
-  isEmpty = this.inputModel.valueChanges.pipe(map(input => !input))
+  isNotEmpty = this.inputModel.valueChanges.pipe(map(input => !!input))
 
   constructor(
     private state: StateService,

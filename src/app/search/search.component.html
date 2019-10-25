@@ -12,6 +12,6 @@
     #inputRef
   />
 
-  <cis-icon-button icon="clear" (click)="clear()" *ngIf="!(isEmpty | async)">
+  <cis-icon-button icon="clear" (click)="clear()" *ngIf="isNotEmpty | async">
   </cis-icon-button>
 </div>
